@@ -5,21 +5,21 @@ List of necessary Python dependencies:
 
 \*: will not be maintained in future updates, but is necessary in the pipeline's current format
 
-esmecata
-pandas
-numpy
-sklearn
-unittest
-matplotlib
-tensorflow*
-keras*
-importlib
-joblib
-seaborn
-progress
-goatools
-biopython
-requests
-operator
-kneebow
-argparse
+  - esmecata
+  - pandas
+  - numpy
+  - sklearn
+  - unittest
+  - matplotlib
+  - tensorflow*
+  - keras*
+  - importlib
+  - joblib
+  - seaborn
+  - progress
+  - goatools
+  - biopython
+  - requests
+  - operator
+  - kneebow
+  - argparse
