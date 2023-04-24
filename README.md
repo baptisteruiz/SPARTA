@@ -23,3 +23,7 @@ List of necessary Python dependencies:
   - operator
   - kneebow
   - argparse
+
+
+To launch a test, use command:
+  '''./sparta_main.sh -d abundance_tryout -t tf_igm -s relative -i 3 -e False'''
