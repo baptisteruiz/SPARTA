@@ -90,6 +90,8 @@ elif ([ "$treatment" == "scaling" ] || [ "$treatment" == "tf_igm" ] || [ "$treat
 			fi
 		mkdir $PWD/Meta_Outputs/${data_ref}
 
+		esmecata_skip=False
+
 		for (( repeat_nb=1; repeat_nb<=$repeats; repeat_nb++ )); do
 
 			it=1
@@ -132,24 +134,33 @@ elif ([ "$treatment" == "scaling" ] || [ "$treatment" == "tf_igm" ] || [ "$treat
 				fi
 
 
-			if [ "$esmecata_run" == True ]
+			if [ "$esmecata_skip" == False ]
 				then
-				esmecata_plus_check
-			
-			else
-				if [ ! -d $PWD/SoFA_calculation/outputs/${dataset_name}/esmecata_outputs_annot ]
+
+				echo EsMeCaTa run
+
+				if [ "$esmecata_run" == True ]
 					then
-						mkdir $PWD/SoFA_calculation/outputs/${dataset_name}/esmecata_outputs_annot
+					esmecata_plus_check
+
+				
+				else
+					if [ ! -d $PWD/SoFA_calculation/outputs/${dataset_name}/esmecata_outputs_annot ]
+						then
+							mkdir $PWD/SoFA_calculation/outputs/${dataset_name}/esmecata_outputs_annot
+						fi
+					
+					if [ -d $PWD/SoFA_calculation/outputs/${dataset_name}/esmecata_outputs_annot/annotation_reference ]
+						then
+							rm -r $PWD/SoFA_calculation/outputs/${dataset_name}/esmecata_outputs_annot/annotation_reference
+
+						fi
+
+					cp -r $PWD/Inputs/annotation_reference_${dataset_name} $PWD/SoFA_calculation/outputs/${dataset_name}/esmecata_outputs_annot/annotation_reference
+
 					fi
 				
-				if [ -d $PWD/SoFA_calculation/outputs/${dataset_name}/esmecata_outputs_annot/annotation_reference ]
-					then
-						rm -r $PWD/SoFA_calculation/outputs/${dataset_name}/esmecata_outputs_annot/annotation_reference
-
-					fi
-
-				cp -r $PWD/Inputs/annotation_reference_${dataset_name} $PWD/SoFA_calculation/outputs/${dataset_name}/esmecata_outputs_annot/annotation_reference
-
+				esmecata_skip=True
 				fi
 			
 			if [ ! -d $PWD/DeepMicro/data ]
