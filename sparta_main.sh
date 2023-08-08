@@ -5,21 +5,24 @@
 
 ## test command example:
 ## chmod +x  sparta_main.sh
-##./sparta_main.sh -d abundance_tryout -t tf_igm -s relative -i 2 -e False
+##./sparta_main.sh -d abundance_tryout -t tf_igm -s relative -i 3 -f 3 -r 3 -e False
 
 # . /local/env/envconda.sh
 # conda activate esmecata
 
 scale=None
 iterations=1
+repeats=1
+forests=20
 esmecata_run=True
 
-while getopts "d:t:s:i:r:e:" arg; do
+while getopts "d:t:s:i:f:r:e:" arg; do
     case $arg in
         d) dataset_name=$OPTARG;;
         t) treatment=$OPTARG;;
         s) scale=$OPTARG;;
         i) iterations=$OPTARG;;
+		f) forests=$OPTARG;;
 		r) repeats=$OPTARG;;
 		e) esmecata_run=$OPTARG;;
     esac
@@ -201,21 +204,21 @@ elif ([ "$treatment" == "scaling" ] || [ "$treatment" == "tf_igm" ] || [ "$treat
 
 			if [ "$treatment" == "tf_igm" ]
 				then
-					python DMmodif_export_test_ver.py -r 2 -cd entree_DeepMicro_${dataset_name}_tfigm.csv -cl Label_$dataset_name.csv -m rf 
+					python DMmodif_export_test_ver.py -r $forests -cd entree_DeepMicro_${dataset_name}_tfigm.csv -cl Label_$dataset_name.csv -m rf 
 					python test_set_measurement.py -d "${dataset_name}" -p "$path" -r "$data_ref" -i "1" --tfigm
 					
 			elif [ "$treatment" == "scaling" ]
 				then
-					python DMmodif_export_test_ver.py -r 2 -cd entree_DeepMicro_${dataset_name}_scaled.csv -cl Label_$dataset_name.csv -m rf 
+					python DMmodif_export_test_ver.py -r $forests -cd entree_DeepMicro_${dataset_name}_scaled.csv -cl Label_$dataset_name.csv -m rf 
 					python test_set_measurement.py -d "${dataset_name}" -p "$path" -r "$data_ref" -i "1" --scaling
 			else
-					python DMmodif_export_test_ver.py -r 2 -cd entree_DeepMicro_${dataset_name}.csv -cl Label_$dataset_name.csv -m rf 
+					python DMmodif_export_test_ver.py -r $forests -cd entree_DeepMicro_${dataset_name}.csv -cl Label_$dataset_name.csv -m rf 
 					python test_set_measurement.py  -d"${dataset_name}" -p "$path" -r "$data_ref" -i "1"
 				fi
 			
 		
 			
-			python DMmodif_export_test_ver.py -r 2 -cd entree_DeepMicro_${dataset_name}_OTU.csv -cl Label_$dataset_name.csv -m rf 
+			python DMmodif_export_test_ver.py -r $forests -cd entree_DeepMicro_${dataset_name}_OTU.csv -cl Label_$dataset_name.csv -m rf 
 			python test_set_measurement.py -d "${dataset_name}_OTU" -p "$path" -r "$data_ref" -i "1"
 
 			cd $path
@@ -321,18 +324,18 @@ elif ([ "$treatment" == "scaling" ] || [ "$treatment" == "tf_igm" ] || [ "$treat
 				cd $PWD/DeepMicro
 				if [ "$treatment" == "tf_igm" ]
 					then
-						python DMmodif_export_test_ver.py -r 2 -cd entree_DeepMicro_${dataset_name}_iteration_${it}_tfigm.csv -cl Label_$dataset_name.csv -m rf 
+						python DMmodif_export_test_ver.py -r $forests -cd entree_DeepMicro_${dataset_name}_iteration_${it}_tfigm.csv -cl Label_$dataset_name.csv -m rf 
 						python test_set_measurement.py -d "${dataset_name}_iteration_${it}" -p "$path" -r "$data_ref" -i "$it" --tfigm
 				elif [ "$treatment" == "scaling" ]
 					then
-						python DMmodif_export_test_ver.py -r 2 -cd entree_DeepMicro_${dataset_name}_iteration_${it}_scaled.csv -cl Label_$dataset_name.csv -m rf 
+						python DMmodif_export_test_ver.py -r $forests -cd entree_DeepMicro_${dataset_name}_iteration_${it}_scaled.csv -cl Label_$dataset_name.csv -m rf 
 						python test_set_measurement.py -d "${dataset_name}_iteration_${it}" -p "$path" -r "$data_ref" -i "$it" --scaling
 				else
-						python DMmodif_export_test_ver.py -r 2 -cd entree_DeepMicro_${dataset_name}_iteration_${it}.csv -cl Label_$dataset_name.csv -m rf 
+						python DMmodif_export_test_ver.py -r $forests -cd entree_DeepMicro_${dataset_name}_iteration_${it}.csv -cl Label_$dataset_name.csv -m rf 
 						python test_set_measurement.py -d "${dataset_name}_iteration_${it}" -p "$path" -r "$data_ref" -i "$it"
 					fi
 					
-				python DMmodif_export_test_ver.py -r 2 -cd entree_DeepMicro_${dataset_name}_iteration_${it}_OTU.csv -cl Label_$dataset_name.csv -m rf 
+				python DMmodif_export_test_ver.py -r $forests -cd entree_DeepMicro_${dataset_name}_iteration_${it}_OTU.csv -cl Label_$dataset_name.csv -m rf 
 				python test_set_measurement.py -d "${dataset_name}_iteration_${it}_OTU" -p "$path" -r "$data_ref" -i "$it"
 
 				cd $path
