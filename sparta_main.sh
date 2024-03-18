@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#SBATCH --job-name=Colorectal_Construction_fichier_melange_comptages_annot_with_esmecata
-#SBATCH --output=output_Colorectal_fichier_melange_comptages_annot.txt
+#SBATCH --job-name=WT2D_Construction_fichier_melange_comptages_annot_with_esmecata
+#SBATCH --output=output_WT2D_fichier_melange_comptages_annot.txt
 
 ## test command example:
 ## chmod +x  sparta_main.sh
