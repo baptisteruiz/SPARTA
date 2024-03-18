@@ -44,7 +44,7 @@ The following input files must be added to the "Inputs" folder:
   
   
  #### RUNNING THE SCRIPT:
- Run the run_abundance_to_score_v6.sh script, with the following arguments:
+ Run the sparta_main.sh script, with the following arguments:
   - Mandatory:
     - d: name of the dataset
   - Optional:
