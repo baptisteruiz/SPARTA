@@ -103,8 +103,6 @@ for i in median_perfs_sofas.keys():
 for i in median_perfs_otus.keys():
     median_perfs_otus[i] = np.mean(median_perfs_otus[i])
 
-
-print(median_perfs_otus)
 max_ind_sofas = max(median_perfs_sofas, key=median_perfs_sofas.get)
 max_ind_otus = max(median_perfs_otus, key=median_perfs_otus.get)
 
@@ -143,6 +141,10 @@ for profile in ['OTU','SoFA']:
         #     meta = add_reaction_names(meta)
 
         
+        core.to_csv(link_to_test_folder +'/core_and_meta_all_runs/core_'+profile+'_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
+        meta.to_csv(link_to_test_folder +'/core_and_meta_all_runs/meta_'+profile+'_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
+
+
         core_meta_dfs_archive[profile]['core'][run] = core
         core_meta_dfs_archive[profile]['meta'][run] = meta
         
@@ -197,8 +199,19 @@ for run in dict_lists[profile].keys():
 
     meta_otu_df_plus_info = otu_db[otu_db['ID'].isin(meta_otu_df['ID'])]
     meta_sofa_df_plus_info = sofa_db[sofa_db['ID'].isin(meta_sofa_df['ID'])]
-    meta_otu_df_plus_info['Count'] = meta_otu_df['Count']
-    meta_sofa_df_plus_info['Count'] = meta_sofa_df['Count']
+
+    meta_otu_counts = []
+    for otu_to_count in meta_otu_df_plus_info['ID'].values:
+        otu_count = meta_otu_df[meta_otu_df['ID']==otu_to_count]['Count'].values[0]
+        meta_otu_counts.append(otu_count)
+    
+    meta_sofa_counts = []
+    for sofa_to_count in meta_sofa_df_plus_info['ID'].values:
+        sofa_count = meta_sofa_df[meta_sofa_df['ID']==sofa_to_count]['Count'].values[0]
+        meta_sofa_counts.append(sofa_count)
+
+    meta_otu_df_plus_info['Count'] = meta_otu_counts
+    meta_sofa_df_plus_info['Count'] = meta_sofa_counts
 
 
     core_otu_df_plus_info = extract_core_associates(core_otu_df_plus_info, core_sofa_df['ID'].values)
@@ -208,9 +221,9 @@ for run in dict_lists[profile].keys():
     meta_sofa_df_plus_info = extract_core_associates(meta_sofa_df_plus_info, core_otu_df['ID'].values)
 
     core_sofa_df_plus_info = core_sofa_df_plus_info[['Average_importance','ID','Name','Linked_OTUs','Significant_linked_OTUs','Family']+['average score in '+str(lab) for lab in labels]]
-    meta_sofa_df_plus_info = meta_sofa_df_plus_info[['ID','Count','Average_importance','Name','Linked_OTUs','Significant_linked_OTUs','Family']+['average score in '+str(lab) for lab in labels]]
+    meta_sofa_df_plus_info = meta_sofa_df_plus_info[['ID','Count','Average_importance','Name','Linked_OTUs','Significant_linked_OTUs','Family']+['average score in '+str(lab) for lab in labels]].sort_values(by='Count', ascending=False)
     core_otu_df_plus_info = core_otu_df_plus_info[['Average_importance','ID','Taxonomy','Linked_Reactions','Significant_linked_Reactions','Family']+['average score in '+str(lab) for lab in labels]]
-    meta_otu_df_plus_info = meta_otu_df_plus_info[['ID','Count','Average_importance','Taxonomy','Linked_Reactions','Significant_linked_Reactions','Family']+['average score in '+str(lab) for lab in labels]]
+    meta_otu_df_plus_info = meta_otu_df_plus_info[['ID','Count','Average_importance','Taxonomy','Linked_Reactions','Significant_linked_Reactions','Family']+['average score in '+str(lab) for lab in labels]].sort_values(by='Count', ascending=False)
 
     core_sofa_df_plus_info.to_csv(link_to_test_folder +'/core_and_meta_all_runs/All_iterations/core_annots_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
     meta_sofa_df_plus_info.to_csv(link_to_test_folder +'/core_and_meta_all_runs/All_iterations/meta_annots_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
