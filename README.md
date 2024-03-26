@@ -3,16 +3,12 @@
 
 List of necessary Python dependencies:
 
-\*: will not be maintained in future updates, but is necessary in the pipeline's current format
-
   - esmecata
   - pandas
   - numpy
   - sklearn
   - unittest
   - matplotlib
-  - tensorflow*
-  - keras*
   - importlib
   - joblib
   - seaborn
@@ -77,13 +73,19 @@ Meta_Outputs:
           |     └── run_i (for all i iterations of the method
           |           ├── OTU_X.csv : List of all OTUs ranked by decreasing importance, with the importance cutoff integrated
           |           ├── scores_X.csv : List of all functional annotations ranked by decreasing importance, with the importance cutoff integrated
-          |           ├── X_output_comparison_signif_rf.txt : temporary: useless data that I'm going to get rid of eventually...
           |           └── X_options_correlation_plots.png : Visual representation of each feature's correlation score with its counterparts
           └── SoFAs
-                ├── OTU_table_stripped.tsv : Original OTU count table with new OTU names and without metadata
-                ├── SoFA_table.tsv : SoFA profiles calculated for each sample
-                └── OTU_name_table-ref.tsv : list of the new normalised OTU names, and their phylogenetic correspondance
-
+          |     ├── OTU_table_stripped.tsv : Original OTU count table with new OTU names and without metadata
+          |     ├── SoFA_table.tsv : SoFA profiles calculated for each sample
+          |     └── OTU_name_table-ref.tsv : list of the new normalised OTU names, and their phylogenetic correspondance
+          └── core_and_meta_all_runs
+                ├── All_iterations
+                |      ├── core_SoFA_X_iteration_i (for i in the amount of iterations of the process per repetition): list of the robust (Core) annotations at selection level i
+                |      ├── meta_SoFA_X_iteration_i (for i in the amount of iterations of the process per repetition): list of the candidate and confident (Meta) annotations at selection level i (the 'Count' column gives the amount of classifiers that count the feature as significant)
+                |      ├── core_OTU_X_iteration_i (for i in the amount of iterations of the process per repetition): list of the robust (Core) OTUs at selection level i
+                |      ├── meta_OTU_X_iteration_i (for i in the amount of iterations of the process per repetition): list of the candidate and confident (Meta) OTUs at selection level i (the 'Count' column gives the amount of classifiers that count the feature as significant)
+                └── Best_iterations
+                       └── Same outputs as 'All iterations', but only for the level of selection that gives the best classification performances for the functional and taxonomic profiles
  ````
 
 #### REPRODUCTION:
