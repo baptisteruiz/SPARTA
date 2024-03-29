@@ -141,8 +141,8 @@ for profile in ['OTU','SoFA']:
         #     meta = add_reaction_names(meta)
 
         
-        core.to_csv(link_to_test_folder +'/core_and_meta_all_runs/core_'+profile+'_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
-        meta.to_csv(link_to_test_folder +'/core_and_meta_all_runs/meta_'+profile+'_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
+        # core.to_csv(link_to_test_folder +'/core_and_meta_all_runs/core_'+profile+'_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
+        # meta.to_csv(link_to_test_folder +'/core_and_meta_all_runs/meta_'+profile+'_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
 
 
         core_meta_dfs_archive[profile]['core'][run] = core
