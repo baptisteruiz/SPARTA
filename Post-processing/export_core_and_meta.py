@@ -61,12 +61,12 @@ def extract_core_associates(dataframe, core_list):
 ###GATHER ALL SIGNIFICANT LISTS
 
 link_to_test_folder = pipeline_path+'/Meta_Outputs/'+args.data_ref
-iterations=int(args.nb_iterations)
+reps=int(args.nb_repeats)
 dict_lists = {}
 median_perfs_otus = defaultdict(list)
 median_perfs_sofas = defaultdict(list)
 
-for i in range(iterations):
+for i in range(reps):
     iter_folder = args.data_ref+'_'+str(i+1)
     for run_nb in os.listdir(link_to_test_folder+'/'+iter_folder+'/Selection_outputs'):
         otu_db = pd.read_csv(link_to_test_folder+'/'+iter_folder+'/Selection_outputs/'+run_nb+'/OTU_'+dataset_name+'.csv')
@@ -126,7 +126,7 @@ for profile in ['OTU','SoFA']:
         core_meta = {'core':[], 'meta':{'ID':[],'Count':[]}}
 
         for annot in np.unique(full_list):
-            if full_list.count(annot) == iterations:
+            if full_list.count(annot) == reps:
                 core_meta['core'].append(annot)
             else:
                 core_meta['meta']['ID'].append(annot)
