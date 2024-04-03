@@ -420,8 +420,10 @@ elif ([ "$treatment" == "scaling" ] || [ "$treatment" == "tf_igm" ] || [ "$treat
 
 		done
 	
-	python $PWD/Post-processing/plot_otu_vs_sofa.py -d "${dataset_name}" -p "$PWD" -r "$data_ref" -n "$repeats" -i "$iterations"
-	python $PWD/Post-processing/export_core_and_meta.py -d "${dataset_name}" -p "$PWD" -r "$data_ref" -n "$repeats" -i "$iterations"
+	# python $PWD/Post-processing/plot_otu_vs_sofa.py -d "${dataset_name}" -p "$PWD" -r "$data_ref" -n "$repeats" -i "$iterations"
+	# python $PWD/Post-processing/export_core_and_meta.py -d "${dataset_name}" -p "$PWD" -r "$data_ref" -n "$repeats" -i "$iterations"
+
+	python $PWD/Post-processing/plot_otu_vs_sofa_and_generate_core_meta_lists.py -d "${dataset_name}" -p "$PWD" -r "$data_ref" -n "$repeats" -i "$iterations"
 	rm -r $PWD/Outputs
 	
 				

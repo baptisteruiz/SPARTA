@@ -87,10 +87,10 @@ for i, disease_name in enumerate(median_perf_values_dict.keys()):
     max_vals.append(max(otu_test_perfs[max_ind_otus]))
 
     dataframe = pd.DataFrame.from_dict({'AUC score': sofa_test_perfs[max_ind_sofas]+otu_test_perfs[max_ind_otus]})
-    dataframe['Profile']=['SoFAs' for i in range(len(sofa_test_perfs))]+['OTUs' for i in range(len(otu_test_perfs))]
-    dataframe['Disease']=[disease_name.split('_')[1] for i in range(len(sofa_test_perfs)+len(otu_test_perfs))]
-    dataframe['Best run']=[max_ind_sofas for i in range(len(sofa_test_perfs))] + [max_ind_otus for i in range(len(otu_test_perfs))]
-    dataframe['Median']=[median_sofas_perfs_tfigm[max_ind_sofas] for i in range(len(sofa_test_perfs))] + [median_otu_perfs[max_ind_otus] for i in range(len(otu_test_perfs))]
+    dataframe['Profile']=['SoFAs' for i in range(len(sofa_test_perfs[max_ind_sofas]))]+['OTUs' for i in range(len(otu_test_perfs[max_ind_otus]))]
+    dataframe['Disease']=[disease_name.split('_')[1] for i in range(len(sofa_test_perfs[max_ind_sofas])+len(otu_test_perfs[max_ind_otus]))]
+    dataframe['Best run']=[max_ind_sofas for i in range(len(sofa_test_perfs[max_ind_sofas]))] + [max_ind_otus for i in range(len(otu_test_perfs[max_ind_otus]))]
+    dataframe['Median']=[median_sofas_perfs_tfigm[max_ind_sofas] for i in range(len(sofa_test_perfs[max_ind_sofas]))] + [median_otu_perfs[max_ind_otus] for i in range(len(otu_test_perfs[max_ind_otus]))]
     
     if i == 0:
         df_cumul = dataframe
@@ -109,7 +109,7 @@ sns.stripplot(y='Disease', x='AUC score', hue = 'Profile', data=df_cumul, jitter
 
 
 
-for xi,yi,tx, col in zip([1.05 for i in max_vals], (np.arange(len(dataframe['Median'].values))/2)-0.2, best_runs, ['blue','darkorange']*6):
+for xi,yi,tx, col in zip([i + 0.03 for i in max_vals], (np.arange(len(dataframe['Median'].values))/2)-0.2, best_runs, ['blue','darkorange']*6):
      plt.text( xi, yi,tx, size=18, fontweight = 'bold', c=col)
 # plt.text(1.01, -0.8, 'Optimal selection', size=10, fontweight = 'bold')
 
