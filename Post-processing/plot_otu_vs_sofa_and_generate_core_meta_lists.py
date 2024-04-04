@@ -106,8 +106,12 @@ for run_nb in range(1, int(args.nb_repeats) + 1):
         if run_folder not in dict_lists['SoFA'].keys():
             dict_lists['SoFA'][run_folder]=defaultdict(list)
         
-        dict_lists['OTU'][run_folder][i+1] = signif_list_otu
-        dict_lists['SoFA'][run_folder][i+1] = signif_list_sofa
+        dict_lists['OTU'][run_folder][run_nb] = signif_list_otu
+        dict_lists['SoFA'][run_folder][run_nb] = signif_list_sofa
+        
+    
+
+print('dict lists: ', dict_lists)
 
 
 ###PLOTTING MEDIAN PERFORMANCES
@@ -197,7 +201,6 @@ core_meta_dfs_archive = {'OTU':{'core':defaultdict(defaultdict), 'meta':defaultd
 for profile in ['OTU','SoFA']:
     for run in dict_lists[profile].keys():
 
-
         full_list = sum([list(dict_lists[profile][run][i]) for i in dict_lists[profile][run].keys()],[])
         core_meta = {'core':[], 'meta':{'ID':[],'Count':[]}}
 
@@ -211,7 +214,6 @@ for profile in ['OTU','SoFA']:
         
         core = pd.DataFrame(core_meta['core'], columns=['ID'])
         meta = pd.DataFrame(core_meta['meta']).sort_values(by='Count', ascending=False)
-
         # if profile =='SoFA':
         #     core = add_reaction_names(core)
         #     meta = add_reaction_names(meta)
