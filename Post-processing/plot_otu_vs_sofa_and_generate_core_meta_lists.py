@@ -111,7 +111,6 @@ for run_nb in range(1, int(args.nb_repeats) + 1):
         
     
 
-print('dict lists: ', dict_lists)
 
 
 ###PLOTTING MEDIAN PERFORMANCES
@@ -309,11 +308,11 @@ for run in dict_lists[profile].keys():
     core_otu_df_plus_info.to_csv(path_save +'/core_and_meta_all_runs/All_iterations/core_OTU_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
     meta_otu_df_plus_info.to_csv(path_save +'/core_and_meta_all_runs/All_iterations/meta_OTU_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
     
-    if run == 'run_'+str(max_ind_sofas+1):
+    if run == 'run_'+str(max_ind_sofas):
         core_sofa_df_plus_info.to_csv(path_save +'/core_and_meta_all_runs/Best_iteration/core_annots_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
         meta_sofa_df_plus_info.to_csv(path_save +'/core_and_meta_all_runs/Best_iteration/meta_annots_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
 
-    if run == 'run_'+str(max_ind_otus+1):
+    if run == 'run_'+str(max_ind_otus):
         core_otu_df_plus_info.to_csv(path_save +'/core_and_meta_all_runs/Best_iteration/core_OTU_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
         meta_otu_df_plus_info.to_csv(path_save +'/core_and_meta_all_runs/Best_iteration/meta_OTU_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
 
