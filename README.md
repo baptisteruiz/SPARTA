@@ -67,8 +67,8 @@ Meta_Outputs:
           |     ├── Data_leak_free_X_performances.txt: Performance scores (AUC) of the best performing RF model on the independent test SoFA datasets
           |     ├── Data_leak_free_X_OTU_performances.txt: Performance scores (AUC) of the best performing RF model on the independent test OTU datasets
           |     └── run_i (for all i iterations of the method
-          |           ├── OTU_classif_perfs.txt: Performance metrics of each RF model trained during this iteration on the internal verification subset of the OTU data
-          |           └── SoFA_classif_perfs.txt: Performance metrics of each RF model trained during this iteration on the internal verification subset of the SoFA data 
+          |           ├── OTU_classif_perfs.csv: Performance metrics of each RF model trained during this iteration on the internal verification subset of the OTU data
+          |           └── SoFA_classif_perfs.csv: Performance metrics of each RF model trained during this iteration on the internal verification subset of the SoFA data 
           ├── Selection_outputs
           |     └── run_i (for all i iterations of the method
           |           ├── OTU_X.csv : List of all OTUs ranked by decreasing importance, with the importance cutoff integrated
