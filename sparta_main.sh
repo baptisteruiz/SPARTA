@@ -43,7 +43,7 @@ esmecata_plus_check () {
 	while IFS=$'\t' read -r rec_column1 rec_column2; do
   		if [ ! -f "$PWD/SoFA_calculation/outputs/$dataset_name/esmecata_outputs_annot/annotation_reference/${rec_column1}.tsv" ]
   			then
-  				echo "${rec_column1} : EsMeCaTa go brrrrrrrrrrrrrrrrrrrrr"
+  				echo "${rec_column1} : No output found, relaunching EsMeCaTa"
   				esmecata_plus_check
   		fi; 
 	done < <(tail -n +2 $PWD/SoFA_calculation/outputs/$dataset_name/$dataset_name.tsv)	
