@@ -468,22 +468,3 @@ otu_significant_not_in_associated, non_assoc_percent_otu_significant = compare_e
 associated_not_in_reac_significant, non_assoc_percent_associated_reac = compare_extract(associated_reaction_list,significant_reaction_list)
 reac_significant_not_in_associated, non_assoc_percent_reac_significant = compare_extract(significant_reaction_list,associated_reaction_list)
 
-
-with open(pipeline_path + '/Outputs/'+ args.data_ref + '/Selection_outputs/run_'+str(args.iteration)+'/'+args.dataset_name+'_output_comparison_signif_rf.txt', 'w') as f:
-    f.writelines("--------------------- OTU comparison analysis ------------------- \n")
-    f.writelines("Percentage of non asociated OTUs in the significant list: " + str(non_assoc_percent_otu_significant) + "% \n")
-    f.writelines("Detail [" + str(len(otu_significant_not_in_associated)) + "]:\n")
-    f.writelines(str(otu_significant_not_in_associated))
-    f.writelines('\n \n')
-    f.writelines("Percentage of non significant OTUs in the associated list: " + str(non_assoc_percent_associated_otu) + "% \n")
-    f.writelines("Detail [" + str(len(associated_not_in_otu_significant)) + "]:\n")
-    f.writelines(str(associated_not_in_otu_significant))
-    f.writelines('\n \n')
-    f.writelines("--------------------- Functional annotations comparison analysis ------------------- \n")
-    f.writelines("Percentage of non asociated annotations in the significant list: " + str(non_assoc_percent_reac_significant) + "% \n")
-    f.writelines("Detail [" + str(len(reac_significant_not_in_associated)) + "]:\n")
-    f.writelines(str(reac_significant_not_in_associated))
-    f.writelines('\n \n')
-    f.writelines("Percentage of non significant reactions in the associated list: " + str(non_assoc_percent_associated_reac) + "% \n")
-    f.writelines("Detail [" + str(len(associated_not_in_reac_significant)) + "]:\n")
-    f.writelines(str(associated_not_in_reac_significant))

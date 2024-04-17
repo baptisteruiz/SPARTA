@@ -77,6 +77,7 @@ for run_nb in range(1, int(args.nb_repeats) + 1):
     #Gather test classification performances
 
         local_path = path_ref + '/Classification_performances/run_'+str(i+1)+'/SoFA_classif_perfs.csv'   
+        print(local_path)
 
         dataframe_sofa = pd.read_csv(local_path, sep = ',')
         median_sofa_test_perfs[i].append(np.median(list(dataframe_sofa['Test performance'].values)))
@@ -87,7 +88,9 @@ for run_nb in range(1, int(args.nb_repeats) + 1):
     
     median_perf_values_dict[dataset_name] = [median_sofa_test_perfs, median_otu_test_perfs]
 
-    for run_folder in os.listdir(path_ref+'/Selection_outputs'):
+    #for run_folder in os.listdir(path_ref+'/Selection_outputs'):
+    for i in range(int(args.nb_iterations)):
+        run_folder = 'run_'+str(i+1)
     #Gather the lists of selected variables per run and iteration
         otu_db = pd.read_csv(path_ref+'/Selection_outputs/'+run_folder+'/OTU_'+dataset_name+'.csv')
         score_db = pd.read_csv(path_ref+'/Selection_outputs/'+run_folder+'/scores_'+dataset_name+'.csv')
@@ -227,8 +230,8 @@ for profile in ['OTU','SoFA']:
         
 
 ##Getting the reference info for OTUs and annotations
-otu_db = pd.read_csv(path_save+'/'+args.data_ref+'_1/Selection_outputs/run_1/OTU_'+dataset_name+'.csv')[['Average_importance','ID','Linked_Reactions','Family']]
-sofa_db = pd.read_csv(path_save+'/'+args.data_ref+'_1/Selection_outputs/run_1/scores_'+dataset_name+'.csv')[['Average_importance','ID','Name','Linked_OTUs','Family']]
+otu_db = pd.read_csv(path_save+'/'+args.data_ref+'_1/Selection_outputs/run_1/OTU_'+dataset_name+'.csv')[['ID','Linked_Reactions','Family']]
+sofa_db = pd.read_csv(path_save+'/'+args.data_ref+'_1/Selection_outputs/run_1/scores_'+dataset_name+'.csv')[['ID','Name','Linked_OTUs','Family']]
 
 otu_db = otu_db[otu_db['ID']!='CUTOFF']
 sofa_db = sofa_db[sofa_db['ID']!='CUTOFF']
@@ -298,10 +301,10 @@ for run in dict_lists[profile].keys():
     core_sofa_df_plus_info = extract_core_associates(core_sofa_df_plus_info, core_otu_df['ID'].values)
     meta_sofa_df_plus_info = extract_core_associates(meta_sofa_df_plus_info, core_otu_df['ID'].values)
 
-    core_sofa_df_plus_info = core_sofa_df_plus_info[['Average_importance','ID','Name','Linked_OTUs','Significant_linked_OTUs','Family']+['average score in '+str(lab) for lab in labels]]
-    meta_sofa_df_plus_info = meta_sofa_df_plus_info[['ID','Count','Average_importance','Name','Linked_OTUs','Significant_linked_OTUs','Family']+['average score in '+str(lab) for lab in labels]].sort_values(by='Count', ascending=False)
-    core_otu_df_plus_info = core_otu_df_plus_info[['Average_importance','ID','Taxonomy','Linked_Reactions','Significant_linked_Reactions','Family']+['average score in '+str(lab) for lab in labels]]
-    meta_otu_df_plus_info = meta_otu_df_plus_info[['ID','Count','Average_importance','Taxonomy','Linked_Reactions','Significant_linked_Reactions','Family']+['average score in '+str(lab) for lab in labels]].sort_values(by='Count', ascending=False)
+    core_sofa_df_plus_info = core_sofa_df_plus_info[['ID','Name','Linked_OTUs','Significant_linked_OTUs','Family']+['average score in '+str(lab) for lab in labels]]
+    meta_sofa_df_plus_info = meta_sofa_df_plus_info[['ID','Count','Name','Linked_OTUs','Significant_linked_OTUs','Family']+['average score in '+str(lab) for lab in labels]].sort_values(by='Count', ascending=False)
+    core_otu_df_plus_info = core_otu_df_plus_info[['ID','Taxonomy','Linked_Reactions','Significant_linked_Reactions','Family']+['average score in '+str(lab) for lab in labels]]
+    meta_otu_df_plus_info = meta_otu_df_plus_info[['ID','Count','Taxonomy','Linked_Reactions','Significant_linked_Reactions','Family']+['average score in '+str(lab) for lab in labels]].sort_values(by='Count', ascending=False)
 
     core_sofa_df_plus_info.to_csv(path_save +'/core_and_meta_all_runs/All_iterations/core_annots_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
     meta_sofa_df_plus_info.to_csv(path_save +'/core_and_meta_all_runs/All_iterations/meta_annots_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
@@ -309,14 +312,33 @@ for run in dict_lists[profile].keys():
     meta_otu_df_plus_info.to_csv(path_save +'/core_and_meta_all_runs/All_iterations/meta_OTU_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
     
     if run == 'run_'+str(max_ind_sofas):
-        core_sofa_df_plus_info.to_csv(path_save +'/core_and_meta_all_runs/Best_iteration/core_annots_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
-        meta_sofa_df_plus_info.to_csv(path_save +'/core_and_meta_all_runs/Best_iteration/meta_annots_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
+        core_sofa_opti_df = core_sofa_df_plus_info
+        meta_sofa_opti_df= meta_sofa_df_plus_info
 
     if run == 'run_'+str(max_ind_otus):
-        core_otu_df_plus_info.to_csv(path_save +'/core_and_meta_all_runs/Best_iteration/core_OTU_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
-        meta_otu_df_plus_info.to_csv(path_save +'/core_and_meta_all_runs/Best_iteration/meta_OTU_'+dataset_name+'_iteration_'+run.split('_')[-1]+'.csv', index=0)
+        core_otu_opti_df = core_otu_df_plus_info
+        meta_otu_opti_df = meta_otu_df_plus_info
 
-    core_meta_dfs_archive['OTU']['core'][run] = core_otu_df_plus_info
-    core_meta_dfs_archive['OTU']['meta'][run] = meta_otu_df_plus_info
-    core_meta_dfs_archive['SoFA']['core'][run] = core_sofa_df_plus_info
-    core_meta_dfs_archive['SoFA']['meta'][run] = meta_sofa_df_plus_info
+if max_ind_sofas == 0:
+    core_sofa_opti_df = sofa_db
+
+if max_ind_otus == 0:
+    core_otu_opti_df = otu_db
+
+opti_core_annots = core_sofa_opti_df['ID'].values
+opti_core_otus = core_otu_opti_df['ID'].values
+
+core_otu_opti_df = extract_core_associates(core_otu_opti_df, opti_core_annots)
+core_sofa_opti_df = extract_core_associates(core_sofa_opti_df, opti_core_otus)
+
+if max_ind_otus > 0:
+    meta_otu_opti_df = extract_core_associates(meta_otu_opti_df, opti_core_annots)
+    meta_otu_opti_df.to_csv(path_save +'/core_and_meta_all_runs/Best_iteration/meta_OTU_'+dataset_name+'_iteration_'+str(max_ind_otus)+'.csv', index=0)
+
+if max_ind_sofas > 0:
+    meta_sofa_opti_df = extract_core_associates(meta_sofa_opti_df, opti_core_otus)
+    meta_sofa_opti_df.to_csv(path_save +'/core_and_meta_all_runs/Best_iteration/meta_annots_'+dataset_name+'_iteration_'+str(max_ind_sofas)+'.csv', index=0)
+
+    
+core_sofa_opti_df.to_csv(path_save +'/core_and_meta_all_runs/Best_iteration/core_annots_'+dataset_name+'_iteration_'+str(max_ind_sofas)+'.csv', index=0)
+core_otu_opti_df.to_csv(path_save +'/core_and_meta_all_runs/Best_iteration/core_OTU_'+dataset_name+'_iteration_'+str(max_ind_otus)+'.csv', index=0)

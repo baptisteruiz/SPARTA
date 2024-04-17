@@ -55,32 +55,32 @@ labels = pd.read_csv(args.pipeline_path+'/Inputs/Label_'+dataset_no_iter+'.csv',
 
 ##CREATE HEATMAP REPRESENTATION OF THE SoFA PROFILE
 
-scaler = MinMaxScaler()
+# scaler = MinMaxScaler()
 
-annots_table = pd.DataFrame(scaler.fit_transform(entree_dm_annots)).T.astype('float64')
-
-
-sample_name_labels = pd.read_csv(args.pipeline_path+'/SoFA_calculation/outputs/'+dataset_no_iter+'/score_annot_selon_otus_'+args.dataset_name+'.tsv', sep='\t', header = 0, index_col=0).columns
-annot_name_labels = pd.read_csv(args.pipeline_path+'/SoFA_calculation/outputs/'+dataset_no_iter+'/score_annot_selon_otus_'+args.dataset_name+'.tsv', sep='\t', header = 0, index_col=0).index
-
-label_table = pd.read_csv(args.pipeline_path+'/Inputs/Label_'+dataset_no_iter+'.csv', header = None)
-label_table.index = sample_name_labels
-
-annots_table.columns = sample_name_labels
-annots_table.index = annot_name_labels
-
-lut = dict(zip(label_table[0].unique(), "gr"))
-col_colors = label_table[0].map(lut)
-
-black_indices = [None for i in range(len(label_table.values))]
-for k in indices:
-    black_indices[k] = 'black'
-
-df_colors = pd.DataFrame(data={'Control': col_colors[col_colors == 'g'], 'Sick': col_colors[col_colors == 'r'], 'Test_dataset': black_indices})
+# annots_table = pd.DataFrame(scaler.fit_transform(entree_dm_annots)).T.astype('float64')
 
 
-annots_table.to_csv(args.pipeline_path+'/Outputs/'+ args.data_ref +'/SoFAs/annots_table_temp_'+args.dataset_name+'.csv')
-df_colors.to_csv(args.pipeline_path+'/Outputs/'+ args.data_ref +'/SoFAs/df_colors_temp_'+args.dataset_name+'.csv')
+# sample_name_labels = pd.read_csv(args.pipeline_path+'/SoFA_calculation/outputs/'+dataset_no_iter+'/score_annot_selon_otus_'+args.dataset_name+'.tsv', sep='\t', header = 0, index_col=0).columns
+# annot_name_labels = pd.read_csv(args.pipeline_path+'/SoFA_calculation/outputs/'+dataset_no_iter+'/score_annot_selon_otus_'+args.dataset_name+'.tsv', sep='\t', header = 0, index_col=0).index
+
+# label_table = pd.read_csv(args.pipeline_path+'/Inputs/Label_'+dataset_no_iter+'.csv', header = None)
+# label_table.index = sample_name_labels
+
+# annots_table.columns = sample_name_labels
+# annots_table.index = annot_name_labels
+
+# lut = dict(zip(label_table[0].unique(), "gr"))
+# col_colors = label_table[0].map(lut)
+
+# black_indices = [None for i in range(len(label_table.values))]
+# for k in indices:
+#     black_indices[k] = 'black'
+
+# df_colors = pd.DataFrame(data={'Control': col_colors[col_colors == 'g'], 'Sick': col_colors[col_colors == 'r'], 'Test_dataset': black_indices})
+
+
+# annots_table.to_csv(args.pipeline_path+'/Outputs/'+ args.data_ref +'/SoFAs/annots_table_temp_'+args.dataset_name+'.csv')
+# df_colors.to_csv(args.pipeline_path+'/Outputs/'+ args.data_ref +'/SoFAs/df_colors_temp_'+args.dataset_name+'.csv')
 
 # clustergrid = sns.clustermap(annots_table, col_colors=df_colors, tree_kws={'colors':[colmap[s] for s in label_table[0].astype('str')]}, row_cluster=True, cmap = 'flare', method = 'ward', figsize=(20,20))
 # plt.savefig(args.pipeline_path+'/Outputs/'+ args.data_ref +'/SoFAs/Heatmap_'+args.dataset_name+'.png')

@@ -113,7 +113,7 @@ elif ([ "$treatment" == "scaling" ] || [ "$treatment" == "tf_igm" ] || [ "$treat
 				fi
 
 
-			python -c 'from ete3 import NCBITaxa;ncbi = NCBITaxa();ncbi.update_taxonomy_database()'
+			#python -c 'from ete3 import NCBITaxa;ncbi = NCBITaxa();ncbi.update_taxonomy_database()'
 
 			if [ ! -d "$PWD/SoFA_calculation/outputs" ]
 				then
