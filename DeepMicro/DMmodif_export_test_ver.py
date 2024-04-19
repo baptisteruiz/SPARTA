@@ -515,7 +515,7 @@ class DeepMicrobiome(object):
         if metrics[0] >= best_auc:
             best_auc = metrics[0]
             threshold_opt = thresholdOpt
-            joblib.dump(clf, self.data_dir + '/' + self.data + "_saved_classifier.joblib")
+            joblib.dump(clf, self.data_dir + self.data + "_saved_classifier.joblib")
             print("Model saved!")
 
         # time stamp
