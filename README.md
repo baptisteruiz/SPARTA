@@ -1,5 +1,5 @@
 # SPARTA (Shifting Paradigms to Annotation Representation from Taxonomy to identify Archetypes)
-### Note: please refrain from using '\_test' in the input datasets' names, as it would be confusing during the process
+
 
 ## DEPENDENCIES:
 pandas, numpy, scikit-learn, scipy, matplotlib, seaborn, joblib, tqdm, goatools, Biopython, requests, kneebow, esmecata.
@@ -7,47 +7,54 @@ pandas, numpy, scikit-learn, scipy, matplotlib, seaborn, joblib, tqdm, goatools,
 ## HOW TO USE:
 
 Run the main.py script from the command line, with the following arguments:
-    REQUIRED:
-    "-d","--dataset_name": Name of the dataset
-    OPTIONAL:
-    "-t", "--treatment" (str, default=None): Data treatment for the functional table (can be: 'tf_igm', default: no treatment)
-    "-s", "--scaling" (str, default=None): Scaling method to apply to the taxonomic table (can be: 'relative', default: no scaling)
-    "-i", "--iterations" (int, default=5): Number of iterations of the method
-    "-f", "--forests" (int, default=20): Amount of trained classifiers per iteration of the command
-    "-r", "--runs" (int, default=10): Amount of pipeline runs
-    "-e", "--esmecata" (bool, default=True): Launch EsMeCaTa within the pipeline
-    "--eggnog" (default=False): Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launched with the 'UniProt' workflow by default.
-    "--annotations_only" (default=False): This is a flag that signals that the input is a functional table. If True, all steps involving taxonomic tables will be skipped, and SPARTA will iteratively classify and select on the given functional table alone.
-    "--reference_test_sets" (default=False): This is a flag that allows the user to give their own test sets to be used during classification.
-    "--esmecata_relaunch" (default=False): This is a flag that allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.
-    EXAMPLE:
-    python main.py -d abundance_testing -s relative -t tf_igm -i 3 -r 4
+    
+### REQUIRED:
+    
+"-d","--dataset_name": Name of the dataset
+
+### OPTIONAL:
+
+"-t", "--treatment" (str, default=None): Data treatment for the functional table (can be: 'tf_igm', default: no treatment)
+"-s", "--scaling" (str, default=None): Scaling method to apply to the taxonomic table (can be: 'relative', default: no scaling)
+"-i", "--iterations" (int, default=5): Number of iterations of the method
+"-f", "--forests" (int, default=20): Amount of trained classifiers per iteration of the command
+"-r", "--runs" (int, default=10): Amount of pipeline runs
+"-e", "--esmecata" (bool, default=True): Launch EsMeCaTa within the pipeline
+"--eggnog" (default=False): Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launched with the 'UniProt' workflow by default.
+"--annotations_only" (default=False): This is a flag that signals that the input is a functional table. If True, all steps involving taxonomic tables will be skipped, and SPARTA will iteratively classify and select on the given functional table alone.
+"--reference_test_sets" (default=False): This is a flag that allows the user to give their own test sets to be used during classification.
+"--esmecata_relaunch" (default=False): This is a flag that allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.
+EXAMPLE:
+python main.py -d abundance_testing -s relative -t tf_igm -i 3 -r 4
 
 ## INPUTS:
-REQUIRED:
-    Abundance profile:
-        Must be a .txt file with tabular separation
-        First row must be named 'sampleID', with the subsequent sample names heading each column
-        If the input is a taxonomic abundance file:
-            Metadata can also be included within the file, it will not be taken account of
-            Each row must be named after an OTU, and give its abundance per sample
-            The OTU names should be in the format: "k__kingdom|p__phylum|c__class|o__order|f__family|g__genus|s__species"
-        If the input is a functional abundance file:
-            Please do not include metadata in the file
-            Each row must be named after an annotation (ID: GO term or EC number), and give its abundance per sample
-            If the input is functional, please raise the --annotations_only flag. No other profile will be calculated.
-    Labels:
-        Must be a .csv file named according to the corresponding abundance file (i.e: if the abundance data is named 'abundance_tryout.txt', the associated labels must be named 'Label_abundance_tryout.csv')
-        Must be a vector of the individuals' labels (numerical category descriptor), respecting the order in which said samples are given in the taxonomic abundance table.
 
-CAN BE REQUIRED:
-    Test sets to be used (only if the --reference_test_sets flag is used):
-        Name the file according to the corresponding input (i.e: if the abundance data is named 'abundance_tryout.txt', the associated test set dataframe must be named 'Test_sets_abundance_tryout.csv')
-        The 'Test_sets.csv' output file from a previous iteration can be used for reproductibility
-        Column names: 'Run_i' for i in the required amount of runs (make sure it matches the -i argument) 
-        List the sample IDs to be used as test subsets for each run in the columns
-        An index column is required 
-            
+### REQUIRED:
+
+Abundance profile:
+    Must be a .txt file with tabular separation
+    First row must be named 'sampleID', with the subsequent sample names heading each column
+    If the input is a taxonomic abundance file:
+        Metadata can also be included within the file, it will not be taken account of
+        Each row must be named after an OTU, and give its abundance per sample
+        The OTU names should be in the format: "k__kingdom|p__phylum|c__class|o__order|f__family|g__genus|s__species"
+    If the input is a functional abundance file:
+        Please do not include metadata in the file
+        Each row must be named after an annotation (ID: GO term or EC number), and give its abundance per sample
+        If the input is functional, please raise the --annotations_only flag. No other profile will be calculated.
+Labels:
+    Must be a .csv file named according to the corresponding abundance file (i.e: if the abundance data is named 'abundance_tryout.txt', the associated labels must be named 'Label_abundance_tryout.csv')
+    Must be a vector of the individuals' labels (numerical category descriptor), respecting the order in which said samples are given in the taxonomic abundance table.
+
+### CAN BE REQUIRED:
+    
+Test sets to be used (only if the --reference_test_sets flag is used):
+    Name the file according to the corresponding input (i.e: if the abundance data is named 'abundance_tryout.txt', the associated test set dataframe must be named 'Test_sets_abundance_tryout.csv')
+    The 'Test_sets.csv' output file from a previous iteration can be used for reproductibility
+    Column names: 'Run_i' for i in the required amount of runs (make sure it matches the -i argument) 
+    List the sample IDs to be used as test subsets for each run in the columns
+    An index column is required 
+        
 
 ## OUTPUTS DESCRIPTION:
 
@@ -83,9 +90,9 @@ CAN BE REQUIRED:
                 └── Best_iterations
                         └── Same outputs as 'All iterations', but only for the level of selection that gives the best classification performances for the functional and taxonomic profiles
 
-Other outputs:
-    EsMeCaTa_outputs: outputs of the EsMeCaTa pipeline, only the results of the 'annotation' step are kept for storage efficiency. These outputs can be re-used from one application of the pipeline to a dataset to another.
-    data: enzyme and GO OBO databases, for reference. Only downloaded once.
+### Other outputs:
+EsMeCaTa_outputs: outputs of the EsMeCaTa pipeline, only the results of the 'annotation' step are kept for storage efficiency. These outputs can be re-used from one application of the pipeline to a dataset to another.
+data: enzyme and GO OBO databases, for reference. Only downloaded once.
 
 ## STEPS OF THE PIPELINE:
 
@@ -147,7 +154,7 @@ Main function: run_esmecata_plus_check(esmecata_input, pipeline_path, data_ref_o
         function: check if all OTUs with a reference in the 'consensus_fasta' folder an output written in the 'annotations_reference output folder'. Similarly to the 'Proteomes' step,
         this process can be iterated up to 20 times.
 
-4) Score calculation:
+3) Score calculation:
    
 This step involves the calculation of a functional profile, from the initial taxonomic abundances and the outputs of EsMeCaTa. The profile is exported both in the form of a DataFrame, presented in a similar 
 manner to the original output, and in a transposed form compatible with DeepMicro
@@ -166,7 +173,7 @@ Main function: sofa_calculation(pipeline_path, dataset_name, data_ref_output_nam
              deepmicro_sofa: a transposed version of sofa_table, compatible as a functional input for DeepMicro
         
 5) Averaging scores and fetching information:
-6) 
+
 In this step, descriptive tables are created for each taxonomic unit and/or functional annotation in our profiles. These descriptions notably tell: the average persence of a feature in each labeled catgory, the 
 category that expresses it the most on average, and the total average expression of the feature over the whole profile. For taxons, the detailed taxonomy and the annotations it expresses are fetched. For each 
 functional annotation, the name of the annotation is fetched from a database (OBO PURLs for GO terms (http://purl.obolibrary.org/obo/go/go-basic.obo), and the Expasy database for EC numbers 
