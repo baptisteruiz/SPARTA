@@ -29,7 +29,7 @@ EXAMPLE:
 python main.py -d abundance_testing -s relative -t tf_igm -i 3 -r 4
 
 ## INPUTS:
-
+All input files should be stored inside the 'Inputs' folder before launching the pipeline.
 ### REQUIRED:
 
     - Abundance profile:
