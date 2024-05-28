@@ -612,7 +612,7 @@ def sofa_calculation(pipeline_path, dataset_name, data_ref_output_name, otu_tabl
     if args_passed.treatment == 'tf_igm':
         deepmicro_sofa = tf_igm_apply(deepmicro_sofa)
 
-    deepmicro_sofa.to_csv(pipeline_path+'/Outputs_temp/'+data_ref_output_name+'/DeepMicro_data/entree_DeepMicro_'+dataset_name+'.csv', sep=',', header = None, index = None)
+    #deepmicro_sofa.to_csv(pipeline_path+'/Outputs_temp/'+data_ref_output_name+'/DeepMicro_data/entree_DeepMicro_'+dataset_name+'.csv', sep=',', header = None, index = None)
     
     return sofa_table, deepmicro_sofa
 
