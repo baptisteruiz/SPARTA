@@ -52,6 +52,7 @@ parser.add_argument("--eggnog", default=False, help="Path to the eggnog database
 parser.add_argument("--annotations_only", default=False, action='store_true', help="This is a flag that signals that the input is a functional table. If True, all steps involving taxonomic tables will be skipped, and SPARTA will iteratively classify and select on the given functional table alone.")
 parser.add_argument("--reference_test_sets", default=False, action='store_true', help="This option allows the user to give their own test sets to be used during classification.")
 parser.add_argument("--esmecata_relaunch", default=False, action='store_true', help="This option allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.")
+parser.add_argument("--keep_temp", default=False, action='store_true', help="This option allows the user to keep the contents of the 'Outputs_temp' folder at the end of the run.")
 
 pd.options.mode.chained_assignment = None
 
@@ -1623,6 +1624,8 @@ def main(args_passed):
     
     extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_of_selections_taxons, best_selec_iter_annots, best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, otu_table_stripped, sofa_table, args_passed)
 
+    if not args_passed.keep_temp:
+        shutil.rmtree(pipeline_path+'/Outputs_temp/'+data_ref_output_name, ignore_errors=True)
     # pd.DataFrame.from_dict(bank_of_selections_annots).to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/bank_of_selections_check.csv')
 
     ####Time measurement####
