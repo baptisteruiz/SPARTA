@@ -1,9 +1,12 @@
-from DMmodif_export_test_ver import *
+ from DMmodif_export_test_ver import *
 
 from esmecata.proteomes import retrieve_proteomes
 from esmecata.clustering import make_clustering
 from esmecata.annotation import annotate_proteins
 from esmecata.eggnog import annotate_with_eggnog
+from esmecata.utils import get_rest_uniprot_release, get_sparql_uniprot_release, is_valid_file, is_valid_dir, send_uniprot_sparql_query
+
+from ete3 import NCBITaxa
 
 import os
 import csv
@@ -46,13 +49,16 @@ parser.add_argument("-d","--dataset_name", help="Name of the dataset", required=
 parser.add_argument("-t", "--treatment", default=None, help="Data treatment for the functional table (can be: 'tf_igm', default: no treatment)")
 parser.add_argument("-s", "--scaling", default=None, help="Scaling method to apply to the taxonomic table (can be: 'relative', default: no scaling)")
 parser.add_argument("-i", "--iterations", default=5, help="Number of iterations of the method (default: 5 iterations)")
-parser.add_argument("-f", "--forests", default=20, help="Amount of trained classifiers per iteration of the command (default: 20 forests)")
+parser.add_argument("-c", "--classifiers", default=20, help="Amount of trained classifiers per iteration of the command (default: 20)")
 parser.add_argument("-r", "--runs", default=10, help="Amount of pipeline runs (default: 10 runs)")
+parser.add_argument("-m", "--method", default="rf", help="Classifying method to be run (default: Random Forest (rf). Can be: svm)")
+parser.add_argument("-v", "--variable_ranking", default="gini", help="Method for Random Forest variable importance ranking (default: gini. Can be: shap)")
 parser.add_argument("--eggnog", default=False, help="Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launhed with the 'UniProt' workflow by default.")
 parser.add_argument("--annotations_only", default=False, action='store_true', help="This is a flag that signals that the input is a functional table. If True, all steps involving taxonomic tables will be skipped, and SPARTA will iteratively classify and select on the given functional table alone.")
 parser.add_argument("--reference_test_sets", default=False, action='store_true', help="This option allows the user to give their own test sets to be used during classification.")
 parser.add_argument("--esmecata_relaunch", default=False, action='store_true', help="This option allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.")
 parser.add_argument("--keep_temp", default=False, action='store_true', help="This option allows the user to keep the contents of the 'Outputs_temp' folder at the end of the run.")
+parser.add_argument("--update_ncbi", default=False, action='store_true', help="This option allows the user to force an update of the local NCBI database (taxdump.tar.gz).")
 
 pd.options.mode.chained_assignment = None
 
@@ -137,195 +143,7 @@ def absolute_to_relative(db):
 
 
 
-###ESMECATA LAUNCHER (TEMPORARY?)
-
-def personalized_make_clustering(proteome_folder, output_folder, nb_cpu=1, clust_threshold=1, mmseqs_options=None, linclust=None, remove_tmp=None):
-    """From the proteomes found by esmecata proteomes, create protein cluster for each taxonomic affiliations. 
-        Personnalization: Certain features were removed, notably for graphical representations of the outputs.
-    Args:
-        proteome_folder (str): pathname to folder from esmecata folder
-        output_folder (str): pathname to the output folder
-        nb_cpu (int): number of CPUs to be used by mmseqs
-        clust_threshold (float): threshold to select protein cluster according to the representation of protein proteome in the cluster
-        mmseqs_options (str): use alternative mmseqs option
-        linclust (bool): use linclust
-        remove_tmp (bool): remove the tmp files
-    """
-    starttime = time.time()
-    logger.info('|EsMeCaTa|clustering| Begin clustering.')
-
-    # Check if mmseqs is in path.
-    mmseqs_path = which('mmseqs')
-    if not mmseqs_path:
-        logger.critical('|EsMeCaTa|clustering| mmseqs not available in path, esmecata will not be able to cluster the proteomes.')
-        sys.exit(1)
-
-    if not is_valid_dir(proteome_folder):
-        logger.critical('|EsMeCaTa|clustering| Input must be a folder %s.', proteome_folder)
-        sys.exit(1)
-
-    # Use the proteomes folder created by retrieve_proteome.py.
-    proteome_tax_id_pathname = os.path.join(proteome_folder, 'proteome_tax_id.tsv')
-
-    if not is_valid_path(proteome_tax_id_pathname):
-        logger.critical(f"|EsMeCaTa|clustering| Missing output from esmecata proteomes in {proteome_tax_id_pathname}.")
-        sys.exit(1)
-
-    reference_proteins_path = os.path.join(output_folder, 'reference_proteins')
-    is_valid_dir(reference_proteins_path)
-
-    cluster_founds_path = os.path.join(output_folder, 'cluster_founds')
-    is_valid_dir(cluster_founds_path)
-
-    computed_threshold_path = os.path.join(output_folder, 'computed_threshold')
-    is_valid_dir(computed_threshold_path)
-
-    already_performed_clustering = [reference_protein_file.replace('.tsv', '') for reference_protein_file in os.listdir(reference_proteins_path)]
-
-    # Create a dictionary with observation_name as key and the pathname to the proteomes associated to this observation_name as value.
-    observation_name_fasta_files = {}
-    with open(proteome_tax_id_pathname, 'r') as proteome_tax_file:
-        csvreader = csv.DictReader(proteome_tax_file, delimiter='\t')
-        for line in csvreader:
-            proteomes = line['proteome'].split(',')
-            tax_name = line['name'].replace(' ','_')
-            proteomes_path = [os.path.join(proteome_folder, 'proteomes', proteome+'.faa.gz') for proteome in proteomes]
-            if tax_name not in already_performed_clustering:
-                observation_name_fasta_files[tax_name] = proteomes_path
-            else:
-                logger.info('|EsMeCaTa|clustering| Already performed clustering for %s.', tax_name)
-    
-    
-
-    is_valid_dir(output_folder)
-
-    # Create metadata file.
-    clustering_metadata = {}
-    clustering_metadata['tool_options'] = {'proteome_folder': proteome_folder, 'output_folder': output_folder, 'nb_cpu':nb_cpu,
-                                        'clust_threshold':clust_threshold, 'mmseqs_options': mmseqs_options, 'linclust':linclust,
-                                        'remove_tmp': remove_tmp}
-
-    clustering_metadata['tool_dependencies'] = {}
-    subprocess_output = subprocess.check_output(['mmseqs', 'version'])
-    mmseqs_version = subprocess_output.decode('utf-8')
-    clustering_metadata['tool_dependencies']['mmseqs_version'] = mmseqs_version
-    clustering_metadata['tool_dependencies']['mmseqs_path'] = mmseqs_path
-    clustering_metadata['tool_dependencies']['python_package'] = {}
-    clustering_metadata['tool_dependencies']['python_package']['Python_version'] = sys.version
-    clustering_metadata['tool_dependencies']['python_package']['biopython'] = biopython_version
-    clustering_metadata['tool_dependencies']['python_package']['esmecata'] = esmecata_version
-
-    # Create tmp folder for mmseqs analysis.
-    mmseqs_tmp_path = os.path.join(output_folder, 'mmseqs_tmp')
-    is_valid_dir(mmseqs_tmp_path)
-
-    # Create output folder containing shared representative proteins.
-    reference_proteins_representative_fasta_path = os.path.join(output_folder, 'reference_proteins_representative_fasta')
-    is_valid_dir(reference_proteins_representative_fasta_path)
-
-    reference_proteins_consensus_fasta_path = os.path.join(output_folder, 'reference_proteins_consensus_fasta')
-    is_valid_dir(reference_proteins_consensus_fasta_path)
-
-    proteome_taxon_id_file = os.path.join(proteome_folder, 'proteome_tax_id.tsv')
-    clustering_taxon_id_file = os.path.join(output_folder, 'proteome_tax_id.tsv')
-
-    if os.path.exists(clustering_taxon_id_file):
-        if not os.path.samefile(proteome_taxon_id_file, clustering_taxon_id_file):
-            os.remove(clustering_taxon_id_file)
-            shutil.copyfile(proteome_taxon_id_file, clustering_taxon_id_file)
-    else:
-        shutil.copyfile(proteome_taxon_id_file, clustering_taxon_id_file)
-
-    proteomes_taxa_names = get_proteomes_tax_name(proteome_taxon_id_file)
-
-    all_tax_names = set(list(proteomes_taxa_names.values()))
-
-    # For each OTU run mmseqs easy-cluster on them to found the clusters that have a protein in each proteome of the OTU.
-    # We take the representative protein of a cluster if the cluster contains a protein from all the proteomes of the OTU.
-    # If this condition is not satisfied the cluster will be ignored.
-    # Then a fasta file containing all the representative proteins for each OTU is written in representative_fasta folder.
-
-    for proteomes_tax_name in all_tax_names:
-        # Get proteomes associated with taxon name.
-        observation_name_proteomes = observation_name_fasta_files[proteomes_tax_name]
-
-        # Change space with '_' to avoid issue.
-        proteomes_tax_name = proteomes_tax_name.replace(' ', '_')
-        # If the computed threshold file exists, mmseqs has already been run.
-        mmseqs_tmp_cluster = os.path.join(mmseqs_tmp_path, proteomes_tax_name)
-        # Run mmseqs on organism.
-        # Delete previous mmseqs2 run if it exists to avoid overwritting issues.
-        if os.path.exists(mmseqs_tmp_cluster):
-            shutil.rmtree(mmseqs_tmp_cluster)
-        mmseqs_tmp_clustered_tabulated, mmseqs_tmp_representative_fasta, mmseqs_consensus_fasta = run_mmseqs(proteomes_tax_name, observation_name_proteomes, mmseqs_tmp_path, nb_cpu, mmseqs_options, linclust)
-
-        # Extract protein clusters from mmseqs results.
-        cluster_proteomes_output_file = os.path.join(cluster_founds_path, proteomes_tax_name+'.tsv')
-        protein_clusters = extrat_protein_cluster_from_mmseqs(mmseqs_tmp_clustered_tabulated, cluster_proteomes_output_file)
-
-        # Compute proteome representativeness ratio.
-        computed_threshold_file = os.path.join(computed_threshold_path, proteomes_tax_name+'.tsv')
-        number_proteomes, rep_prot_organims, computed_threshold_cluster = compute_proteome_representativeness_ratio(protein_clusters,
-                                                                                                                    observation_name_proteomes, computed_threshold_file)
-
-        # Filter protein cluster for each protein cluster.
-        cluster_proteomes_filtered_output_file = os.path.join(reference_proteins_path, proteomes_tax_name+'.tsv')
-        protein_cluster_to_keeps = filter_protein_cluster(protein_clusters, number_proteomes, rep_prot_organims, computed_threshold_cluster,
-                                                        clust_threshold, cluster_proteomes_filtered_output_file)
-
-        logger.info('|EsMeCaTa|clustering| %d protein clusters kept for %s.', len(protein_cluster_to_keeps), proteomes_tax_name)
-
-        # Create BioPython records with the representative proteins kept.
-        new_records = [record for record in SeqIO.parse(mmseqs_tmp_representative_fasta, 'fasta') if record.id.split('|')[1] in protein_cluster_to_keeps]
-
-        # Do not create fasta file when 0 sequences were kept.
-        if len(new_records) > 0:
-            # Create output proteome file for OTU.
-            representative_fasta_file = os.path.join(reference_proteins_representative_fasta_path, proteomes_tax_name+'.faa')
-            SeqIO.write(new_records, representative_fasta_file, 'fasta')
-        else:
-            logger.info('|EsMeCaTa|clustering| 0 protein clusters %s, no fasta created.', proteomes_tax_name)
-        del new_records
-
-        # Create BioPython records with the consensus proteins kept.
-        consensus_new_records = [record for record in SeqIO.parse(mmseqs_consensus_fasta, 'fasta') if record.id.split('|')[1] in protein_cluster_to_keeps]
-
-        # Do not create fasta file when 0 sequences were kept.
-        if len(consensus_new_records) > 0:
-            # Create output proteome file for OTU.
-            consensus_fasta_file = os.path.join(reference_proteins_consensus_fasta_path, proteomes_tax_name+'.faa')
-            SeqIO.write(consensus_new_records, consensus_fasta_file, 'fasta')
-        else:
-            logger.info('|EsMeCaTa|clustering| 0 protein clusters %s, no fasta created.', proteomes_tax_name)
-        del consensus_new_records
-
-        if remove_tmp:
-            shutil.rmtree(mmseqs_tmp_cluster)
-
-    # Compute number of protein clusters kept.
-    stat_file = os.path.join(output_folder, 'stat_number_clustering.tsv')
-    compute_stat_clustering(output_folder, stat_file)
-    output_figure_file = os.path.join(output_folder, 'representativeness_clustering_ratio.svg')
-    #create_proteome_representativeness_lineplot(clustering_taxon_id_file, computed_threshold_path, output_figure_file)
-
-    proteome_ratio_lineplots_path = os.path.join(output_folder, 'proteome_ratio_lineplots')
-    is_valid_dir(proteome_ratio_lineplots_path)
-    #create_proteome_representativeness_lineplot_per_taxon_rank(clustering_taxon_id_file, computed_threshold_path, proteome_ratio_lineplots_path)
-
-    endtime = time.time()
-    duration = endtime - starttime
-    clustering_metadata['esmecata_clustering_duration'] = duration
-    clustering_metadata_file = os.path.join(output_folder, 'esmecata_metadata_clustering.json')
-    if os.path.exists(clustering_metadata_file):
-        metadata_files = [metadata_file for metadata_file in os.listdir(output_folder) if 'esmecata_metadata_clustering' in metadata_file]
-        clustering_metadata_file = os.path.join(output_folder, 'esmecata_metadata_clustering_{0}.json'.format(len(metadata_files)))
-        with open(clustering_metadata_file, 'w') as ouput_file:
-            json.dump(clustering_metadata, ouput_file, indent=4)
-    else:
-        with open(clustering_metadata_file, 'w') as ouput_file:
-            json.dump(clustering_metadata, ouput_file, indent=4)
-
-    logger.info('|EsMeCaTa|clustering| Clustering complete in {0}s.'.format(duration))
+###ESMECATA LAUNCHER
 
 
 
@@ -358,7 +176,7 @@ def proteome_check(esmecata_prot_out):
 
     all_proteomes_checked = (count == proteome_count)
     logger.info("All proteomes downloaded: "+ str(all_proteomes_checked))
-    return all_proteomes_checked
+    return all_proteomes_checked, count
 
 
 def get_proteomes_tax_name(proteomes_tax_id):
@@ -401,7 +219,7 @@ def check_annotation(reference_proteins_consensus_fasta_folder, annotation_refer
 
 
 
-def esmecata_plus_check(esmecata_input, pipeline_path, data_ref_output_name, dataset_name, eggnog_path=False):
+def esmecata_plus_check(esmecata_input, pipeline_path, data_ref_output_name, dataset_name, args_passed, eggnog_path=False):
     '''
     This function runs EsMeCaTa on the input files. Checks are made at the end of the 'Proteomes' and 'Annotation' processes 
     '''
@@ -410,6 +228,13 @@ def esmecata_plus_check(esmecata_input, pipeline_path, data_ref_output_name, dat
         nb_cpu_available = 1
     if nb_cpu_available > 3:
         nb_cpu_available -= 2
+    
+
+
+    if (args_passed.update_ncbi) or (not os.path.isfile(pipeline_path+'taxdump.tar.gz')):
+        logger.info('Updating local NCBI database')
+        ncbi = NCBITaxa()
+        ncbi.update_taxonomy_database()
 
     input_location = pipeline_path+'/Outputs_temp/'+data_ref_output_name+'/SoFA_calculation/'+dataset_name+'.tsv'
     esmecata_prot_out = pipeline_path+'/EsMeCaTa_outputs/'+dataset_name+'/esmecata_outputs_proteomes'
@@ -418,19 +243,34 @@ def esmecata_plus_check(esmecata_input, pipeline_path, data_ref_output_name, dat
     
 
     ## EsMeCaTa
+
+    
+
     count_check = False
     retries = 0
+
+    path_to_proteome_folder = esmecata_prot_out+'/proteomes'
     while (not count_check) and (retries<20):
         try:
             retrieve_proteomes(input_location, esmecata_prot_out, option_bioservices=True)
         except:
             pass
-            
-        count_check = proteome_check(esmecata_prot_out)
+
+        count_check, nb_proteomes = proteome_check(esmecata_prot_out)
         retries+=1
     
     if retries >= 20:
         raise Exception("EsMeCaTa has failed 20 times in a row. A connexion error is likely. Aborting...")
+
+    #Temporary solution to the UniProt troubles of EsMeCaTa: if a downloaded proteome is less than 50 kB, remove it (considered empty)
+    path_proteomes = esmecata_prot_out+'/proteomes'
+    filenames = [[entry.name, entry.stat().st_size]  for entry in sorted(os.scandir(path_proteomes),
+                                                key=lambda x: x.stat().st_size, reverse=False)]
+    
+    for file_stats in filenames:
+        if file_stats[1]<=50:
+            filename = file_stats[0]
+            os.remove(path_proteomes + '/' + filename)
 
     
     if not os.path.exists(esmecata_cluster_out+'/stat_number_clustering.tsv'):
@@ -877,18 +717,20 @@ def run_deep_micro(set_test, set_train, label_test, label_train, dataset_name, i
         best_auc = 0
         threshold_opt = 0
         perf_dict = {}
-        repeats = int(args_passed.forests)
+        repeats = int(args_passed.classifiers)
         best_feature_records = []
 
         # hyper-parameter grids for classifiers
     
+        method = args_passed.method
+        var_ranking_method = args_passed.variable_ranking
 
         if repeats > 1:
             for i in tqdm(range(repeats), desc="Training models for the "+profile+" profile (Run: "+str(run_nb)+", Iteration: "+str(iteration_nb)+")"):
                 #logger.info('BEST FEATURE RECORDS:', best_feature_records)
-                best_auc, threshold_opt, perf_dict, best_feature_records = run_exp(i, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, set_train, label_train, dataset_name, best_feature_records, data_dir)
+                best_auc, threshold_opt, perf_dict, best_feature_records = run_exp(i, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, set_train, label_train, dataset_name, best_feature_records, data_dir, method, var_ranking_method)
         else:
-            best_auc, threshold_opt, perf_dict, best_feature_records = run_exp(42, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, set_train, label_train, dataset_name, best_feature_records, data_dir)
+            best_auc, threshold_opt, perf_dict, best_feature_records = run_exp(42, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, set_train, label_train, dataset_name, best_feature_records, data_dir, method, var_ranking_method)
 
         perf_df = pd.DataFrame.from_dict(perf_dict, orient='index', dtype=None, columns=['Best parameters', 'Validation set indices','Threshold', 'Training performance', 'Validation performance', 'Test performance'])
     
@@ -900,7 +742,7 @@ def run_deep_micro(set_test, set_train, label_test, label_train, dataset_name, i
         
 def inflexion_cutoff(datatable):
     
-    datatable_ordered = datatable.sort_values(by="Average", ascending=False)
+    datatable_ordered = abs(datatable).sort_values(by="Average", ascending=False)
 
     data = datatable_ordered["Average"].values
 
@@ -929,7 +771,7 @@ def formatting_step(dataset_name, data_ref_output_name, pipeline_path, args_pass
         If --annotation only: the functional dataset will be called 'otu_table' in context of this function, and will be imported and converted to deepmicro input
     '''
 
-    label_file = pd.read_csv(pipeline_path+"/Inputs/Label_"+dataset_name+".csv", header = None, sep = "\t")
+    label_file = pd.read_csv(pipeline_path+"/Inputs/Label_"+dataset_name+".csv")
 
 
     if not args_passed.annotations_only:
@@ -944,6 +786,8 @@ def formatting_step(dataset_name, data_ref_output_name, pipeline_path, args_pass
         dataset_full = pd.read_csv(pipeline_path+"/Inputs/"+dataset_name+".txt", index_col = 0, sep = "\t")
         esmecata_input = None
         otu_table_stripped = dataset_full
+
+    label_file = label_file[otu_table_stripped.columns].transpose()
 
     deepmicro_otu = data_to_deepmicro(otu_table_stripped)
     
@@ -1000,16 +844,15 @@ def run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations
         test_labels = test_set_refs['Run_'+str(run_nb)].values
 
         sample_names = list(sofa_table.columns.values)
-        test_indices = [sample_names.index(i) for i in test_labels]
 
-        labels_test = label_file.iloc[test_indices].values.reshape((label_file.iloc[test_indices].values.shape[0]))
+        labels_test = label_file.loc[test_labels].values.reshape((label_file.loc[test_labels].values.shape[0]))
         #logger.info('Label_test:', labels_test)
-        train_indices = []
-        for i in range(len(label_file)):
-            if i not in test_indices:
-                train_indices.append(i)
+        train_labels = []
+        for i in sample_names:
+            if i not in test_labels:
+                train_labels.append(i)
 
-        labels_train = label_file.iloc[train_indices].values.reshape((label_file.iloc[train_indices].values.shape[0]))
+        labels_train = label_file.loc[train_labels].values.reshape((label_file.loc[train_labels].values.shape[0]))
 
         
 
@@ -1073,12 +916,12 @@ def run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations
 
         if not args_passed.annotations_only:
             best_feature_records_otu_df = pd.concat(best_feature_records_otu, axis=1)
-            best_feature_records_otu_df.columns = ['Model_'+str(i) for i in range(int(args_passed.forests))]
+            best_feature_records_otu_df.columns = ['Model_'+str(i) for i in range(int(args_passed.classifiers))]
             best_feature_records_otu_df.index = deepmicro_otu_iteration.columns
             #best_feature_records_otu_df.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Classification_performances/Iteration_'+str(iteration_number)+'/Best_feature_records_taxons.csv')
             
         best_feature_records_sofa_df = pd.concat(best_feature_records_sofa, axis=1)
-        best_feature_records_sofa_df.columns = ['Model_'+str(i) for i in range(int(args_passed.forests))]
+        best_feature_records_sofa_df.columns = ['Model_'+str(i) for i in range(int(args_passed.classifiers))]
         best_feature_records_sofa_df.index = deepmicro_sofa_iteration.columns
         #best_feature_records_sofa_df.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Classification_performances/Iteration_'+str(iteration_number)+'/Best_feature_records_annotations.csv')
         
@@ -1091,66 +934,66 @@ def run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations
 
         os.mkdir(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Selected_Variables/Iteration_'+str(iteration_number))
 
-        if not args_passed.annotations_only:
-            retained_otus = inflexion_cutoff(best_feature_records_otu_df)
-        retained_annots = inflexion_cutoff(best_feature_records_sofa_df)
+        if args_passed.method == "rf":
+            if not args_passed.annotations_only:
+                retained_otus = inflexion_cutoff(best_feature_records_otu_df)
+            retained_annots = inflexion_cutoff(best_feature_records_sofa_df)
 
-        if not args_passed.annotations_only:
-            selection_plus_info_taxons = info_taxons[info_taxons['ID'].isin(list(retained_otus.index))]
-        selection_plus_info_annots = info_annots[info_annots['ID'].isin(list(retained_annots.index))]
+            if not args_passed.annotations_only:
+                selection_plus_info_taxons = info_taxons[info_taxons['ID'].isin(list(retained_otus.index))]
+            selection_plus_info_annots = info_annots[info_annots['ID'].isin(list(retained_annots.index))]
+            
+            
+            # Write the selection files with info
+            if not args_passed.annotations_only:
+                signif_otus = []
+                signif_otu_names = []
+
+                for link_otu_list in selection_plus_info_annots['Linked_OTUs'].values:
+                    signif_links = []
+                    signif_links_named = []
+                    for otu in link_otu_list:
+                        if otu in retained_otus:
+                            signif_links.append(otu)
+                            otu_name_translated = esmecata_input[esmecata_input['observation_name'] == otu]['taxonomic_affiliation'].values[0]
+                            otu_name_translated_species = otu_name_translated.split(';')[-1]
+                            signif_links_named.append(otu_name_translated_species)
+                    
+                    signif_otus.append(signif_links)
+                    signif_otu_names.append(signif_links_named)
+
+                selection_plus_info_annots['Significant_linked_OTUs'] = signif_otus
+                selection_plus_info_annots['Significant_linked_Named_OTUs'] = signif_otu_names
+
+
+                signif_annots = []
+
+                for link_annot_list in selection_plus_info_taxons['Linked_annotations'].values:
+                    signif_links = []
+
+                    for annot in link_annot_list:
+                        if annot in retained_annots:
+                            signif_links.append(annot)
+                    
+                    signif_annots.append(signif_links)
+
+
+                selection_plus_info_taxons['Significant_linked_annotations'] = signif_annots
+                selection_plus_info_taxons.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Selected_Variables/Iteration_'+str(iteration_number)+'/Selected_taxons_run_'+str(run_nb)+'_iter_'+str(iteration_number)+'.csv')
+
+            selection_plus_info_annots.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Selected_Variables/Iteration_'+str(iteration_number)+'/Selected_annotations_run_'+str(run_nb)+'_iter_'+str(iteration_number)+'.csv')
+            
+
+
+            # Store the selections for later incorporation to the Core/Meta sets
+            if not args_passed.annotations_only:
+                bank_of_selections_taxons[iteration_number][run_nb] = list(retained_otus.index)
+            bank_of_selections_annots[iteration_number][run_nb] = list(retained_annots.index)
+            
         
-        
-        # Write the selection files with info
-        if not args_passed.annotations_only:
-            signif_otus = []
-            signif_otu_names = []
-
-            for link_otu_list in selection_plus_info_annots['Linked_OTUs'].values:
-                signif_links = []
-                signif_links_named = []
-                for otu in link_otu_list:
-                    if otu in retained_otus:
-                        signif_links.append(otu)
-                        otu_name_translated = esmecata_input[esmecata_input['observation_name'] == otu]['taxonomic_affiliation'].values[0]
-                        otu_name_translated_species = otu_name_translated.split(';')[-1]
-                        signif_links_named.append(otu_name_translated_species)
-                
-                signif_otus.append(signif_links)
-                signif_otu_names.append(signif_links_named)
-
-            selection_plus_info_annots['Significant_linked_OTUs'] = signif_otus
-            selection_plus_info_annots['Significant_linked_Named_OTUs'] = signif_otu_names
-
-
-            signif_annots = []
-
-            for link_annot_list in selection_plus_info_taxons['Linked_annotations'].values:
-                signif_links = []
-
-                for annot in link_annot_list:
-                    if annot in retained_annots:
-                        signif_links.append(annot)
-                
-                signif_annots.append(signif_links)
-
-
-            selection_plus_info_taxons['Significant_linked_annotations'] = signif_annots
-            selection_plus_info_taxons.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Selected_Variables/Iteration_'+str(iteration_number)+'/Selected_taxons_run_'+str(run_nb)+'_iter_'+str(iteration_number)+'.csv')
-
-        selection_plus_info_annots.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Selected_Variables/Iteration_'+str(iteration_number)+'/Selected_annotations_run_'+str(run_nb)+'_iter_'+str(iteration_number)+'.csv')
-        
-
-
-        # Store the selections for later incorporation to the Core/Meta sets
-        if not args_passed.annotations_only:
-            bank_of_selections_taxons[iteration_number][run_nb] = list(retained_otus.index)
-        bank_of_selections_annots[iteration_number][run_nb] = list(retained_annots.index)
-        
-       
-        if not args_passed.annotations_only:
-            deepmicro_otu_iteration = otu_table_stripped.loc[retained_otus.index].transpose()
-        deepmicro_sofa_iteration = sofa_table.loc[retained_annots.index].transpose()
-
+            if not args_passed.annotations_only:
+                deepmicro_otu_iteration = otu_table_stripped.loc[retained_otus.index].transpose()
+            deepmicro_sofa_iteration = sofa_table.loc[retained_annots.index].transpose()
 
     return(test_set_dict, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons)
 
@@ -1162,6 +1005,7 @@ def get_median_perfs_and_best_iter(bank_of_performance_dfs, median_classifs_per_
     '''
 
     best_mean_perf = 0
+    best_selec_iter = 0
 
     # Processing the mean performance of each run per level of iteration
     for iteration_lv in bank_of_performance_dfs.keys():
@@ -1392,18 +1236,22 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
         core_annot_info.to_csv(path_core_meta+'/All_iterations/Core_annots_iteration_'+str(iteration)+'.csv')
         meta_annot_info.to_csv(path_core_meta+'/All_iterations/Meta_annots_iteration_'+str(iteration)+'.csv')
 
+    
+
     if best_selec_iter_annots == 0:
         core_annots_opti, meta_annots_opti = formatting_core_meta_outputs(info_annots, sofa_table, None, runs, zero_case=True)
 
     if not args_passed.annotations_only:
         
-        core_taxons_opti_id = list(core_taxons_opti['ID'].values)
         core_annots_opti_id = list(core_annots_opti['ID'].values)
 
         if best_selec_iter_taxons == 0:
-            core_taxons_opti, meta_taxons_info = formatting_core_meta_outputs(info_taxons, otu_table_stripped, None, runs, zero_case=True)
+            core_taxons_opti, meta_taxons_opti = formatting_core_meta_outputs(info_taxons, otu_table_stripped, None, runs, zero_case=True)
+            core_taxons_opti_id = list(core_taxons_opti['ID'].values)
+        
 
         else:
+            core_taxons_opti_id = list(core_taxons_opti['ID'].values)
             meta_taxons_opti = extract_core_associates(meta_taxons_opti, core_annots_opti_id, esmecata_input)
         
         if best_selec_iter_annots != 0:
@@ -1416,10 +1264,12 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
         
 
         core_taxons_opti.to_csv(path_core_meta+'/Best_iteration/Core_taxons_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
-        meta_taxons_opti.to_csv(path_core_meta+'/Best_iteration/Meta_taxons_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
+        if not (meta_taxons_opti is None):
+            meta_taxons_opti.to_csv(path_core_meta+'/Best_iteration/Meta_taxons_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
 
     core_annots_opti.to_csv(path_core_meta+'/Best_iteration/Core_annots_iteration_'+str(best_selec_iter_annots-1)+'.csv')
-    meta_annots_opti.to_csv(path_core_meta+'/Best_iteration/Meta_annots_iteration_'+str(best_selec_iter_annots-1)+'.csv')
+    if not (meta_annots_opti is None):
+        meta_annots_opti.to_csv(path_core_meta+'/Best_iteration/Meta_annots_iteration_'+str(best_selec_iter_annots-1)+'.csv')
         
         
 
@@ -1439,6 +1289,10 @@ def main(args_passed):
     runs = int(args_passed.runs)
     iterations = int(args_passed.iterations)
 
+    if args_passed.method != 'rf':
+        logger.info('Only 1 iteration will be effectuated with classification method '+args_passed.method)
+        iterations = 1
+
     ## Checking the validity of the args
     if iterations <1:
         raise ValueError("Please input a valid amount of iterations")
@@ -1454,9 +1308,17 @@ def main(args_passed):
     if not args_passed.scaling in ["relative", None]:
         raise ValueError("Please enter a valid value for the '-s' argument: 'relative' or None")
     
+    if not args_passed.method in ["rf", "svm"]:
+        raise ValueError("Please enter a valid value for the '-m' argument: 'rf' or 'svm'")
+    
+    if not args_passed.variable_ranking in ["gini", "shap"]:
+        raise ValueError("Please enter a valid value for the '-v' argument: 'gini' or 'shap'")
+    
     if args_passed.reference_test_sets:
         if not os.path.isfile(pipeline_path+'/Inputs/Test_sets_'+dataset_name+'.csv'):
             raise ValueError("If using the --reference_test_sets flag, please give an input for Test_sets"+dataset_name+".csv")
+
+    
 
 
     ## Setting up the output directories
@@ -1470,6 +1332,11 @@ def main(args_passed):
     
     if args_passed.annotations_only:
         data_ref = data_ref+'_annotations_only'
+
+    data_ref = data_ref+'_'+args_passed.method
+
+    if args_passed.method == 'rf':
+        data_ref = data_ref+'_'+args_passed.variable_ranking
 
     data_ref_output_name = data_ref+'_'+date_time
    
@@ -1528,12 +1395,12 @@ def main(args_passed):
                 if os.path.isdir(pipeline_path+'/EsMeCaTa_outputs/'+dataset_name+'/esmecata_outputs_annots/annotation_reference'):
                     #Removing previous 'annotations_reference' output to ensure the final step of EsMeCaTa does not malfunction
                     shutil.rmtree(pipeline_path+'/EsMeCaTa_outputs/'+dataset_name+'/esmecata_outputs_annots/annotation_reference', ignore_errors=True)
-                esmecata_plus_check(esmecata_input, pipeline_path, data_ref_output_name, dataset_name, args_passed.eggnog)
+                esmecata_plus_check(esmecata_input, pipeline_path, data_ref_output_name, dataset_name, args_passed, args_passed.eggnog)
 
         else:
             os.mkdir(pipeline_path+'/EsMeCaTa_outputs/'+dataset_name)
             logger.info('Launching EsMeCaTa')
-            esmecata_plus_check(esmecata_input, pipeline_path, data_ref_output_name, dataset_name, args_passed.eggnog)
+            esmecata_plus_check(esmecata_input, pipeline_path, data_ref_output_name, dataset_name, args_passed, args_passed.eggnog)
 
         ####Time measurement####
         date_time_esmecata = datetime.now()

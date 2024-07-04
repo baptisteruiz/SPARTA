@@ -29,6 +29,8 @@ from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import f1_score
 
+import shap
+
 
 # from sklearn.manifold import TSNE
 # import umap
@@ -412,7 +414,7 @@ class DeepMicrobiome(object):
     #     self.printDataShapes()
 
     # Classification
-    def classification(self, Xtest_ext, Ytest_ext, seed, perf_dict, hyper_parameters, best_feature_records, method='svm', cv=5, scoring='roc_auc', n_jobs=1, cache_size=10000, best_auc=0, threshold_opt=0, multi_param = False):
+    def classification(self, Xtest_ext, Ytest_ext, seed, perf_dict, hyper_parameters, best_feature_records, var_ranking_method, method='svm', cv=5, scoring='roc_auc', n_jobs=1, cache_size=10000, best_auc=0, threshold_opt=0, multi_param = False):
         clf_start_time = time.time()
 
         # print("# Tuning hyper-parameters")
@@ -425,18 +427,34 @@ class DeepMicrobiome(object):
 
         # Support Vector Machine
         if method == 'svm':
-            clf = GridSearchCV(SVC(probability=True, cache_size=cache_size), hyper_parameters, cv=StratifiedKFold(cv, shuffle=True), scoring=scoring, n_jobs=n_jobs, verbose=100)
+            clf = GridSearchCV(SVC(probability=True, cache_size=cache_size, random_state=0), hyper_parameters, cv=StratifiedKFold(cv, shuffle=True, random_state=0), scoring=scoring, n_jobs=n_jobs, verbose=0)
             clf.fit(self.X_train, self.y_train)
+
+            explainer = shap.KernelExplainer(clf.best_estimator_.predict, self.X_train)
+            shap_values = explainer.shap_values(Xtest_ext)
+            shap_df = pd.DataFrame(shap_values)
+            shaps_summed = pd.DataFrame(shap_df.sum(axis=0))
+            best_feature_records.append(shaps_summed)
+
 
         # Random Forest
         if method == 'rf':
-            clf = GridSearchCV(RandomForestClassifier(n_jobs=-1, random_state=0, class_weight='balanced'), hyper_parameters, cv=StratifiedKFold(cv, shuffle=True), scoring=scoring, n_jobs=n_jobs, verbose=0)
+            clf = GridSearchCV(RandomForestClassifier(n_jobs=-1, random_state=0, class_weight='balanced'), hyper_parameters, cv=StratifiedKFold(cv, shuffle=True, random_state=0), scoring=scoring, n_jobs=n_jobs, verbose=0)
             clf.fit(self.X_train, self.y_train)
-            best_features = pd.DataFrame(clf.best_estimator_.feature_importances_)
 
-            best_feature_records.append(best_features)
-            # with open(self.data_dir + "results/" + self.data + "_best_features_random_rf.txt", 'a') as f:
-            #     best_features.to_csv(f, header=None)
+            if var_ranking_method == 'gini':
+                best_features = pd.DataFrame(clf.best_estimator_.feature_importances_)
+                best_feature_records.append(best_features)
+                # with open(self.data_dir + "results/" + self.data + "_best_features_random_rf.txt", 'a') as f:
+                #     best_features.to_csv(f, header=None)
+
+            elif var_ranking_method == 'shap':
+                explainer = shap.TreeExplainer(clf.best_estimator_)
+                shap_values = explainer.shap_values(Xtest_ext)
+                shap_df = pd.DataFrame(shap_values[:,:,1])
+                shaps_summed = pd.DataFrame(shap_df.sum(axis=0))
+                best_feature_records.append(shaps_summed)
+
 
         # # Multi-layer Perceptron
         # if method == 'mlp':
@@ -607,7 +625,7 @@ class DeepMicrobiome(object):
 
 
 # run exp function
-def run_exp(seed, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, Y_data, label_data, dataset_name, best_feature_records, data_dir):
+def run_exp(seed, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, Y_data, label_data, dataset_name, best_feature_records, data_dir, method, var_ranking_method):
 
 
     dm = DeepMicrobiome(data=dataset_name, seed=seed, data_dir=data_dir)
@@ -662,9 +680,7 @@ def run_exp(seed, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, Y_da
 
 
     # training classification models
-    # if args.method == "svm":
-    #     best_auc, threshold_opt = dm.classification(hyper_parameters=svm_hyper_parameters, method='svm', cv=args.numFolds,
-    #                         n_jobs=args.numJobs, scoring=args.scoring, cache_size=args.svm_cache, best_auc=best_auc, threshold_opt=threshold_opt)
+    
     # elif args.method == "rf":
 
     rf_hyper_parameters = [{'n_estimators': [s for s in range(100, 1001, 200)],
@@ -672,8 +688,16 @@ def run_exp(seed, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, Y_da
                             'min_samples_leaf': [1, 2, 3, 4, 5],
                             'criterion': ['gini']
                             }, ]
-
-    best_auc, threshold_opt, perf_dict, best_feature_records = dm.classification(Xtest_ext, Ytest_ext, seed, perf_dict, rf_hyper_parameters, best_feature_records, method='rf', cv=5,
+    
+    svm_hyper_parameters = [{'C': [2 ** s for s in range(-5, 6, 2)], 'kernel': ['linear']},
+                            {'C': [2 ** s for s in range(-5, 6, 2)], 'gamma': [2 ** s for s in range(3, -15, -2)],'kernel': ['rbf']}]
+    
+    if method == 'rf':
+        best_auc, threshold_opt, perf_dict, best_feature_records = dm.classification(Xtest_ext, Ytest_ext, seed, perf_dict, rf_hyper_parameters, best_feature_records, var_ranking_method, method='rf', cv=5,
+                            n_jobs=-2, scoring='roc_auc', best_auc=best_auc, threshold_opt=threshold_opt)
+        
+    elif method == 'svm':
+        best_auc, threshold_opt, perf_dict, best_feature_records = dm.classification(Xtest_ext, Ytest_ext, seed, perf_dict, svm_hyper_parameters, best_feature_records, var_ranking_method, method='svm', cv=5,
                             n_jobs=-2, scoring='roc_auc', best_auc=best_auc, threshold_opt=threshold_opt)
     # elif args.method == "mlp":
     #     best_auc, threshold_opt = dm.classification(hyper_parameters=mlp_hyper_parameters, method='mlp', cv=args.numFolds,
