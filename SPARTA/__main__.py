@@ -1,4 +1,4 @@
- from DMmodif_export_test_ver import *
+from DMmodif_export_test_ver import *
 
 from esmecata.proteomes import retrieve_proteomes
 from esmecata.clustering import make_clustering
