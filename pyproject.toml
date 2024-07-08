@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "SPARTA"
+dynamic = ["version"]
+authors = [{name = "Baptiste Ruiz", email = "baptiste.ruiz@inria.fr"}]
+readme = "README.md"
+description = "A pipeline for Machine-Learning based analysis of taxonomic profilings of microbial communities"
+license = {text = "GNU General Public License v3.0"}
+
+dependencies = [
+  'pandas',
+  'numpy',
+  'scikit-learn',
+  'scipy',
+  'matplotlib',
+  'seaborn',
+  'joblib',
+  'tqdm',
+  'goatools',
+  'biopython',
+  'requests',
+  'kneebow',
+  'esmecata',
+  'shap',
+  'psutil'
+]
+
+[project.scripts]
+sparta = "SPARTA.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/baptisteruiz/SPARTA"
+Changelog = "https://github.com/baptisteruiz/SPARTA/blob/main/CHANGELOG.md"
+
+[tool.setuptools]
+packages = ['SPARTA']
+package-dir = {'SPARTA' = 'SPARTA'}
+
+[tool.setuptools.dynamic]
+version = { attr = "SPARTA.__version__" }
+dependencies = {file = ["requirements.txt"]}

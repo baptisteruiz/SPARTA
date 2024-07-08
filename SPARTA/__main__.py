@@ -1,4 +1,4 @@
-from DMmodif_export_test_ver import *
+from SPARTA.DMmodif_export_test_ver import *
 
 from esmecata.proteomes import retrieve_proteomes
 from esmecata.clustering import make_clustering
@@ -42,28 +42,6 @@ from tqdm import tqdm, trange
 from tqdm.contrib.logging import logging_redirect_tqdm
 
 import argparse
-
-parser = argparse.ArgumentParser(description='A program that averages the RF importance scores of the functional annotations, and associates them to OTUs')
-
-parser.add_argument("-d","--dataset_name", help="Name of the dataset", required=True)
-parser.add_argument("-t", "--treatment", default=None, help="Data treatment for the functional table (can be: 'tf_igm', default: no treatment)")
-parser.add_argument("-s", "--scaling", default=None, help="Scaling method to apply to the taxonomic table (can be: 'relative', default: no scaling)")
-parser.add_argument("-i", "--iterations", default=5, help="Number of iterations of the method (default: 5 iterations)")
-parser.add_argument("-c", "--classifiers", default=20, help="Amount of trained classifiers per iteration of the command (default: 20)")
-parser.add_argument("-r", "--runs", default=10, help="Amount of pipeline runs (default: 10 runs)")
-parser.add_argument("-m", "--method", default="rf", help="Classifying method to be run (default: Random Forest (rf). Can be: svm)")
-parser.add_argument("-v", "--variable_ranking", default="gini", help="Method for Random Forest variable importance ranking (default: gini. Can be: shap)")
-parser.add_argument("--eggnog", default=False, help="Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launhed with the 'UniProt' workflow by default.")
-parser.add_argument("--annotations_only", default=False, action='store_true', help="This is a flag that signals that the input is a functional table. If True, all steps involving taxonomic tables will be skipped, and SPARTA will iteratively classify and select on the given functional table alone.")
-parser.add_argument("--reference_test_sets", default=False, action='store_true', help="This option allows the user to give their own test sets to be used during classification.")
-parser.add_argument("--esmecata_relaunch", default=False, action='store_true', help="This option allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.")
-parser.add_argument("--keep_temp", default=False, action='store_true', help="This option allows the user to keep the contents of the 'Outputs_temp' folder at the end of the run.")
-parser.add_argument("--update_ncbi", default=False, action='store_true', help="This option allows the user to force an update of the local NCBI database (taxdump.tar.gz).")
-
-pd.options.mode.chained_assignment = None
-
-args_passed = parser.parse_args()
-
 
 logger = logging.getLogger(__name__)
 
@@ -1319,10 +1297,30 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
     return(df_perfs_and_selection_per_iter, warning_annots, warning_taxons)
 
 
-def main(args_passed):
+def main():
     '''
     This function formats the inputs, formats the output directories, and launches the iterative seection and classification process r times.
     '''
+    parser = argparse.ArgumentParser(description='A program that averages the RF importance scores of the functional annotations, and associates them to OTUs')
+
+    parser.add_argument("-d","--dataset_name", help="Name of the dataset", required=True)
+    parser.add_argument("-t", "--treatment", default=None, help="Data treatment for the functional table (can be: 'tf_igm', default: no treatment)")
+    parser.add_argument("-s", "--scaling", default=None, help="Scaling method to apply to the taxonomic table (can be: 'relative', default: no scaling)")
+    parser.add_argument("-i", "--iterations", default=5, help="Number of iterations of the method (default: 5 iterations)")
+    parser.add_argument("-c", "--classifiers", default=20, help="Amount of trained classifiers per iteration of the command (default: 20)")
+    parser.add_argument("-r", "--runs", default=10, help="Amount of pipeline runs (default: 10 runs)")
+    parser.add_argument("-m", "--method", default="rf", help="Classifying method to be run (default: Random Forest (rf). Can be: svm)")
+    parser.add_argument("-v", "--variable_ranking", default="gini", help="Method for Random Forest variable importance ranking (default: gini. Can be: shap)")
+    parser.add_argument("--eggnog", default=False, help="Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launhed with the 'UniProt' workflow by default.")
+    parser.add_argument("--annotations_only", default=False, action='store_true', help="This is a flag that signals that the input is a functional table. If True, all steps involving taxonomic tables will be skipped, and SPARTA will iteratively classify and select on the given functional table alone.")
+    parser.add_argument("--reference_test_sets", default=False, action='store_true', help="This option allows the user to give their own test sets to be used during classification.")
+    parser.add_argument("--esmecata_relaunch", default=False, action='store_true', help="This option allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.")
+    parser.add_argument("--keep_temp", default=False, action='store_true', help="This option allows the user to keep the contents of the 'Outputs_temp' folder at the end of the run.")
+    parser.add_argument("--update_ncbi", default=False, action='store_true', help="This option allows the user to force an update of the local NCBI database (taxdump.tar.gz).")
+
+    pd.options.mode.chained_assignment = None
+
+    args_passed = parser.parse_args()
     
     now_begin = datetime.now()
     date_time = now_begin.strftime("%d%m%Y%H%M")
@@ -1564,10 +1562,3 @@ def main(args_passed):
 
     ref_time = run_i_time
     ########################
-
-
-try:
-    main(args_passed)
-except ValueError as error:
-    logger.error(error)
-    raise

@@ -52,7 +52,7 @@ import joblib
 
 # importing custom library
 #import DNN_models
-import exception_handle
+import SPARTA.exception_handle
 
 #fix np.random.seed for reproducibility in numpy processing
 #np.random.seed(7)
