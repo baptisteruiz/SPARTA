@@ -780,7 +780,7 @@ def formatting_step(dataset_name, data_ref_output_name, pipeline_path, args_pass
         if args_passed.scaling == "relative":
             otu_table_stripped = absolute_to_relative(otu_table_stripped)
         #Writing standardised version of the dataset
-        otu_table_stripped.to_csv(pipeline_path+"/Outputs_temp/"+data_ref_output_name+"/SoFA_calculation/"+dataset_name+"_stripped.tsv", sep = "\t", index = None)
+        otu_table_stripped.to_csv(pipeline_path+"/Outputs_temp/"+data_ref_output_name+"/SoFA_calculation/"+dataset_name+"_stripped.tsv", sep = "\t")
     
     else:
         dataset_full = pd.read_csv(pipeline_path+"/Inputs/"+dataset_name+".txt", index_col = 0, sep = "\t")
@@ -914,27 +914,29 @@ def run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations
             bank_of_performance_dfs_taxons[iteration_number][run_nb] = perf_df_otu
         bank_of_performance_dfs_annots[iteration_number][run_nb] = perf_df_sofa
 
-        if not args_passed.annotations_only:
-            best_feature_records_otu_df = pd.concat(best_feature_records_otu, axis=1)
-            best_feature_records_otu_df.columns = ['Model_'+str(i) for i in range(int(args_passed.classifiers))]
-            best_feature_records_otu_df.index = deepmicro_otu_iteration.columns
-            #best_feature_records_otu_df.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Classification_performances/Iteration_'+str(iteration_number)+'/Best_feature_records_taxons.csv')
-            
-        best_feature_records_sofa_df = pd.concat(best_feature_records_sofa, axis=1)
-        best_feature_records_sofa_df.columns = ['Model_'+str(i) for i in range(int(args_passed.classifiers))]
-        best_feature_records_sofa_df.index = deepmicro_sofa_iteration.columns
-        #best_feature_records_sofa_df.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Classification_performances/Iteration_'+str(iteration_number)+'/Best_feature_records_annotations.csv')
-        
-        #Average Gini importances
-        if not args_passed.annotations_only:
-            best_feature_records_otu_df['Average'] = best_feature_records_otu_df.mean(axis=1)
-        best_feature_records_sofa_df['Average'] = best_feature_records_sofa_df.mean(axis=1)
-        
-        #Rotor cutoff
-
-        os.mkdir(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Selected_Variables/Iteration_'+str(iteration_number))
-
+        #If a variable ranking was made (not SVM): select, record and prepare datasets for next iteration 
         if args_passed.method == "rf":
+            if not args_passed.annotations_only:
+                best_feature_records_otu_df = pd.concat(best_feature_records_otu, axis=1)
+                best_feature_records_otu_df.columns = ['Model_'+str(i) for i in range(int(args_passed.classifiers))]
+                best_feature_records_otu_df.index = deepmicro_otu_iteration.columns
+                #best_feature_records_otu_df.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Classification_performances/Iteration_'+str(iteration_number)+'/Best_feature_records_taxons.csv')
+                
+            best_feature_records_sofa_df = pd.concat(best_feature_records_sofa, axis=1)
+            best_feature_records_sofa_df.columns = ['Model_'+str(i) for i in range(int(args_passed.classifiers))]
+            best_feature_records_sofa_df.index = deepmicro_sofa_iteration.columns
+            #best_feature_records_sofa_df.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Classification_performances/Iteration_'+str(iteration_number)+'/Best_feature_records_annotations.csv')
+            
+            #Average Gini importances
+            if not args_passed.annotations_only:
+                best_feature_records_otu_df['Average'] = best_feature_records_otu_df.mean(axis=1)
+            best_feature_records_sofa_df['Average'] = best_feature_records_sofa_df.mean(axis=1)
+            
+            #Rotor cutoff
+
+            os.mkdir(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Selected_Variables/Iteration_'+str(iteration_number))
+
+        
             if not args_passed.annotations_only:
                 retained_otus = inflexion_cutoff(best_feature_records_otu_df)
             retained_annots = inflexion_cutoff(best_feature_records_sofa_df)
@@ -1198,10 +1200,15 @@ def formatting_core_meta_outputs(info_df, core_df, meta_df, runs, zero_case=Fals
 
     return core_info, meta_info
 
-def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_of_selections_taxons, best_selec_iter_annots, best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, otu_table_stripped, sofa_table, args_passed):
+def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, best_selec_iter_annots, best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, otu_table_stripped, sofa_table, args_passed):
     '''
-    This function launches the process to identify and write the Core and Meta taxons and annotations from all of the effectuated selections.
+    This function launches the process to identify and write the Core and Meta taxons and annotations from all of the effectuated selections. It also records the 
+    length of each selection category and classification performances per iteration, to give an overview ofthis information.
     '''
+
+    df_perfs_and_selection_per_iter = defaultdict(defaultdict)
+    warning_annots=False
+    warning_taxons=False
 
     for iteration in bank_of_selections_annots.keys():
         
@@ -1232,11 +1239,48 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
 
             core_taxons_info.to_csv(path_core_meta+'/All_iterations/Core_taxons_iteration_'+str(iteration)+'.csv')
             meta_taxons_info.to_csv(path_core_meta+'/All_iterations/Meta_taxons_iteration_'+str(iteration)+'.csv')
+
+            df_perfs_and_selection_per_iter['Iteration '+str(iteration)+'_Taxonomic']['Robust '] = core_taxons_info.shape[0]
+            df_perfs_and_selection_per_iter['Iteration '+str(iteration)+'_Taxonomic']['Confident'] = core_taxons_info.shape[0] + meta_taxons_info[meta_taxons_info['Significance_category'] == 'Confident'].shape[0]
+            df_perfs_and_selection_per_iter['Iteration '+str(iteration)+'_Taxonomic']['Candidate'] = core_taxons_info.shape[0] + meta_taxons_info.shape[0]
+
+
+            iteration_median_perfs = []
+            iteration_lv_perfs = bank_of_performance_dfs_taxons[iteration]
+
+            for run_lv in iteration_lv_perfs.keys():
+                run_df = iteration_lv_perfs[run_lv]
+                test_perf_values = run_df['Test performance'].values
+                median_test_perf_values = np.median(test_perf_values)
+                iteration_median_perfs.append(median_test_perf_values)
+            
+            df_perfs_and_selection_per_iter['Iteration '+str(iteration)+'_Taxonomic']['Mean performance (AUC)'] = np.mean(iteration_median_perfs)
+
+            if iteration == best_selec_iter_taxons and np.mean(iteration_median_perfs)<0.6:
+                warning_taxons = True
+
         
         core_annot_info.to_csv(path_core_meta+'/All_iterations/Core_annots_iteration_'+str(iteration)+'.csv')
         meta_annot_info.to_csv(path_core_meta+'/All_iterations/Meta_annots_iteration_'+str(iteration)+'.csv')
 
-    
+        df_perfs_and_selection_per_iter['Iteration '+str(iteration)+'_Functional']['Robust '] = core_annot_info.shape[0]
+        df_perfs_and_selection_per_iter['Iteration '+str(iteration)+'_Functional']['Confident'] = core_annot_info.shape[0] + meta_annot_info[meta_annot_info['Significance_category'] == 'Confident'].shape[0]
+        df_perfs_and_selection_per_iter['Iteration '+str(iteration)+'_Functional']['Candidate'] = core_annot_info.shape[0] + meta_annot_info.shape[0]
+
+        iteration_median_perfs = []
+        iteration_lv_perfs = bank_of_performance_dfs_annots[iteration]
+
+        for run_lv in iteration_lv_perfs.keys():
+            run_df = iteration_lv_perfs[run_lv]
+            test_perf_values = run_df['Test performance'].values
+            median_test_perf_values = np.median(test_perf_values)
+            iteration_median_perfs.append(median_test_perf_values)
+        
+        df_perfs_and_selection_per_iter['Iteration '+str(iteration)+'_Functional']['Mean performance (AUC)'] = np.mean(iteration_median_perfs)
+
+        if iteration == best_selec_iter_annots and np.mean(iteration_median_perfs)<0.6:
+            warning_annots = True
+
 
     if best_selec_iter_annots == 0:
         core_annots_opti, meta_annots_opti = formatting_core_meta_outputs(info_annots, sofa_table, None, runs, zero_case=True)
@@ -1272,7 +1316,7 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
         meta_annots_opti.to_csv(path_core_meta+'/Best_iteration/Meta_annots_iteration_'+str(best_selec_iter_annots-1)+'.csv')
         
         
-
+    return(df_perfs_and_selection_per_iter, warning_annots, warning_taxons)
 
 
 def main(args_passed):
@@ -1483,13 +1527,23 @@ def main(args_passed):
 
     best_selec_iter_annots, best_selec_iter_taxons = plot_classifs(bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, dataset_name, pipeline_path, data_ref_output_name, args_passed)
     
-    os.mkdir(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Core_and_Meta_outputs')
-    os.mkdir(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Core_and_Meta_outputs/All_iterations')
-    os.mkdir(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Core_and_Meta_outputs/Best_iteration')
+    ##We only calculate Core and Meta selections if there was a variable selection (i.e: not SVM)
+    if args_passed.method == 'rf':
+        os.mkdir(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Core_and_Meta_outputs')
+        os.mkdir(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Core_and_Meta_outputs/All_iterations')
+        os.mkdir(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Core_and_Meta_outputs/Best_iteration')
 
-    path_core_meta = pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Core_and_Meta_outputs'
-    
-    extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_of_selections_taxons, best_selec_iter_annots, best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, otu_table_stripped, sofa_table, args_passed)
+        path_core_meta = pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Core_and_Meta_outputs'
+        
+        df_perfs_and_selection_per_iter, warning_annots, warning_taxons = extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, best_selec_iter_annots, best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, otu_table_stripped, sofa_table, args_passed)
+
+        pd.DataFrame.from_dict(df_perfs_and_selection_per_iter).to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Overall_selection_and_performance_metrics.csv')
+
+        if warning_annots:
+            logger.info('WARNING: functional classification performance is low (<0.6). The selected functional variables may not be accurate representatives of the classification task')
+        
+        if warning_taxons:
+            logger.info('WARNING: taxonomic classification performance is low (<0.6). The selected taxonomic variables may not be accurate representatives of the classification task')
 
     if not args_passed.keep_temp:
         shutil.rmtree(pipeline_path+'/Outputs_temp/'+data_ref_output_name, ignore_errors=True)
