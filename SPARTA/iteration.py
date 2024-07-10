@@ -41,13 +41,12 @@ def separate_test_train(labels_full):
 
     y_train, y_test, sample_train, sample = train_test_split(label_flatten, indices, test_size=0.2, stratify=label_flatten)
 
-    return y_train, y_test, sample
+    return y_train, y_test, sample_train, sample
 
 def create_test_train_subsets(full_dataset, indices):
     '''
     This function separates a dataset into a test and a train subset, determined by the input indices
     '''
-
     dataset_train = full_dataset.drop(indices, axis=0)
     dataset_test = full_dataset.loc[indices]
 
@@ -56,7 +55,6 @@ def create_test_train_subsets(full_dataset, indices):
 def run_deep_micro(set_test, set_train, label_test, label_train, dataset_name, iteration_nb, run_nb, data_dir, profile, classifiers=20, method='rf', var_ranking_method='gini'):
     try:
         ##IMPORT SEPARATE TEST DATASET
-
         Xtest_ext = set_test.values.astype(np.float64)
 
         Ytest_ext = label_test.astype(int)
@@ -66,7 +64,7 @@ def run_deep_micro(set_test, set_train, label_test, label_train, dataset_name, i
         perf_dict = {}
         repeats = int(classifiers)
         best_feature_records = []
-
+        
         # hyper-parameter grids for classifiers
         if repeats > 1:
             for i in tqdm(range(repeats), desc="Training models for the "+profile+" profile (Run: "+str(run_nb)+", Iteration: "+str(iteration_nb)+")"):
@@ -96,16 +94,16 @@ def add_otu_names(otu_list, otu_name_df):
 
     return dataframe
 
-def find_relevant_reactions(dataframe, path):
+def find_relevant_reactions(dataframe, esmecata_annotation_reference):
     '''
     This function finds all annotations associated with each OTU
     '''
 
     found_reac = {}
-    for filename in tqdm([f for f in os.listdir(path) if not f.startswith('.')], desc="Linking annotations to OTUs..."):
-        
-        otu_data = pd.read_csv(path + "/" + filename, sep ='\t', keep_default_na=False)
-        otu_name = filename.replace(".tsv","")
+    for org_annotation_filename in tqdm([f for f in os.listdir(esmecata_annotation_reference) if not f.startswith('.')], desc="Linking annotations to OTUs..."):
+        org_annotation_filepath = os.path.join(esmecata_annotation_reference, org_annotation_filename)
+        otu_data = pd.read_csv(org_annotation_filepath, sep ='\t', keep_default_na=False)
+        otu_name = org_annotation_filename.replace(".tsv","")
         go_list_otu = otu_data["GO"].values.tolist()
         ec_list_otu = otu_data["EC"].values.tolist()
         annot_list_otu = go_list_otu + ec_list_otu
@@ -134,15 +132,13 @@ def get_info_taxons(otu_db, esmecata_input, esmecata_annotation_reference):
 
     annots_with_names_and_associated_otus = find_relevant_reactions(annots_with_names, esmecata_annotation_reference)
 
-    return(annots_with_names_and_associated_otus)
+    return (annots_with_names_and_associated_otus)
 
 
 def average_count_per_group(count_dataframe,  label_refs, label_value=None):
     '''
     This function averages the presence of a taxon within a given label group
     '''
-
-
     if label_value != None:
         count_group = count_dataframe.loc[:, [i[0] == label_value for i in label_refs.values]].astype(float)
     else:
@@ -150,15 +146,13 @@ def average_count_per_group(count_dataframe,  label_refs, label_value=None):
     
     count_group["average"] = count_group.mean(axis=1)
 
-
     return(count_group)
 
-def add_reaction_names(list_of_annots, pipeline_path):
+def add_reaction_names(list_of_annots, output_folder):
     '''
     This function queries the OBO and ExPASy data banks to get the names of the IDs
     '''
-    
-    data_folder = pipeline_path + '/data'
+    data_folder = os.path.join(output_folder, 'data')
 
     # Check if we have the ./data directory already
     if(not os.path.isfile(data_folder)):
@@ -171,36 +165,36 @@ def add_reaction_names(list_of_annots, pipeline_path):
     else:
         raise Exception('Data path (' + data_folder + ') exists as a file. '
                     'Please rename, remove or change the desired location of the data path.')
-    
+
+    enzyme_dat_file = os.path.join(data_folder, 'enzyme.dat')
     #Check if we have enzyme file, if not download it
-    if not(os.path.isfile(data_folder + '/enzyme.dat')):
+    if not(os.path.isfile(enzyme_dat_file)):
         url = "https://ftp.expasy.org/databases/enzyme/enzyme.dat"
         r = requests.get(url, allow_redirects=True)
-        open(data_folder + '/enzyme.dat', 'wb').write(r.content)
+        open(enzyme_dat_file, 'wb').write(r.content)
 
+    go_basic_file = os.path.join(data_folder, 'go-basic.obo')
     #Same with GO file
-    if(not os.path.isfile(data_folder+'/go-basic.obo')):
+    if(not os.path.isfile(go_basic_file)):
         go_obo_url = 'http://purl.obolibrary.org/obo/go/go-basic.obo'
         r = requests.get(go_obo_url, allow_redirects=True)
-        open(data_folder + '/go-basic.obo', 'wb').write(r.content)
-    
-    go = obo_parser.GODag(data_folder+'/go-basic.obo')
-    
-    reaction_names = []
+        open(go_basic_file, 'wb').write(r.content)
 
+    go = obo_parser.GODag(go_basic_file)
+
+    handle = open(enzyme_dat_file)
+    records = Enzyme.parse(handle)
+
+    reaction_names = []
     for id in tqdm(list_of_annots, desc='Checking out annotation names...'):
         reaction_names.append("Not Found")
-
         if "GO" in id:
             if id in go:
                 go_term = go[id]
                 reaction_names[-1] = go_term.name
         else:
-            handle = open(data_folder + '/enzyme.dat')
-            records = Enzyme.parse(handle)
             de_found = next((item["DE"] for item in records if item["ID"] == id), "Not Found")
             reaction_names[-1] = de_found
-            
 
     dataframe = pd.DataFrame(list(zip(list_of_annots, reaction_names)), columns=["ID","Name"])
                              
@@ -242,7 +236,7 @@ def find_relevant_otus(dataframe, path, otu_name_df):
     dataframe["Named_linked_OTUs"] = dataframe["ID"].map(found_otu_named)
     return dataframe
 
-def get_info_annots(score_db, esmecata_input, esmecata_annotation_reference, output_folder, otu_abundance_filepath):
+def get_info_annots(score_db, output_folder, otu_abundance_filepath, esmecata_input, esmecata_annotation_reference):
     
     list_of_annots = list(score_db.index)
     annots_with_names = add_reaction_names(list_of_annots, output_folder)
@@ -277,7 +271,7 @@ def average_per_group(score_dataframe, label_refs, label_value = None):
 
     return(filtered_table_group)
 
-def averaging_and_info_step(functional_profile_df, label_refs, esmecata_input, output_folder, esmecata_annotation_reference, otu_abundance_filepath=None):
+def averaging_and_info_step(functional_profile_df, label_refs, output_folder, esmecata_input=None, esmecata_annotation_reference=None, otu_abundance_filepath=None):
     '''
     This script runs the steps to build an info database on the taxons and annotations from the dataset. Said databases will be used to add information to the final outputs.
     '''
@@ -286,7 +280,7 @@ def averaging_and_info_step(functional_profile_df, label_refs, esmecata_input, o
         info_taxons = get_info_taxons(otu_count_df, esmecata_input, esmecata_annotation_reference)
         avg_count_total = average_count_per_group(otu_count_df, label_refs)
 
-    info_annots = get_info_annots(functional_profile_df, esmecata_input, esmecata_annotation_reference, output_folder, otu_abundance_filepath)
+    info_annots = get_info_annots(functional_profile_df, output_folder, otu_abundance_filepath, esmecata_input, esmecata_annotation_reference)
     avg_score_total = average_per_group(functional_profile_df, label_refs)
 
     df_max_scores = pd.DataFrame()
@@ -317,7 +311,7 @@ def averaging_and_info_step(functional_profile_df, label_refs, esmecata_input, o
 
 
 
-def run_iterate(functional_profile_filepath, label_file, run_output_folder, run_nb, nb_iterations, esmecata_input, esmecata_annotation_reference, otu_abundance_filepath=None, reference_test_sets_filepath=None,
+def run_iterate(functional_profile_filepath, label_file, run_output_folder, run_nb, nb_iterations, esmecata_input=None, esmecata_annotation_reference=None, otu_abundance_filepath=None, reference_test_sets_filepath=None,
                 classifiers=3, method='rf', var_ranking_method='gini'):
     functional_profile_df = pd.read_csv(functional_profile_filepath, sep=',', index_col=0)
 
@@ -331,7 +325,7 @@ def run_iterate(functional_profile_filepath, label_file, run_output_folder, run_
     bank_of_performance_dfs_taxons = {}
 
     ## Calculating average presence of taxons and annotations per label, and collecting info about them
-    info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, esmecata_input, run_output_folder, esmecata_annotation_reference, otu_abundance_filepath)
+    info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, run_output_folder, otu_abundance_filepath, esmecata_input, esmecata_annotation_reference)
 
     if reference_test_sets_filepath:
         #Get the test set references if they are given
@@ -350,7 +344,7 @@ def run_iterate(functional_profile_filepath, label_file, run_output_folder, run_
         labels_train = label_file_df.loc[train_labels].values.reshape((label_file_df.loc[train_labels].values.shape[0]))
     else:
         #Select a test subset
-        labels_train, labels_test, test_indices = separate_test_train(label_file_df)
+        labels_train, labels_test, sample_train, test_indices = separate_test_train(label_file_df)
 
         test_labels = [functional_profile_df.columns[i] for i in test_indices]
 
@@ -379,13 +373,16 @@ def run_iterate(functional_profile_filepath, label_file, run_output_folder, run_
     for iteration_number in range(nb_iterations):        
     #Separate test and train subsets
         if otu_abundance_filepath is not None:
-            otu_train , otu_test = create_test_train_subsets(deepmicro_otu_iteration, test_labels)
-        annots_train , annots_test = create_test_train_subsets(deepmicro_sofa_iteration, test_labels)
+            otu_train, otu_test = create_test_train_subsets(deepmicro_otu_iteration, test_labels)
+        annots_train, annots_test = create_test_train_subsets(deepmicro_sofa_iteration, test_labels)
+
+        annots_train = deepmicro_sofa_iteration.iloc[sample_train]
 
         #DeepMicro
         trained_classifiers_iteration_folder = os.path.join(trained_classifiers_folder, 'Iteration_'+str(iteration_number))
         if not os.path.exists(trained_classifiers_iteration_folder):
             os.mkdir(trained_classifiers_iteration_folder)
+
         # Run classification wtih DeepMicro.
         if otu_abundance_filepath is not None:
             perf_df_otu, best_feature_records_otu = run_deep_micro(otu_test, otu_train, labels_test, labels_train, 'test_OTU', iteration_number, run_nb, trained_classifiers_iteration_folder, "Taxonomic",

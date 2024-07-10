@@ -10,7 +10,7 @@ from SPARTA.create_core_meta import extract_and_write_core_meta
 logger = logging.getLogger(__name__)
 
 def run_sparta_classification(functional_profile_filepath, label_file, output_folder, nb_runs, nb_iterations,
-                            esmecata_input, esmecata_annotation_reference, otu_abundance_filepath=None, reference_test_sets_filepath=None,
+                            esmecata_input=None, esmecata_annotation_reference=None, otu_abundance_filepath=None, reference_test_sets_filepath=None,
                             classifiers=3, method='rf', var_ranking_method='gini', keep_temp=None):
     date_time_now = datetime.now()
     ref_time = date_time_now
@@ -21,9 +21,10 @@ def run_sparta_classification(functional_profile_filepath, label_file, output_fo
 
     label_file_df = pd.read_csv(label_file)
     label_file_df = label_file_df[functional_profile_df.columns].transpose()
-    ## Calculating average presence of taxons and annotations per label, and collecting info about them
-    esmecata_input = pd.read_csv(esmecata_input, sep='\t')
-    info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, esmecata_input, output_folder, esmecata_annotation_reference, otu_abundance_filepath)
+    ## Calculating average presence of taxons and annotations per label, and collecting info about them.
+    if esmecata_input is not None:
+        esmecata_input = pd.read_csv(esmecata_input, sep='\t')
+    info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, output_folder, esmecata_input, esmecata_annotation_reference, otu_abundance_filepath)
 
     nb_runs = int(nb_runs)
     nb_iterations = int(nb_iterations)

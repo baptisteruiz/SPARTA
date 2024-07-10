@@ -68,8 +68,6 @@ class DeepMicrobiome(object):
         self.prefix = ''
         self.representation_only = False
 
-        
-
     def loadData(self, feature_string, label_string, label_dict, dtype=None):
         # read file
         filename = self.filename
@@ -101,7 +99,6 @@ class DeepMicrobiome(object):
             print("FileNotFoundError: File {} does not exist".format(filename))
             exit()
 
-
         # load data
         self.X_train = raw.values.astype(dtype)
 
@@ -131,15 +128,15 @@ class DeepMicrobiome(object):
                                                                                 label_flatten.astype('int'), indices, test_size=len(Ytest_ext.flatten()),
                                                                                 random_state=self.seed,
                                                                                 stratify=label_flatten)
-  
+
     # Classification
     def classification(self, Xtest_ext, Ytest_ext, seed, perf_dict, hyper_parameters, best_feature_records, var_ranking_method, method='svm', cv=5, scoring='roc_auc', n_jobs=1, cache_size=10000, best_auc=0, threshold_opt=0, multi_param = False):
         clf_start_time = time.time()
 
         # print("# Tuning hyper-parameters")
         # print(self.X_train.shape, self.y_train.shape)
-        
-    ###Test to adjust for multiclass classification
+
+        ###Test to adjust for multiclass classification
         if len(np.unique(np.concatenate((self.y_train, self.y_test)))) > 2:
              scoring = "roc_auc_ovr"
              multi_param = TextTestRunner
@@ -177,16 +174,13 @@ class DeepMicrobiome(object):
         # Evaluate performance of the best model on test set
         y_prob = clf.predict_proba(self.X_test)
 
-
         # Get best threshold for predictions (Youden J method)
-
         fpr, tpr, thresholds = roc_curve(self.y_test, y_prob[:, 1], pos_label=1)
         youdenJ = tpr - fpr
         index = np.argmax(youdenJ)
         thresholdOpt = round(thresholds[index], ndigits = 4)
 
         #Class predictions on each set
-
         y_control = (clf.predict_proba(self.X_train)[:,1] >= thresholdOpt).astype('int')
         y_true, y_pred = self.y_test, (clf.predict_proba(self.X_test)[:,1] >= thresholdOpt).astype('int')
         y_pred_ext = (clf.predict_proba(Xtest_ext)[:,1] >= thresholdOpt).astype('int')
@@ -237,7 +231,7 @@ class DeepMicrobiome(object):
         else:
             perf_dict[str(seed)] = [str(clf.best_params_), self.indices_test, thresholdOpt, round(roc_auc_score(self.y_train, clf.predict_proba(self.X_train)[:,1]), 4), round(roc_auc_score(y_true, y_prob[:, 1]), 4), round(roc_auc_score(Ytest_ext, clf.predict_proba(Xtest_ext)[:,1]), 4)]
 
-        return(best_auc, threshold_opt, perf_dict, best_feature_records)
+        return (best_auc, threshold_opt, perf_dict, best_feature_records)
 
     def printDataShapes(self, train_only=False):
         print("X_train.shape: ", self.X_train.shape)
@@ -295,8 +289,6 @@ class DeepMicrobiome(object):
         return loss_collector, loss_max_atTheEnd
 
 
-
-
 # run exp function
 def run_exp(seed, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, Y_data, label_data, dataset_name, best_feature_records, data_dir, method, var_ranking_method):
 
@@ -325,4 +317,4 @@ def run_exp(seed, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, Y_da
                             n_jobs=-2, scoring='roc_auc', best_auc=best_auc, threshold_opt=threshold_opt)
 
 
-    return(best_auc, threshold_opt, perf_dict, best_feature_records)
+    return (best_auc, threshold_opt, perf_dict, best_feature_records)

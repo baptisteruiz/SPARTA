@@ -1,4 +1,4 @@
-from SPARTA.DMmodif_export_test_ver import *
+from SPARTA.DMmodif_export_test_ver import run_exp
 
 from esmecata.proteomes import retrieve_proteomes
 from esmecata.clustering import make_clustering
