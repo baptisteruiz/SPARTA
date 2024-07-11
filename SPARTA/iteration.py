@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import numpy as np
 from sklearn.model_selection import train_test_split
-from SPARTA.DMmodif_export_test_ver import run_exp
+from SPARTA.Deepmicro import run_exp
 from tqdm import tqdm
 from collections import Counter, defaultdict
 from kneebow.rotor import Rotor
@@ -211,17 +211,17 @@ def find_relevant_otus(dataframe, path, otu_name_df):
     '''
     This function finds and names all OTUs associated with each annotation
     '''
-
     found_otu = {}
     found_otu_named = {}
+    named_annotations = set(dataframe["ID"].tolist())
     for filename in tqdm([f for f in os.listdir(path) if not f.startswith('.')], desc="Linking OTUs to annotations..."):
         otu_data = pd.read_csv(path + "/" + filename, sep ='\t', keep_default_na=False)
         otu_name = filename.replace(".tsv","")
         otu_name_translated = otu_name_df[otu_name_df['observation_name'] == otu_name]['taxonomic_affiliation'].values[0]
         otu_name_translated_species = otu_name_translated.split(';')[-1]
 
-        gos_found = [go for gos in otu_data["GO"].values for go in gos.split(',') if go in dataframe["ID"]]
-        ecs_found = [ec for ecs in otu_data["EC"].values for ec in ecs.split(',') if ec in dataframe["ID"]]
+        gos_found = [go for gos in otu_data["GO"].values for go in gos.split(',') if go in named_annotations]
+        ecs_found = [ec for ecs in otu_data["EC"].values for ec in ecs.split(',') if ec in named_annotations]
         annotations_found = gos_found + ecs_found
 
         for annotation in annotations_found:
@@ -236,6 +236,7 @@ def find_relevant_otus(dataframe, path, otu_name_df):
     dataframe["Named_linked_OTUs"] = dataframe["ID"].map(found_otu_named)
     return dataframe
 
+
 def get_info_annots(score_db, output_folder, otu_abundance_filepath, esmecata_input, esmecata_annotation_reference):
     
     list_of_annots = list(score_db.index)
@@ -248,11 +249,11 @@ def get_info_annots(score_db, output_folder, otu_abundance_filepath, esmecata_in
 
     return(annots_with_names_and_associated_otus)
 
+
 def average_per_group(score_dataframe, label_refs, label_value = None):
     '''
     This function averages the presence of a functional annotation within a given label group
     '''
-    
     if label_value != None:
         table_group = score_dataframe.loc[:, [i[0] == label_value for i in label_refs.values]]
     else:
@@ -262,12 +263,10 @@ def average_per_group(score_dataframe, label_refs, label_value = None):
     for i in list(score_dataframe.index):
         if ((i[0].isnumeric()) or ("GO" in i)) and (i != '16s_rrna'):
             index_filters.append(i)
-    
 
     filtered_table_group = table_group.loc[index_filters].astype(float)
 
     filtered_table_group["average"] = filtered_table_group.mean(axis=1)
-
 
     return(filtered_table_group)
 
@@ -308,7 +307,6 @@ def averaging_and_info_step(functional_profile_df, label_refs, output_folder, es
     info_annots['Average presence (total)'] = avg_score_total['average'].values
     
     return info_annots, info_taxons
-
 
 
 def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, run_nb, nb_iterations, esmecata_input=None, esmecata_annotation_reference=None, otu_abundance_filepath=None, reference_test_sets_filepath=None,
