@@ -229,8 +229,10 @@ def find_relevant_otus(dataframe, path, otu_name_df):
                 found_otu[annotation] = [otu_name]
                 found_otu_named[annotation] = [otu_name_translated_species]
             else:
-                found_otu[annotation].append(otu_name)
-                found_otu_named[annotation].append(otu_name_translated_species)
+                if otu_name not in found_otu[annotation]:
+                    found_otu[annotation].append(otu_name)
+                if otu_name_translated_species not in found_otu_named[annotation]:
+                    found_otu_named[annotation].append(otu_name_translated_species)
 
     dataframe["Linked_OTUs"] = dataframe["ID"].map(found_otu)
     dataframe["Named_linked_OTUs"] = dataframe["ID"].map(found_otu_named)

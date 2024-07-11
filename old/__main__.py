@@ -1,4 +1,4 @@
-from SPARTA.DMmodif_export_test_ver import *
+from DMmodif_export_test_ver import *
 
 from esmecata.proteomes import retrieve_proteomes
 from esmecata.clustering import make_clustering
@@ -42,6 +42,28 @@ from tqdm import tqdm, trange
 from tqdm.contrib.logging import logging_redirect_tqdm
 
 import argparse
+
+parser = argparse.ArgumentParser(description='A program that averages the RF importance scores of the functional annotations, and associates them to OTUs')
+
+parser.add_argument("-d","--dataset_name", help="Name of the dataset", required=True)
+parser.add_argument("-t", "--treatment", default=None, help="Data treatment for the functional table (can be: 'tf_igm', default: no treatment)")
+parser.add_argument("-s", "--scaling", default=None, help="Scaling method to apply to the taxonomic table (can be: 'relative', default: no scaling)")
+parser.add_argument("-i", "--iterations", default=5, help="Number of iterations of the method (default: 5 iterations)")
+parser.add_argument("-c", "--classifiers", default=20, help="Amount of trained classifiers per iteration of the command (default: 20)")
+parser.add_argument("-r", "--runs", default=10, help="Amount of pipeline runs (default: 10 runs)")
+parser.add_argument("-m", "--method", default="rf", help="Classifying method to be run (default: Random Forest (rf). Can be: svm)")
+parser.add_argument("-v", "--variable_ranking", default="gini", help="Method for Random Forest variable importance ranking (default: gini. Can be: shap)")
+parser.add_argument("--eggnog", default=False, help="Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launhed with the 'UniProt' workflow by default.")
+parser.add_argument("--annotations_only", default=False, action='store_true', help="This is a flag that signals that the input is a functional table. If True, all steps involving taxonomic tables will be skipped, and SPARTA will iteratively classify and select on the given functional table alone.")
+parser.add_argument("--reference_test_sets", default=False, action='store_true', help="This option allows the user to give their own test sets to be used during classification.")
+parser.add_argument("--esmecata_relaunch", default=False, action='store_true', help="This option allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.")
+parser.add_argument("--keep_temp", default=False, action='store_true', help="This option allows the user to keep the contents of the 'Outputs_temp' folder at the end of the run.")
+parser.add_argument("--update_ncbi", default=False, action='store_true', help="This option allows the user to force an update of the local NCBI database (taxdump.tar.gz).")
+
+pd.options.mode.chained_assignment = None
+
+args_passed = parser.parse_args()
+
 
 logger = logging.getLogger(__name__)
 
@@ -1297,30 +1319,10 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
     return(df_perfs_and_selection_per_iter, warning_annots, warning_taxons)
 
 
-def main():
+def main(args_passed):
     '''
     This function formats the inputs, formats the output directories, and launches the iterative seection and classification process r times.
     '''
-    parser = argparse.ArgumentParser(description='A program that averages the RF importance scores of the functional annotations, and associates them to OTUs')
-
-    parser.add_argument("-d","--dataset_name", help="Name of the dataset", required=True)
-    parser.add_argument("-t", "--treatment", default=None, help="Data treatment for the functional table (can be: 'tf_igm', default: no treatment)")
-    parser.add_argument("-s", "--scaling", default=None, help="Scaling method to apply to the taxonomic table (can be: 'relative', default: no scaling)")
-    parser.add_argument("-i", "--iterations", default=5, help="Number of iterations of the method (default: 5 iterations)")
-    parser.add_argument("-c", "--classifiers", default=20, help="Amount of trained classifiers per iteration of the command (default: 20)")
-    parser.add_argument("-r", "--runs", default=10, help="Amount of pipeline runs (default: 10 runs)")
-    parser.add_argument("-m", "--method", default="rf", help="Classifying method to be run (default: Random Forest (rf). Can be: svm)")
-    parser.add_argument("-v", "--variable_ranking", default="gini", help="Method for Random Forest variable importance ranking (default: gini. Can be: shap)")
-    parser.add_argument("--eggnog", default=False, help="Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launhed with the 'UniProt' workflow by default.")
-    parser.add_argument("--annotations_only", default=False, action='store_true', help="This is a flag that signals that the input is a functional table. If True, all steps involving taxonomic tables will be skipped, and SPARTA will iteratively classify and select on the given functional table alone.")
-    parser.add_argument("--reference_test_sets", default=False, action='store_true', help="This option allows the user to give their own test sets to be used during classification.")
-    parser.add_argument("--esmecata_relaunch", default=False, action='store_true', help="This option allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.")
-    parser.add_argument("--keep_temp", default=False, action='store_true', help="This option allows the user to keep the contents of the 'Outputs_temp' folder at the end of the run.")
-    parser.add_argument("--update_ncbi", default=False, action='store_true', help="This option allows the user to force an update of the local NCBI database (taxdump.tar.gz).")
-
-    pd.options.mode.chained_assignment = None
-
-    args_passed = parser.parse_args()
     
     now_begin = datetime.now()
     date_time = now_begin.strftime("%d%m%Y%H%M")
@@ -1497,9 +1499,6 @@ def main():
     # if not args_passed.annotations_only:
     #     info_taxons.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/taxon_info_check.csv')
 
-
-def run_sparta(nb_run, method, input_path):
-
     ##A dictionary to keep track of the test sets and selection/performance outputs of the different runs
 
     test_set_dict = {}
@@ -1567,175 +1566,8 @@ def run_sparta(nb_run, method, input_path):
     ########################
 
 
-#def run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations, pipeline_path, dataset_full, label_file, otu_table_stripped, esmecata_input, deepmicro_otu, sofa_table, deepmicro_sofa, info_annots, info_taxons, test_set_dict, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, args_passed):
-def run_iterate(run_nb, functional_profile_filepath, label_file, run_output_folder, otu_abundance_filepath=None, reference_test_sets_filepath=None, annotations_only=None):
-    # Input:
-    # label_file = Name of label
-    # reference_test_sets_file
-    # output_folder = data_ref_output_name (merged with pipeline_path)
-
-    # run_nb = nb run launched
-    # dataset_name = inutile (= name of output folder)
-    #
-    functional_profile = pd.read_csv(functional_profile_filepath, sep='\t')
-
-    if reference_test_sets_filepath:
-        #Get the test set references if they are given
-        test_set_refs = pd.read_csv(reference_test_sets_filepath)
-        test_labels = test_set_refs['Run_'+str(run_nb)].values
-
-        sample_names = list(functional_profile.columns.values)
-
-        labels_test = label_file.loc[test_labels].values.reshape((label_file.loc[test_labels].values.shape[0]))
-        #logger.info('Label_test:', labels_test)
-        train_labels = []
-        for i in sample_names:
-            if i not in test_labels:
-                train_labels.append(i)
-
-        labels_train = label_file.loc[train_labels].values.reshape((label_file.loc[train_labels].values.shape[0]))
-    else:
-        #Select a test subset
-        labels_train, labels_test, test_indices = separate_test_train(label_file)
-
-        test_labels = [functional_profile.columns[i] for i in test_indices]
-
-    #Keeping track of the selected test sets (and writing them at every run, in case of a crash)
-    test_set_dict = {}
-    test_set_dict['Run_'+str(run_nb)] = test_labels
-    test_set_df = pd.DataFrame.from_dict(test_set_dict)
-    test_set_output_file = os.path.join(run_output_folder, 'Test_sets.csv')
-    test_set_df.to_csv(test_set_output_file)
-
-    if otu_abundance_filepath is not None:
-        deepmicro_otu_iteration = pd.read_csv(otu_abundance_filepath, sep='\t')
-    deepmicro_sofa_iteration = functional_profile.transpose()
-
-    trained_classifiers_folder = os.path.join(run_output_folder, 'Trained_classifiers')
-    os.mkdir(trained_classifiers_folder)
-    classification_performances_folder = os.path.join(run_output_folder, 'Classification_performances')
-    os.mkdir(classification_performances_folder)
-    selected_Variables_folder = os.path.join(run_output_folder, 'Selected_Variables')
-    os.mkdir(selected_Variables_folder)
-
-    #ITERATED:
-    for iteration_number in range(iterations):
-        
-    #Separate test and train subsets
-        if not args_passed.annotations_only:
-            otu_train , otu_test = create_test_train_subsets(deepmicro_otu_iteration, test_labels)
-        annots_train , annots_test = create_test_train_subsets(deepmicro_sofa_iteration, test_labels)
-        
-
-    # annots_train.to_csv(args.pipeline_path+'/DeepMicro/data/entree_DeepMicro_'+args.dataset_name+'.csv', header = None, index = None)
-    # annots_test.to_csv(args.pipeline_path+'/DeepMicro/data/entree_DeepMicro_'+args.dataset_name+'_test.csv', header = None, index = None)
-
-
-    # otu_train.to_csv(args.pipeline_path+'/DeepMicro/data/entree_DeepMicro_'+args.dataset_name+'_OTU.csv', header = None, index = None)
-    # otu_test.to_csv(args.pipeline_path+'/DeepMicro/data/entree_DeepMicro_'+args.dataset_name+'_OTU_test.csv', header = None, index = None)
-
-    # labels_train.to_csv(args.pipeline_path+'/DeepMicro/data/Label_'+dataset_no_iter+'.csv', header = None, index = None)
-    # labels_test.to_csv(args.pipeline_path+'/DeepMicro/data/Label_'+dataset_no_iter+'_test.csv', header = None, index = None)
-
-        #DeepMicro
-        os.mkdir(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Trained_classifiers/Iteration_'+str(iteration_number))
-        data_dir = pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Trained_classifiers/Iteration_'+str(iteration_number)
-        if not args_passed.annotations_only:
-            perf_df_otu, best_feature_records_otu = run_deep_micro(otu_test, otu_train, labels_test, labels_train, dataset_name+'_OTU', iteration_number, run_nb, pipeline_path, args_passed, data_dir, "Taxonomic")
-        perf_df_sofa, best_feature_records_sofa = run_deep_micro(annots_test, annots_train, labels_test, labels_train, dataset_name+'_Functions', iteration_number, run_nb, pipeline_path, args_passed, data_dir, "Functional")
-        
-
-        os.mkdir(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Classification_performances/Iteration_'+str(iteration_number))
-        
-        if not args_passed.annotations_only:
-            perf_df_otu.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Classification_performances/Iteration_'+str(iteration_number)+'/Taxonomic_performances.csv')
-        perf_df_sofa.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Classification_performances/Iteration_'+str(iteration_number)+'/Annotation_performances.csv')
-        
-        if not args_passed.annotations_only:
-            bank_of_performance_dfs_taxons[iteration_number][run_nb] = perf_df_otu
-        bank_of_performance_dfs_annots[iteration_number][run_nb] = perf_df_sofa
-
-        #If a variable ranking was made (not SVM): select, record and prepare datasets for next iteration 
-        if args_passed.method == "rf":
-            if not args_passed.annotations_only:
-                best_feature_records_otu_df = pd.concat(best_feature_records_otu, axis=1)
-                best_feature_records_otu_df.columns = ['Model_'+str(i) for i in range(int(args_passed.classifiers))]
-                best_feature_records_otu_df.index = deepmicro_otu_iteration.columns
-                #best_feature_records_otu_df.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Classification_performances/Iteration_'+str(iteration_number)+'/Best_feature_records_taxons.csv')
-                
-            best_feature_records_sofa_df = pd.concat(best_feature_records_sofa, axis=1)
-            best_feature_records_sofa_df.columns = ['Model_'+str(i) for i in range(int(args_passed.classifiers))]
-            best_feature_records_sofa_df.index = deepmicro_sofa_iteration.columns
-            #best_feature_records_sofa_df.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Classification_performances/Iteration_'+str(iteration_number)+'/Best_feature_records_annotations.csv')
-            
-            #Average Gini importances
-            if not args_passed.annotations_only:
-                best_feature_records_otu_df['Average'] = best_feature_records_otu_df.mean(axis=1)
-            best_feature_records_sofa_df['Average'] = best_feature_records_sofa_df.mean(axis=1)
-            
-            #Rotor cutoff
-
-            os.mkdir(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Selected_Variables/Iteration_'+str(iteration_number))
-
-        
-            if not args_passed.annotations_only:
-                retained_otus = inflexion_cutoff(best_feature_records_otu_df)
-            retained_annots = inflexion_cutoff(best_feature_records_sofa_df)
-
-            if not args_passed.annotations_only:
-                selection_plus_info_taxons = info_taxons[info_taxons['ID'].isin(list(retained_otus.index))]
-            selection_plus_info_annots = info_annots[info_annots['ID'].isin(list(retained_annots.index))]
-            
-            
-            # Write the selection files with info
-            if not args_passed.annotations_only:
-                signif_otus = []
-                signif_otu_names = []
-
-                for link_otu_list in selection_plus_info_annots['Linked_OTUs'].values:
-                    signif_links = []
-                    signif_links_named = []
-                    for otu in link_otu_list:
-                        if otu in retained_otus:
-                            signif_links.append(otu)
-                            otu_name_translated = esmecata_input[esmecata_input['observation_name'] == otu]['taxonomic_affiliation'].values[0]
-                            otu_name_translated_species = otu_name_translated.split(';')[-1]
-                            signif_links_named.append(otu_name_translated_species)
-                    
-                    signif_otus.append(signif_links)
-                    signif_otu_names.append(signif_links_named)
-
-                selection_plus_info_annots['Significant_linked_OTUs'] = signif_otus
-                selection_plus_info_annots['Significant_linked_Named_OTUs'] = signif_otu_names
-
-
-                signif_annots = []
-
-                for link_annot_list in selection_plus_info_taxons['Linked_annotations'].values:
-                    signif_links = []
-
-                    for annot in link_annot_list:
-                        if annot in retained_annots:
-                            signif_links.append(annot)
-                    
-                    signif_annots.append(signif_links)
-
-
-                selection_plus_info_taxons['Significant_linked_annotations'] = signif_annots
-                selection_plus_info_taxons.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Selected_Variables/Iteration_'+str(iteration_number)+'/Selected_taxons_run_'+str(run_nb)+'_iter_'+str(iteration_number)+'.csv')
-
-            selection_plus_info_annots.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Selected_Variables/Iteration_'+str(iteration_number)+'/Selected_annotations_run_'+str(run_nb)+'_iter_'+str(iteration_number)+'.csv')
-            
-
-
-            # Store the selections for later incorporation to the Core/Meta sets
-            if not args_passed.annotations_only:
-                bank_of_selections_taxons[iteration_number][run_nb] = list(retained_otus.index)
-            bank_of_selections_annots[iteration_number][run_nb] = list(retained_annots.index)
-            
-        
-            if not args_passed.annotations_only:
-                deepmicro_otu_iteration = otu_table_stripped.loc[retained_otus.index].transpose()
-            deepmicro_sofa_iteration = sofa_table.loc[retained_annots.index].transpose()
-
-    return(test_set_dict, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons)
+try:
+    main(args_passed)
+except ValueError as error:
+    logger.error(error)
+    raise

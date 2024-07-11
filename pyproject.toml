@@ -29,7 +29,7 @@ dependencies = [
 ]
 
 [project.scripts]
-sparta = "SPARTA.cli:main"
+sparta = "SPARTA.__main__:main"
 
 [project.urls]
 Homepage = "https://github.com/baptisteruiz/SPARTA"
