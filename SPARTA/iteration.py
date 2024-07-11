@@ -53,6 +53,7 @@ def create_test_train_subsets(full_dataset, indices):
     return(dataset_train, dataset_test)
 
 def run_deep_micro(set_test, set_train, label_test, label_train, dataset_name, iteration_nb, run_nb, data_dir, profile, classifiers=20, method='rf', var_ranking_method='gini'):
+    training_validation = {}
     try:
         ##IMPORT SEPARATE TEST DATASET
         Xtest_ext = set_test.values.astype(np.float64)
@@ -69,13 +70,14 @@ def run_deep_micro(set_test, set_train, label_test, label_train, dataset_name, i
         if repeats > 1:
             for i in tqdm(range(repeats), desc="Training models for the "+profile+" profile (Run: "+str(run_nb)+", Iteration: "+str(iteration_nb)+")"):
                 #logger.info('BEST FEATURE RECORDS:', best_feature_records)
-                best_auc, threshold_opt, perf_dict, best_feature_records = run_exp(i, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, set_train, label_train, dataset_name, best_feature_records, data_dir, method, var_ranking_method)
+                best_auc, threshold_opt, perf_dict, best_feature_records, labels_sets = run_exp(i, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, set_train, label_train, dataset_name, best_feature_records, data_dir, method, var_ranking_method)
+                training_validation[i] = labels_sets
         else:
-            best_auc, threshold_opt, perf_dict, best_feature_records = run_exp(42, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, set_train, label_train, dataset_name, best_feature_records, data_dir, method, var_ranking_method)
-
+            best_auc, threshold_opt, perf_dict, best_feature_records, labels_sets = run_exp(42, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, set_train, label_train, dataset_name, best_feature_records, data_dir, method, var_ranking_method)
+            training_validation[repeats] = labels_sets
         perf_df = pd.DataFrame.from_dict(perf_dict, orient='index', dtype=None, columns=['Best parameters', 'Validation set indices','Threshold', 'Training performance', 'Validation performance', 'Test performance'])
 
-        return perf_df, best_feature_records
+        return perf_df, best_feature_records, training_validation
 
     except OSError as error:
         raise Exception("DeepMicro encountered a problem.")
@@ -311,11 +313,11 @@ def averaging_and_info_step(functional_profile_df, label_refs, output_folder, es
 
 
 
-def run_iterate(functional_profile_filepath, label_file, run_output_folder, run_nb, nb_iterations, esmecata_input=None, esmecata_annotation_reference=None, otu_abundance_filepath=None, reference_test_sets_filepath=None,
-                classifiers=3, method='rf', var_ranking_method='gini'):
+def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, run_nb, nb_iterations, esmecata_input=None, esmecata_annotation_reference=None, otu_abundance_filepath=None, reference_test_sets_filepath=None,
+                classifiers=20, method='rf', var_ranking_method='gini'):
     functional_profile_df = pd.read_csv(functional_profile_filepath, sep=',', index_col=0)
 
-    label_file_df = pd.read_csv(label_file)
+    label_file_df = pd.read_csv(label_filepath)
     label_file_df = label_file_df[functional_profile_df.columns].transpose()
 
     test_set_dict = {}
@@ -368,12 +370,16 @@ def run_iterate(functional_profile_filepath, label_file, run_output_folder, run_
     selected_variables_folder = os.path.join(run_output_folder, 'Selected_Variables')
     if not os.path.exists(selected_variables_folder):
         os.mkdir(selected_variables_folder)
+    dataset_separation_folder = os.path.join(run_output_folder, 'Dataset_separation')
+    if not os.path.exists(dataset_separation_folder):
+        os.mkdir(dataset_separation_folder)
 
     #ITERATED:
     for iteration_number in range(nb_iterations):        
     #Separate test and train subsets
         if otu_abundance_filepath is not None:
             otu_train, otu_test = create_test_train_subsets(deepmicro_otu_iteration, test_labels)
+            otu_train = deepmicro_otu_iteration.iloc[sample_train]
         annots_train, annots_test = create_test_train_subsets(deepmicro_sofa_iteration, test_labels)
 
         annots_train = deepmicro_sofa_iteration.iloc[sample_train]
@@ -385,10 +391,13 @@ def run_iterate(functional_profile_filepath, label_file, run_output_folder, run_
 
         # Run classification wtih DeepMicro.
         if otu_abundance_filepath is not None:
-            perf_df_otu, best_feature_records_otu = run_deep_micro(otu_test, otu_train, labels_test, labels_train, 'test_OTU', iteration_number, run_nb, trained_classifiers_iteration_folder, "Taxonomic",
+            perf_df_otu, best_feature_records_otu, training_validation_sets = run_deep_micro(otu_test, otu_train, labels_test, labels_train, 'test_OTU', iteration_number, run_nb, trained_classifiers_iteration_folder, "Taxonomic",
                                                                     classifiers, method, var_ranking_method)
-        perf_df_sofa, best_feature_records_sofa = run_deep_micro(annots_test, annots_train, labels_test, labels_train, 'test_Functions', iteration_number, run_nb, trained_classifiers_iteration_folder, "Functional",
+        perf_df_sofa, best_feature_records_sofa, training_validation_sets = run_deep_micro(annots_test, annots_train, labels_test, labels_train, 'test_Functions', iteration_number, run_nb, trained_classifiers_iteration_folder, "Functional",
                                                                   classifiers, method, var_ranking_method)
+
+        dataset_separation_iteration_file = os.path.join(dataset_separation_folder, 'Iteration_'+str(iteration_number)+'.csv')
+        pd.DataFrame(training_validation_sets).to_csv(dataset_separation_iteration_file)
 
         classification_performances_iteration_folder = os.path.join(classification_performances_folder, 'Iteration_'+str(iteration_number))
         if not os.path.exists(classification_performances_iteration_folder):

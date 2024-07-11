@@ -1,7 +1,7 @@
 # importing numpy, pandas, and matplotlib
 from unittest import TextTestRunner
 import numpy as np
-from numpy.core.arrayprint import _none_or_positive_arg
+
 import pandas as pd
 import matplotlib
 matplotlib.use('agg')
@@ -209,7 +209,8 @@ class DeepMicrobiome(object):
         if metrics[0] >= best_auc:
             best_auc = metrics[0]
             threshold_opt = thresholdOpt
-            joblib.dump(clf, self.data_dir + '/' + self.data + "_saved_classifier.joblib")
+            saved_classifier_filepath = os.path.join(self.data_dir, self.data + "_saved_classifier.joblib")
+            joblib.dump(clf, saved_classifier_filepath)
             #print("Model saved!")
 
         # time stamp
@@ -230,6 +231,7 @@ class DeepMicrobiome(object):
             perf_dict[str(seed)] = [str(clf.best_params_), self.indices_test, thresholdOpt, round(roc_auc_score(self.y_train, clf.predict_proba(self.X_train), multi_class = "ovr"), 4), round(roc_auc_score(y_true, y_prob, multi_class = "ovr"), 4), round(roc_auc_score(Ytest_ext, clf.predict_proba(Xtest_ext), multi_class = "ovr"), 4)]
         else:
             perf_dict[str(seed)] = [str(clf.best_params_), self.indices_test, thresholdOpt, round(roc_auc_score(self.y_train, clf.predict_proba(self.X_train)[:,1]), 4), round(roc_auc_score(y_true, y_prob[:, 1]), 4), round(roc_auc_score(Ytest_ext, clf.predict_proba(Xtest_ext)[:,1]), 4)]
+
 
         return (best_auc, threshold_opt, perf_dict, best_feature_records)
 
@@ -316,5 +318,12 @@ def run_exp(seed, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, Y_da
         best_auc, threshold_opt, perf_dict, best_feature_records = dm.classification(Xtest_ext, Ytest_ext, seed, perf_dict, svm_hyper_parameters, best_feature_records, var_ranking_method, method='svm', cv=5,
                             n_jobs=-2, scoring='roc_auc', best_auc=best_auc, threshold_opt=threshold_opt)
 
+    # Create dict containing training and validation sets.
+    labels_sets = {}
+    labels_sets['training_set'] = ','.join(Y_data.iloc[dm.indices_train].index.tolist())
+    labels_sets['validation_set'] = ','.join(Y_data.iloc[dm.indices_test].index.tolist())
 
-    return (best_auc, threshold_opt, perf_dict, best_feature_records)
+    labels_sets['training_set_labels'] = ','.join(map(str, label_data[dm.indices_train]))
+    labels_sets['validation_set_labels'] = ','.join(map(str, label_data[dm.indices_test]))
+
+    return (best_auc, threshold_opt, perf_dict, best_feature_records, labels_sets)

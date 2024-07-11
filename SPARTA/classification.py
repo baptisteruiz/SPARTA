@@ -75,7 +75,6 @@ def run_sparta_classification(functional_profile_filepath, label_file, output_fo
         if not os.path.exists(core_and_meta_outputs_best_iteration_folder):
             os.mkdir(core_and_meta_outputs_best_iteration_folder)
 
-       
         df_perfs_and_selection_per_iter, warning_annots, warning_taxons = extract_and_write_core_meta(core_and_meta_outputs_folder, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots,
                                                                                                       bank_of_performance_dfs_taxons, best_selec_iter_annots, best_selec_iter_taxons,
                                                                                                       info_annots, info_taxons, nb_runs, esmecata_input, functional_profile_df, label_file_df, otu_abundance_filepath)
