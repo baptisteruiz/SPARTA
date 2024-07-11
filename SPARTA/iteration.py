@@ -220,24 +220,17 @@ def find_relevant_otus(dataframe, path, otu_name_df):
         otu_name_translated = otu_name_df[otu_name_df['observation_name'] == otu_name]['taxonomic_affiliation'].values[0]
         otu_name_translated_species = otu_name_translated.split(';')[-1]
 
-        for id in dataframe["ID"]:
-            go = False
-            ec = False
+        gos_found = [go for gos in otu_data["GO"].values for go in gos.split(',') if go in dataframe["ID"]]
+        ecs_found = [ec for ecs in otu_data["EC"].values for ec in ecs.split(',') if ec in dataframe["ID"]]
+        annotations_found = gos_found + ecs_found
 
-            for golist in otu_data["GO"].values:
-                if (id in golist) and (not pd.isna(golist)):
-                    go = True
-            
-            for eclist in otu_data["EC"].values:
-                if (id in eclist) and (not pd.isna(eclist)):
-                    ec = True
-            
-            if (go) | (ec):
-                if id not in found_otu.keys():
-                    found_otu[id] = []
-                    found_otu_named[id] = []
-                found_otu[id].append(otu_name)
-                found_otu_named[id].append(otu_name_translated_species)
+        for annotation in annotations_found:
+            if annotation not in found_otu:
+                found_otu[annotation] = [otu_name]
+                found_otu_named[annotation] = [otu_name_translated_species]
+            else:
+                found_otu[annotation].append(otu_name)
+                found_otu_named[annotation].append(otu_name_translated_species)
 
     dataframe["Linked_OTUs"] = dataframe["ID"].map(found_otu)
     dataframe["Named_linked_OTUs"] = dataframe["ID"].map(found_otu_named)
@@ -332,7 +325,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
     bank_of_performance_dfs_taxons = {}
 
     ## Calculating average presence of taxons and annotations per label, and collecting info about them
-    info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, run_output_folder, otu_abundance_filepath, esmecata_input, esmecata_annotation_reference)
+    info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, run_output_folder, esmecata_input, esmecata_annotation_reference, otu_abundance_filepath)
 
     if reference_test_sets_filepath:
         #Get the test set references if they are given

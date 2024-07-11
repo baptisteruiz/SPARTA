@@ -332,7 +332,7 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
     path_proteomes = os.path.join(esmecata_prot_out, 'proteomes')
     while (not count_check) and (retries<20):
         try:
-            retrieve_proteomes(input_location, esmecata_prot_out, option_bioservices=False)
+            retrieve_proteomes(input_location, esmecata_prot_out, option_bioservices=True)
         except Exception as exception:
             logger.critical(exception)
             pass
@@ -378,7 +378,7 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
     try:
         if eggnog_path is None:
             annotate_proteins(esmecata_cluster_out, esmecata_annots_out, uniprot_sparql_endpoint=None,
-                            propagate_annotation=1, uniref_annotation=None, expression_annotation=None, bioservices=True)
+                            propagate_annotation=1, uniref_annotation=None, expression_annotation=None, option_bioservices=True)
         else:
             annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_cpu=nb_cpu_available)
     except:
@@ -395,7 +395,7 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
         try:
             if eggnog_path is None:
                 annotate_proteins(esmecata_cluster_out, esmecata_annots_out, uniprot_sparql_endpoint=None,
-                                propagate_annotation=1, uniref_annotation=None, expression_annotation=None, bioservices=True)
+                                propagate_annotation=1, uniref_annotation=None, expression_annotation=None, option_bioservices=True)
             else:
                 annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_cpu=10)
         except:
