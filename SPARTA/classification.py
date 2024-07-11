@@ -9,9 +9,29 @@ from SPARTA.create_core_meta import extract_and_write_core_meta
 
 logger = logging.getLogger(__name__)
 
-def run_sparta_classification(functional_profile_filepath, label_file, output_folder, nb_runs, nb_iterations,
+def run_sparta_classification(functional_profile_filepath, label_filepath, output_folder, nb_runs, nb_iterations,
                             esmecata_input=None, esmecata_annotation_reference=None, otu_abundance_filepath=None, reference_test_sets_filepath=None,
-                            classifiers=3, method='rf', var_ranking_method='gini', keep_temp=None):
+                            classifiers=20, method='rf', var_ranking_method='gini', keep_temp=None):
+    """ Run the classification part of SPARTA using either:
+        - (1) a functional profile file (associating functions to samples) with a label file associating samples and labels.
+        - (2) a functional profile file, a label file, esmecata input file, esmecata annotation reference folder and abundanc of organisms.
+
+    Args:
+        functional_profile_filepath (str): Path to the functional profile file.
+        label_filepath (str): Path to the label file.
+        output_folder (str): Path to the output folder.
+        nb_runs (int): Number of runs to perform (a run consist of X iterations).
+        nb_iterations (int): Number of iterations per run.
+        esmecata_input (str): Path to esmecata input file.
+        esmecata_annotation_reference (str): Path to esmecata annotation reference folder.
+        otu_abundance_filepath (str): Path to the abundance file associating Organism and their abundances in samples.
+        reference_test_sets_filepath (str): Path to a file indicating the test sets to used.
+        classifiers (int): Number of classifiers to use in a Random Forests.
+        method (str): Classifier to use (either rf or svm).
+        var_ranking_method (str): Variable ranking method (gini or shap).
+        keep_temp (bool): Bool to keep or not temporary files.
+    """
+    logger.info('SPARTA|classification| Begin classification.')
     date_time_now = datetime.now()
     ref_time = date_time_now
     if not os.path.exists(output_folder):
@@ -19,7 +39,7 @@ def run_sparta_classification(functional_profile_filepath, label_file, output_fo
     stopwatch_file = os.path.join(output_folder, 'stopwatch.txt')
     functional_profile_df = pd.read_csv(functional_profile_filepath, sep=',', index_col=0)
 
-    label_file_df = pd.read_csv(label_file)
+    label_file_df = pd.read_csv(label_filepath)
     label_file_df = label_file_df[functional_profile_df.columns].transpose()
     ## Calculating average presence of taxons and annotations per label, and collecting info about them.
     if esmecata_input is not None:
@@ -35,10 +55,12 @@ def run_sparta_classification(functional_profile_filepath, label_file, output_fo
     test_set_dict = {}
     ## Launching the SPARTA runs
     for run_nb in range(1, nb_runs+1):
+        logger.info('SPARTA|classification| Run number {0}.'.format(run_nb))
         run_output_folder = os.path.join(output_folder, 'Run_'+str(run_nb))
         if not os.path.exists(run_output_folder):
             os.mkdir(run_output_folder)
-        run_test_set_dict, run_bank_of_selections_annots, run_bank_of_selections_taxons, run_bank_of_performance_dfs_annots, run_bank_of_performance_dfs_taxons = run_iterate(functional_profile_filepath, label_file, run_output_folder,
+        # Launch the different iterations for the run.
+        run_test_set_dict, run_bank_of_selections_annots, run_bank_of_selections_taxons, run_bank_of_performance_dfs_annots, run_bank_of_performance_dfs_taxons = run_iterate(functional_profile_filepath, label_filepath, run_output_folder,
                                                                                                                                                           run_nb, nb_iterations, esmecata_input, esmecata_annotation_reference,
                                                                                                                                                           otu_abundance_filepath, reference_test_sets_filepath,
                                                                                                                                                           classifiers, method, var_ranking_method)
@@ -62,9 +84,10 @@ def run_sparta_classification(functional_profile_filepath, label_file, output_fo
 
     visualisation_file = os.path.join(output_folder, 'median_OTU_vs_SoFA_(best_vs_best).png')
     best_selec_iter_annots, best_selec_iter_taxons = plot_classifs(bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, 'test', visualisation_file, otu_abundance_filepath)
-    
+
     ##We only calculate Core and Meta selections if there was a variable selection (i.e: not SVM)
     if method == 'rf':
+        logger.info('SPARTA|classification| Compute Core and Meta selections.')
         core_and_meta_outputs_folder = os.path.join(output_folder, 'Core_and_Meta_outputs')
         if not os.path.exists(core_and_meta_outputs_folder):
             os.mkdir(core_and_meta_outputs_folder)
@@ -82,10 +105,10 @@ def run_sparta_classification(functional_profile_filepath, label_file, output_fo
         pd.DataFrame.from_dict(df_perfs_and_selection_per_iter).to_csv(overall_selection_and_performance_metrics_filepath)
 
         if warning_annots:
-            logger.info('WARNING: functional classification performance is low (<0.6). The selected functional variables may not be accurate representatives of the classification task')
+            logger.info('SPARTA|classification| WARNING: functional classification performance is low (<0.6). The selected functional variables may not be accurate representatives of the classification task')
         
         if warning_taxons:
-            logger.info('WARNING: taxonomic classification performance is low (<0.6). The selected taxonomic variables may not be accurate representatives of the classification task')
+            logger.info('SPARTA|classification| WARNING: taxonomic classification performance is low (<0.6). The selected taxonomic variables may not be accurate representatives of the classification task')
 
     if not keep_temp:
         shutil.rmtree('/Outputs_temp/', ignore_errors=True)
