@@ -71,7 +71,7 @@ def main():
     parent_parser_ta = argparse.ArgumentParser(add_help=False)
     parent_parser_ta.add_argument("-fp", "--taxon_abundance", help="Taxonomic profile matrix file (tsv) having samples as columns and organisms as row, organisms as descrbied as taxonomic affilaitions.", required=True)
     parent_parser_e = argparse.ArgumentParser(add_help=False)
-    parent_parser_e.add_argument("--eggnog", default=False, help="Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launhed with the 'UniProt' workflow by default.")
+    parent_parser_e.add_argument("--eggnog", default=None, help="Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launhed with the 'UniProt' workflow by default.")
     parent_parser_annotations_only = argparse.ArgumentParser(add_help=False)
     parent_parser_annotations_only.add_argument("--annotations_only", default=False, action='store_true', help="This is a flag that signals that the input is a functional table. If True, all steps involving taxonomic tables will be skipped, and SPARTA will iteratively classify and select on the given functional table alone.")
     parent_parser_reference_test_sets = argparse.ArgumentParser(add_help=False)

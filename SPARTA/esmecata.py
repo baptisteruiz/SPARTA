@@ -112,6 +112,7 @@ def formatting_step(label_filepath, abundance_file, output_folder, annotations_o
     else:
         dataset_full = pd.read_csv(abundance_file, index_col = 0, sep = "\t")
         esmecata_input = None
+        esmecata_input_path = None
         otu_table_stripped = dataset_full
 
     label_file_df = label_file[otu_table_stripped.columns].transpose()
@@ -314,7 +315,7 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
     if nb_cpu_available > 3:
         nb_cpu_available -= 2
 
-    if (update_ncbi) or (not os.path.isfile('taxdump.tar.gz')):
+    if update_ncbi:
         logger.info('Updating local NCBI database')
         ncbi = NCBITaxa()
         ncbi.update_taxonomy_database()
@@ -345,11 +346,25 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
     #Temporary solution to the UniProt troubles of EsMeCaTa: if a downloaded proteome is less than 50 kB, remove it (considered empty)
     filenames = [[entry.name, entry.stat().st_size]  for entry in sorted(os.scandir(path_proteomes),
                                                 key=lambda x: x.stat().st_size, reverse=False)]
-    
+    removed_proteomes = []
     for file_stats in filenames:
         if file_stats[1]<=50:
             filename = file_stats[0]
             os.remove(os.path.join(path_proteomes, filename))
+            removed_proteomes.append(filename.replace('.faa.gz', ''))
+
+    proteome_tax_id_path = os.path.join(esmecata_prot_out, 'proteome_tax_id.tsv')
+    df_proteome = pd.read_csv(proteome_tax_id_path, sep='\t')
+
+    # Remove empty proteomes.
+    lambda_remove_proteomes = lambda x: ','.join([proteome for proteome in x.split(',') if proteome not in removed_proteomes])
+    df_proteome['proteome'] = df_proteome['proteome'].apply(lambda_remove_proteomes)
+    # Remvoe empty rows.
+    row_to_drop = df_proteome[df_proteome['proteome'] == ''].index
+
+    df_proteome = df_proteome.drop(row_to_drop)
+    df_proteome.to_csv(proteome_tax_id_path, sep='\t', index=False)
+    # End of temporary solution.
 
     stat_number_clustering_filepath = os.path.join(esmecata_cluster_out, 'stat_number_clustering.tsv')
     if not os.path.exists(stat_number_clustering_filepath):
@@ -361,9 +376,9 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
         logger.info('Clustering step already done, moving to annotation.')
 
     try:
-        if eggnog_path == None:
+        if eggnog_path is None:
             annotate_proteins(esmecata_cluster_out, esmecata_annots_out, uniprot_sparql_endpoint=None,
-                            propagate_annotation=1, uniref_annotation=None, expression_annotation=None)
+                            propagate_annotation=1, uniref_annotation=None, expression_annotation=None, bioservices=True)
         else:
             annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_cpu=nb_cpu_available)
     except:
@@ -378,9 +393,9 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
     logger.info('All annotations found: '+str(check_outputs))
     while (not check_outputs) and (retries<20):
         try:
-            if eggnog_path == None:
+            if eggnog_path is None:
                 annotate_proteins(esmecata_cluster_out, esmecata_annots_out, uniprot_sparql_endpoint=None,
-                                propagate_annotation=1, uniref_annotation=None, expression_annotation=None)
+                                propagate_annotation=1, uniref_annotation=None, expression_annotation=None, bioservices=True)
             else:
                 annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_cpu=10)
         except:
@@ -448,93 +463,73 @@ def create_dataset_annotation_file(annotation_reference_folder, dataset_annotati
     return dataset_annotation
 
 
-def run_esmecata(label_filepath, abundance_filepath, output_folder, otu_abundance_filepath=None, annotations_only=None, scaling='no scaling', esmecata_relaunch=False,
-                 eggnog_path=None, update_ncbi=None):
+def run_esmecata(label_filepath, abundance_filepath, output_folder, scaling='no scaling', esmecata_relaunch=None, eggnog_path=None, update_ncbi=None):
     ## Formatting step
     date_time_format = datetime.now()
     now_begin = date_time_format
     if not os.path.exists(output_folder):
         os.mkdir(output_folder)
-    if not annotations_only:
-        logger.info('Input formatting...')
-        dataset_full, otu_table_stripped, esmecata_input, esmecata_input_path, deepmicro_otu, label_file = formatting_step(label_filepath, abundance_filepath, output_folder, annotations_only, scaling)
 
-        ####Time measurement####
-        date_time_format = datetime.now()
-        formatting_time = date_time_format - now_begin
-        formatting_time_seconds = formatting_time.total_seconds()
+    logger.info('Input formatting...')
+    dataset_full, otu_table_stripped, esmecata_input, esmecata_input_path, deepmicro_otu, label_file = formatting_step(label_filepath, abundance_filepath, output_folder, scaling=scaling)
 
-        stopwatch_file = os.path.join(output_folder, 'stopwatch_.txt')
-        f = open(stopwatch_file, "w")
-        f.write("Formatting step length (s): "+str(formatting_time_seconds)+"\n")
-        f.close()
-        ########################
+    ####Time measurement####
+    date_time_format = datetime.now()
+    formatting_time = date_time_format - now_begin
+    formatting_time_seconds = formatting_time.total_seconds()
 
-        #EsMeCaTa output folder
-        esmecata_output_folder = os.path.join(output_folder, 'EsMeCaTa_outputs')
-        annotation_reference_folder = os.path.join(esmecata_output_folder, 'esmecata_outputs_annots', 'annotation_reference')
+    stopwatch_file = os.path.join(output_folder, 'stopwatch_.txt')
+    f = open(stopwatch_file, "w")
+    f.write("Formatting step length (s): "+str(formatting_time_seconds)+"\n")
+    f.close()
+    ########################
 
-        if os.path.isdir(esmecata_output_folder):
-            if not esmecata_relaunch:
-                logger.info('An EsMeCaTa output has been found for your dataset. This output will be used for the rest of the pipeline. If you wish to re-launch EsMeCaTa, please remove the existing output before launching SPARTA.')
-            else:
-                logger.info('Re-launching EsMeCaTa over previous results')
-                if os.path.isdir(annotation_reference_folder):
-                    #Removing previous 'annotations_reference' output to ensure the final step of EsMeCaTa does not malfunction
-                    shutil.rmtree(annotation_reference_folder, ignore_errors=True)
-                esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi)
+    #EsMeCaTa output folder
+    esmecata_output_folder = os.path.join(output_folder, 'EsMeCaTa_outputs')
+    annotation_reference_folder = os.path.join(esmecata_output_folder, 'esmecata_outputs_annots', 'annotation_reference')
 
+    if os.path.isdir(esmecata_output_folder):
+        if esmecata_relaunch is None:
+            logger.info('An EsMeCaTa output has been found for your dataset. This output will be used for the rest of the pipeline. If you wish to re-launch EsMeCaTa, please remove the existing output before launching SPARTA.')
         else:
-            os.mkdir(esmecata_output_folder)
-            logger.info('Launching EsMeCaTa')
+            logger.info('Re-launching EsMeCaTa over previous results')
+            if os.path.isdir(annotation_reference_folder):
+                #Removing previous 'annotations_reference' output to ensure the final step of EsMeCaTa does not malfunction
+                shutil.rmtree(annotation_reference_folder, ignore_errors=True)
             esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi)
 
-        ####Time measurement####
-        date_time_esmecata = datetime.now()
-        esmecata_time = date_time_esmecata - date_time_format
-        esmecata_time_seconds = esmecata_time.total_seconds()
-
-        f = open(stopwatch_file, "a")
-        f.write("EsMeCaTa step length (s): "+str(esmecata_time_seconds)+"\n")
-        f.close()
-        ########################
-
-        # Compute occurrences of annotations in organism
-        functional_occurrence_filepath = os.path.join(output_folder, 'functional_occurrence.tsv')
-        create_dataset_annotation_file(annotation_reference_folder, functional_occurrence_filepath, content="all")
-    
-        ## Calculating the scores of functional annotations
-        SoFA_table_filepath = os.path.join(output_folder, 'SoFA_table.csv')
-        sofa_table, deepmicro_sofa = sofa_calculation(annotation_reference_folder, SoFA_table_filepath, otu_table_stripped)
-
-        ####Time measurement####
-        date_time_score = datetime.now()
-        score_calculation_time = date_time_score - date_time_esmecata
-        score_calculation_time_seconds = score_calculation_time.total_seconds()
-
-        f = open(stopwatch_file, "a")
-        f.write("Functional score calculation step length (s): "+str(score_calculation_time_seconds)+"\n")
-        f.close()
-        ########################
-
-        ref_time = date_time_score
-    
     else:
-        dataset_full, sofa_table, esmecata_input, esmecata_input_path, deepmicro_sofa, label_file = formatting_step(label_filepath, abundance_filepath, output_folder, annotations_only, scaling)
+        os.mkdir(esmecata_output_folder)
+        logger.info('Launching EsMeCaTa')
+        esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi)
 
-        ####Time measurement####
-        date_time_format = datetime.now()
-        formatting_time = date_time_format - now_begin
-        formatting_time_seconds = formatting_time.total_seconds()
+    ####Time measurement####
+    date_time_esmecata = datetime.now()
+    esmecata_time = date_time_esmecata - date_time_format
+    esmecata_time_seconds = esmecata_time.total_seconds()
 
-        stopwatch_file = os.path.join(output_folder, 'stopwatch_.txt')
-        f = open(stopwatch_file, "w")
-        f.write("Formatting step length (s): "+str(formatting_time_seconds)+"\n")
-        f.close()
-        ########################
+    f = open(stopwatch_file, "a")
+    f.write("EsMeCaTa step length (s): "+str(esmecata_time_seconds)+"\n")
+    f.close()
+    ########################
 
-        otu_table_stripped, deepmicro_otu = (None, None)
+    # Compute occurrences of annotations in organism
+    functional_occurrence_filepath = os.path.join(output_folder, 'functional_occurrence.tsv')
+    create_dataset_annotation_file(annotation_reference_folder, functional_occurrence_filepath, content="all")
 
-        ref_time = date_time_format
+    ## Calculating the scores of functional annotations
+    SoFA_table_filepath = os.path.join(output_folder, 'SoFA_table.csv')
+    sofa_table, deepmicro_sofa = sofa_calculation(annotation_reference_folder, SoFA_table_filepath, otu_table_stripped)
+
+    ####Time measurement####
+    date_time_score = datetime.now()
+    score_calculation_time = date_time_score - date_time_esmecata
+    score_calculation_time_seconds = score_calculation_time.total_seconds()
+
+    f = open(stopwatch_file, "a")
+    f.write("Functional score calculation step length (s): "+str(score_calculation_time_seconds)+"\n")
+    f.close()
+    ########################
+
 
     return SoFA_table_filepath, esmecata_input_path, functional_occurrence_filepath, otu_table_stripped
