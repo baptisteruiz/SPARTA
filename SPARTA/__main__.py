@@ -700,7 +700,7 @@ def separate_test_train(labels_full):
 
     y_train, y_test, sample_train, sample = train_test_split(label_flatten, indices, test_size=0.2, stratify=label_flatten)
 
-    return y_train, y_test, sample
+    return y_train, y_test, sample, sample_train
 
 
 
@@ -724,6 +724,7 @@ def run_deep_micro(set_test, set_train, label_test, label_train, dataset_name, i
     
         method = args_passed.method
         var_ranking_method = args_passed.variable_ranking
+        
 
         if repeats > 1:
             for i in tqdm(range(repeats), desc="Training models for the "+profile+" profile (Run: "+str(run_nb)+", Iteration: "+str(iteration_nb)+")"):
@@ -789,6 +790,7 @@ def formatting_step(dataset_name, data_ref_output_name, pipeline_path, args_pass
 
     label_file = label_file[otu_table_stripped.columns].transpose()
 
+
     deepmicro_otu = data_to_deepmicro(otu_table_stripped)
     
     return dataset_full, otu_table_stripped, esmecata_input, deepmicro_otu, label_file
@@ -845,14 +847,16 @@ def run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations
 
         sample_names = list(sofa_table.columns.values)
 
-        labels_test = label_file.loc[test_labels].values.reshape((label_file.loc[test_labels].values.shape[0]))
+        labels_test_noshape = label_file.loc[test_labels]
+        labels_test = labels_test_noshape.values.reshape((label_file.loc[test_labels].values.shape[0]))
         #logger.info('Label_test:', labels_test)
         train_labels = []
         for i in sample_names:
             if i not in test_labels:
                 train_labels.append(i)
 
-        labels_train = label_file.loc[train_labels].values.reshape((label_file.loc[train_labels].values.shape[0]))
+        labels_train_noshape = label_file.loc[train_labels]
+        labels_train = labels_train_noshape.values.reshape((label_file.loc[train_labels].values.shape[0]))
 
         
 
@@ -863,6 +867,7 @@ def run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations
         test_labels = [sofa_table.columns[i] for i in test_indices]
 
     #Keeping track of the selected test sets (and writing them at every run, in case of a crash)
+    logger.info('Test set: '+ str(test_labels))
     test_set_dict['Run_'+str(run_nb)] = test_labels
     test_set_df = pd.DataFrame.from_dict(test_set_dict)
     test_set_df.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Test_sets.csv')
@@ -880,10 +885,13 @@ def run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations
     #ITERATED:
     for iteration_number in range(iterations):
         
+
     #Separate test and train subsets
         if not args_passed.annotations_only:
             otu_train , otu_test = create_test_train_subsets(deepmicro_otu_iteration, test_labels)
         annots_train , annots_test = create_test_train_subsets(deepmicro_sofa_iteration, test_labels)
+
+        
         
 
     # annots_train.to_csv(args.pipeline_path+'/DeepMicro/data/entree_DeepMicro_'+args.dataset_name+'.csv', header = None, index = None)
@@ -899,6 +907,12 @@ def run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations
         #DeepMicro
         os.mkdir(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Trained_classifiers/Iteration_'+str(iteration_number))
         data_dir = pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Trained_classifiers/Iteration_'+str(iteration_number)
+
+        logger.info('Annotation train df: '+ str(annots_train))
+        logger.info('Annotation train labels: '+ str(labels_train_noshape))
+        logger.info('Checking train content correspondance: '+str(labels_train == labels_train_noshape.values))
+        logger.info('Checking label correspondance: '+str(annots_train.index == labels_train_noshape.index))
+
         if not args_passed.annotations_only:
             perf_df_otu, best_feature_records_otu = run_deep_micro(otu_test, otu_train, labels_test, labels_train, dataset_name+'_OTU', iteration_number, run_nb, pipeline_path, args_passed, data_dir, "Taxonomic")
         perf_df_sofa, best_feature_records_sofa = run_deep_micro(annots_test, annots_train, labels_test, labels_train, dataset_name+'_Functions', iteration_number, run_nb, pipeline_path, args_passed, data_dir, "Functional")

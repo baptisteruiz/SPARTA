@@ -125,12 +125,18 @@ class DeepMicrobiome(object):
             print('FileSpecificationError: The label file contains more than 1 column.')
             exit()
 
+        print('DeepMicro input Y data:', raw)
+        print('DeepMicro input labels:', label_flatten)
+
         indices = np.arange(len(label_flatten))
         # train and test split
         self.X_train, self.X_test, self.y_train, self.y_test, self.indices_train, self.indices_test = train_test_split(raw.values.astype(dtype),
                                                                                 label_flatten.astype('int'), indices, test_size=len(Ytest_ext.flatten()),
                                                                                 random_state=self.seed,
                                                                                 stratify=label_flatten)
+        
+        
+        print('Validation indices:', self.indices_test)
         #self.printDataShapes()
 
 
@@ -430,11 +436,6 @@ class DeepMicrobiome(object):
             clf = GridSearchCV(SVC(probability=True, cache_size=cache_size, random_state=0), hyper_parameters, cv=StratifiedKFold(cv, shuffle=True, random_state=0), scoring=scoring, n_jobs=n_jobs, verbose=0)
             clf.fit(self.X_train, self.y_train)
 
-            explainer = shap.KernelExplainer(clf.best_estimator_.predict, self.X_train)
-            shap_values = explainer.shap_values(Xtest_ext)
-            shap_df = pd.DataFrame(shap_values)
-            shaps_summed = pd.DataFrame(shap_df.sum(axis=0))
-            best_feature_records.append(shaps_summed)
 
 
         # Random Forest
