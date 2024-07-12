@@ -1,11 +1,34 @@
 import os
 from datetime import datetime
 import pandas as pd
+import numpy as np
 import shutil
 import logging
+import sys
+import json
+
 from SPARTA.iteration import run_iterate, averaging_and_info_step
 from SPARTA.visualize import plot_classifs
 from SPARTA.create_core_meta import extract_and_write_core_meta
+from SPARTA import __version__ as sparta_version
+ 
+from tqdm import __version__ as tqdm_version
+from requests import __version__ as requests_version
+from Bio import __version__ as biopython_version
+from goatools import __version__ as goatools_version
+from sklearn import __version__ as sklearn_version
+from matplotlib import __version__ as matplotlib_version
+from shap import __version__ as shap_version
+from seaborn import __version__ as seaborn_version
+from scipy import __version__ as scipy_version
+from joblib import __version__ as joblib_version
+
+if sys.version_info >= (3, 9):
+    import importlib.metadata
+    kneebow_version = importlib.metadata.version("kneebow")
+else:
+    import pkg_resources
+    kneebow_version = pkg_resources.get_distribution('kneebow').version
 
 logger = logging.getLogger(__name__)
 
@@ -49,6 +72,31 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         keep_temp (bool): Bool to keep or not temporary files.
     """
     logger.info('SPARTA|classification| Begin classification.')
+    # Create metadata dictionary.
+    metadata = {}
+    options = {'functional_profile_filepath': functional_profile_filepath, 'label_filepath': label_filepath, 'output_folder': output_folder,
+                'nb_runs': nb_runs, 'nb_iterations': nb_iterations, 'esmecata_input': esmecata_input, 'functional_occurrence_filepath': functional_occurrence_filepath,
+                'otu_abundance_filepath': otu_abundance_filepath, 'reference_test_sets_filepath': reference_test_sets_filepath, 'classifiers': classifiers,
+                'method': method, 'var_ranking_method': var_ranking_method, 'keep_temp': keep_temp}
+    options['tool_dependencies'] = {}
+    options['tool_dependencies']['python_package'] = {}
+    options['tool_dependencies']['python_package']['Python_version'] = sys.version
+    options['tool_dependencies']['python_package']['SPARTA'] = sparta_version
+    options['tool_dependencies']['python_package']['pandas'] = pd.__version__
+    options['tool_dependencies']['python_package']['requests'] = requests_version
+    options['tool_dependencies']['python_package']['numpy'] = np.__version__
+    options['tool_dependencies']['python_package']['tqdm'] = tqdm_version
+    options['tool_dependencies']['python_package']['kneebow'] = kneebow_version
+    options['tool_dependencies']['python_package']['biopython'] = biopython_version
+    options['tool_dependencies']['python_package']['goatools'] = goatools_version
+    options['tool_dependencies']['python_package']['scikit-learn'] = sklearn_version
+    options['tool_dependencies']['python_package']['matplotlib'] = matplotlib_version
+    options['tool_dependencies']['python_package']['shap'] = shap_version
+    options['tool_dependencies']['python_package']['seaborn'] = seaborn_version
+    options['tool_dependencies']['python_package']['scipy'] = scipy_version
+    options['tool_dependencies']['python_package']['joblib'] = joblib_version
+    metadata['options'] = options
+
     date_time_now = datetime.now()
     ref_time = date_time_now
     if not os.path.exists(output_folder):
@@ -95,8 +143,6 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         f = open(stopwatch_file, "a")
         f.write("SPARTA Run "+str(run_nb)+" length (s): "+str(run_i_time_seconds)+"\n")
         f.close()
-
-        ref_time = date_time_now
         ########################
 
     visualisation_file = os.path.join(output_folder, 'median_OTU_vs_SoFA_(best_vs_best).png')
@@ -130,3 +176,11 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
     if not keep_temp:
         shutil.rmtree('/Outputs_temp/', ignore_errors=True)
     # pd.DataFrame.from_dict(bank_of_selections_annots).to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/bank_of_selections_check.csv')
+
+    date_time_now = datetime.now()
+    duration = date_time_now - ref_time
+    duration = run_i_time.total_seconds()
+    metadata['duration'] = duration
+    metadata_json_file = os.path.join(output_folder, 'sparta_classification_metadata.json')
+    with open(metadata_json_file, 'w') as dumpfile:
+        json.dump(metadata, dumpfile, indent=4)

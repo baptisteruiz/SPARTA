@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.stats import mannwhitneyu
-from collections import Counter, defaultdict
+from collections import defaultdict
 
 def get_median_perfs_and_best_iter(bank_of_performance_dfs, median_classifs_per_iteration):
     '''

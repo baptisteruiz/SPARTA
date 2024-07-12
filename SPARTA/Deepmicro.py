@@ -6,20 +6,10 @@ import pandas as pd
 import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
-# import tensorflow as tf
-
-
-
-import sys
-import tqdm
 
 # importing sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import StratifiedKFold
-from sklearn.decomposition import PCA
-from sklearn.random_projection import GaussianRandomProjection
-from sklearn import cluster
-from sklearn import preprocessing
 from sklearn.model_selection import GridSearchCV
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
@@ -31,31 +21,11 @@ from sklearn.metrics import f1_score
 
 import shap
 
-
-# from sklearn.manifold import TSNE
-# import umap
-
-# importing keras
-# import keras
-# import keras.backend as K
-# from keras.wrappers.scikit_learn import KerasClassifier
-# from keras.callbacks import EarlyStopping, ModelCheckpoint, LambdaCallback
-# from keras.models import Model, load_model
-
 # importing util libraries
 import datetime
 import time
-import math
 import os
-import importlib
 import joblib
-
-# importing custom library
-#import DNN_models
-import SPARTA.exception_handle
-
-#fix np.random.seed for reproducibility in numpy processing
-#np.random.seed(7)
 
 
 class DeepMicrobiome(object):

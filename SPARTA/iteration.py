@@ -1,15 +1,14 @@
 import pandas as pd
 import os
 import numpy as np
-from sklearn.model_selection import train_test_split
-from SPARTA.Deepmicro import run_exp
-from tqdm import tqdm
-from collections import Counter, defaultdict
-from kneebow.rotor import Rotor
-from operator import methodcaller
 import requests
+
+from tqdm import tqdm
+from kneebow.rotor import Rotor
 from Bio.ExPASy import Enzyme
 from goatools import obo_parser
+from sklearn.model_selection import train_test_split
+from SPARTA.Deepmicro import run_exp
 
 def inflexion_cutoff(datatable):
     

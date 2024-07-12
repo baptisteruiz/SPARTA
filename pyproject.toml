@@ -24,8 +24,7 @@ dependencies = [
   'requests',
   'kneebow',
   'esmecata',
-  'shap',
-  'psutil'
+  'shap'
 ]
 
 [project.scripts]
