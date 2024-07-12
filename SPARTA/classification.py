@@ -9,6 +9,23 @@ from SPARTA.create_core_meta import extract_and_write_core_meta
 
 logger = logging.getLogger(__name__)
 
+
+def update_iteration_dict(general_dict, iteration_dict):
+    """ Merge iteration dict from a run into general dict for all runs.
+    Args:
+        general_dict (dict): Dictionary containing all information from the different runs.
+        iteration_dict (dict): Dictionary containing all results from all iterations of a run.
+    Returns:
+        general_dict (dict): Updated dictionary containing all information from the different runs.
+    """
+    for iteration_nb in iteration_dict:
+        if iteration_nb not in general_dict:
+            general_dict[iteration_nb] = iteration_dict[iteration_nb]
+        else:
+            general_dict[iteration_nb].update(iteration_dict[iteration_nb])
+    return general_dict
+
+
 def run_sparta_classification(functional_profile_filepath, label_filepath, output_folder, nb_runs, nb_iterations,
                             esmecata_input=None, functional_occurrence_filepath=None, otu_abundance_filepath=None, reference_test_sets_filepath=None,
                             classifiers=20, method='rf', var_ranking_method='gini', keep_temp=None):
@@ -64,11 +81,11 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
                                                                                                                                                           run_nb, nb_iterations, esmecata_input, functional_occurrence_filepath,
                                                                                                                                                           otu_abundance_filepath, reference_test_sets_filepath,
                                                                                                                                                           classifiers, method, var_ranking_method)
-        bank_of_selections_annots.update(run_bank_of_selections_annots)
-        bank_of_selections_taxons.update(run_bank_of_selections_taxons)
-        bank_of_performance_dfs_annots.update(run_bank_of_performance_dfs_annots)
-        bank_of_performance_dfs_taxons.update(run_bank_of_performance_dfs_taxons)
-        test_set_dict.update(run_test_set_dict)
+        bank_of_selections_annots = update_iteration_dict(bank_of_selections_annots, run_bank_of_selections_annots)
+        bank_of_selections_taxons = update_iteration_dict(bank_of_selections_taxons, run_bank_of_selections_taxons)
+        bank_of_performance_dfs_annots = update_iteration_dict(bank_of_performance_dfs_annots, run_bank_of_performance_dfs_annots)
+        bank_of_performance_dfs_taxons = update_iteration_dict(bank_of_performance_dfs_taxons, run_bank_of_performance_dfs_taxons)
+        test_set_dict = update_iteration_dict(test_set_dict, run_test_set_dict)
 
         ####Time measurement####
         date_time_now = datetime.now()
@@ -81,7 +98,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
 
         ref_time = date_time_now
         ########################
-    print(bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons)
+
     visualisation_file = os.path.join(output_folder, 'median_OTU_vs_SoFA_(best_vs_best).png')
     best_selec_iter_annots, best_selec_iter_taxons = plot_classifs(bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, 'test', visualisation_file, otu_abundance_filepath)
 
