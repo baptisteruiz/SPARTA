@@ -101,43 +101,26 @@ def add_otu_names(otu_list, otu_name_df):
 
     return dataframe
 
-def find_relevant_reactions(dataframe, esmecata_annotation_reference):
+def find_relevant_reactions(dataframe, functional_occurrence_filepath):
     '''
     This function finds all annotations associated with each OTU
     '''
-
     found_reac = {}
-    for org_annotation_filename in tqdm([f for f in os.listdir(esmecata_annotation_reference) if not f.startswith('.')], desc="Linking annotations to OTUs..."):
-        org_annotation_filepath = os.path.join(esmecata_annotation_reference, org_annotation_filename)
-        otu_data = pd.read_csv(org_annotation_filepath, sep ='\t', keep_default_na=False)
-        otu_name = org_annotation_filename.replace(".tsv","")
-        go_list_otu = otu_data["GO"].values.tolist()
-        ec_list_otu = otu_data["EC"].values.tolist()
-        annot_list_otu = go_list_otu + ec_list_otu
-        
-        annot_list_otu = list(filter(('').__ne__, annot_list_otu))
+    functional_occurrence = pd.read_csv(functional_occurrence_filepath, sep='\t', index_col=0)
 
-        annot_list_otu = list(map(methodcaller("split", ","), annot_list_otu))
-
-        annot_list_otu_flattened = []
-
-        for annotlist in annot_list_otu:
-            annot_list_otu_flattened.extend(annotlist)
-
-        annot_list_otu_flattened = list(set(annot_list_otu_flattened))
-
-        found_reac[otu_name] = annot_list_otu_flattened
+    for organism, row in tqdm(functional_occurrence.iterrows(), desc="Linking annotations to OTUs...", total=len(functional_occurrence)):
+        found_reac[organism] = [annot for annot in functional_occurrence.columns if row[annot] > 0]
 
     dataframe["Linked_annotations"] = dataframe["ID"].map(found_reac)
     return dataframe
 
-def get_info_taxons(otu_db, esmecata_input, esmecata_annotation_reference):
+def get_info_taxons(otu_db, esmecata_input, functional_occurrence_filepath):
     
     list_of_otus = list(otu_db.index)
 
     annots_with_names = add_otu_names(list_of_otus, esmecata_input)
 
-    annots_with_names_and_associated_otus = find_relevant_reactions(annots_with_names, esmecata_annotation_reference)
+    annots_with_names_and_associated_otus = find_relevant_reactions(annots_with_names, functional_occurrence_filepath)
 
     return (annots_with_names_and_associated_otus)
 
@@ -207,45 +190,41 @@ def add_reaction_names(list_of_annots, output_folder):
                              
     return dataframe
 
-def find_relevant_otus(dataframe, path, otu_name_df):
+def find_relevant_otus(dataframe, functional_occurrence_filepath, otu_name_df):
     '''
     This function finds and names all OTUs associated with each annotation
     '''
     found_otu = {}
     found_otu_named = {}
     named_annotations = set(dataframe["ID"].tolist())
-    for filename in tqdm([f for f in os.listdir(path) if not f.startswith('.')], desc="Linking OTUs to annotations..."):
-        otu_data = pd.read_csv(path + "/" + filename, sep ='\t', keep_default_na=False)
-        otu_name = filename.replace(".tsv","")
-        otu_name_translated = otu_name_df[otu_name_df['observation_name'] == otu_name]['taxonomic_affiliation'].values[0]
-        otu_name_translated_species = otu_name_translated.split(';')[-1]
+    functional_occurrence = pd.read_csv(functional_occurrence_filepath, sep='\t', index_col=0)
 
-        gos_found = [go for gos in otu_data["GO"].values for go in gos.split(',') if go in named_annotations]
-        ecs_found = [ec for ecs in otu_data["EC"].values for ec in ecs.split(',') if ec in named_annotations]
-        annotations_found = gos_found + ecs_found
-
+    for organism, row in tqdm(functional_occurrence.iterrows(), desc="Linking OTUs to annotations...", total=len(functional_occurrence)):
+        organism_name_translated = otu_name_df[otu_name_df['observation_name'] == organism]['taxonomic_affiliation'].values[0]
+        organism_name_translated_species = organism_name_translated.split(';')[-1]
+        annotations_found = [single_annot for annot in functional_occurrence.columns if row[annot] > 0 for single_annot in [annot]*row[annot] if single_annot in named_annotations]
         for annotation in annotations_found:
             if annotation not in found_otu:
-                found_otu[annotation] = [otu_name]
-                found_otu_named[annotation] = [otu_name_translated_species]
+                found_otu[annotation] = [organism]
+                found_otu_named[annotation] = [organism_name_translated_species]
             else:
-                if otu_name not in found_otu[annotation]:
-                    found_otu[annotation].append(otu_name)
-                if otu_name_translated_species not in found_otu_named[annotation]:
-                    found_otu_named[annotation].append(otu_name_translated_species)
+                if organism not in found_otu[annotation]:
+                    found_otu[annotation].append(organism)
+                if organism_name_translated_species not in found_otu_named[annotation]:
+                    found_otu_named[annotation].append(organism_name_translated_species)
 
     dataframe["Linked_OTUs"] = dataframe["ID"].map(found_otu)
     dataframe["Named_linked_OTUs"] = dataframe["ID"].map(found_otu_named)
     return dataframe
 
 
-def get_info_annots(score_db, output_folder, otu_abundance_filepath, esmecata_input, esmecata_annotation_reference):
+def get_info_annots(score_db, output_folder, otu_abundance_filepath, esmecata_input, functional_occurrence_filepath):
     
     list_of_annots = list(score_db.index)
     annots_with_names = add_reaction_names(list_of_annots, output_folder)
 
     if otu_abundance_filepath is not None:
-        annots_with_names_and_associated_otus = find_relevant_otus(annots_with_names, esmecata_annotation_reference, esmecata_input)
+        annots_with_names_and_associated_otus = find_relevant_otus(annots_with_names, functional_occurrence_filepath, esmecata_input)
     else:
         annots_with_names_and_associated_otus = annots_with_names
 
@@ -272,16 +251,16 @@ def average_per_group(score_dataframe, label_refs, label_value = None):
 
     return(filtered_table_group)
 
-def averaging_and_info_step(functional_profile_df, label_refs, output_folder, esmecata_input=None, esmecata_annotation_reference=None, otu_abundance_filepath=None):
+def averaging_and_info_step(functional_profile_df, label_refs, output_folder, esmecata_input=None, functional_occurrence_filepath=None, otu_abundance_filepath=None):
     '''
     This script runs the steps to build an info database on the taxons and annotations from the dataset. Said databases will be used to add information to the final outputs.
     '''
     if otu_abundance_filepath is not None:
         otu_count_df = pd.read_csv(otu_abundance_filepath, sep='\t', index_col=0)
-        info_taxons = get_info_taxons(otu_count_df, esmecata_input, esmecata_annotation_reference)
+        info_taxons = get_info_taxons(otu_count_df, esmecata_input, functional_occurrence_filepath)
         avg_count_total = average_count_per_group(otu_count_df, label_refs)
 
-    info_annots = get_info_annots(functional_profile_df, output_folder, otu_abundance_filepath, esmecata_input, esmecata_annotation_reference)
+    info_annots = get_info_annots(functional_profile_df, output_folder, otu_abundance_filepath, esmecata_input, functional_occurrence_filepath)
     avg_score_total = average_per_group(functional_profile_df, label_refs)
 
     df_max_scores = pd.DataFrame()
@@ -311,7 +290,8 @@ def averaging_and_info_step(functional_profile_df, label_refs, output_folder, es
     return info_annots, info_taxons
 
 
-def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, run_nb, nb_iterations, esmecata_input=None, esmecata_annotation_reference=None, otu_abundance_filepath=None, reference_test_sets_filepath=None,
+def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, run_nb, nb_iterations, esmecata_input=None, esmecata_annotation_reference=None,
+                otu_abundance_filepath=None, reference_test_sets_filepath=None,
                 classifiers=20, method='rf', var_ranking_method='gini'):
     functional_profile_df = pd.read_csv(functional_profile_filepath, sep=',', index_col=0)
 

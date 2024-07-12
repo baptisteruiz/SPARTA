@@ -10,11 +10,11 @@ from SPARTA.create_core_meta import extract_and_write_core_meta
 logger = logging.getLogger(__name__)
 
 def run_sparta_classification(functional_profile_filepath, label_filepath, output_folder, nb_runs, nb_iterations,
-                            esmecata_input=None, esmecata_annotation_reference=None, otu_abundance_filepath=None, reference_test_sets_filepath=None,
+                            esmecata_input=None, functional_occurrence_filepath=None, otu_abundance_filepath=None, reference_test_sets_filepath=None,
                             classifiers=20, method='rf', var_ranking_method='gini', keep_temp=None):
     """ Run the classification part of SPARTA using either:
         - (1) a functional profile file (associating functions to samples) with a label file associating samples and labels.
-        - (2) a functional profile file, a label file, esmecata input file, esmecata annotation reference folder and abundanc of organisms.
+        - (2) a functional profile file, a label file, esmecata input file, functional occurrence file and abundanc of organisms.
 
     Args:
         functional_profile_filepath (str): Path to the functional profile file.
@@ -23,7 +23,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         nb_runs (int): Number of runs to perform (a run consist of X iterations).
         nb_iterations (int): Number of iterations per run.
         esmecata_input (str): Path to esmecata input file.
-        esmecata_annotation_reference (str): Path to esmecata annotation reference folder.
+        functional_occurrence_filepath (str): Path to functional occurrence file.
         otu_abundance_filepath (str): Path to the abundance file associating Organism and their abundances in samples.
         reference_test_sets_filepath (str): Path to a file indicating the test sets to used.
         classifiers (int): Number of classifiers to use in a Random Forests.
@@ -44,7 +44,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
     ## Calculating average presence of taxons and annotations per label, and collecting info about them.
     if esmecata_input is not None:
         esmecata_input = pd.read_csv(esmecata_input, sep='\t')
-    info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, output_folder, esmecata_input, esmecata_annotation_reference, otu_abundance_filepath)
+    info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, output_folder, esmecata_input, functional_occurrence_filepath, otu_abundance_filepath)
 
     nb_runs = int(nb_runs)
     nb_iterations = int(nb_iterations)
@@ -61,7 +61,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
             os.mkdir(run_output_folder)
         # Launch the different iterations for the run.
         run_test_set_dict, run_bank_of_selections_annots, run_bank_of_selections_taxons, run_bank_of_performance_dfs_annots, run_bank_of_performance_dfs_taxons = run_iterate(functional_profile_filepath, label_filepath, run_output_folder,
-                                                                                                                                                          run_nb, nb_iterations, esmecata_input, esmecata_annotation_reference,
+                                                                                                                                                          run_nb, nb_iterations, esmecata_input, functional_occurrence_filepath,
                                                                                                                                                           otu_abundance_filepath, reference_test_sets_filepath,
                                                                                                                                                           classifiers, method, var_ranking_method)
         bank_of_selections_annots.update(run_bank_of_selections_annots)
@@ -81,7 +81,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
 
         ref_time = date_time_now
         ########################
-
+    print(bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons)
     visualisation_file = os.path.join(output_folder, 'median_OTU_vs_SoFA_(best_vs_best).png')
     best_selec_iter_annots, best_selec_iter_taxons = plot_classifs(bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, 'test', visualisation_file, otu_abundance_filepath)
 

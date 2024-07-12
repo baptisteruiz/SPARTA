@@ -50,22 +50,6 @@ def main():
         version='%(prog)s ' + VERSION + '\n')
 
     # Pipeline arguments.
-    parent_parser_d = argparse.ArgumentParser(add_help=False)
-    parent_parser_d.add_argument("-d","--dataset_name", help="Name of the dataset", required=True)
-    parent_parser_t = argparse.ArgumentParser(add_help=False)
-    parent_parser_t.add_argument("-t", "--treatment", default=None, help="Data treatment for the functional table (can be: 'tf_igm', default: no treatment)")
-    parent_parser_s = argparse.ArgumentParser(add_help=False)
-    parent_parser_s.add_argument("-s", "--scaling", default=None, help="Scaling method to apply to the taxonomic table (can be: 'relative', default: no scaling)")
-    parent_parser_i = argparse.ArgumentParser(add_help=False)
-    parent_parser_i.add_argument("-i", "--iterations", default=5, help="Number of iterations of the method (default: 5 iterations)")
-    parent_parser_c = argparse.ArgumentParser(add_help=False)
-    parent_parser_c.add_argument("-c", "--classifiers", default=20, help="Amount of trained classifiers per iteration of the command (default: 20)")
-    parent_parser_r = argparse.ArgumentParser(add_help=False)
-    parent_parser_r.add_argument("-r", "--runs", default=10, help="Amount of pipeline runs (default: 10 runs)")
-    parent_parser_m = argparse.ArgumentParser(add_help=False)
-    parent_parser_m.add_argument("-m", "--method", default="rf", help="Classifying method to be run (default: Random Forest (rf). Can be: svm)")
-    parent_parser_v = argparse.ArgumentParser(add_help=False)
-    parent_parser_v.add_argument("-v", "--variable_ranking", default="gini", help="Method for Random Forest variable importance ranking (default: gini. Can be: shap)")
 
     # EsMeCaTa arguments.
     parent_parser_ta = argparse.ArgumentParser(add_help=False)
@@ -74,8 +58,6 @@ def main():
     parent_parser_e.add_argument("--eggnog", default=None, help="Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launhed with the 'UniProt' workflow by default.")
     parent_parser_annotations_only = argparse.ArgumentParser(add_help=False)
     parent_parser_annotations_only.add_argument("--annotations_only", default=False, action='store_true', help="This is a flag that signals that the input is a functional table. If True, all steps involving taxonomic tables will be skipped, and SPARTA will iteratively classify and select on the given functional table alone.")
-    parent_parser_reference_test_sets = argparse.ArgumentParser(add_help=False)
-    parent_parser_reference_test_sets.add_argument("--reference_test_sets", default=False, action='store_true', help="This option allows the user to give their own test sets to be used during classification.")
     parent_parser_esmecata_relaunch = argparse.ArgumentParser(add_help=False)
     parent_parser_esmecata_relaunch.add_argument("--esmecata_relaunch", default=False, action='store_true', help="This option allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.")
     parent_parser_keep_temp = argparse.ArgumentParser(add_help=False)
@@ -98,6 +80,23 @@ def main():
     parent_parser_fo.add_argument("-fo", "--functional_occurrence", help="Functions associated with organisms.", required=False, default=None)
     parent_parser_ei = argparse.ArgumentParser(add_help=False)
     parent_parser_ei.add_argument("-ei", "--esmecata_input", help="Input files for esmecata.", required=False, default=None)
+    # Optional arguments for classification
+    parent_parser_reference_test_sets = argparse.ArgumentParser(add_help=False)
+    parent_parser_reference_test_sets.add_argument("--reference_test_sets", default=None, help="Path to reference test sets (csv file) allowing the user to give their own test sets to be used during classification.")
+    parent_parser_t = argparse.ArgumentParser(add_help=False)
+    parent_parser_t.add_argument("-t", "--treatment", default=None, help="Data treatment for the functional table (can be: 'tf_igm', default: no treatment)")
+    parent_parser_s = argparse.ArgumentParser(add_help=False)
+    parent_parser_s.add_argument("-s", "--scaling", default=None, help="Scaling method to apply to the taxonomic table (can be: 'relative', default: no scaling)")
+    parent_parser_i = argparse.ArgumentParser(add_help=False)
+    parent_parser_i.add_argument("-i", "--iterations", default=5, help="Number of iterations of the method (default: 5 iterations)")
+    parent_parser_c = argparse.ArgumentParser(add_help=False)
+    parent_parser_c.add_argument("-c", "--classifiers", default=20, help="Amount of trained classifiers per iteration of the command (default: 20)")
+    parent_parser_r = argparse.ArgumentParser(add_help=False)
+    parent_parser_r.add_argument("-r", "--runs", default=10, help="Amount of pipeline runs (default: 10 runs)")
+    parent_parser_m = argparse.ArgumentParser(add_help=False)
+    parent_parser_m.add_argument("-m", "--method", default="rf", help="Classifying method to be run (default: Random Forest (rf). Can be: svm)")
+    parent_parser_v = argparse.ArgumentParser(add_help=False)
+    parent_parser_v.add_argument("-v", "--variable_ranking", default="gini", help="Method for Random Forest variable importance ranking (default: gini. Can be: shap)")
 
     # subparsers
     subparsers = parser.add_subparsers(
@@ -109,8 +108,11 @@ def main():
         'pipeline',
         help='Run all SPARTA pipeline with esmecata.',
         parents=[
-            parent_parser_e,
-            parent_parser_esmecata_relaunch,
+            parent_parser_ta, parent_parser_label, parent_parser_o, parent_parser_t, parent_parser_s,
+            parent_parser_i, parent_parser_c, parent_parser_r,
+            parent_parser_m, parent_parser_v,
+            parent_parser_e, parent_parser_annotations_only,
+            parent_parser_reference_test_sets, parent_parser_esmecata_relaunch,
             parent_parser_keep_temp, parent_parser_update_ncbi
             ],
         allow_abbrev=False)
@@ -119,11 +121,9 @@ def main():
         'esmecata',
         help='Run functional profile prediction with esmecata.',
         parents=[
-            parent_parser_ta, parent_parser_label, parent_parser_o, parent_parser_t, parent_parser_s,
-            parent_parser_i, parent_parser_c, parent_parser_r,
-            parent_parser_m, parent_parser_v,
+            parent_parser_ta, parent_parser_label, parent_parser_o,
             parent_parser_e, parent_parser_annotations_only,
-            parent_parser_reference_test_sets, parent_parser_esmecata_relaunch,
+            parent_parser_esmecata_relaunch,
             parent_parser_keep_temp, parent_parser_update_ncbi
             ],
         allow_abbrev=False)
@@ -162,21 +162,12 @@ def main():
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)
 
-    if args_passed.cmd == 'pipeline':
-        dataset_name = args_passed.dataset_name
-        pipeline_path = os.getcwd()
-        runs = int(args_passed.runs)
-        iterations = int(args_passed.iterations)
-
-    if args_passed.method != 'rf':
-        logger.info('Only 1 iteration will be effectuated with classification method '+args_passed.method)
-        iterations = 1
-
-    test_set_dict = {}
-    bank_of_selections_annots = defaultdict(defaultdict)
-    bank_of_selections_taxons = defaultdict(defaultdict)
-    bank_of_performance_dfs_annots = defaultdict(defaultdict)
-    bank_of_performance_dfs_taxons = defaultdict(defaultdict)
+    if args_passed.cmd in ['classification', 'pipeline']:
+        if args_passed.method != 'rf':
+            logger.info('Only 1 iteration will be effectuated with classification method '+args_passed.method)
+            iterations = 1
+            runs = int(args_passed.runs)
+            iterations = int(args_passed.iterations)
 
     if args_passed.cmd == 'classification':
         # taxon_profile 'abundance_test_stripped.tsv'

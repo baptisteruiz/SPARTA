@@ -412,8 +412,8 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
         empty_output_df.to_csv(annotation_reference_folder+'/'+otu_id+'.tsv', sep='\t', index=False)
     
     ## Clean
-    shutil.rmtree(esmecata_prot_out, ignore_errors=True)
-    shutil.rmtree(esmecata_cluster_out, ignore_errors=True)
+    #shutil.rmtree(esmecata_prot_out, ignore_errors=True)
+    #shutil.rmtree(esmecata_cluster_out, ignore_errors=True)
 
 
 def create_dataset_annotation_file(annotation_reference_folder, dataset_annotation_file_path, content="all"):
