@@ -700,7 +700,7 @@ def separate_test_train(labels_full):
 
     y_train, y_test, sample_train, sample = train_test_split(label_flatten, indices, test_size=0.2, stratify=label_flatten)
 
-    return y_train, y_test, sample, sample_train
+    return y_train, y_test, sample
 
 
 
