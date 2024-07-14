@@ -1,8 +1,51 @@
 # SPARTA (Shifting Paradigms to Annotation Representation from Taxonomy to identify Archetypes)
 
+## Table of contents
+- [SPARTA](#sparta-)
+  - [Table of contents](#table-of-contents)
+  - [Installation](#installation)
 
-## DEPENDENCIES:
-pandas, numpy, scikit-learn, scipy, matplotlib, seaborn, joblib, tqdm, goatools, Biopython, requests, kneebow, esmecata.
+## Installation
+
+### Requirements
+
+- [pandas](https://pypi.org/project/pandas/): To read the input files and manage the matrix through all pipeline.
+- [numpy](https://github.com/numpy/numpy): To manage the matrix through all pipeline.
+- [scikit-learn](https://github.com/scikit-learn/scikit-learn): To perform the classification, the search for hyperparameters and the computation of performance.
+- [joblib](https://github.com/joblib/joblib): used to save classifiers.
+- [kneebow](https://github.com/georg-un/kneebow): To detect the elbow of the variable importance curve to decide a threshold.
+- [shap](https://github.com/shap/shap): used as an optional alternative to gini to rank variable importance.
+- [tqdm](https://github.com/tqdm/tqdm): used to create progress bar.
+- [scipy](https://github.com/scipy/scipy): used to compute statistical tests between iteration and function/organism classifications.
+- [matplotlib](https://github.com/matplotlib/matplotlib): used to plot comparison of performance between functions and organism classifications.
+- [seaborn](https://github.com/mwaskom/seaborn): used to plot comparison of performance between functions and organism classifications.
+- [goatools](https://github.com/tanghaibao/goatools): used to handle Gene Ontology Terms.
+- [biopython](https://github.com/biopython/biopython): used to handle Enzyme Commission numbers.
+- [requests](https://pypi.org/project/requests/): For the REST queries to download GO and EC databases.
+- [esmecata](https://github.com/AuReMe/esmecata): To infer functions occurrences (EC numbers and GO Terms) from taxonomic affiliations.
+
+### Classification installation
+
+SPARTA can be installed using pip:
+
+````sh
+git clone https://github.com/baptisteruiz/SPARTA.git
+cd SPARTA
+pip install -e .
+````
+
+This will download all dependencies required for the `classification` subcommand of SPARTA (the main part of SPARTA peforming and the Random Forests and then selecting informative features).
+For example, to redo the analysis perform in the article, you can install SPARTA this way and use the provided input files in the INPUTS folder.
+
+### Pipeline and esmecata installation
+
+To use the `pipeline` or `esmecata` subcommands (to create functional profile from taxonomic affiliations), you need to install `mmseqs` and potentially `eggnog-mapper`.  This can be done with `conda`:
+
+```sh
+conda install mmseqs2 eggnog-mapper -c conda-forge -c bioconda
+```
+
+To work eggnog-mapper requires its database, you have to setup it and install [its database](https://github.com/eggnogdb/eggnog-mapper/wiki/eggNOG-mapper-v2.1.5-to-v2.1.12#storage-requirements), refer to the [setup part of the doc](https://github.com/eggnogdb/eggnog-mapper/wiki/eggNOG-mapper-v2.1.5-to-v2.1.12#setup).
 
 ## HOW TO USE:
 
