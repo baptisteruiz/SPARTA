@@ -34,7 +34,7 @@ cd SPARTA
 pip install -e .
 ````
 
-This will download all dependencies required for the `classification` subcommand of SPARTA (the main part of SPARTA peforming and the Random Forests and then selecting informative features).
+This will download all dependencies required for the `classification` subcommand of SPARTA (the main part of SPARTA peforming the Random Forests and then selecting informative features).
 For example, to redo the analysis perform in the article, you can install SPARTA this way and use the provided input files in the INPUTS folder.
 
 ### Pipeline and esmecata installation
