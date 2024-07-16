@@ -117,9 +117,15 @@ def get_info_taxons(otu_db, esmecata_input, functional_occurrence_filepath):
     
     list_of_otus = list(otu_db.index)
 
-    annots_with_names = add_otu_names(list_of_otus, esmecata_input)
+    if esmecata_input is not None:
+        annots_with_names = add_otu_names(list_of_otus, esmecata_input)
+    else:
+        annots_with_names = pd.DataFrame(list(zip(list_of_otus, list_of_otus)), columns=["ID","Name"])
 
-    annots_with_names_and_associated_otus = find_relevant_reactions(annots_with_names, functional_occurrence_filepath)
+    if functional_occurrence_filepath is not None:
+        annots_with_names_and_associated_otus = find_relevant_reactions(annots_with_names, functional_occurrence_filepath)
+    else:
+        annots_with_names_and_associated_otus = annots_with_names
 
     return (annots_with_names_and_associated_otus)
 
@@ -222,10 +228,12 @@ def get_info_annots(score_db, output_folder, otu_abundance_filepath, esmecata_in
     list_of_annots = list(score_db.index)
     annots_with_names = add_reaction_names(list_of_annots, output_folder)
 
-    if otu_abundance_filepath is not None:
+    if otu_abundance_filepath is not None and functional_occurrence_filepath is not None:
         annots_with_names_and_associated_otus = find_relevant_otus(annots_with_names, functional_occurrence_filepath, esmecata_input)
     else:
         annots_with_names_and_associated_otus = annots_with_names
+        annots_with_names['Linked_OTUs'] = None
+        annots_with_names['Named_linked_OTUs'] = None
 
     return(annots_with_names_and_associated_otus)
 
@@ -438,12 +446,13 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
                 for link_otu_list in selection_plus_info_annots['Linked_OTUs'].values:
                     signif_links = []
                     signif_links_named = []
-                    for otu in link_otu_list:
-                        if otu in retained_otus:
-                            signif_links.append(otu)
-                            otu_name_translated = esmecata_input[esmecata_input['observation_name'] == otu]['taxonomic_affiliation'].values[0]
-                            otu_name_translated_species = otu_name_translated.split(';')[-1]
-                            signif_links_named.append(otu_name_translated_species)
+                    if link_otu_list is not None:
+                        for otu in link_otu_list:
+                            if otu in retained_otus:
+                                signif_links.append(otu)
+                                otu_name_translated = esmecata_input[esmecata_input['observation_name'] == otu]['taxonomic_affiliation'].values[0]
+                                otu_name_translated_species = otu_name_translated.split(';')[-1]
+                                signif_links_named.append(otu_name_translated_species)
                     
                     signif_otus.append(signif_links)
                     signif_otu_names.append(signif_links_named)
@@ -453,22 +462,26 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
 
                 signif_annots = []
 
-                for link_annot_list in selection_plus_info_taxons['Linked_annotations'].values:
-                    signif_links = []
+                if 'Linked_annotations' in selection_plus_info_taxons:
+                    for link_annot_list in selection_plus_info_taxons['Linked_annotations'].values:
+                        signif_links = []
 
-                    for annot in link_annot_list:
-                        if annot in retained_annots:
-                            signif_links.append(annot)
-                    
-                    signif_annots.append(signif_links)
+                        for annot in link_annot_list:
+                            if annot in retained_annots:
+                                signif_links.append(annot)
+                        signif_annots.append(signif_links)
+                else:
+                    for otu in retained_otus:
+                        signif_annots.append([])
 
                 selected_taxons_run_file = os.path.join(selected_variables_iteration_folder, 'Selected_taxons_run_'+str(run_nb)+'_iter_'+str(iteration_number)+'.csv')
-                selection_plus_info_taxons['Significant_linked_annotations'] = signif_annots
+                if 'Linked_annotations' in selection_plus_info_taxons:
+                    selection_plus_info_taxons['Significant_linked_annotations'] = signif_annots
                 selection_plus_info_taxons.to_csv(selected_taxons_run_file)
 
             selected_annotations_run_file = os.path.join(selected_variables_iteration_folder, 'Selected_annotations_run_'+str(run_nb)+'_iter_'+str(iteration_number)+'.csv')
             selection_plus_info_annots.to_csv(selected_annotations_run_file)
-            
+
             # Store the selections for later incorporation to the Core/Meta sets
             if otu_abundance_filepath is not None:
                 if iteration_number not in bank_of_selections_taxons:

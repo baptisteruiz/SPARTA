@@ -79,7 +79,7 @@ def main():
     parent_parser_fo = argparse.ArgumentParser(add_help=False)
     parent_parser_fo.add_argument("-fo", "--functional_occurrence", help="Functions associated with organisms.", required=False, default=None)
     parent_parser_ei = argparse.ArgumentParser(add_help=False)
-    parent_parser_ei.add_argument("-ei", "--esmecata_input", help="Input files for esmecata.", required=False, default=None)
+    parent_parser_ei.add_argument("-ta", "--taxonomic_affiliations", help="TSV files indicating the taxonomic affiliations, input files for esmecata.", required=False, default=None)
     # Optional arguments for classification
     parent_parser_reference_test_sets = argparse.ArgumentParser(add_help=False)
     parent_parser_reference_test_sets.add_argument("--reference_test_sets", default=None, help="Path to reference test sets (csv file) allowing the user to give their own test sets to be used during classification.")
@@ -123,7 +123,7 @@ def main():
         parents=[
             parent_parser_ta, parent_parser_label, parent_parser_o,
             parent_parser_e, parent_parser_annotations_only,
-            parent_parser_esmecata_relaunch,
+            parent_parser_esmecata_relaunch, parent_parser_s,
             parent_parser_keep_temp, parent_parser_update_ncbi
             ],
         allow_abbrev=False)
@@ -172,7 +172,7 @@ def main():
     if args_passed.cmd == 'classification':
         # taxon_profile 'abundance_test_stripped.tsv'
         run_sparta_classification(args_passed.functional_profile, args_passed.label, args_passed.output, args_passed.runs, args_passed.iterations,
-                            args_passed.esmecata_input, args_passed.functional_occurrence, args_passed.taxon_profile, args_passed.reference_test_sets,
+                            args_passed.taxonomic_affiliations, args_passed.functional_occurrence, args_passed.taxon_profile, args_passed.reference_test_sets,
                             args_passed.classifiers, args_passed.method, args_passed.variable_ranking, args_passed.keep_temp)
     elif args_passed.cmd == 'esmecata':
         run_esmecata(args_passed.label, args_passed.taxon_abundance, args_passed.output, args_passed.scaling, args_passed.esmecata_relaunch, args_passed.eggnog, args_passed.update_ncbi)
