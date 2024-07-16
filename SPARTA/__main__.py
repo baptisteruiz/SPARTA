@@ -832,12 +832,14 @@ def averaging_and_info_step(count_db, score_db, label_refs, esmecata_input, pipe
     else:
         info_taxons = None
 
+
+    df_max_scores.to_csv(pipeline_path+'/temp_records_sets/df_max_scores.csv')
     info_annots['Representative_group'] = df_max_scores.idxmax(axis=1).values
     info_annots['Average presence (total)'] = avg_score_total['average'].values
     
     return info_annots, info_taxons
 
-def run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations, pipeline_path, dataset_full, label_file, otu_table_stripped, esmecata_input, deepmicro_otu, sofa_table, deepmicro_sofa, info_annots, info_taxons, test_set_dict, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, args_passed):
+def run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations, pipeline_path, dataset_full, label_file, otu_table_stripped, esmecata_input, deepmicro_otu, sofa_table, deepmicro_sofa, info_annots, info_taxons, test_set_dict, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, bank_of_average_importances_annots, bank_of_average_importances_taxons, args_passed):
     
     
     if args_passed.reference_test_sets:
@@ -944,7 +946,11 @@ def run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations
             #Average Gini importances
             if not args_passed.annotations_only:
                 best_feature_records_otu_df['Average'] = best_feature_records_otu_df.mean(axis=1)
+                best_feature_records_otu_df.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Classification_performances/Iteration_'+str(iteration_number)+'/Feature_importance_records_taxons.csv')
+                bank_of_average_importances_taxons[iteration_number][run_nb] = best_feature_records_otu_df['Average']
             best_feature_records_sofa_df['Average'] = best_feature_records_sofa_df.mean(axis=1)
+            bank_of_average_importances_annots[iteration_number][run_nb] = best_feature_records_sofa_df['Average']
+            best_feature_records_sofa_df.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Classification_performances/Iteration_'+str(iteration_number)+'/Feature_importance_records_annotations.csv')
             
             #Rotor cutoff
 
@@ -957,7 +963,10 @@ def run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations
 
             if not args_passed.annotations_only:
                 selection_plus_info_taxons = info_taxons[info_taxons['ID'].isin(list(retained_otus.index))]
+                selection_plus_info_taxons['Average_importance'] = [best_feature_records_otu_df.loc[tax, 'Average'] for tax in retained_otus.index]
+
             selection_plus_info_annots = info_annots[info_annots['ID'].isin(list(retained_annots.index))]
+            selection_plus_info_annots['Average_importance'] = [best_feature_records_sofa_df.loc[func, 'Average'] for func in retained_annots.index]
             
             
             # Write the selection files with info
@@ -1011,7 +1020,7 @@ def run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations
                 deepmicro_otu_iteration = otu_table_stripped.loc[retained_otus.index].transpose()
             deepmicro_sofa_iteration = sofa_table.loc[retained_annots.index].transpose()
 
-    return(test_set_dict, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons)
+    return(test_set_dict, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, bank_of_average_importances_annots, bank_of_average_importances_taxons)
 
 ### PLOTTING RESULTS
 
@@ -1169,6 +1178,7 @@ def create_core_and_meta_dfs(iteration_selections_per_run, runs):
     core_meta = {'core':[], 'meta':{'ID':[],'Count':[]}}
 
     for feature in np.unique(full_list):
+        
         if full_list.count(feature) == runs:
             core_meta['core'].append(feature)
         else:
@@ -1182,7 +1192,7 @@ def create_core_and_meta_dfs(iteration_selections_per_run, runs):
 
 
 
-def formatting_core_meta_outputs(info_df, core_df, meta_df, runs, zero_case=False):
+def formatting_core_meta_outputs(info_df, core_df, meta_df, average_importances, runs, zero_case=False):
     '''
     This function adds information inherited from upstream analyses to the core and meta dataframes
     '''
@@ -1195,6 +1205,12 @@ def formatting_core_meta_outputs(info_df, core_df, meta_df, runs, zero_case=Fals
         core_info = info_df[info_df['ID'].isin(list(core_df.index))]
     else:
         core_info = info_df[info_df['ID'].isin(list(core_df['ID'].values))]
+        avg_imps = []
+        for annot in core_info['ID'].values:
+            avg_imp = average_importances.loc[annot, 'Average']
+            avg_imps.append(avg_imp)
+        core_info['Average Importance'] = avg_imps
+
 
     if meta_skip:
         meta_info = None
@@ -1214,7 +1230,7 @@ def formatting_core_meta_outputs(info_df, core_df, meta_df, runs, zero_case=Fals
 
     return core_info, meta_info
 
-def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, best_selec_iter_annots, best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, otu_table_stripped, sofa_table, args_passed):
+def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, best_selec_iter_annots, best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, otu_table_stripped, sofa_table, bank_of_average_importances_annots, bank_of_average_importances_taxons, args_passed):
     '''
     This function launches the process to identify and write the Core and Meta taxons and annotations from all of the effectuated selections. It also records the 
     length of each selection category and classification performances per iteration, to give an overview ofthis information.
@@ -1227,8 +1243,15 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
     for iteration in bank_of_selections_annots.keys():
         
         iteration_selections_per_run_annots = bank_of_selections_annots[iteration]
+        average_annots_importances_per_run = pd.DataFrame(bank_of_average_importances_annots[iteration])
+        average_annots_importances_per_run['Average'] = average_annots_importances_per_run.mean(axis=1)
+
+        average_annots_importances_per_run.to_csv(path_core_meta+'/average_perfs.csv')
+
         core_annots, meta_annots = create_core_and_meta_dfs(iteration_selections_per_run_annots, runs)
-        core_annot_info, meta_annot_info = formatting_core_meta_outputs(info_annots, core_annots, meta_annots, runs, zero_case=False)
+        core_annots.to_csv(path_core_meta+'/core_annots_test.csv')
+        core_annot_info, meta_annot_info = formatting_core_meta_outputs(info_annots, core_annots, meta_annots, average_annots_importances_per_run, runs, zero_case=False)
+        core_annot_info.to_csv(path_core_meta+'/core_annots_info_test.csv')
 
         if iteration == best_selec_iter_annots - 1:
             core_annots_opti, meta_annots_opti = core_annot_info, meta_annot_info
@@ -1236,8 +1259,11 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
 
         if not args_passed.annotations_only:
             iteration_selections_per_run_taxons = bank_of_selections_taxons[iteration]
+            average_taxons_importances_per_run = pd.DataFrame(bank_of_average_importances_taxons[iteration])
+            average_taxons_importances_per_run['Average'] = average_taxons_importances_per_run.mean(axis=1)
+
             core_taxons, meta_taxons = create_core_and_meta_dfs(iteration_selections_per_run_taxons, runs)
-            core_taxons_info, meta_taxons_info = formatting_core_meta_outputs(info_taxons, core_taxons, meta_taxons, runs, zero_case=False)
+            core_taxons_info, meta_taxons_info = formatting_core_meta_outputs(info_taxons, core_taxons, meta_taxons, average_taxons_importances_per_run, runs, zero_case=False)
 
             if iteration == best_selec_iter_taxons -1:
                 core_taxons_opti, meta_taxons_opti = core_taxons_info, meta_taxons_info
@@ -1297,14 +1323,14 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
 
 
     if best_selec_iter_annots == 0:
-        core_annots_opti, meta_annots_opti = formatting_core_meta_outputs(info_annots, sofa_table, None, runs, zero_case=True)
+        core_annots_opti, meta_annots_opti = formatting_core_meta_outputs(info_annots, sofa_table, None, None, runs, zero_case=True)
 
     if not args_passed.annotations_only:
         
         core_annots_opti_id = list(core_annots_opti['ID'].values)
 
         if best_selec_iter_taxons == 0:
-            core_taxons_opti, meta_taxons_opti = formatting_core_meta_outputs(info_taxons, otu_table_stripped, None, runs, zero_case=True)
+            core_taxons_opti, meta_taxons_opti = formatting_core_meta_outputs(info_taxons, otu_table_stripped, None, None, runs, zero_case=True)
             core_taxons_opti_id = list(core_taxons_opti['ID'].values)
         
 
@@ -1520,12 +1546,14 @@ def main(args_passed):
     bank_of_selections_taxons = defaultdict(defaultdict)
     bank_of_performance_dfs_annots = defaultdict(defaultdict)
     bank_of_performance_dfs_taxons = defaultdict(defaultdict)
+    bank_of_average_importances_annots = defaultdict(defaultdict)
+    bank_of_average_importances_taxons = defaultdict(defaultdict)
 
     ## Launching the SPARTA runs
     for run_nb in range(1,runs+1):
         
         os.mkdir(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb))
-        test_set_dict, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons = run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations, pipeline_path, dataset_full, label_file, otu_table_stripped, esmecata_input, deepmicro_otu, sofa_table, deepmicro_sofa, info_annots, info_taxons, test_set_dict, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, args_passed)
+        test_set_dict, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, bank_of_average_importances_annots, bank_of_average_importances_taxons = run_iterate(run_nb, dataset_name, data_ref, data_ref_output_name, iterations, pipeline_path, dataset_full, label_file, otu_table_stripped, esmecata_input, deepmicro_otu, sofa_table, deepmicro_sofa, info_annots, info_taxons, test_set_dict, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, bank_of_average_importances_annots, bank_of_average_importances_taxons, args_passed)
 
         ####Time measurement####
         date_time_now = datetime.now()
@@ -1549,7 +1577,7 @@ def main(args_passed):
 
         path_core_meta = pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Core_and_Meta_outputs'
         
-        df_perfs_and_selection_per_iter, warning_annots, warning_taxons = extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, best_selec_iter_annots, best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, otu_table_stripped, sofa_table, args_passed)
+        df_perfs_and_selection_per_iter, warning_annots, warning_taxons = extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, best_selec_iter_annots, best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, otu_table_stripped, sofa_table, bank_of_average_importances_annots, bank_of_average_importances_taxons, args_passed)
 
         pd.DataFrame.from_dict(df_perfs_and_selection_per_iter).to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Overall_selection_and_performance_metrics.csv')
 
