@@ -291,6 +291,11 @@ def averaging_and_info_step(functional_profile_df, label_refs, output_folder, es
     else:
         info_taxons = None
 
+    temp_records_sets_folder = os.path.join(output_folder, 'temp_records_sets')
+    if not os.path.exists(temp_records_sets_folder):
+        os.mkdir(temp_records_sets_folder)
+    df_max_score_filepath = os.path.join(temp_records_sets_folder, 'df_max_scores.csv')
+    df_max_scores.to_csv(df_max_score_filepath)
     info_annots['Representative_group'] = df_max_scores.idxmax(axis=1).values
     info_annots['Average presence (total)'] = avg_score_total['average'].values
     
@@ -310,6 +315,8 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
     bank_of_selections_taxons = {}
     bank_of_performance_dfs_annots = {}
     bank_of_performance_dfs_taxons = {}
+    bank_of_average_importances_annots = {}
+    bank_of_average_importances_taxons = {}
 
     ## Calculating average presence of taxons and annotations per label, and collecting info about them
     info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, run_output_folder, esmecata_input, esmecata_annotation_reference, otu_abundance_filepath)
@@ -321,14 +328,16 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
 
         sample_names = list(functional_profile_df.columns.values)
 
-        labels_test = label_file_df.loc[test_labels].values.reshape((label_file_df.loc[test_labels].values.shape[0]))
+        labels_test_noshape = label_file_df.loc[test_labels]
+        labels_test = labels_test_noshape.values.reshape((label_file_df.loc[test_labels].values.shape[0]))
         #logger.info('Label_test:', labels_test)
         train_samples = []
         for i in sample_names:
             if i not in test_labels:
                 train_samples.append(i)
 
-        labels_train = label_file_df.loc[train_samples].values.reshape((label_file_df.loc[train_samples].values.shape[0]))
+        labels_train_noshape = label_file_df.loc[train_samples]
+        labels_train = labels_train_noshape.values.reshape((label_file_df.loc[train_samples].values.shape[0]))
 
     else:
         #Select a test subset
@@ -422,8 +431,18 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
             #Average Gini importances
             if otu_abundance_filepath is not None:
                 best_feature_records_otu_df['Average'] = best_feature_records_otu_df.mean(axis=1)
+                feature_importance_records_taxons_filepath = os.path.join(classification_performances_iteration_folder, 'Feature_importance_records_taxons.csv')
+                best_feature_records_otu_df.to_csv(feature_importance_records_taxons_filepath)
+                if iteration_number not in bank_of_average_importances_taxons:
+                    bank_of_average_importances_taxons[iteration_number] = {}
+                bank_of_average_importances_taxons[iteration_number][run_nb] = best_feature_records_otu_df['Average']
             best_feature_records_sofa_df['Average'] = best_feature_records_sofa_df.mean(axis=1)
-            
+            feature_importance_records_annotations_filepath = os.path.join(classification_performances_iteration_folder, 'Feature_importance_records_annotations.csv')
+            best_feature_records_sofa_df.to_csv(feature_importance_records_annotations_filepath)
+            if iteration_number not in bank_of_average_importances_annots:
+                bank_of_average_importances_annots[iteration_number] = {}
+            bank_of_average_importances_annots[iteration_number][run_nb] = best_feature_records_sofa_df['Average']
+
             #Rotor cutoff
             selected_variables_iteration_folder = os.path.join(selected_variables_folder, 'Iteration_'+str(iteration_number))
             if not os.path.exists(selected_variables_iteration_folder):
@@ -435,9 +454,10 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
 
             if otu_abundance_filepath is not None:
                 selection_plus_info_taxons = info_taxons[info_taxons['ID'].isin(list(retained_otus.index))]
+                selection_plus_info_taxons['Average_importance'] = [best_feature_records_otu_df.loc[tax, 'Average'] for tax in retained_otus.index]
             selection_plus_info_annots = info_annots[info_annots['ID'].isin(list(retained_annots.index))]
+            selection_plus_info_annots['Average_importance'] = [best_feature_records_sofa_df.loc[func, 'Average'] for func in retained_annots.index]
 
-           
             # Write the selection files with info
             if otu_abundance_filepath is not None:
                 signif_otus = []
@@ -491,4 +511,4 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
                 bank_of_selections_annots[iteration_number] = {}
             bank_of_selections_annots[iteration_number][run_nb] = list(retained_annots.index)
 
-    return (test_set_dict, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons)
+    return (test_set_dict, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, bank_of_average_importances_annots, bank_of_average_importances_taxons)

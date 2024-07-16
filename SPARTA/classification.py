@@ -117,6 +117,9 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
     bank_of_selections_taxons = {}
     bank_of_performance_dfs_annots = {}
     bank_of_performance_dfs_taxons = {}
+    bank_of_average_importances_annots = {}
+    bank_of_average_importances_taxons= {}
+
     test_set_dict = {}
     ## Launching the SPARTA runs
     for run_nb in range(1, nb_runs+1):
@@ -125,7 +128,9 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         if not os.path.exists(run_output_folder):
             os.mkdir(run_output_folder)
         # Launch the different iterations for the run.
-        run_test_set_dict, run_bank_of_selections_annots, run_bank_of_selections_taxons, run_bank_of_performance_dfs_annots, run_bank_of_performance_dfs_taxons = run_iterate(functional_profile_filepath, label_filepath, run_output_folder,
+        run_test_set_dict, run_bank_of_selections_annots, run_bank_of_selections_taxons, \
+        run_bank_of_performance_dfs_annots, run_bank_of_performance_dfs_taxons, \
+        run_bank_of_average_importances_annots, run_bank_of_average_importances_taxons = run_iterate(functional_profile_filepath, label_filepath, run_output_folder,
                                                                                                                                                           run_nb, nb_iterations, esmecata_input, functional_occurrence_filepath,
                                                                                                                                                           otu_abundance_filepath, reference_test_sets_filepath,
                                                                                                                                                           classifiers, method, var_ranking_method)
@@ -133,6 +138,8 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         bank_of_selections_taxons = update_iteration_dict(bank_of_selections_taxons, run_bank_of_selections_taxons)
         bank_of_performance_dfs_annots = update_iteration_dict(bank_of_performance_dfs_annots, run_bank_of_performance_dfs_annots)
         bank_of_performance_dfs_taxons = update_iteration_dict(bank_of_performance_dfs_taxons, run_bank_of_performance_dfs_taxons)
+        bank_of_average_importances_annots = update_iteration_dict(bank_of_average_importances_annots, run_bank_of_average_importances_annots)
+        bank_of_average_importances_taxons = update_iteration_dict(bank_of_average_importances_taxons, run_bank_of_average_importances_taxons)
         test_set_dict = update_iteration_dict(test_set_dict, run_test_set_dict)
 
         ####Time measurement####
@@ -162,7 +169,8 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
             os.mkdir(core_and_meta_outputs_best_iteration_folder)
 
         df_perfs_and_selection_per_iter, warning_annots, warning_taxons = extract_and_write_core_meta(core_and_meta_outputs_folder, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots,
-                                                                                                      bank_of_performance_dfs_taxons, best_selec_iter_annots, best_selec_iter_taxons,
+                                                                                                      bank_of_performance_dfs_taxons, bank_of_average_importances_annots, bank_of_average_importances_taxons,
+                                                                                                      best_selec_iter_annots, best_selec_iter_taxons,
                                                                                                       info_annots, info_taxons, nb_runs, esmecata_input, functional_profile_df, label_file_df, otu_abundance_filepath)
         overall_selection_and_performance_metrics_filepath = os.path.join(output_folder, 'Overall_selection_and_performance_metrics.csv')
         pd.DataFrame.from_dict(df_perfs_and_selection_per_iter).to_csv(overall_selection_and_performance_metrics_filepath)

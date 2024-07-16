@@ -116,13 +116,6 @@ class DeepMicrobiome(object):
             clf = GridSearchCV(SVC(probability=True, cache_size=cache_size, random_state=0), hyper_parameters, cv=StratifiedKFold(cv, shuffle=True, random_state=0), scoring=scoring, n_jobs=n_jobs, verbose=0)
             clf.fit(self.X_train, self.y_train)
 
-            explainer = shap.KernelExplainer(clf.best_estimator_.predict, self.X_train)
-            shap_values = explainer.shap_values(Xtest_ext)
-            shap_df = pd.DataFrame(shap_values)
-            shaps_summed = pd.DataFrame(shap_df.sum(axis=0))
-            best_feature_records.append(shaps_summed)
-
-
         # Random Forest
         if method == 'rf':
             clf = GridSearchCV(RandomForestClassifier(n_jobs=-1, random_state=0, class_weight='balanced'), hyper_parameters, cv=StratifiedKFold(cv, shuffle=True, random_state=0), scoring=scoring, n_jobs=n_jobs, verbose=0)

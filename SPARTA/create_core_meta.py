@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 from collections import defaultdict
 
 def create_core_and_meta_dfs(iteration_selections_per_run, runs):
@@ -25,7 +26,7 @@ def create_core_and_meta_dfs(iteration_selections_per_run, runs):
     return(core,meta)
 
 
-def formatting_core_meta_outputs(info_df, core_df, meta_df, runs, zero_case=False):
+def formatting_core_meta_outputs(info_df, core_df, meta_df, average_importances, runs, zero_case=False):
     '''
     This function adds information inherited from upstream analyses to the core and meta dataframes
     '''
@@ -38,11 +39,19 @@ def formatting_core_meta_outputs(info_df, core_df, meta_df, runs, zero_case=Fals
         core_info = info_df[info_df['ID'].isin(list(core_df.index))]
     else:
         core_info = info_df[info_df['ID'].isin(list(core_df['ID'].values))]
+        avg_imps = []
+        if average_importances is not None: 
+            for annot in core_info['ID'].values:
+                avg_imp = average_importances.loc[annot, 'Average']
+                avg_imps.append(avg_imp)
+        else:
+            for annot in core_info['ID'].values:
+                avg_imps.append([])
+        core_info['Average Importance'] = avg_imps
 
     if meta_skip:
         meta_info = None
-        
-    
+
     else:
         significance_category = []
         for count in meta_df['Count'].values:
@@ -96,8 +105,8 @@ def extract_core_associates(dataframe, core_list, esmecata_input=None):
     return dataframe
 
 
-def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, best_selec_iter_annots,
-                                best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, otu_table_stripped, sofa_table, otu_abundance_filepath):
+def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, bank_of_average_importances_annots, bank_of_average_importances_taxons,
+                                best_selec_iter_annots, best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, otu_table_stripped, sofa_table, otu_abundance_filepath):
     '''
     This function launches the process to identify and write the Core and Meta taxons and annotations from all of the effectuated selections. It also records the 
     length of each selection category and classification performances per iteration, to give an overview ofthis information.
@@ -108,10 +117,19 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
     warning_taxons=False
 
     for iteration in bank_of_selections_annots.keys():
-        
         iteration_selections_per_run_annots = bank_of_selections_annots[iteration]
+        average_annots_importances_per_run = pd.DataFrame(bank_of_average_importances_annots[iteration])
+        average_annots_importances_per_run['Average'] = average_annots_importances_per_run.mean(axis=1)
+
+        iteration_average_perfs_filepath = os.path.join(path_core_meta, 'average_perfs_iter_' + str(iteration) + '.csv')
+        average_annots_importances_per_run.to_csv(iteration_average_perfs_filepath)
         core_annots, meta_annots = create_core_and_meta_dfs(iteration_selections_per_run_annots, runs)
-        core_annot_info, meta_annot_info = formatting_core_meta_outputs(info_annots, core_annots, meta_annots, runs, zero_case=False)
+
+        core_annots_test_filepath = os.path.join(path_core_meta, 'core_annots_test_iter_' + str(iteration) + '.csv')
+        core_annots.to_csv(core_annots_test_filepath)
+        core_annot_info, meta_annot_info = formatting_core_meta_outputs(info_annots, core_annots, meta_annots, average_annots_importances_per_run, runs, zero_case=False)
+        core_annots_info_test_filepath = os.path.join(path_core_meta, 'core_annots_info_test_iter_' + str(iteration) + '.csv')
+        core_annot_info.to_csv(core_annots_info_test_filepath)
 
         if iteration == best_selec_iter_annots - 1:
             core_annots_opti, meta_annots_opti = core_annot_info, meta_annot_info
@@ -119,8 +137,11 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
 
         if otu_abundance_filepath is not None:
             iteration_selections_per_run_taxons = bank_of_selections_taxons[iteration]
+            average_taxons_importances_per_run = pd.DataFrame(bank_of_average_importances_taxons[iteration])
+            average_taxons_importances_per_run['Average'] = average_taxons_importances_per_run.mean(axis=1)
+
             core_taxons, meta_taxons = create_core_and_meta_dfs(iteration_selections_per_run_taxons, runs)
-            core_taxons_info, meta_taxons_info = formatting_core_meta_outputs(info_taxons, core_taxons, meta_taxons, runs, zero_case=False)
+            core_taxons_info, meta_taxons_info = formatting_core_meta_outputs(info_taxons, core_taxons, meta_taxons, average_taxons_importances_per_run, runs, zero_case=False)
 
             if iteration == best_selec_iter_taxons -1:
                 core_taxons_opti, meta_taxons_opti = core_taxons_info, meta_taxons_info
@@ -180,13 +201,13 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
 
 
     if best_selec_iter_annots == 0:
-        core_annots_opti, meta_annots_opti = formatting_core_meta_outputs(info_annots, sofa_table, None, runs, zero_case=True)
+        core_annots_opti, meta_annots_opti = formatting_core_meta_outputs(info_annots, sofa_table, None, None, runs, zero_case=True)
 
     if otu_abundance_filepath is not None:
         core_annots_opti_id = list(core_annots_opti['ID'].values)
 
         if best_selec_iter_taxons == 0:
-            core_taxons_opti, meta_taxons_opti = formatting_core_meta_outputs(info_taxons, otu_table_stripped, None, runs, zero_case=True)
+            core_taxons_opti, meta_taxons_opti = formatting_core_meta_outputs(info_taxons, otu_table_stripped, None, None, runs, zero_case=True)
             core_taxons_opti_id = list(core_taxons_opti['ID'].values)
         
 
