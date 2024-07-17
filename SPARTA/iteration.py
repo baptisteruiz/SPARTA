@@ -2,6 +2,8 @@ import pandas as pd
 import os
 import numpy as np
 import requests
+import random
+
 
 from tqdm import tqdm
 from kneebow.rotor import Rotor
@@ -30,7 +32,7 @@ def inflexion_cutoff(datatable):
     return datatable_truncated
 
 
-def separate_test_train(labels_full):
+def separate_test_train(labels_full, seed_split):
     if not labels_full.values.shape[1] > 1:
         label_flatten = labels_full.values.reshape((labels_full.values.shape[0]))
     else:
@@ -38,7 +40,7 @@ def separate_test_train(labels_full):
 
     indices = np.arange(len(label_flatten))
 
-    y_train, y_test, sample_train, sample = train_test_split(label_flatten, indices, test_size=0.2, stratify=label_flatten)
+    y_train, y_test, sample_train, sample = train_test_split(label_flatten, indices, test_size=0.2, stratify=label_flatten, random_state=seed_split)
 
     return y_train, y_test, sample_train, sample
 
@@ -51,7 +53,7 @@ def create_test_train_subsets(full_dataset, indices):
 
     return(dataset_train, dataset_test)
 
-def run_deep_micro(set_test, set_train, label_test, label_train, dataset_name, iteration_nb, run_nb, data_dir, profile, classifiers=20, method='rf', var_ranking_method='gini'):
+def run_deep_micro(set_test, set_train, label_test, label_train, dataset_name, iteration_nb, run_nb, data_dir, profile, classifiers=20, method='rf', var_ranking_method='gini', real_seed = 0):
     samples_labels_splits = {}
     try:
         ##IMPORT SEPARATE TEST DATASET
@@ -65,16 +67,18 @@ def run_deep_micro(set_test, set_train, label_test, label_train, dataset_name, i
         repeats = int(classifiers)
         best_feature_records = []
         
+        random.seed(real_seed)
+        
         # hyper-parameter grids for classifiers
         if repeats > 1:
             for i in tqdm(range(repeats), desc="Training models for the "+profile+" profile (Run: "+str(run_nb)+", Iteration: "+str(iteration_nb)+")"):
                 #logger.info('BEST FEATURE RECORDS:', best_feature_records)
-                best_auc, threshold_opt, perf_dict, best_feature_records, labels_sets = run_exp(i, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, set_train, label_train, dataset_name, best_feature_records, data_dir, method, var_ranking_method)
+                best_auc, threshold_opt, perf_dict, best_feature_records, labels_sets = run_exp(i, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, set_train, label_train, dataset_name, best_feature_records, data_dir, method, var_ranking_method, random.sample(range(1000),1)[0])
                 samples_labels_splits[i] = labels_sets
                 samples_labels_splits[i]['test_set'] = ','.join(set_test.index.tolist())
                 samples_labels_splits[i]['test_set_labels'] = ','.join(label_test.astype(str))
         else:
-            best_auc, threshold_opt, perf_dict, best_feature_records, labels_sets = run_exp(42, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, set_train, label_train, dataset_name, best_feature_records, data_dir, method, var_ranking_method)
+            best_auc, threshold_opt, perf_dict, best_feature_records, labels_sets = run_exp(42, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, set_train, label_train, dataset_name, best_feature_records, data_dir, method, var_ranking_method, real_seed = 42)
             samples_labels_splits[repeats] = labels_sets
             samples_labels_splits[repeats]['test_set'] = ','.join(set_test.index.tolist())
             samples_labels_splits[repeats]['test_set_labels'] = ','.join(label_test.astype(str))
@@ -304,7 +308,7 @@ def averaging_and_info_step(functional_profile_df, label_refs, output_folder, es
 
 def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, run_nb, nb_iterations, esmecata_input=None, esmecata_annotation_reference=None,
                 otu_abundance_filepath=None, reference_test_sets_filepath=None,
-                classifiers=20, method='rf', var_ranking_method='gini'):
+                classifiers=20, method='rf', var_ranking_method='gini', seed_split = 0, seed_init =0):
     functional_profile_df = pd.read_csv(functional_profile_filepath, sep=',', index_col=0)
 
     label_file_df = pd.read_csv(label_filepath)
@@ -341,7 +345,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
 
     else:
         #Select a test subset
-        labels_train, labels_test, sample_train_indices, test_indices = separate_test_train(label_file_df)
+        labels_train, labels_test, sample_train_indices, test_indices = separate_test_train(label_file_df, seed_split)
         train_samples = label_file_df.iloc[sample_train_indices].index.tolist()
 
         test_labels = [functional_profile_df.columns[i] for i in test_indices]
@@ -370,6 +374,9 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
     if not os.path.exists(dataset_separation_folder):
         os.mkdir(dataset_separation_folder)
 
+
+    random.seed(seed_init)
+    
     #ITERATED:
     for iteration_number in range(nb_iterations):        
     #Separate test and train subsets
@@ -387,9 +394,9 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
         # Run classification wtih DeepMicro.
         if otu_abundance_filepath is not None:
             perf_df_otu, best_feature_records_otu, taxon_training_validation_sets = run_deep_micro(otu_test, otu_train, labels_test, labels_train, 'test_OTU', iteration_number, run_nb, trained_classifiers_iteration_folder, "Taxonomic",
-                                                                    classifiers, method, var_ranking_method)
+                                                                    classifiers, method, var_ranking_method, real_seed = random.sample(range(1000),1)[0])
         perf_df_sofa, best_feature_records_sofa, function_training_validation_sets = run_deep_micro(annots_test, annots_train, labels_test, labels_train, 'test_Functions', iteration_number, run_nb, trained_classifiers_iteration_folder, "Functional",
-                                                                  classifiers, method, var_ranking_method)
+                                                                  classifiers, method, var_ranking_method, real_seed = random.sample(range(1000),1)[0])
         if otu_abundance_filepath is not None:
             taxon_dataset_separation_iteration_file = os.path.join(dataset_separation_folder, 'Taxonomic_samples_separation_Iteration_'+str(iteration_number)+'.csv')
             pd.DataFrame(taxon_training_validation_sets).to_csv(taxon_dataset_separation_iteration_file)

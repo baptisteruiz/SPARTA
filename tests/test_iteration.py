@@ -14,7 +14,7 @@ def test_run_iterate():
         os.mkdir(output_folder)
 
     run_iterate(functional_profile_filepath, label_filepath, output_folder, run_nb, nb_iterations, classifiers=1)
-
+    
     # Get label for sample.
     label_file_df = pd.read_csv(label_filepath)
     functional_profile_df = pd.read_csv(functional_profile_filepath, index_col=0)
@@ -93,3 +93,5 @@ def test_run_iterate_reference_test_sets_filepath():
     assert expected_validation_set == validation_set
 
     shutil.rmtree(output_folder)
+
+test_run_iterate()
