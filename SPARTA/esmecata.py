@@ -381,7 +381,8 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
                             propagate_annotation=1, uniref_annotation=None, expression_annotation=None, option_bioservices=True)
         else:
             annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_cpu=nb_cpu_available)
-    except:
+    except Exception as e:
+        logger.info('Issue with EsMeCaTa: ', e)
         pass
 
     ## Check
@@ -398,7 +399,8 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
                                 propagate_annotation=1, uniref_annotation=None, expression_annotation=None, option_bioservices=True)
             else:
                 annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_cpu=10)
-        except:
+        except Exception as e:
+            logger.info('Issue with EsMeCaTa: ', e)
             pass
         retries += 1
         check_outputs, empty_ids = check_annotation(reference_proteins_consensus_fasta_folder, annotation_reference_folder, proteomes_tax_id)
