@@ -52,8 +52,8 @@ def main():
     # Pipeline arguments.
 
     # EsMeCaTa arguments.
-    parent_parser_ta = argparse.ArgumentParser(add_help=False)
-    parent_parser_ta.add_argument("-fp", "--taxon_abundance", help="Taxonomic profile matrix file (tsv) having samples as columns and organisms as row, organisms as descrbied as taxonomic affilaitions.", required=True)
+    parent_parser_p = argparse.ArgumentParser(add_help=False)
+    parent_parser_p.add_argument("-p", "--taxon_abundance", help="Taxonomic profile matrix file (tsv) having samples as columns and organisms as row, organisms described as taxonomic affilaitions.", required=True)
     parent_parser_e = argparse.ArgumentParser(add_help=False)
     parent_parser_e.add_argument("--eggnog", default=None, help="Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launhed with the 'UniProt' workflow by default.")
     parent_parser_annotations_only = argparse.ArgumentParser(add_help=False)
@@ -78,8 +78,8 @@ def main():
     parent_parser_tp.add_argument("-tp", "--taxon_profile", help="Taxonomic profile matrix file (tsv) having samples as columns and organisms as row.", required=False, default=None)
     parent_parser_fo = argparse.ArgumentParser(add_help=False)
     parent_parser_fo.add_argument("-fo", "--functional_occurrence", help="Functions associated with organisms.", required=False, default=None)
-    parent_parser_ei = argparse.ArgumentParser(add_help=False)
-    parent_parser_ei.add_argument("-ta", "--taxonomic_affiliations", help="TSV files indicating the taxonomic affiliations, input files for esmecata.", required=False, default=None)
+    parent_parser_ta = argparse.ArgumentParser(add_help=False)
+    parent_parser_ta.add_argument("-ta", "--taxonomic_affiliations", help="TSV files indicating the taxonomic affiliations, input files for esmecata.", required=False, default=None)
     # Optional arguments for classification
     parent_parser_reference_test_sets = argparse.ArgumentParser(add_help=False)
     parent_parser_reference_test_sets.add_argument("--reference_test_sets", default=None, help="Path to reference test sets (csv file) allowing the user to give their own test sets to be used during classification.")
@@ -108,7 +108,7 @@ def main():
         'pipeline',
         help='Run all SPARTA pipeline with esmecata.',
         parents=[
-            parent_parser_ta, parent_parser_label, parent_parser_o, parent_parser_t, parent_parser_s,
+            parent_parser_p, parent_parser_label, parent_parser_o, parent_parser_t, parent_parser_s,
             parent_parser_i, parent_parser_c, parent_parser_r,
             parent_parser_m, parent_parser_v,
             parent_parser_e, parent_parser_annotations_only,
@@ -121,7 +121,7 @@ def main():
         'esmecata',
         help='Run functional profile prediction with esmecata.',
         parents=[
-            parent_parser_ta, parent_parser_label, parent_parser_o,
+            parent_parser_p, parent_parser_label, parent_parser_o,
             parent_parser_e, parent_parser_annotations_only,
             parent_parser_esmecata_relaunch, parent_parser_s,
             parent_parser_keep_temp, parent_parser_update_ncbi
@@ -136,7 +136,7 @@ def main():
             parent_parser_s, parent_parser_i, parent_parser_c,
             parent_parser_r, parent_parser_m, parent_parser_v,
             parent_parser_reference_test_sets, parent_parser_keep_temp,
-            parent_parser_fo, parent_parser_ei, parent_parser_tp
+            parent_parser_fo, parent_parser_ta, parent_parser_tp
             ],
         allow_abbrev=False)
 

@@ -8,9 +8,12 @@
     - [Classification installation](#classification-installation)
     - [Pipeline and esmecata installation](#pipeline-and-esmecata-installation)
   - [Usage](#usage)
-    - [Classification](#classification)
-      - [Classification mandatory inputs](#classification-mandatory-inputs)
+    - [`sparta classification`](#sparta-classification)
+      - [Classification required inputs](#classification-required-inputs)
       - [Classification optional inputs](#classification-optional-inputs)
+    - [`sparta esmecata`](#sparta-esmecata)
+      - [`sparta esmecata` required inputs](#sparta-esmecata-required-inputs)
+    - [`sparta pipeline`](#sparta-pipeline)
     - [REQUIRED:](#required)
   - [INPUTS:](#inputs)
     - [CAN BE REQUIRED:](#can-be-required)
@@ -89,9 +92,11 @@ Three subcommands can be used:
 - `sparta esmecata`: to run esmecata on taxonomic affiliations and taxonomic profile to create functional profile.
 - `sparta pipeline`: to run `sparta esmecata` then `sparta classification`.
 
-### Classification
+### `sparta classification`
 
-#### Classification mandatory inputs
+Perform classification (with Random Forests or SVM) on functional profile (optionaly on taxon profile) to identify separating functions (or taxon) according to samples.
+
+#### Classification required inputs
 
 `sparta classification` can be run with different inputs but always two are required:
 
@@ -148,6 +153,26 @@ It will be used by SPARTA to link function to organisms when showing the feature
 | Organism 3          | Kingdom;Class;Order;Family;Genus |
 
 It will be used to link taxon name to feature of importance in the results.
+
+### `sparta esmecata`
+
+Use [esmecata](https://github.com/AuReMe/esmecata/tree/main) to predict functions from taxonomic affiliations.
+
+#### `sparta esmecata` required inputs
+
+`sparta esmecata` can be run with different inputs but always two are required:
+
+- `taxon abundance` (with the `-p` parameter): a csv file indicating the taxonomic affiliatiosn of the organisms the sampels and their abundance:
+
+|                             sampleID                                       | Sample A | Sample B | Sample C | Sample D |
+|----------------------------------------------------------------------------|----------|----------|----------|----------|
+| k__Kingdom\|p__Phylum_1\|c__Class_1\|o__Order_1\|f__Family_1\|g__Genus_1   | 40       | 40       | 5        | 5        |
+| k__Kingdom\|p__Phylum_2\|c__Class_2\|o__Order_2\|f__Family_2\|g__Genus_2   | 10       | 5        | 15       | 10       |
+| k__Kingdom\|p__Phylum_3\|c__Class_3\|o__Order_3\|f__Family_3\|g__Genus_3   | 0        | 0        | 100      | 90       |
+
+### `sparta pipeline`
+
+Use [esmecata](https://github.com/AuReMe/esmecata/tree/main) to predict functions from taxonomic affiliations. Then use `sparta classification` for the classification part.
 
 ### REQUIRED:
     
