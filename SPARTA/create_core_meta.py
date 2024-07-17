@@ -30,7 +30,6 @@ def formatting_core_meta_outputs(info_df, core_df, meta_df, average_importances,
     '''
     This function adds information inherited from upstream analyses to the core and meta dataframes
     '''
-    
     if meta_df is None:
         meta_skip = True
     else:
@@ -77,21 +76,29 @@ def extract_core_associates(dataframe, core_list, esmecata_input=None):
         new_col = 'Core_linked_annotaions'
         otu_links = False
     else:
-        col_ref = 'Linked_OTUs'
-        new_col = 'Significant_linked_OTUs'
-        otu_links = True
+        if 'Linked_annotations' in dataframe.columns:
+            col_ref = 'Linked_OTUs'
+            new_col = 'Significant_linked_OTUs'
+            otu_links = True
+        else:
+            col_ref = None
+            otu_links = None
 
-    signif_vars = []
-    for vars_assoc in dataframe[col_ref].values:
-        vars_list = []
-        for var in vars_assoc:
-            if var in core_list:
-                vars_list.append(var)
-        signif_vars.append(vars_list)
-    
-    dataframe[new_col] = signif_vars
+    if col_ref is not None:
+        signif_vars = []
+        for vars_assoc in dataframe[col_ref].values:
+            vars_list = []
+            if vars_assoc is not None:
+                for var in vars_assoc:
+                    if var in core_list:
+                        vars_list.append(var)
+                signif_vars.append(vars_list)
+            else:
+                signif_vars.append([])
 
-    if otu_links:
+        dataframe[new_col] = signif_vars
+
+    if otu_links is True:
         signif_links_named = []
         for otu_list in signif_vars:
             named_links = []
@@ -106,11 +113,12 @@ def extract_core_associates(dataframe, core_list, esmecata_input=None):
 
 
 def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, bank_of_average_importances_annots, bank_of_average_importances_taxons,
-                                best_selec_iter_annots, best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, otu_table_stripped, sofa_table, otu_abundance_filepath):
+                                best_selec_iter_annots, best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, sofa_table, otu_abundance_filepath):
     '''
     This function launches the process to identify and write the Core and Meta taxons and annotations from all of the effectuated selections. It also records the 
     length of each selection category and classification performances per iteration, to give an overview ofthis information.
     '''
+    otu_table_stripped = pd.read_csv(otu_abundance_filepath, sep='\t', index_col=0)
 
     df_perfs_and_selection_per_iter = defaultdict(defaultdict)
     warning_annots=False
@@ -155,13 +163,14 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
             meta_annot_info = extract_core_associates(meta_annot_info, core_taxons_id, esmecata_input)
             meta_taxons_info = extract_core_associates(meta_taxons_info, core_annots_id, esmecata_input)
 
-            core_taxons_info.to_csv(path_core_meta+'/All_iterations/Core_taxons_iteration_'+str(iteration)+'.csv')
-            meta_taxons_info.to_csv(path_core_meta+'/All_iterations/Meta_taxons_iteration_'+str(iteration)+'.csv')
+            core_taxons_info_filepath = os.path.join(path_core_meta, 'All_iterations', 'Core_taxons_iteration_'+str(iteration)+'.csv')
+            core_taxons_info.to_csv(core_taxons_info_filepath)
+            meta_taxons_info_filepath = os.path.join(path_core_meta, 'All_iterations', 'Meta_taxons_iteration_'+str(iteration)+'.csv')
+            meta_taxons_info.to_csv(meta_taxons_info_filepath)
 
             df_perfs_and_selection_per_iter['Iteration '+str(iteration)+'_Taxonomic']['Robust '] = core_taxons_info.shape[0]
             df_perfs_and_selection_per_iter['Iteration '+str(iteration)+'_Taxonomic']['Confident'] = core_taxons_info.shape[0] + meta_taxons_info[meta_taxons_info['Significance_category'] == 'Confident'].shape[0]
             df_perfs_and_selection_per_iter['Iteration '+str(iteration)+'_Taxonomic']['Candidate'] = core_taxons_info.shape[0] + meta_taxons_info.shape[0]
-
 
             iteration_median_perfs = []
             iteration_lv_perfs = bank_of_performance_dfs_taxons[iteration]
@@ -177,9 +186,10 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
             if iteration == best_selec_iter_taxons and np.mean(iteration_median_perfs)<0.6:
                 warning_taxons = True
 
-        
-        core_annot_info.to_csv(path_core_meta+'/All_iterations/Core_annots_iteration_'+str(iteration)+'.csv')
-        meta_annot_info.to_csv(path_core_meta+'/All_iterations/Meta_annots_iteration_'+str(iteration)+'.csv')
+        core_annot_info_filepath = os.path.join(path_core_meta, 'All_iterations', 'Core_annots_iteration_'+str(iteration)+'.csv')
+        core_annot_info.to_csv(core_annot_info_filepath)
+        meta_annot_info_filepath = os.path.join(path_core_meta, 'All_iterations', 'Meta_annots_iteration_'+str(iteration)+'.csv')
+        meta_annot_info.to_csv(meta_annot_info_filepath)
 
         df_perfs_and_selection_per_iter['Iteration '+str(iteration)+'_Functional']['Robust '] = core_annot_info.shape[0]
         df_perfs_and_selection_per_iter['Iteration '+str(iteration)+'_Functional']['Confident'] = core_annot_info.shape[0] + meta_annot_info[meta_annot_info['Significance_category'] == 'Confident'].shape[0]
@@ -199,7 +209,6 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
         if iteration == best_selec_iter_annots and np.mean(iteration_median_perfs)<0.6:
             warning_annots = True
 
-
     if best_selec_iter_annots == 0:
         core_annots_opti, meta_annots_opti = formatting_core_meta_outputs(info_annots, sofa_table, None, None, runs, zero_case=True)
 
@@ -209,7 +218,6 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
         if best_selec_iter_taxons == 0:
             core_taxons_opti, meta_taxons_opti = formatting_core_meta_outputs(info_taxons, otu_table_stripped, None, None, runs, zero_case=True)
             core_taxons_opti_id = list(core_taxons_opti['ID'].values)
-        
 
         else:
             core_taxons_opti_id = list(core_taxons_opti['ID'].values)
@@ -217,20 +225,20 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
         
         if best_selec_iter_annots != 0:
             meta_annots_opti = extract_core_associates(meta_annots_opti, core_taxons_opti_id, esmecata_input)
-        
-        
+
         core_annots_opti = extract_core_associates(core_annots_opti, core_taxons_opti_id, esmecata_input)
         core_taxons_opti = extract_core_associates(core_taxons_opti, core_annots_opti_id, esmecata_input)
 
-        
-
-        core_taxons_opti.to_csv(path_core_meta+'/Best_iteration/Core_taxons_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
+        core_taxons_opti_filepath = os.path.join(path_core_meta, 'Best_iteration', 'Core_taxons_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
+        core_taxons_opti.to_csv(core_taxons_opti_filepath)
         if not (meta_taxons_opti is None):
-            meta_taxons_opti.to_csv(path_core_meta+'/Best_iteration/Meta_taxons_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
+            meta_taxons_opti_filepath = os.path.join(path_core_meta, 'Best_iteration', 'Meta_taxons_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
+            meta_taxons_opti.to_csv(meta_taxons_opti_filepath)
 
-    core_annots_opti.to_csv(path_core_meta+'/Best_iteration/Core_annots_iteration_'+str(best_selec_iter_annots-1)+'.csv')
+    core_annots_opti_filepath = os.path.join(path_core_meta, 'Best_iteration', 'Core_annots_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
+    core_annots_opti.to_csv(core_annots_opti_filepath)
     if not (meta_annots_opti is None):
-        meta_annots_opti.to_csv(path_core_meta+'/Best_iteration/Meta_annots_iteration_'+str(best_selec_iter_annots-1)+'.csv')
-        
-        
+        meta_annots_opti_filepath = os.path.join(path_core_meta, 'Best_iteration', 'Meta_annots_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
+        meta_annots_opti.to_csv(meta_annots_opti_filepath)
+
     return(df_perfs_and_selection_per_iter, warning_annots, warning_taxons)

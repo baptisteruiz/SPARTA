@@ -171,7 +171,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         df_perfs_and_selection_per_iter, warning_annots, warning_taxons = extract_and_write_core_meta(core_and_meta_outputs_folder, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots,
                                                                                                       bank_of_performance_dfs_taxons, bank_of_average_importances_annots, bank_of_average_importances_taxons,
                                                                                                       best_selec_iter_annots, best_selec_iter_taxons,
-                                                                                                      info_annots, info_taxons, nb_runs, esmecata_input, functional_profile_df, label_file_df, otu_abundance_filepath)
+                                                                                                      info_annots, info_taxons, nb_runs, esmecata_input, functional_profile_df, otu_abundance_filepath)
         overall_selection_and_performance_metrics_filepath = os.path.join(output_folder, 'Overall_selection_and_performance_metrics.csv')
         pd.DataFrame.from_dict(df_perfs_and_selection_per_iter).to_csv(overall_selection_and_performance_metrics_filepath)
 
