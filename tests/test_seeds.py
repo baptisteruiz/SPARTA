@@ -11,9 +11,10 @@ import os
 from csv_diff import load_csv, compare
 
 from SPARTA.iteration import run_iterate
+from SPARTA.classification import run_sparta_classification
 
 
-def test_seeding(seed_init = 0):
+def test_seeding_run_iterate(seed_init = 0):
     functional_profile_filepath = 'test_functional_profile.csv'
     label_filepath = 'test_label.csv'
     output_folder = 'output_folder' + "_seed" + str(seed_init)
@@ -69,7 +70,7 @@ def test_seeding(seed_init = 0):
     # assert expected_validation_set == validation_set
     
     # Test whether the classification outputs are the same or not
-    index = nb_iterations-1 # To compare iteration 0
+    index = 0 # maybe try : nb_iterations-1 
     diff = compare(
     load_csv(open(output_folder + "\Classification_performances\Iteration_" + str(index) + "\Annotation_performances.csv" )),
     load_csv(open(output_folder_verif + "\Classification_performances\Iteration_" + str(index) + "\Annotation_performances.csv"))
@@ -80,4 +81,22 @@ def test_seeding(seed_init = 0):
     # shutil.rmtree(output_folder)
     # shutil.rmtree(output_folder_verif)
 
-test_seeding(1234)
+def test_seeding_run_sparta_classification(seed_init = 0):
+    functional_profile_filepath = 'test_functional_profile.csv'
+    label_filepath = 'test_label.csv'
+    output_folder = 'output_folder' + "_seed" + str(seed_init)
+    
+    functional_profile_filepath = 'SoFA_table.csv'
+    label_filepath = 'Label_abundance_IBD.csv'
+    output_folder = 'IBD-output_folder' + "_seed" + str(seed_init)
+
+    run_nb = 2
+    nb_iterations = 1
+    
+    run_sparta_classification(functional_profile_filepath, label_filepath, output_folder, run_nb, nb_iterations, classifiers=2, reference_test_sets_filepath=None, seed_init = seed_init)
+
+    return True
+
+seed_init = 56
+test_seeding_run_sparta_classification(seed_init)
+#test_seeding_run_iterate(1234)
