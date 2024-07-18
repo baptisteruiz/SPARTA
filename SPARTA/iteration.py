@@ -467,7 +467,9 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
                     signif_links = []
                     signif_links_named = []
                     if link_otu_list is not None:
+                        
                         for otu in link_otu_list:
+                            print('Link_otu_list:', link_otu_list)
                             if otu in retained_otus:
                                 signif_links.append(otu)
                                 otu_name_translated = esmecata_input[esmecata_input['observation_name'] == otu]['taxonomic_affiliation'].values[0]
