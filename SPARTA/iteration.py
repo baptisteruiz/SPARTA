@@ -355,11 +355,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
         test_labels = [functional_profile_df.columns[i] for i in test_indices]
 
     #Keeping track of the selected test sets (and writing them at every run, in case of a crash)
-    test_set_dict = {}
     test_set_dict['Run_'+str(run_nb)] = test_labels
-    test_set_df = pd.DataFrame.from_dict(test_set_dict)
-    test_set_output_file = os.path.join(run_output_folder, 'Test_sets.csv')
-    test_set_df.to_csv(test_set_output_file)
 
     if otu_abundance_filepath is not None:
         deepmicro_otu_iteration0 = pd.read_csv(otu_abundance_filepath, sep='\t', index_col=0).transpose()

@@ -121,7 +121,6 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
     bank_of_performance_dfs_taxons = {}
     bank_of_average_importances_annots = {}
     bank_of_average_importances_taxons= {}
-
     test_set_dict = {}
 
     ## Launching the SPARTA runs
@@ -166,6 +165,10 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         f.write("SPARTA Run "+str(run_nb)+" length (s): "+str(run_i_time_seconds)+"\n")
         f.close()
         ########################
+        #Keeping track of the selected test sets (and writing them at every run, in case of a crash).
+        test_set_df = pd.DataFrame.from_dict(test_set_dict)
+        test_set_output_file = os.path.join(output_folder, 'Test_sets.csv')
+        test_set_df.to_csv(test_set_output_file)
 
     visualisation_file = os.path.join(output_folder, 'median_OTU_vs_SoFA_(best_vs_best).png')
     visualisation_file_v2 = os.path.join(output_folder, 'median_OTU_vs_SoFA_(best_vs_best)_v2.png')
