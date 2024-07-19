@@ -118,7 +118,7 @@ def formatting_step(label_filepath, abundance_file, output_folder, annotations_o
         deepmicro_otu = data_to_deepmicro(otu_table_stripped)
 
         if treatment == 'tf_igm':
-            deepmicro_sofa = tf_igm_apply(deepmicro_sofa)
+            deepmicro_otu = tf_igm_apply(deepmicro_otu)
 
     label_file_df = label_file[otu_table_stripped.columns].transpose()
 

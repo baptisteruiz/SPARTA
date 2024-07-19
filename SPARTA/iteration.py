@@ -320,6 +320,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
 
     ## Calculating average presence of taxons and annotations per label, and collecting info about them
     info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, run_output_folder, esmecata_input, esmecata_annotation_reference, otu_abundance_filepath)
+    info_annots.to_csv(run_output_folder+'/info_annots_check.csv')
 
     if reference_test_sets_filepath:
         #Get the test set references if they are given
