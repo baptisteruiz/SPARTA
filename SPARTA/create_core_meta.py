@@ -124,7 +124,6 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
     best_selec_iter_annots_dual = best_selec_iter_annots
     best_selec_iter_taxons_dual = best_selec_iter_taxons
 
-
     ##First method
 
     #To remove after selection method is chosen
@@ -132,8 +131,8 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
     best_selec_iter_annots = best_selec_iter_annots_dual[0]
     best_selec_iter_taxons = best_selec_iter_taxons_dual[0]
     #
-
-    otu_table_stripped = pd.read_csv(otu_abundance_filepath, sep='\t', index_col=0)
+    if otu_abundance_filepath is not None:
+        otu_table_stripped = pd.read_csv(otu_abundance_filepath, sep='\t', index_col=0)
 
     df_perfs_and_selection_per_iter = defaultdict(defaultdict)
     warning_annots=False
@@ -250,10 +249,10 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
             meta_taxons_opti_filepath = os.path.join(path_core_meta, 'Best_iteration', 'Meta_taxons_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
             meta_taxons_opti.to_csv(meta_taxons_opti_filepath)
 
-    core_annots_opti_filepath = os.path.join(path_core_meta, 'Best_iteration', 'Core_annots_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
+    core_annots_opti_filepath = os.path.join(path_core_meta, 'Best_iteration', 'Core_annots_iteration_'+str(best_selec_iter_annots-1)+'.csv')
     core_annots_opti.to_csv(core_annots_opti_filepath)
     if not (meta_annots_opti is None):
-        meta_annots_opti_filepath = os.path.join(path_core_meta, 'Best_iteration', 'Meta_annots_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
+        meta_annots_opti_filepath = os.path.join(path_core_meta, 'Best_iteration', 'Meta_annots_iteration_'+str(best_selec_iter_annots-1)+'.csv')
         meta_annots_opti.to_csv(meta_annots_opti_filepath)
 
 
@@ -265,7 +264,8 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
     best_selec_iter_taxons = best_selec_iter_taxons_dual[1]
     #
 
-    otu_table_stripped = pd.read_csv(otu_abundance_filepath, sep='\t', index_col=0)
+    if otu_abundance_filepath is not None:
+        otu_table_stripped = pd.read_csv(otu_abundance_filepath, sep='\t', index_col=0)
 
     df_perfs_and_selection_per_iter = defaultdict(defaultdict)
     # warning_annots=False
@@ -382,10 +382,10 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
             meta_taxons_opti_filepath = os.path.join(path_core_meta, 'Best_iteration', 'Meta_taxons_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
             meta_taxons_opti.to_csv(meta_taxons_opti_filepath)
 
-    core_annots_opti_filepath = os.path.join(path_core_meta, 'Best_iteration', 'Core_annots_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
+    core_annots_opti_filepath = os.path.join(path_core_meta, 'Best_iteration', 'Core_annots_iteration_'+str(best_selec_iter_annots-1)+'.csv')
     core_annots_opti.to_csv(core_annots_opti_filepath)
     if not (meta_annots_opti is None):
-        meta_annots_opti_filepath = os.path.join(path_core_meta, 'Best_iteration', 'Meta_annots_iteration_'+str(best_selec_iter_taxons-1)+'.csv')
+        meta_annots_opti_filepath = os.path.join(path_core_meta, 'Best_iteration', 'Meta_annots_iteration_'+str(best_selec_iter_annots-1)+'.csv')
         meta_annots_opti.to_csv(meta_annots_opti_filepath)
 
 

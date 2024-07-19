@@ -20,7 +20,7 @@ def test_cli_sparta_classification():
     sample_to_label = label_file_df[0].to_dict()
 
     # Get test, training and validation labels.
-    dataset_separation_filepath = os.path.join(output_folder, 'Run_1', 'Dataset_separation', 'Annotation_samples_separation_Iteration_0.csv')
+    dataset_separation_filepath = os.path.join(output_folder, 'Run_1_MasterSeed_864', 'Dataset_separation', 'Annotation_samples_separation_Iteration_0.csv')
     dataset_separation = pd.read_csv(dataset_separation_filepath, index_col=0).to_dict()
 
     training_set_label = [str(sample_to_label[sample]) for sample in dataset_separation['1']['training_set'].split(',')]

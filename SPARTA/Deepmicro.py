@@ -1,6 +1,7 @@
 # importing numpy, pandas, and matplotlib
 from unittest import TextTestRunner
 import numpy as np
+import random
 
 import pandas as pd
 import matplotlib
@@ -29,11 +30,12 @@ import joblib
 
 
 class DeepMicrobiome(object):
-    def __init__(self, data, seed, data_dir):
+    def __init__(self, data, seed, data_dir, rand_state):
         self.t_start = time.time()
         self.filename = str(data)
         self.data = str(data)
         self.seed = seed
+        self.rand_state = rand_state # To seed the gridSearch
         self.data_dir = data_dir
         self.prefix = ''
         self.representation_only = False
@@ -56,7 +58,7 @@ class DeepMicrobiome(object):
         Y = Y.replace(label_dict)
 
         # train and test split
-        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X.values.astype(dtype), Y.values.astype('int'), test_size=0.2, random_state=self.seed, stratify=Y.values)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X.values.astype(dtype), Y.values.astype('int'), test_size=0.2, random_state=self.real_seed, stratify=Y.values)
         self.printDataShapes()
 
     def loadCustomData(self, dtype=None):
@@ -78,7 +80,7 @@ class DeepMicrobiome(object):
         self.y_test = np.zeros(shape=(1,)).astype(dtype)
         self.printDataShapes(train_only=True)
 
-    def loadCustomDataWithLabels(self, Y_data, label_data, Ytest_ext, dtype=None):
+    def loadCustomDataWithLabels(self, Y_data, label_data, Ytest_ext, dtype=None, seed_valid_split = 0):
         # read file
 
         raw = Y_data
@@ -91,12 +93,14 @@ class DeepMicrobiome(object):
         else:
             print('FileSpecificationError: The label file contains more than 1 column.')
             exit()
-
+        
         indices = np.arange(len(label_flatten))
+
+        # print("seed :" + str(seed_valid_split) )
         # train and test split
         self.X_train, self.X_test, self.y_train, self.y_test, self.indices_train, self.indices_test = train_test_split(raw.values.astype(dtype),
                                                                                 label_flatten.astype('int'), indices, test_size=len(Ytest_ext.flatten()),
-                                                                                random_state=self.seed,
+                                                                                random_state=seed_valid_split,
                                                                                 stratify=label_flatten)
 
     # Classification
@@ -113,12 +117,12 @@ class DeepMicrobiome(object):
 
         # Support Vector Machine
         if method == 'svm':
-            clf = GridSearchCV(SVC(probability=True, cache_size=cache_size, random_state=0), hyper_parameters, cv=StratifiedKFold(cv, shuffle=True, random_state=0), scoring=scoring, n_jobs=n_jobs, verbose=0)
+            clf = GridSearchCV(SVC(probability=True, cache_size=cache_size, random_state=self.rand_state[0]), hyper_parameters, cv=StratifiedKFold(cv, shuffle=True, random_state=self.rand_state[1]), scoring=scoring, n_jobs=n_jobs, verbose=0)
             clf.fit(self.X_train, self.y_train)
 
         # Random Forest
         if method == 'rf':
-            clf = GridSearchCV(RandomForestClassifier(n_jobs=-1, random_state=0, class_weight='balanced'), hyper_parameters, cv=StratifiedKFold(cv, shuffle=True, random_state=0), scoring=scoring, n_jobs=n_jobs, verbose=0)
+            clf = GridSearchCV(RandomForestClassifier(n_jobs=-1, random_state=self.rand_state[0], class_weight='balanced'), hyper_parameters, cv=StratifiedKFold(cv, shuffle=True, random_state=self.rand_state[1]), scoring=scoring, n_jobs=n_jobs, verbose=0)
             clf.fit(self.X_train, self.y_train)
 
             if var_ranking_method == 'gini':
@@ -255,11 +259,16 @@ class DeepMicrobiome(object):
 
 
 # run exp function
-def run_exp(seed, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, Y_data, label_data, dataset_name, best_feature_records, data_dir, method, var_ranking_method):
+def run_exp(seed, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, Y_data, label_data, dataset_name, best_feature_records, data_dir, method, var_ranking_method, real_seed, seed_valid):
+
+    random.seed(real_seed)
+    vec_rand = random.sample(range(1000), 2)
+    dm = DeepMicrobiome(data=dataset_name, seed=seed, data_dir=data_dir, rand_state = vec_rand)
+    random.seed(seed_valid)
+    seed_valid_split = random.sample(range(1000), 1)[0]
 
 
-    dm = DeepMicrobiome(data=dataset_name, seed=seed, data_dir=data_dir)
-    dm.loadCustomDataWithLabels(Y_data=Y_data, label_data=label_data, Ytest_ext=Ytest_ext, dtype=None)
+    dm.loadCustomDataWithLabels(Y_data=Y_data, label_data=label_data, Ytest_ext=Ytest_ext, dtype=None, seed_valid_split = seed_valid_split )
 
     # time check after data has been loaded
     dm.t_start = time.time()

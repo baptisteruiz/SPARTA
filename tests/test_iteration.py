@@ -14,7 +14,7 @@ def test_run_iterate():
         os.mkdir(output_folder)
 
     run_iterate(functional_profile_filepath, label_filepath, output_folder, run_nb, nb_iterations, classifiers=1)
-
+    
     # Get label for sample.
     label_file_df = pd.read_csv(label_filepath)
     functional_profile_df = pd.read_csv(functional_profile_filepath, index_col=0)
@@ -55,8 +55,8 @@ def test_run_iterate_reference_test_sets_filepath():
     run_iterate(functional_profile_filepath, label_filepath, output_folder, run_nb, nb_iterations, classifiers=1, reference_test_sets_filepath='test_reference_sets.csv')
 
     expected_test_set = ['MH0037', 'MH0036', 'MH0021', 'MH0011', 'MH0009']
-    expected_training_set = ['MH0026', 'MH0031', 'MH0020', 'MH0028', 'MH0006', 'MH0034', 'MH0003', 'MH0035', 'MH0032', 'MH0024', 'MH0016', 'MH0002', 'MH0012', 'MH0039']
-    expected_validation_set = ['MH0025', 'MH0033', 'MH0030', 'MH0014', 'MH0038']
+    expected_training_set = ['MH0003', 'MH0033', 'MH0032', 'MH0012', 'MH0038', 'MH0028', 'MH0031', 'MH0039', 'MH0024', 'MH0016', 'MH0030', 'MH0020', 'MH0026', 'MH0006']
+    expected_validation_set = ['MH0014', 'MH0002', 'MH0025', 'MH0034', 'MH0035']
 
     # Get label for sample.
     label_file_df = pd.read_csv(label_filepath)

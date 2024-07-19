@@ -6,6 +6,7 @@ import shutil
 import logging
 import sys
 import json
+import random
 
 from SPARTA.iteration import run_iterate, averaging_and_info_step
 from SPARTA.visualize import plot_classifs
@@ -51,7 +52,7 @@ def update_iteration_dict(general_dict, iteration_dict):
 
 def run_sparta_classification(functional_profile_filepath, label_filepath, output_folder, nb_runs, nb_iterations,
                             esmecata_input=None, functional_occurrence_filepath=None, otu_abundance_filepath=None, reference_test_sets_filepath=None,
-                            classifiers=20, method='rf', var_ranking_method='gini', keep_temp=None):
+                            classifiers=20, method='rf', var_ranking_method='gini', keep_temp=None, seed_init=0):
     """ Run the classification part of SPARTA using either:
         - (1) a functional profile file (associating functions to samples) with a label file associating samples and labels.
         - (2) a functional profile file, a label file, esmecata input file, functional occurrence file and abundanc of organisms.
@@ -70,6 +71,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         method (str): Classifier to use (either rf or svm).
         var_ranking_method (str): Variable ranking method (gini or shap).
         keep_temp (bool): Bool to keep or not temporary files.
+        seed_init (int): Master seed that will define the randomness of the training/validation/test sets (used for reproducibility).
     """
     logger.info('SPARTA|classification| Begin classification.')
     # Create metadata dictionary.
@@ -77,7 +79,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
     options = {'functional_profile_filepath': functional_profile_filepath, 'label_filepath': label_filepath, 'output_folder': output_folder,
                 'nb_runs': nb_runs, 'nb_iterations': nb_iterations, 'esmecata_input': esmecata_input, 'functional_occurrence_filepath': functional_occurrence_filepath,
                 'otu_abundance_filepath': otu_abundance_filepath, 'reference_test_sets_filepath': reference_test_sets_filepath, 'classifiers': classifiers,
-                'method': method, 'var_ranking_method': var_ranking_method, 'keep_temp': keep_temp}
+                'method': method, 'var_ranking_method': var_ranking_method, 'keep_temp': keep_temp, 'seed_init': seed_init}
     options['tool_dependencies'] = {}
     options['tool_dependencies']['python_package'] = {}
     options['tool_dependencies']['python_package']['Python_version'] = sys.version
@@ -121,10 +123,23 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
     bank_of_average_importances_taxons= {}
 
     test_set_dict = {}
+
     ## Launching the SPARTA runs
+
+    # Create random seeds from seed_init.
+    random.seed(seed_init)
+    master_seeds = random.sample(range(1000), nb_runs)
+    options['master_seeds'] = master_seeds
+
     for run_nb in range(1, nb_runs+1):
+        # Create seed for training, validation and test sets. 
+        random.seed(master_seeds[run_nb-1])
+        seed_valid = random.sample(range(1000),1)
+        seed_split = random.sample(range(1000),1)
+        seed_rf = random.sample(range(1000),1)
+        
         logger.info('SPARTA|classification| Run number {0}.'.format(run_nb))
-        run_output_folder = os.path.join(output_folder, 'Run_'+str(run_nb))
+        run_output_folder = os.path.join(output_folder, 'Run_'+str(run_nb) + '_MasterSeed_' + str(master_seeds[run_nb-1]))
         if not os.path.exists(run_output_folder):
             os.mkdir(run_output_folder)
         # Launch the different iterations for the run.
@@ -133,7 +148,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         run_bank_of_average_importances_annots, run_bank_of_average_importances_taxons = run_iterate(functional_profile_filepath, label_filepath, run_output_folder,
                                                                                                                                                           run_nb, nb_iterations, esmecata_input, functional_occurrence_filepath,
                                                                                                                                                           otu_abundance_filepath, reference_test_sets_filepath,
-                                                                                                                                                          classifiers, method, var_ranking_method)
+                                                                                                                                                          classifiers, method, var_ranking_method, seed_rf=seed_rf[0], seed_split=seed_split[0], seed_valid=seed_valid[0])
         bank_of_selections_annots = update_iteration_dict(bank_of_selections_annots, run_bank_of_selections_annots)
         bank_of_selections_taxons = update_iteration_dict(bank_of_selections_taxons, run_bank_of_selections_taxons)
         bank_of_performance_dfs_annots = update_iteration_dict(bank_of_performance_dfs_annots, run_bank_of_performance_dfs_annots)
