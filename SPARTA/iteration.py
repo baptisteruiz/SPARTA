@@ -320,6 +320,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
 
     ## Calculating average presence of taxons and annotations per label, and collecting info about them
     info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, run_output_folder, esmecata_input, esmecata_annotation_reference, otu_abundance_filepath)
+    info_annots.to_csv(run_output_folder+'/info_annots_check.csv')
 
     if reference_test_sets_filepath:
         #Get the test set references if they are given
@@ -466,8 +467,9 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
                 for link_otu_list in selection_plus_info_annots['Linked_OTUs'].values:
                     signif_links = []
                     signif_links_named = []
-                    if link_otu_list is not None:
-                        for otu in link_otu_list:
+                    if not np.isnan(link_otu_list):# is not None:
+                        
+                        for otu in tqdm(link_otu_list, desc="link_otu_list: "+str(link_otu_list)+", type: "+str(type(link_otu_list))):
                             if otu in retained_otus:
                                 signif_links.append(otu)
                                 otu_name_translated = esmecata_input[esmecata_input['observation_name'] == otu]['taxonomic_affiliation'].values[0]

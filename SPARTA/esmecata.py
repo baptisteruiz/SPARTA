@@ -86,7 +86,7 @@ def pre_formatting(dataset_full, output_file):
 
     return formatted_data, dataset_compos
 
-def formatting_step(label_filepath, abundance_file, output_folder, annotations_only=None, scaling='no scaling'):
+def formatting_step(label_filepath, abundance_file, output_folder, annotations_only=None, scaling='no scaling', treatment='tf_igm'):
     '''
     This script runs the steps to format the data into:
         - a metadata-less version of the original OTU table (otu_table_stripped)
@@ -108,16 +108,21 @@ def formatting_step(label_filepath, abundance_file, output_folder, annotations_o
         #Writing standardised version of the dataset
         otu_table_stripped_filepath = os.path.join(output_folder, 'otu_table_stripped.tsv')
         otu_table_stripped.to_csv(otu_table_stripped_filepath, sep = "\t")
+        deepmicro_otu = data_to_deepmicro(otu_table_stripped)
     
     else:
         dataset_full = pd.read_csv(abundance_file, index_col = 0, sep = "\t")
         esmecata_input = None
         esmecata_input_path = None
         otu_table_stripped = dataset_full
+        deepmicro_otu = data_to_deepmicro(otu_table_stripped)
+
+        if treatment == 'tf_igm':
+            deepmicro_otu = tf_igm_apply(deepmicro_otu)
 
     label_file_df = label_file[otu_table_stripped.columns].transpose()
 
-    deepmicro_otu = data_to_deepmicro(otu_table_stripped)
+    
 
     return dataset_full, otu_table_stripped, esmecata_input, esmecata_input_path, deepmicro_otu, label_file_df
 
@@ -218,6 +223,7 @@ def sofa_calculation(esmecata_annotation_reference, output_sofa_table_filepath, 
     # Compute for each annotation its abundance
     sofa_table = pd.DataFrame(all_annots)
     sofa_table.set_index(0, inplace=True)
+    sofa_table = sofa_table.sort_index(ascending=True)
 
     for sample in tqdm(otu_table_stripped.columns, desc='Calculating abundances'):
         if sample != 'OTU':
