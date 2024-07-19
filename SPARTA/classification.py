@@ -125,8 +125,9 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
     ## Launching the SPARTA runs
     
     random.seed(seed_init)
-    seed_valid = random.sample(range(1000),nb_iterations)
+    seed_valid = random.sample(range(1000),nb_runs)
     seed_split = random.sample(range(1000),1)
+    seed_rf = random.sample(range(1000),1)
     
     for run_nb in range(1, nb_runs+1):
         logger.info('SPARTA|classification| Run number {0}.'.format(run_nb))
@@ -139,7 +140,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         run_bank_of_average_importances_annots, run_bank_of_average_importances_taxons = run_iterate(functional_profile_filepath, label_filepath, run_output_folder,
                                                                                                                                                           run_nb, nb_iterations, esmecata_input, functional_occurrence_filepath,
                                                                                                                                                           otu_abundance_filepath, reference_test_sets_filepath,
-                                                                                                                                                          classifiers, method, var_ranking_method, seed_split = seed_split[0], seed_valid = seed_valid)
+                                                                                                                                                          classifiers, method, var_ranking_method, seed_rf= seed_rf[0], seed_split = seed_split[0], seed_valid = seed_valid)
         bank_of_selections_annots = update_iteration_dict(bank_of_selections_annots, run_bank_of_selections_annots)
         bank_of_selections_taxons = update_iteration_dict(bank_of_selections_taxons, run_bank_of_selections_taxons)
         bank_of_performance_dfs_annots = update_iteration_dict(bank_of_performance_dfs_annots, run_bank_of_performance_dfs_annots)
@@ -162,30 +163,30 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
     best_selec_iter_annots, best_selec_iter_taxons = plot_classifs(bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, 'test', visualisation_file, otu_abundance_filepath)
 
     ##We only calculate Core and Meta selections if there was a variable selection (i.e: not SVM)
-    if method == 'rf':
-        logger.info('SPARTA|classification| Compute Core and Meta selections.')
-        core_and_meta_outputs_folder = os.path.join(output_folder, 'Core_and_Meta_outputs')
-        if not os.path.exists(core_and_meta_outputs_folder):
-            os.mkdir(core_and_meta_outputs_folder)
-        core_and_meta_outputs_all_iteration_folder = os.path.join(core_and_meta_outputs_folder, 'All_iterations')
-        if not os.path.exists(core_and_meta_outputs_all_iteration_folder):
-            os.mkdir(core_and_meta_outputs_all_iteration_folder)
-        core_and_meta_outputs_best_iteration_folder = os.path.join(core_and_meta_outputs_folder, 'Best_iteration')
-        if not os.path.exists(core_and_meta_outputs_best_iteration_folder):
-            os.mkdir(core_and_meta_outputs_best_iteration_folder)
+    # if method == 'rf':
+    #     logger.info('SPARTA|classification| Compute Core and Meta selections.')
+    #     core_and_meta_outputs_folder = os.path.join(output_folder, 'Core_and_Meta_outputs')
+    #     if not os.path.exists(core_and_meta_outputs_folder):
+    #         os.mkdir(core_and_meta_outputs_folder)
+    #     core_and_meta_outputs_all_iteration_folder = os.path.join(core_and_meta_outputs_folder, 'All_iterations')
+    #     if not os.path.exists(core_and_meta_outputs_all_iteration_folder):
+    #         os.mkdir(core_and_meta_outputs_all_iteration_folder)
+    #     core_and_meta_outputs_best_iteration_folder = os.path.join(core_and_meta_outputs_folder, 'Best_iteration')
+    #     if not os.path.exists(core_and_meta_outputs_best_iteration_folder):
+    #         os.mkdir(core_and_meta_outputs_best_iteration_folder)
 
-        df_perfs_and_selection_per_iter, warning_annots, warning_taxons = extract_and_write_core_meta(core_and_meta_outputs_folder, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots,
-                                                                                                      bank_of_performance_dfs_taxons, bank_of_average_importances_annots, bank_of_average_importances_taxons,
-                                                                                                      best_selec_iter_annots, best_selec_iter_taxons,
-                                                                                                      info_annots, info_taxons, nb_runs, esmecata_input, functional_profile_df, otu_abundance_filepath)
-        overall_selection_and_performance_metrics_filepath = os.path.join(output_folder, 'Overall_selection_and_performance_metrics.csv')
-        pd.DataFrame.from_dict(df_perfs_and_selection_per_iter).to_csv(overall_selection_and_performance_metrics_filepath)
+    #     df_perfs_and_selection_per_iter, warning_annots, warning_taxons = extract_and_write_core_meta(core_and_meta_outputs_folder, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots,
+    #                                                                                                   bank_of_performance_dfs_taxons, bank_of_average_importances_annots, bank_of_average_importances_taxons,
+    #                                                                                                   best_selec_iter_annots, best_selec_iter_taxons,
+    #                                                                                                   info_annots, info_taxons, nb_runs, esmecata_input, functional_profile_df, otu_abundance_filepath)
+    #     overall_selection_and_performance_metrics_filepath = os.path.join(output_folder, 'Overall_selection_and_performance_metrics.csv')
+    #     pd.DataFrame.from_dict(df_perfs_and_selection_per_iter).to_csv(overall_selection_and_performance_metrics_filepath)
 
-        if warning_annots:
-            logger.info('SPARTA|classification| WARNING: functional classification performance is low (<0.6). The selected functional variables may not be accurate representatives of the classification task')
+        # if warning_annots:
+        #     logger.info('SPARTA|classification| WARNING: functional classification performance is low (<0.6). The selected functional variables may not be accurate representatives of the classification task')
         
-        if warning_taxons:
-            logger.info('SPARTA|classification| WARNING: taxonomic classification performance is low (<0.6). The selected taxonomic variables may not be accurate representatives of the classification task')
+        # if warning_taxons:
+        #     logger.info('SPARTA|classification| WARNING: taxonomic classification performance is low (<0.6). The selected taxonomic variables may not be accurate representatives of the classification task')
 
     if not keep_temp:
         shutil.rmtree('/Outputs_temp/', ignore_errors=True)
