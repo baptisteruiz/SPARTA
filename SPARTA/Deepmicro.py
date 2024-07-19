@@ -266,13 +266,9 @@ def run_exp(seed, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, Y_da
     dm = DeepMicrobiome(data=dataset_name, seed=seed, data_dir=data_dir, rand_state = vec_rand)
     random.seed(seed_valid)
     seed_valid_split = random.sample(range(1000), 1)[0]
-    # print("\n seed split valid : " + str(seed_valid_split) + "\n" )
-    
-    # print(Y_data)
-    # print("\n")
+
 
     dm.loadCustomDataWithLabels(Y_data=Y_data, label_data=label_data, Ytest_ext=Ytest_ext, dtype=None, seed_valid_split = seed_valid_split )
-    # print("\n valid indices : " + str(dm.indices_test) + "\n" )
 
     # time check after data has been loaded
     dm.t_start = time.time()

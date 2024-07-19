@@ -71,9 +71,6 @@ def run_deep_micro(set_test, set_train, label_test, label_train, dataset_name, i
         vec_split = random.sample(range(1000),repeats)
         
         random.seed(real_seed)
-        print("\n")
-        print(real_seed)
-        print("\n")
         seed_rf = random.sample(range(1000),repeats)
         # hyper-parameter grids for classifiers
         if repeats > 1:
@@ -382,7 +379,6 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
 
     random.seed(seed_rf)
     
-    print("seed RF :" + str(seed_rf))
     seed_rf_vec = random.sample(range(1000),nb_iterations)
     
     if otu_abundance_filepath is not None:
@@ -406,9 +402,9 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
         # Run classification wtih DeepMicro.
         if otu_abundance_filepath is not None:
             perf_df_otu, best_feature_records_otu, taxon_training_validation_sets = run_deep_micro(otu_test, otu_train, labels_test, labels_train, 'test_OTU', iteration_number, run_nb, trained_classifiers_iteration_folder, "Taxonomic",
-                                                                    classifiers, method, var_ranking_method, real_seed = seed_rf_vec[nb_iterations-1], seed_valid = seed_valid[run_nb-1])
+                                                                    classifiers, method, var_ranking_method, real_seed = seed_rf_vec[nb_iterations-1], seed_valid = seed_valid)
         perf_df_sofa, best_feature_records_sofa, function_training_validation_sets = run_deep_micro(annots_test, annots_train, labels_test, labels_train, 'test_Functions', iteration_number, run_nb, trained_classifiers_iteration_folder, "Functional",
-                                                                  classifiers, method, var_ranking_method, real_seed = seed_rf_vec[nb_iterations-1], seed_valid = seed_valid[run_nb-1])
+                                                                  classifiers, method, var_ranking_method, real_seed = seed_rf_vec[nb_iterations-1], seed_valid = seed_valid)
         if otu_abundance_filepath is not None:
             taxon_dataset_separation_iteration_file = os.path.join(dataset_separation_folder, 'Taxonomic_samples_separation_Iteration_'+str(iteration_number)+'.csv')
             pd.DataFrame(taxon_training_validation_sets).to_csv(taxon_dataset_separation_iteration_file)
