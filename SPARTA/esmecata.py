@@ -86,7 +86,7 @@ def pre_formatting(dataset_full, output_file):
 
     return formatted_data, dataset_compos
 
-def formatting_step(label_filepath, abundance_file, output_folder, annotations_only=None, scaling='no scaling', treatment='tf_igm'):
+def formatting_step(label_filepath, abundance_file, output_folder, scaling='no scaling'):
     '''
     This script runs the steps to format the data into:
         - a metadata-less version of the original OTU table (otu_table_stripped)
@@ -99,30 +99,18 @@ def formatting_step(label_filepath, abundance_file, output_folder, annotations_o
         os.mkdir(output_folder)
     label_file = pd.read_csv(label_filepath)
 
-    if not annotations_only:
-        dataset_full = pd.read_csv(abundance_file, header = None, sep = "\t")
-        esmecata_input_path = os.path.join(output_folder, 'sofa_calculation.tsv')
-        esmecata_input, otu_table_stripped = pre_formatting(dataset_full, esmecata_input_path)
-        if scaling == "relative":
-            otu_table_stripped = absolute_to_relative(otu_table_stripped)
-        #Writing standardised version of the dataset
-        otu_table_stripped_filepath = os.path.join(output_folder, 'otu_table_stripped.tsv')
-        otu_table_stripped.to_csv(otu_table_stripped_filepath, sep = "\t")
-        deepmicro_otu = data_to_deepmicro(otu_table_stripped)
-    
-    else:
-        dataset_full = pd.read_csv(abundance_file, index_col = 0, sep = "\t")
-        esmecata_input = None
-        esmecata_input_path = None
-        otu_table_stripped = dataset_full
-        deepmicro_otu = data_to_deepmicro(otu_table_stripped)
 
-        if treatment == 'tf_igm':
-            deepmicro_otu = tf_igm_apply(deepmicro_otu)
+    dataset_full = pd.read_csv(abundance_file, header = None, sep = "\t")
+    esmecata_input_path = os.path.join(output_folder, 'sofa_calculation.tsv')
+    esmecata_input, otu_table_stripped = pre_formatting(dataset_full, esmecata_input_path)
+    if scaling == "relative":
+        otu_table_stripped = absolute_to_relative(otu_table_stripped)
+    #Writing standardised version of the dataset
+    otu_table_stripped_filepath = os.path.join(output_folder, 'otu_table_stripped.tsv')
+    otu_table_stripped.to_csv(otu_table_stripped_filepath, sep = "\t")
+    deepmicro_otu = data_to_deepmicro(otu_table_stripped)
 
     label_file_df = label_file[otu_table_stripped.columns].transpose()
-
-    
 
     return dataset_full, otu_table_stripped, esmecata_input, esmecata_input_path, deepmicro_otu, label_file_df
 
@@ -238,8 +226,6 @@ def sofa_calculation(esmecata_annotation_reference, output_sofa_table_filepath, 
 
     if treatment == 'tf_igm':
         deepmicro_sofa = tf_igm_apply(deepmicro_sofa)
-
-    #deepmicro_sofa.to_csv(pipeline_path+'/Outputs_temp/'+data_ref_output_name+'/DeepMicro_data/entree_DeepMicro_'+dataset_name+'.csv', sep=',', header = None, index = None)
 
     return sofa_table, deepmicro_sofa
 
@@ -471,7 +457,7 @@ def create_dataset_annotation_file(annotation_reference_folder, dataset_annotati
     return dataset_annotation
 
 
-def run_esmecata(label_filepath, abundance_filepath, output_folder, scaling='no scaling', esmecata_relaunch=None, eggnog_path=None, update_ncbi=None):
+def run_esmecata(label_filepath, abundance_filepath, output_folder, treatment='tf_igm', scaling='no scaling', esmecata_relaunch=None, eggnog_path=None, update_ncbi=None):
     ## Formatting step
     date_time_format = datetime.now()
     now_begin = date_time_format
@@ -479,7 +465,7 @@ def run_esmecata(label_filepath, abundance_filepath, output_folder, scaling='no 
         os.mkdir(output_folder)
 
     logger.info('Input formatting...')
-    dataset_full, otu_table_stripped, esmecata_input, esmecata_input_path, deepmicro_otu, label_file = formatting_step(label_filepath, abundance_filepath, output_folder, scaling=scaling)
+    dataset_full, otu_table_stripped, esmecata_input, esmecata_input_path, deepmicro_otu, label_file = formatting_step(label_filepath, abundance_filepath, output_folder, scaling)
 
     ####Time measurement####
     date_time_format = datetime.now()
@@ -527,7 +513,7 @@ def run_esmecata(label_filepath, abundance_filepath, output_folder, scaling='no 
 
     ## Calculating the scores of functional annotations
     SoFA_table_filepath = os.path.join(output_folder, 'SoFA_table.csv')
-    sofa_table, deepmicro_sofa = sofa_calculation(annotation_reference_folder, SoFA_table_filepath, otu_table_stripped)
+    sofa_table, deepmicro_sofa = sofa_calculation(annotation_reference_folder, SoFA_table_filepath, otu_table_stripped, treatment)
 
     ####Time measurement####
     date_time_score = datetime.now()

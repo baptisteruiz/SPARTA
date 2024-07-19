@@ -124,7 +124,8 @@ def main():
             parent_parser_p, parent_parser_label, parent_parser_o,
             parent_parser_e, parent_parser_annotations_only,
             parent_parser_esmecata_relaunch, parent_parser_s,
-            parent_parser_keep_temp, parent_parser_update_ncbi
+            parent_parser_keep_temp, parent_parser_update_ncbi,
+            parent_parser_t
             ],
         allow_abbrev=False)
 
@@ -175,9 +176,9 @@ def main():
                             args_passed.taxonomic_affiliations, args_passed.functional_occurrence, args_passed.taxon_profile, args_passed.reference_test_sets,
                             args_passed.classifiers, args_passed.method, args_passed.variable_ranking, args_passed.keep_temp)
     elif args_passed.cmd == 'esmecata':
-        run_esmecata(args_passed.label, args_passed.taxon_abundance, args_passed.output, args_passed.scaling, args_passed.esmecata_relaunch, args_passed.eggnog, args_passed.update_ncbi)
+        run_esmecata(args_passed.label, args_passed.taxon_abundance, args_passed.output, args_passed.treatment, args_passed.scaling, args_passed.esmecata_relaunch, args_passed.eggnog, args_passed.update_ncbi)
     elif args_passed.cmd == 'pipeline':
-        functional_profile_path, esmecata_input_path, functional_occurrence_path, otu_table_stripped = run_esmecata(args_passed.label, args_passed.taxon_abundance, args_passed.output,
+        functional_profile_path, esmecata_input_path, functional_occurrence_path, otu_table_stripped = run_esmecata(args_passed.label, args_passed.taxon_abundance, args_passed.output, args_passed.treatment,
                                                                                                                     args_passed.scaling, args_passed.esmecata_relaunch, args_passed.eggnog, args_passed.update_ncbi)
 
         run_sparta_classification(functional_profile_path, args_passed.label, args_passed.output, runs, iterations,
