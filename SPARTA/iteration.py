@@ -311,7 +311,7 @@ def averaging_and_info_step(functional_profile_df, label_refs, output_folder, es
 
 def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, run_nb, nb_iterations, esmecata_input=None, esmecata_annotation_reference=None,
                 otu_abundance_filepath=None, reference_test_sets_filepath=None,
-                classifiers=20, method='rf', var_ranking_method='gini', seed_rf=0, seed_split=0, seed_valid=0):
+                classifiers=20, method='rf', var_ranking_method='gini', seed_rf = 0, seed_split = 0, seed_valid = 0, selected_otus_filepath = None, selected_annots_filepath = None):
     functional_profile_df = pd.read_csv(functional_profile_filepath, sep=',', index_col=0)
 
     label_file_df = pd.read_csv(label_filepath)
@@ -381,8 +381,17 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
     if otu_abundance_filepath is not None:
         deepmicro_otu_iteration = pd.DataFrame()
         deepmicro_otu_iteration = deepmicro_otu_iteration0
-    deepmicro_sofa_iteration = deepmicro_sofa_iteration0
-    
+        if selected_otus_filepath is not None:
+            selected_otus = pd.read_csv(selected_otus_filepath)
+            selected_otus_run = selected_otus['Run_'+str(run_nb)].dropna()
+            deepmicro_otu_iteration = deepmicro_otu_iteration0.loc[selected_otus_run.values].transpose()
+  
+    if selected_annots_filepath is not None:
+        selected_annots = pd.read_csv(selected_annots_filepath)
+        selected_annots_run = selected_annots['Run_'+str(run_nb)].dropna()
+        deepmicro_sofa_iteration = functional_profile_df.loc[selected_annots_run.values].transpose()
+
+    deepmicro_sofa_iteration = deepmicro_sofa_iteration0    
     #ITERATED:
     for iteration_number in range(nb_iterations):
     #Separate test and train subsets

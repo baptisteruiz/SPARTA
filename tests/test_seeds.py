@@ -95,7 +95,7 @@ def test_seeding_run_sparta_classification(seed_init=0):
     functional_profile_filepath = 'test_functional_profile.csv'
     label_filepath = 'test_label.csv'
     output_folder = 'output_folder' + "_seed" + str(seed_init)
-
+    
     run_nb = 2
     nb_iterations = 1
 
