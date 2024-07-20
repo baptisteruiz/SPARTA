@@ -86,10 +86,6 @@ def test_seeding_run_sparta_classification(seed_init = 0):
     label_filepath = 'test_label.csv'
     output_folder = 'output_folder' + "_seed" + str(seed_init)
     
-    functional_profile_filepath = 'SoFA_table.csv'
-    label_filepath = 'Label_abundance_IBD.csv'
-    output_folder = 'IBD-output_folder' + "_seed" + str(seed_init)
-
     run_nb = 2
     nb_iterations = 1
     

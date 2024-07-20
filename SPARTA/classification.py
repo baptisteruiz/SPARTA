@@ -52,7 +52,7 @@ def update_iteration_dict(general_dict, iteration_dict):
 
 def run_sparta_classification(functional_profile_filepath, label_filepath, output_folder, nb_runs, nb_iterations,
                             esmecata_input=None, functional_occurrence_filepath=None, otu_abundance_filepath=None, reference_test_sets_filepath=None,
-                            classifiers=20, method='rf', var_ranking_method='gini', keep_temp=None, seed_init = 0):
+                            classifiers=20, method='rf', var_ranking_method='gini', keep_temp=None, seed_init = 0, selected_otus_filepath = None, selected_annots_filepath = None):
     """ Run the classification part of SPARTA using either:
         - (1) a functional profile file (associating functions to samples) with a label file associating samples and labels.
         - (2) a functional profile file, a label file, esmecata input file, functional occurrence file and abundanc of organisms.
@@ -126,6 +126,8 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
     
     random.seed(seed_init)
     master_seeds = random.sample(range(1000),nb_runs)
+          
+        
     
     for run_nb in range(1, nb_runs+1):
         
@@ -144,7 +146,10 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         run_bank_of_average_importances_annots, run_bank_of_average_importances_taxons = run_iterate(functional_profile_filepath, label_filepath, run_output_folder,
                                                                                                                                                           run_nb, nb_iterations, esmecata_input, functional_occurrence_filepath,
                                                                                                                                                           otu_abundance_filepath, reference_test_sets_filepath,
-                                                                                                                                                          classifiers, method, var_ranking_method, seed_rf= seed_rf[0], seed_split = seed_split[0], seed_valid = seed_valid[0])
+                                                                                                                                                          classifiers, method, var_ranking_method,
+                                                                                                                                                          seed_rf= seed_rf[0], seed_split = seed_split[0], seed_valid = seed_valid[0],
+                                                                                                                                                          selected_otus_filepath = selected_otus_filepath,
+                                                                                                                                                          selected_annots_filepath = selected_annots_filepath )
         bank_of_selections_annots = update_iteration_dict(bank_of_selections_annots, run_bank_of_selections_annots)
         bank_of_selections_taxons = update_iteration_dict(bank_of_selections_taxons, run_bank_of_selections_taxons)
         bank_of_performance_dfs_annots = update_iteration_dict(bank_of_performance_dfs_annots, run_bank_of_performance_dfs_annots)
