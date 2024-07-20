@@ -1,0 +1,3 @@
+,Best parameters,Validation set indices,Threshold,Training performance,Validation performance,Test performance
+0,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 3, 'n_estimators': 100}",[75 78 46 48 82 60 12 19 72 55 84 54  5 43 13 42 29 64 79 23 87  3],0.3563,1.0,0.8353,0.9176
+1,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 4, 'n_estimators': 900}",[ 9 21 31 27 29 57 40 62 48 79 16 45 19 34 39 49 23 10 73 86 74 51],0.282,1.0,0.7294,0.8353

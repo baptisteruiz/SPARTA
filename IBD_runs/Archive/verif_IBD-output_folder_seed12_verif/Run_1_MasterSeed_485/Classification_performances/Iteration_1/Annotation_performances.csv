@@ -1,0 +1,4 @@
+,Best parameters,Validation set indices,Threshold,Training performance,Validation performance,Test performance
+0,"{'criterion': 'gini', 'max_features': 'log2', 'min_samples_leaf': 3, 'n_estimators': 500}",[27 81 75 83  3  8  6 48  7 72 31 68 40 60 42  4  0 20 65 23 17 74],0.2588,1.0,0.8941,0.7647
+1,"{'criterion': 'gini', 'max_features': 'log2', 'min_samples_leaf': 2, 'n_estimators': 300}",[49 66 21 62 87 69  4 45 48 20 59  2 54 18 86 67 72 58 65 34 23 16],0.22,1.0,0.9059,0.6706
+2,"{'criterion': 'gini', 'max_features': 'log2', 'min_samples_leaf': 1, 'n_estimators': 100}",[80 30  9 40 65 50 55  8 20 82 44 66 26 64 34 78 71 62 70 11 19 32],0.31,1.0,0.6647,0.6824

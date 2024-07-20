@@ -1,0 +1,21 @@
+,Best parameters,Validation set indices,Threshold,Training performance,Validation performance,Test performance
+0,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 2, 'n_estimators': 300}",[53 80 19 24 26 63 10 46 17 62 18 55 59 70 50  3 38 69 85 79 45 11],0.333,1.0,0.7412,0.6667
+1,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 3, 'n_estimators': 700}",[49 25 82 70 83 20 78 55 84 24 40 33  7 26 71 54 34 75 52  8 38 57],0.2176,1.0,0.6588,0.6944
+2,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 2, 'n_estimators': 100}",[84 42 69 38 20 35 37 33 61 29 25 65  5 18 11 56 53 76 73 14 59 32],0.339,1.0,0.8706,0.7778
+3,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 2, 'n_estimators': 900}",[12 79  4 55 28 32  7 48 13 18 44 45 70 66 24 34 83 33 25 78 62 67],0.292,1.0,0.9176,0.6667
+4,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 2, 'n_estimators': 900}",[25 87 80  5  8  0 60 83  1 74 50 43  4 22 84  7 13 78 32 24 53 61],0.1731,1.0,0.8118,0.5972
+5,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 5, 'n_estimators': 100}",[81 43 19 63 45 39 37 26 73 79 20 54 68 28 22 77 23 69 76 36 17 32],0.3177,1.0,0.7765,0.5278
+6,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 4, 'n_estimators': 100}",[13 32 48 43 46 65 24 67  1 29 58 49 79  5 26 38 63 22 18  7 36 69],0.2958,1.0,0.6471,0.625
+7,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 5, 'n_estimators': 100}",[81 43 19 63 45 39 37 26 73 79 20 54 68 28 22 77 23 69 76 36 17 32],0.3177,1.0,0.7765,0.5278
+8,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 4, 'n_estimators': 100}",[13 32 48 43 46 65 24 67  1 29 58 49 79  5 26 38 63 22 18  7 36 69],0.2958,1.0,0.6471,0.625
+9,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 5, 'n_estimators': 100}",[81 43 19 63 45 39 37 26 73 79 20 54 68 28 22 77 23 69 76 36 17 32],0.3177,1.0,0.7765,0.5278
+10,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 4, 'n_estimators': 100}",[13 32 48 43 46 65 24 67  1 29 58 49 79  5 26 38 63 22 18  7 36 69],0.2958,1.0,0.6471,0.625
+11,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 5, 'n_estimators': 100}",[81 43 19 63 45 39 37 26 73 79 20 54 68 28 22 77 23 69 76 36 17 32],0.3177,1.0,0.7765,0.5278
+12,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 4, 'n_estimators': 100}",[13 32 48 43 46 65 24 67  1 29 58 49 79  5 26 38 63 22 18  7 36 69],0.2958,1.0,0.6471,0.625
+13,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 5, 'n_estimators': 100}",[81 43 19 63 45 39 37 26 73 79 20 54 68 28 22 77 23 69 76 36 17 32],0.3177,1.0,0.7765,0.5278
+14,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 4, 'n_estimators': 100}",[13 32 48 43 46 65 24 67  1 29 58 49 79  5 26 38 63 22 18  7 36 69],0.2958,1.0,0.6471,0.625
+15,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 5, 'n_estimators': 100}",[81 43 19 63 45 39 37 26 73 79 20 54 68 28 22 77 23 69 76 36 17 32],0.3177,1.0,0.7765,0.5278
+16,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 4, 'n_estimators': 100}",[13 32 48 43 46 65 24 67  1 29 58 49 79  5 26 38 63 22 18  7 36 69],0.2958,1.0,0.6471,0.625
+17,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 5, 'n_estimators': 100}",[81 43 19 63 45 39 37 26 73 79 20 54 68 28 22 77 23 69 76 36 17 32],0.3177,1.0,0.7765,0.5278
+18,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 4, 'n_estimators': 100}",[13 32 48 43 46 65 24 67  1 29 58 49 79  5 26 38 63 22 18  7 36 69],0.2958,1.0,0.6471,0.625
+19,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 5, 'n_estimators': 100}",[81 43 19 63 45 39 37 26 73 79 20 54 68 28 22 77 23 69 76 36 17 32],0.3177,1.0,0.7765,0.5278
