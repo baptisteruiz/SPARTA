@@ -360,7 +360,8 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
     if otu_abundance_filepath is not None:
         deepmicro_otu_iteration0 = pd.read_csv(otu_abundance_filepath, sep='\t', index_col=0).transpose()
     deepmicro_sofa_iteration0 = functional_profile_df.transpose()
-
+    deepmicro_sofa_iteration = deepmicro_sofa_iteration0 
+    
     trained_classifiers_folder = os.path.join(run_output_folder, 'Trained_classifiers')
     if not os.path.exists(trained_classifiers_folder):
         os.mkdir(trained_classifiers_folder)
@@ -391,7 +392,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
         selected_annots_run = selected_annots['Run_'+str(run_nb)].dropna()
         deepmicro_sofa_iteration = functional_profile_df.loc[selected_annots_run.values].transpose()
 
-    deepmicro_sofa_iteration = deepmicro_sofa_iteration0    
+       
     #ITERATED:
     for iteration_number in range(nb_iterations):
     #Separate test and train subsets

@@ -13,6 +13,7 @@
         "method": "rf",
         "var_ranking_method": "gini",
         "keep_temp": null,
+        "seed_init": 57,
         "tool_dependencies": {
             "python_package": {
                 "Python_version": "3.10.9 | packaged by Anaconda, Inc. | (main, Mar  1 2023, 18:18:15) [MSC v.1916 64 bit (AMD64)]",
@@ -31,7 +32,12 @@
                 "scipy": "1.10.0",
                 "joblib": "1.1.1"
             }
-        }
+        },
+        "master_seeds": [
+            43,
+            376,
+            603
+        ]
     },
-    "duration": 113.768523
+    "duration": 123.851999
 }
