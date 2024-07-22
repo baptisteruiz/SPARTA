@@ -112,7 +112,7 @@ def formatting_step(label_filepath, abundance_file, output_folder, scaling='no s
 
     label_file_df = label_file[otu_table_stripped.columns].transpose()
 
-    return dataset_full, otu_table_stripped, esmecata_input, esmecata_input_path, deepmicro_otu, label_file_df
+    return dataset_full, otu_table_stripped, otu_table_stripped_filepath, esmecata_input_path, deepmicro_otu, label_file_df
 
 
 def tf_igm(dataline, lbd):
@@ -465,7 +465,7 @@ def run_esmecata(label_filepath, abundance_filepath, output_folder, treatment='t
         os.mkdir(output_folder)
 
     logger.info('Input formatting...')
-    dataset_full, otu_table_stripped, esmecata_input, esmecata_input_path, deepmicro_otu, label_file = formatting_step(label_filepath, abundance_filepath, output_folder, scaling)
+    dataset_full, otu_table_stripped, otu_table_stripped_filepath, esmecata_input_path, deepmicro_otu, label_file = formatting_step(label_filepath, abundance_filepath, output_folder, scaling)
 
     ####Time measurement####
     date_time_format = datetime.now()
@@ -526,4 +526,4 @@ def run_esmecata(label_filepath, abundance_filepath, output_folder, treatment='t
     ########################
 
 
-    return SoFA_table_filepath, esmecata_input_path, functional_occurrence_filepath, otu_table_stripped
+    return SoFA_table_filepath, esmecata_input_path, functional_occurrence_filepath, otu_table_stripped_filepath

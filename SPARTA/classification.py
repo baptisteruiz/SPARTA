@@ -52,7 +52,8 @@ def update_iteration_dict(general_dict, iteration_dict):
 
 def run_sparta_classification(functional_profile_filepath, label_filepath, output_folder, nb_runs, nb_iterations,
                             esmecata_input=None, functional_occurrence_filepath=None, otu_abundance_filepath=None, reference_test_sets_filepath=None,
-                            classifiers=20, method='rf', var_ranking_method='gini', keep_temp=None, seed_init = 0, selected_otus_filepath = None, selected_annots_filepath = None):
+                            classifiers=20, method='rf', var_ranking_method='gini', keep_temp=None, seed_init=0, preselected_organisms_filepath=None,
+                            preselected_annots_filepath=None):
     """ Run the classification part of SPARTA using either:
         - (1) a functional profile file (associating functions to samples) with a label file associating samples and labels.
         - (2) a functional profile file, a label file, esmecata input file, functional occurrence file and abundanc of organisms.
@@ -72,6 +73,8 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         var_ranking_method (str): Variable ranking method (gini or shap).
         keep_temp (bool): Bool to keep or not temporary files.
         seed_init (int): Master seed that will define the randomness of the training/validation/test sets (used for reproducibility).
+        preselected_organisms_filepath (str): Path to csv file indicating for each run preselected organisms.
+        preselected_annots_filepath (str): Path to csv file indicating for each run preselected annotations.
     """
     logger.info('SPARTA|classification| Begin classification.')
     # Create metadata dictionary.
@@ -145,10 +148,10 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         run_test_set_dict, run_bank_of_selections_annots, run_bank_of_selections_taxons, \
         run_bank_of_performance_dfs_annots, run_bank_of_performance_dfs_taxons, \
         run_bank_of_average_importances_annots, run_bank_of_average_importances_taxons = run_iterate(functional_profile_filepath, label_filepath, run_output_folder,
-                                                                                                                                                          run_nb, nb_iterations, esmecata_input, functional_occurrence_filepath,
-                                                                                                                                                          otu_abundance_filepath, reference_test_sets_filepath,
-                                                                                                                                                          classifiers, method, var_ranking_method, seed_rf=seed_rf[0], seed_split=seed_split[0], seed_valid=seed_valid[0]
-                                                                                                                                                          ,selected_otus_filepath = selected_otus_filepath, selected_annots_filepath = selected_annots_filepath)
+                                                                                                        run_nb, nb_iterations, esmecata_input, functional_occurrence_filepath,
+                                                                                                        otu_abundance_filepath, reference_test_sets_filepath,
+                                                                                                        classifiers, method, var_ranking_method, seed_rf[0], seed_split[0], seed_valid[0],
+                                                                                                        preselected_organisms_filepath, preselected_annots_filepath)
         bank_of_selections_annots = update_iteration_dict(bank_of_selections_annots, run_bank_of_selections_annots)
         bank_of_selections_taxons = update_iteration_dict(bank_of_selections_taxons, run_bank_of_selections_taxons)
         bank_of_performance_dfs_annots = update_iteration_dict(bank_of_performance_dfs_annots, run_bank_of_performance_dfs_annots)

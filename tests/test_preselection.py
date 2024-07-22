@@ -5,21 +5,16 @@ Created on Sat Jul 20 11:49:20 2024
 @author: yannl
 """
 
-import shutil
-import pandas as pd
 import os
-from csv_diff import load_csv, compare
-import random
-import numpy as np
 
 from SPARTA.iteration import run_iterate
 from SPARTA.classification import run_sparta_classification
 
 def test_preselection_run_sparta_classification(seed_init = 0):
-    functional_profile_filepath = 'test_functional_profile.csv'
-    label_filepath = 'test_label.csv'
+    functional_profile_filepath = os.path.join('input', 'test_functional_profile.csv')
+    label_filepath = os.path.join('input', 'test_label.csv')
     output_folder = 'output_folder' + "_seed" + str(seed_init)
-    selected_annots_filepath = "selected_annots.csv"
+    selected_annots_filepath = os.path.join('input', 'selected_annots.csv')
     run_nb = 3
     nb_iterations = 1
     

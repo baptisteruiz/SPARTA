@@ -5,8 +5,8 @@ import os
 import subprocess
 
 def test_cli_sparta_classification():
-    functional_profile_filepath = 'test_functional_profile.csv'
-    label_filepath = 'test_label.csv'
+    functional_profile_filepath = os.path.join('input', 'test_functional_profile.csv')
+    label_filepath = os.path.join('input', 'test_label.csv')
     output_folder = 'output_folder'
     run_nb = '1'
     nb_iterations = '1'
@@ -39,3 +39,17 @@ def test_cli_sparta_classification():
     assert used_test_set_label == test_set_label
 
     shutil.rmtree(output_folder)
+
+
+def test_cli_pipeline():
+    pipeline_input_filepath = os.path.join('input', 'test_input_pipeline.txt')
+    label_filepath = os.path.join('input', 'test_label.csv')
+    input_folder = os.path.join('input', 'test_pipeline_esmecata')
+    run_nb = '1'
+    nb_iterations = '1'
+    nb_classifier = '1'
+
+    output_folder = 'output_folder'
+    shutil.copytree(input_folder, output_folder)
+    subprocess.call(['sparta', 'pipeline', '-p', pipeline_input_filepath, '-l', label_filepath, '-o', output_folder, '-r', run_nb, '-i', nb_iterations, '-c', nb_classifier])
+

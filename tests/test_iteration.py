@@ -5,8 +5,8 @@ import os
 from SPARTA.iteration import run_iterate
 
 def test_run_iterate():
-    functional_profile_filepath = 'test_functional_profile.csv'
-    label_filepath = 'test_label.csv'
+    functional_profile_filepath = os.path.join('input', 'test_functional_profile.csv')
+    label_filepath = os.path.join('input', 'test_label.csv')
     output_folder = 'output_folder'
     run_nb = 1
     nb_iterations = 1
@@ -44,15 +44,17 @@ def test_run_iterate():
 
 
 def test_run_iterate_reference_test_sets_filepath():
-    functional_profile_filepath = 'test_functional_profile.csv'
-    label_filepath = 'test_label.csv'
+    functional_profile_filepath = os.path.join('input', 'test_functional_profile.csv')
+    label_filepath = os.path.join('input', 'test_label.csv')
+    reference_test_sets_filepath = os.path.join('input', 'test_reference_sets.csv')
     output_folder = 'output_folder'
     run_nb = 1
     nb_iterations = 1
+    nb_classifiers = 1
     if not os.path.exists(output_folder):
         os.mkdir(output_folder)
 
-    run_iterate(functional_profile_filepath, label_filepath, output_folder, run_nb, nb_iterations, classifiers=1, reference_test_sets_filepath='test_reference_sets.csv')
+    run_iterate(functional_profile_filepath, label_filepath, output_folder, run_nb, nb_iterations, classifiers=nb_classifiers, reference_test_sets_filepath=reference_test_sets_filepath)
 
     expected_test_set = ['MH0037', 'MH0036', 'MH0021', 'MH0011', 'MH0009']
     expected_training_set = ['MH0003', 'MH0033', 'MH0032', 'MH0012', 'MH0038', 'MH0028', 'MH0031', 'MH0039', 'MH0024', 'MH0016', 'MH0030', 'MH0020', 'MH0026', 'MH0006']
