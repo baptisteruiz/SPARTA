@@ -13,12 +13,10 @@ from datetime import datetime
 
 import multiprocessing
 
-
 from esmecata.proteomes import retrieve_proteomes
 from esmecata.clustering import make_clustering
 from esmecata.annotation import annotate_proteins
 from esmecata.eggnog import annotate_with_eggnog
-from esmecata.utils import get_rest_uniprot_release, get_sparql_uniprot_release, is_valid_file, is_valid_dir, send_uniprot_sparql_query
 
 from ete3 import NCBITaxa
 
@@ -86,7 +84,7 @@ def pre_formatting(dataset_full, output_file):
 
     return formatted_data, dataset_compos
 
-def formatting_step(label_filepath, abundance_file, output_folder, scaling='no scaling'):
+def formatting_step(abundance_file, output_folder, scaling='no scaling'):
     '''
     This script runs the steps to format the data into:
         - a metadata-less version of the original OTU table (otu_table_stripped)
@@ -97,8 +95,6 @@ def formatting_step(label_filepath, abundance_file, output_folder, scaling='no s
     '''
     if not os.path.exists(output_folder):
         os.mkdir(output_folder)
-    label_file = pd.read_csv(label_filepath)
-
 
     dataset_full = pd.read_csv(abundance_file, header = None, sep = "\t")
     esmecata_input_path = os.path.join(output_folder, 'sofa_calculation.tsv')
@@ -108,11 +104,9 @@ def formatting_step(label_filepath, abundance_file, output_folder, scaling='no s
     #Writing standardised version of the dataset
     otu_table_stripped_filepath = os.path.join(output_folder, 'otu_table_stripped.tsv')
     otu_table_stripped.to_csv(otu_table_stripped_filepath, sep = "\t")
-    deepmicro_otu = data_to_deepmicro(otu_table_stripped)
+    #deepmicro_otu = data_to_deepmicro(otu_table_stripped)
 
-    label_file_df = label_file[otu_table_stripped.columns].transpose()
-
-    return dataset_full, otu_table_stripped, otu_table_stripped_filepath, esmecata_input_path, deepmicro_otu, label_file_df
+    return otu_table_stripped, otu_table_stripped_filepath, esmecata_input_path
 
 
 def tf_igm(dataline, lbd):
@@ -131,13 +125,13 @@ def tf_igm(dataline, lbd):
         else:
             dataline[data_index] = 0
     
-    return(dataline)
+    return (dataline)
+
 
 def tf_igm_apply(deepmicro_sofa):
     '''
     This function runs the TF-IGM transformation function on all lines of a dataset
     '''
-    
     lbd = 7
 
     sum_vector = deepmicro_sofa.sum(axis=1)
@@ -150,6 +144,7 @@ def tf_igm_apply(deepmicro_sofa):
         deepmicro_sofa[i] = score_test
 
     return deepmicro_sofa
+
 
 def sofa_calculation(esmecata_annotation_reference, output_sofa_table_filepath, otu_table_stripped, treatment='tf_igm'):
     '''
@@ -226,6 +221,7 @@ def sofa_calculation(esmecata_annotation_reference, output_sofa_table_filepath, 
 
     if treatment == 'tf_igm':
         deepmicro_sofa = tf_igm_apply(deepmicro_sofa)
+        deepmicro_sofa.transpose().to_csv(output_sofa_table_filepath)
 
     return sofa_table, deepmicro_sofa
 
@@ -234,7 +230,6 @@ def proteome_check(esmecata_prot_out):
     '''
     This function checks if a proteome has been downloaded for each OTU given as input to EsMeCaTa
     '''
-
     path_to_proteome_count = os.path.join(esmecata_prot_out, 'proteome_tax_id.tsv')
 
     proteome_count_db = pd.read_csv(path_to_proteome_count, sep='\t')
@@ -248,7 +243,7 @@ def proteome_check(esmecata_prot_out):
 
     proteome_count = len(list_of_proteomes)
 
-    dir_path = esmecata_prot_out+'/proteomes'
+    dir_path = os.path.join(esmecata_prot_out, 'proteomes')
 
     count = 0
 
@@ -457,7 +452,19 @@ def create_dataset_annotation_file(annotation_reference_folder, dataset_annotati
     return dataset_annotation
 
 
-def run_esmecata(label_filepath, abundance_filepath, output_folder, treatment='tf_igm', scaling='no scaling', esmecata_relaunch=None, eggnog_path=None, update_ncbi=None):
+def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no scaling', esmecata_relaunch=None, eggnog_path=None, update_ncbi=None):
+    """ Run the esmecata part of SPARTA, to infer functions from taxonomic affiliations.
+
+    Args:
+        abundance_filepath (str): Path to the input file indicating the taxonomic affiliations and their abundances in samples.
+        output_folder (str): Path to the output folder.
+        treatment (str): Data treatment for the functional table (can be: 'tf_igm', default: no treatment).
+        scaling (str): Scaling method to apply to the taxonomic table (can be: 'relative', default: no scaling).
+        esmecata_relaunch (bool): This option allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. 
+                                    This is particularly useful if a previous run of the pipeline was botched at this step.
+        eggnog_path (str): Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launched with the 'UniProt' workflow by default.
+        update_ncbi (bool): his option allows the user to force an update of the local NCBI database (taxdump.tar.gz).
+    """
     ## Formatting step
     date_time_format = datetime.now()
     now_begin = date_time_format
@@ -465,7 +472,7 @@ def run_esmecata(label_filepath, abundance_filepath, output_folder, treatment='t
         os.mkdir(output_folder)
 
     logger.info('Input formatting...')
-    dataset_full, otu_table_stripped, otu_table_stripped_filepath, esmecata_input_path, deepmicro_otu, label_file = formatting_step(label_filepath, abundance_filepath, output_folder, scaling)
+    otu_table_stripped, otu_table_stripped_filepath, esmecata_input_path = formatting_step(abundance_filepath, output_folder, scaling)
 
     ####Time measurement####
     date_time_format = datetime.now()

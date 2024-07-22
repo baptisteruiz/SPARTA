@@ -14,11 +14,12 @@ def test_preselection_run_sparta_classification(seed_init = 0):
     functional_profile_filepath = os.path.join('input', 'test_functional_profile.csv')
     label_filepath = os.path.join('input', 'test_label.csv')
     output_folder = 'output_folder' + "_seed" + str(seed_init)
-    selected_annots_filepath = os.path.join('input', 'selected_annots.csv')
+    preselected_annots_filepath = os.path.join('input', 'selected_annots.csv')
     run_nb = 3
     nb_iterations = 1
     
-    run_sparta_classification(functional_profile_filepath, label_filepath, output_folder, run_nb, nb_iterations, classifiers=2, reference_test_sets_filepath=None, seed_init = seed_init, selected_annots_filepath = selected_annots_filepath)
+    run_sparta_classification(functional_profile_filepath, label_filepath, output_folder, run_nb, nb_iterations, classifiers=2, reference_test_sets_filepath=None,
+                              seed_init=seed_init, preselected_annots_filepath=preselected_annots_filepath)
 
     return True
 
