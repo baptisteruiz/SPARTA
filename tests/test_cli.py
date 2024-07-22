@@ -53,3 +53,44 @@ def test_cli_pipeline():
     shutil.copytree(input_folder, output_folder)
     subprocess.call(['sparta', 'pipeline', '-p', pipeline_input_filepath, '-l', label_filepath, '-o', output_folder, '-r', run_nb, '-i', nb_iterations, '-c', nb_classifier])
 
+    # Check esmecata output.
+    # Check function table.
+    output_sofa_table_filepath = os.path.join(output_folder, 'functional_occurrence.tsv')
+    expected_sofa_table = os.path.join('input', 'test_functional_occurrence.tsv')
+    df_expected = pd.read_csv(expected_sofa_table, index_col=0, sep='\t')
+    computed_df = pd.read_csv(output_sofa_table_filepath, index_col=0, sep='\t')
+    # Check that both files have same index (annotation IDs).
+    assert set(df_expected.index) == set(computed_df.index)
+    # Make the comparison on the same index.
+    computed_df = computed_df.loc[df_expected.index]
+    df_expected = df_expected[computed_df.columns]
+    assert all(df_expected.compare(computed_df))
+
+    # Check functional profile.
+    output_sofa_table_filepath = os.path.join(output_folder, 'SoFA_table.csv')
+    expected_sofa_table = os.path.join('expected', 'test_expected_SoFA_table_abundance_test.csv')
+    df_expected = pd.read_csv(expected_sofa_table, index_col=0)
+    computed_df = pd.read_csv(output_sofa_table_filepath, index_col=0)
+
+    # Check that both files have same index (annotation IDs).
+    assert set(df_expected.index) == set(computed_df.index)
+    # Make the comparison on the same index.
+    computed_df = computed_df.loc[df_expected.index]
+    df_expected = df_expected[computed_df.columns]
+    assert all(df_expected.compare(computed_df))
+
+    # Check core results.
+    expected_core_annots_table = os.path.join('expected', 'Core_annots_iteration_-1.csv')
+    expected_core_annots_df = pd.read_csv(expected_core_annots_table)
+    expected_core_taxons_table = os.path.join('expected', 'Core_taxons_iteration_-1.csv')
+    expected_core_taxons_df = pd.read_csv(expected_core_taxons_table)
+
+    computed_core_annots_table = os.path.join(output_folder, 'Core_and_Meta_outputs', 'Best_iteration', 'Core_annots_iteration_-1.csv')
+    computed_core_annots_df = pd.read_csv(computed_core_annots_table)
+    computed_core_taxons_table = os.path.join(output_folder, 'Core_and_Meta_outputs', 'Best_iteration', 'Core_taxons_iteration_-1.csv')
+    computed_core_taxons_df = pd.read_csv(computed_core_taxons_table)
+
+    assert expected_core_annots_df['ID'].to_list() == computed_core_annots_df['ID'].to_list()
+    assert expected_core_taxons_df['ID'].to_list() == computed_core_taxons_df['ID'].to_list()
+
+    shutil.rmtree(output_folder)

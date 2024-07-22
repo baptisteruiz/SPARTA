@@ -32,7 +32,6 @@ sparta = "SPARTA.__main__:main"
 
 [project.urls]
 Homepage = "https://github.com/baptisteruiz/SPARTA"
-Changelog = "https://github.com/baptisteruiz/SPARTA/blob/main/CHANGELOG.md"
 
 [tool.setuptools]
 packages = ['SPARTA']

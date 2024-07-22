@@ -82,7 +82,8 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
     options = {'functional_profile_filepath': functional_profile_filepath, 'label_filepath': label_filepath, 'output_folder': output_folder,
                 'nb_runs': nb_runs, 'nb_iterations': nb_iterations, 'esmecata_input': esmecata_input, 'functional_occurrence_filepath': functional_occurrence_filepath,
                 'otu_abundance_filepath': otu_abundance_filepath, 'reference_test_sets_filepath': reference_test_sets_filepath, 'classifiers': classifiers,
-                'method': method, 'var_ranking_method': var_ranking_method, 'keep_temp': keep_temp, 'seed_init': seed_init}
+                'method': method, 'var_ranking_method': var_ranking_method, 'keep_temp': keep_temp, 'seed_init': seed_init, 'preselected_organisms_filepath': preselected_organisms_filepath,
+                'preselected_annots_filepath': preselected_annots_filepath}
     options['tool_dependencies'] = {}
     options['tool_dependencies']['python_package'] = {}
     options['tool_dependencies']['python_package']['Python_version'] = sys.version

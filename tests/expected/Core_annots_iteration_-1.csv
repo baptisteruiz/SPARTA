@@ -1,0 +1,24 @@
+,ID,Name,Linked_OTUs,Named_linked_OTUs,Average presence in 0,Average presence in 1,Representative_group,Average presence (total)
+0,1.1.1.1,alcohol dehydrogenase.,"['OTU_1', 'OTU_3']","['Methanobrevibacter smithii', 'Methanosphaera stadtmanae']",1.0848773791518005,2.022147787841611,1,1.5535125834967056
+1,2.2.2.2,Not Found,"['OTU_12', 'OTU_2', 'OTU_14']","['Bifidobacterium bifidum', 'Methanobrevibacter unclassified', 'Bifidobacterium longum']",1.7813878624980417,1.0448797221878106,0,1.4131337923429264
+2,3.3.3.3,Not Found,['OTU_3'],['Methanosphaera stadtmanae'],0.5311541353414648,0.5764424244462673,1,0.5537982798938661
+3,4.4.4.4,Not Found,['OTU_4'],['Acidobacteriaceae unclassified'],0.5318871451957118,0.5062564838180147,0,0.5190718145068632
+4,5.5.5.5,Not Found,['OTU_5'],['Actinomyces graevenitzii'],85.5,920.25,1,502.875
+5,6.6.6.6,Not Found,['OTU_6'],['Actinomyces odontolyticus'],993.3333333333334,83.33333333333333,0,538.3333333333334
+6,7.7.7.7,Not Found,['OTU_7'],['Actinomyces turicensis'],551.5833333333334,438.3333333333333,0,494.9583333333333
+7,8.8.8.8,Not Found,['OTU_8'],['Rothia mucilaginosa'],485.9166666666667,446.9166666666667,0,466.4166666666667
+8,GO:0001000,bacterial-type RNA polymerase core enzyme binding,['OTU_1'],['Methanobrevibacter smithii'],0.02256910846887095,0.8692629389490766,1,0.4459160237089737
+9,GO:0002000,detection of renal blood flow,['OTU_2'],['Methanobrevibacter unclassified'],0.8402760941663229,0.061556020328604244,0,0.45091605724746353
+10,GO:0003000,Not Found,['OTU_3'],['Methanosphaera stadtmanae'],0.5311541353414648,0.5764424244462673,1,0.5537982798938661
+11,GO:0004000,adenosine deaminase activity,['OTU_4'],['Acidobacteriaceae unclassified'],0.5318871451957118,0.5062564838180147,0,0.5190718145068632
+12,GO:0005000,vasopressin receptor activity,['OTU_5'],['Actinomyces graevenitzii'],85.5,920.25,1,502.875
+13,GO:0006000,fructose metabolic process,"['OTU_6', 'OTU_13']","['Actinomyces odontolyticus', 'Bifidobacterium catenulatum']",993.8563759586091,83.84780441571799,0,538.8520901871635
+14,GO:0007000,nucleolus organization,['OTU_7'],['Actinomyces turicensis'],551.5833333333334,438.3333333333333,0,494.9583333333333
+15,GO:0008000,Not Found,['OTU_8'],['Rothia mucilaginosa'],485.9166666666667,446.9166666666667,0,466.4166666666667
+16,GO:0009000,selenocysteine lyase activity,"['OTU_16', 'OTU_10', 'OTU_7', 'OTU_12', 'OTU_2', 'OTU_11', 'OTU_5', 'OTU_17', 'OTU_1', 'OTU_9', 'OTU_4', 'OTU_14', 'OTU_6', 'OTU_15', 'OTU_13', 'OTU_8', 'OTU_3']","['Gardnerella vaginalis', 'Bifidobacterium adolescentis', 'Actinomyces turicensis', 'Bifidobacterium bifidum', 'Methanobrevibacter unclassified', 'Bifidobacterium angulatum', 'Actinomyces graevenitzii', 'Gardnerella fictivis', 'Methanobrevibacter smithii', 'Rothia unclassified', 'Acidobacteriaceae unclassified', 'Bifidobacterium longum', 'Actinomyces odontolyticus', 'Bifidobacterium pseudocatenulatum', 'Bifidobacterium catenulatum', 'Rothia mucilaginosa', 'Methanosphaera stadtmanae']",2145.791558074901,1909.4096430549516,0,2027.6006005649263
+17,GO:0011000,replication fork arrest at mating type locus,"['OTU_10', 'OTU_11', 'OTU_9']","['Bifidobacterium adolescentis', 'Bifidobacterium angulatum', 'Rothia unclassified']",0.1760288483755347,1.030712054395386,1,0.6033704513854604
+18,GO:0012000,Not Found,['OTU_12'],['Bifidobacterium bifidum'],0.29313124577659455,0.5458835354306023,1,0.4195073906035985
+19,GO:0013000,Not Found,['OTU_13'],['Bifidobacterium catenulatum'],0.5230426252755384,0.514471082384644,0,0.5187568538300912
+20,GO:0014000,Not Found,['OTU_14'],['Bifidobacterium longum'],0.6479805225551244,0.437440166428604,0,0.5427103444918642
+21,GO:0015000,Not Found,['OTU_15'],['Bifidobacterium pseudocatenulatum'],10.572961399099565,5.553672840782627,0,8.063317119941097
+22,GO:0016000,DNA-directed DNA polymerase activity,"['OTU_16', 'OTU_17']","['Gardnerella vaginalis', 'Gardnerella fictivis']",15.319193617312877,10.48061217465427,0,12.899902895983574
