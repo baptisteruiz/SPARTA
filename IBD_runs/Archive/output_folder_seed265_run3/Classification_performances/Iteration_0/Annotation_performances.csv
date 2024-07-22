@@ -1,6 +1,0 @@
-,Best parameters,Validation set indices,Threshold,Training performance,Validation performance,Test performance
-0,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 5, 'n_estimators': 500}",[74 62 77 42 69 11 33 18 34 46  6 32 15 20 27 57 14 59  0 54 83 28],0.4261,1.0,0.5647,0.875
-1,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 2, 'n_estimators': 300}",[37  8 53 76 57 18 28 20 40 41  5 48 19 66 82 58 80 33 55  1 49  7],0.1874,1.0,0.8706,0.8472
-2,"{'criterion': 'gini', 'max_features': 'log2', 'min_samples_leaf': 2, 'n_estimators': 300}",[11 51 22 34 30 58 36 66 37 64 18 13 19 32 21 81  3 74 70  8 71 10],0.2443,1.0,0.5765,0.75
-3,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 4, 'n_estimators': 500}",[63  9 57 22 27 73 18 40 13 47 71 68 53 33 38 16 58 39 23 82 83 76],0.2782,1.0,0.7059,0.8194
-4,"{'criterion': 'gini', 'max_features': 'sqrt', 'min_samples_leaf': 4, 'n_estimators': 900}",[67 86 87 57  2 38 76 69 18 13 42 84 80 45 65 20 64  1 33 19  8 68],0.2688,1.0,0.7294,0.8889
