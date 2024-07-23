@@ -185,18 +185,20 @@ def add_reaction_names(list_of_annots, output_folder):
 
     go = obo_parser.GODag(go_basic_file)
 
+    with open(enzyme_dat_file) as handle:
+        records = Enzyme.parse(handle)
+        mapping_ec_names = {ec["ID"]: ec["DE"] for ec in records}
+
     reaction_names = []
-    for id in tqdm(list_of_annots, desc='Checking out annotation names...'):
+    for annotation_id in tqdm(list_of_annots, desc='Checking out annotation names...'):
         reaction_names.append("Not Found")
-        if "GO" in id:
-            if id in go:
-                go_term = go[id]
+        if "GO" in annotation_id:
+            if annotation_id in go:
+                go_term = go[annotation_id]
                 reaction_names[-1] = go_term.name
         else:
-            with open(enzyme_dat_file) as handle: 
-                records = Enzyme.parse(handle)
-                de_found = next((item["DE"] for item in records if item["ID"] == id), "Not Found")
-                reaction_names[-1] = de_found
+            de_found = next((mapping_ec_names[ec_id] for ec_id in mapping_ec_names if ec_id == annotation_id), "Not Found")
+            reaction_names[-1] = de_found
 
     dataframe = pd.DataFrame(list(zip(list_of_annots, reaction_names)), columns=["ID","Name"])
                              
