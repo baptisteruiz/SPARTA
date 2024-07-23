@@ -122,6 +122,8 @@ Example can be found in the tests folder ([test_label.csv](https://github.com/ba
 
 Then other optional inputs files can be given to expand the results provided by SPARTA:
 
+- Users can select the number of Run, Iteration and Classifiers launched in the analysis with respectively `-r`, `-i` and `-c`.
+
 - `taxonomic profile` (with the `-tp` parameter): a csv file indicating the abundance of organisms in samples, such as this one:
 
 |            | Sample A | Sample B | Sample C | Sample D |
@@ -169,6 +171,16 @@ Use [esmecata](https://github.com/AuReMe/esmecata/tree/main) to predict function
 | k__Kingdom\|p__Phylum_1\|c__Class_1\|o__Order_1\|f__Family_1\|g__Genus_1   | 40       | 40       | 5        | 5        |
 | k__Kingdom\|p__Phylum_2\|c__Class_2\|o__Order_2\|f__Family_2\|g__Genus_2   | 10       | 5        | 15       | 10       |
 | k__Kingdom\|p__Phylum_3\|c__Class_3\|o__Order_3\|f__Family_3\|g__Genus_3   | 0        | 0        | 100      | 90       |
+
+First, using the sampleID columns, an input file for esmecata will be created, looking like this table:
+
+|  observation_name   | taxonomic_affiliation            |
+|---------------------|----------------------------------|
+| Organism 1          | Kingdom;Phylum_1;Class_1;Order_1;Family_1;Genus_1 |
+| Organism 2          | Kingdom;Phylum_2;Class_2;Order_2;Family_2;Genus_2 |
+| Organism 3          | Kingdom;Phylum_3;Class_3;Order_3;Family_3;Genus_3 |
+
+Then esmecata will infer the associated functions fro mthese taxonomic affiliations.
 
 ### `sparta pipeline`
 

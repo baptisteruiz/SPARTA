@@ -1,12 +1,9 @@
-# importing numpy, pandas, and matplotlib
+# importing numpy, pandas
 from unittest import TextTestRunner
 import numpy as np
 import random
 
 import pandas as pd
-import matplotlib
-matplotlib.use('agg')
-import matplotlib.pyplot as plt
 
 # importing sklearn
 from sklearn.model_selection import train_test_split
@@ -40,45 +37,6 @@ class DeepMicrobiome(object):
         self.prefix = ''
         self.representation_only = False
 
-    def loadData(self, feature_string, label_string, label_dict, dtype=None):
-        # read file
-        filename = self.filename
-        if os.path.isfile(filename):
-            raw = pd.read_csv(filename, sep='\t', index_col=0, header=None)
-        else:
-            print("FileNotFoundError: File {} does not exist".format(filename))
-            exit()
-
-        # select rows having feature index identifier string
-        X = raw.loc[raw.index.str.contains(feature_string, regex=False)].T
-        #X['random'] = np.random.random(size = len(X))
-        
-        # get class labels
-        Y = raw.loc[label_string] #'disease'
-        Y = Y.replace(label_dict)
-
-        # train and test split
-        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X.values.astype(dtype), Y.values.astype('int'), test_size=0.2, random_state=self.real_seed, stratify=Y.values)
-        self.printDataShapes()
-
-    def loadCustomData(self, dtype=None):
-        # read file
-        filename = self.filename
-        if os.path.isfile(filename):
-            raw = pd.read_csv(filename, sep=',', index_col=False, header=None)
-            #raw['random'] = np.random.random(size = len(raw))
-        else:
-            print("FileNotFoundError: File {} does not exist".format(filename))
-            exit()
-
-        # load data
-        self.X_train = raw.values.astype(dtype)
-
-        # put nothing or zeros for y_train, y_test, and X_test
-        self.y_train = np.zeros(shape=(self.X_train.shape[0])).astype(dtype)
-        self.X_test = np.zeros(shape=(1,self.X_train.shape[1])).astype(dtype)
-        self.y_test = np.zeros(shape=(1,)).astype(dtype)
-        self.printDataShapes(train_only=True)
 
     def loadCustomDataWithLabels(self, Y_data, label_data, Ytest_ext, dtype=None, seed_valid_split = 0):
         # read file
@@ -202,64 +160,10 @@ class DeepMicrobiome(object):
 
         return (best_auc, threshold_opt, perf_dict, best_feature_records)
 
-    def printDataShapes(self, train_only=False):
-        print("X_train.shape: ", self.X_train.shape)
-        if not train_only:
-            print("y_train.shape: ", self.y_train.shape)
-            print("X_test.shape: ", self.X_test.shape)
-            print("y_test.shape: ", self.y_test.shape)
-
-    # ploting loss progress over epochs
-    def saveLossProgress(self):
-        #print(self.history.history.keys())
-        #print(type(self.history.history['loss']))
-        #print(min(self.history.history['loss']))
-
-        loss_collector, loss_max_atTheEnd = self.saveLossProgress_ylim()
-
-        # save loss progress - train and val loss only
-        figureName = self.prefix + self.data + '_' + str(self.seed)
-        plt.ylim(min(loss_collector)*0.9, loss_max_atTheEnd * 2.0)
-        plt.plot(self.history.history['loss'])
-        plt.plot(self.history.history['val_loss'])
-        plt.title('model loss')
-        plt.ylabel('loss')
-        plt.xlabel('epoch')
-        plt.legend(['train loss', 'val loss'],
-                   loc='upper right')
-        plt.savefig(self.data_dir + "results/" + figureName + '.png')
-        plt.close()
-
-        if 'recon_loss' in self.history.history:
-            figureName = self.prefix + self.data + '_' + str(self.seed) + '_detailed'
-            plt.ylim(min(loss_collector) * 0.9, loss_max_atTheEnd * 2.0)
-            plt.plot(self.history.history['loss'])
-            plt.plot(self.history.history['val_loss'])
-            plt.plot(self.history.history['recon_loss'])
-            plt.plot(self.history.history['val_recon_loss'])
-            plt.plot(self.history.history['kl_loss'])
-            plt.plot(self.history.history['val_kl_loss'])
-            plt.title('model loss')
-            plt.ylabel('loss')
-            plt.xlabel('epoch')
-            plt.legend(['train loss', 'val loss', 'recon_loss', 'val recon_loss', 'kl_loss', 'val kl_loss'], loc='upper right')
-            plt.savefig(self.data_dir + "results/" + figureName + '.png')
-            plt.close()
-
-    # supporting loss plot
-    def saveLossProgress_ylim(self):
-        loss_collector = []
-        loss_max_atTheEnd = 0.0
-        for hist in self.history.history:
-            current = self.history.history[hist]
-            loss_collector += current
-            if current[-1] >= loss_max_atTheEnd:
-                loss_max_atTheEnd = current[-1]
-        return loss_collector, loss_max_atTheEnd
-
 
 # run exp function
-def run_exp(seed, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, Y_data, label_data, dataset_name, best_feature_records, data_dir, method, var_ranking_method, real_seed, seed_valid):
+def run_exp(seed, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, Y_data, label_data, dataset_name,
+            best_feature_records, data_dir, method, var_ranking_method, real_seed, seed_valid):
 
     random.seed(real_seed)
     vec_rand = random.sample(range(1000), 2)

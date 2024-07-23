@@ -51,8 +51,9 @@ def update_iteration_dict(general_dict, iteration_dict):
 
 
 def run_sparta_classification(functional_profile_filepath, label_filepath, output_folder, nb_runs, nb_iterations,
-                            esmecata_input=None, functional_occurrence_filepath=None, otu_abundance_filepath=None, reference_test_sets_filepath=None,
-                            classifiers=20, method='rf', var_ranking_method='gini', keep_temp=None, seed_init=0):
+                            esmecata_input=None, functional_occurrence_filepath=None, organism_abundance_filepath=None, reference_test_sets_filepath=None,
+                            classifiers=20, method='rf', var_ranking_method='gini', keep_temp=None, seed_init=0, preselected_organisms_filepath=None,
+                            preselected_annots_filepath=None):
     """ Run the classification part of SPARTA using either:
         - (1) a functional profile file (associating functions to samples) with a label file associating samples and labels.
         - (2) a functional profile file, a label file, esmecata input file, functional occurrence file and abundanc of organisms.
@@ -65,21 +66,24 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         nb_iterations (int): Number of iterations per run.
         esmecata_input (str): Path to esmecata input file.
         functional_occurrence_filepath (str): Path to functional occurrence file.
-        otu_abundance_filepath (str): Path to the abundance file associating Organism and their abundances in samples.
+        organism_abundance_filepath (str): Path to the abundance file associating Organism and their abundances in samples.
         reference_test_sets_filepath (str): Path to a file indicating the test sets to used.
         classifiers (int): Number of classifiers to use in a Random Forests.
         method (str): Classifier to use (either rf or svm).
         var_ranking_method (str): Variable ranking method (gini or shap).
         keep_temp (bool): Bool to keep or not temporary files.
         seed_init (int): Master seed that will define the randomness of the training/validation/test sets (used for reproducibility).
+        preselected_organisms_filepath (str): Path to csv file indicating for each run preselected organisms.
+        preselected_annots_filepath (str): Path to csv file indicating for each run preselected annotations.
     """
     logger.info('SPARTA|classification| Begin classification.')
     # Create metadata dictionary.
     metadata = {}
     options = {'functional_profile_filepath': functional_profile_filepath, 'label_filepath': label_filepath, 'output_folder': output_folder,
                 'nb_runs': nb_runs, 'nb_iterations': nb_iterations, 'esmecata_input': esmecata_input, 'functional_occurrence_filepath': functional_occurrence_filepath,
-                'otu_abundance_filepath': otu_abundance_filepath, 'reference_test_sets_filepath': reference_test_sets_filepath, 'classifiers': classifiers,
-                'method': method, 'var_ranking_method': var_ranking_method, 'keep_temp': keep_temp, 'seed_init': seed_init}
+                'organism_abundance_filepath': organism_abundance_filepath, 'reference_test_sets_filepath': reference_test_sets_filepath, 'classifiers': classifiers,
+                'method': method, 'var_ranking_method': var_ranking_method, 'keep_temp': keep_temp, 'seed_init': seed_init, 'preselected_organisms_filepath': preselected_organisms_filepath,
+                'preselected_annots_filepath': preselected_annots_filepath}
     options['tool_dependencies'] = {}
     options['tool_dependencies']['python_package'] = {}
     options['tool_dependencies']['python_package']['Python_version'] = sys.version
@@ -111,7 +115,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
     ## Calculating average presence of taxons and annotations per label, and collecting info about them.
     if esmecata_input is not None:
         esmecata_input = pd.read_csv(esmecata_input, sep='\t')
-    info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, output_folder, esmecata_input, functional_occurrence_filepath, otu_abundance_filepath)
+    info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, output_folder, esmecata_input, functional_occurrence_filepath, organism_abundance_filepath)
 
     nb_runs = int(nb_runs)
     nb_iterations = int(nb_iterations)
@@ -136,7 +140,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         seed_valid = random.sample(range(1000),1)
         seed_split = random.sample(range(1000),1)
         seed_rf = random.sample(range(1000),1)
-        
+        print(seed_valid, seed_split, seed_rf)
         logger.info('SPARTA|classification| Run number {0}.'.format(run_nb))
         run_output_folder = os.path.join(output_folder, 'Run_'+str(run_nb) + '_MasterSeed_' + str(master_seeds[run_nb-1]))
         if not os.path.exists(run_output_folder):
@@ -145,9 +149,10 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         run_test_set_dict, run_bank_of_selections_annots, run_bank_of_selections_taxons, \
         run_bank_of_performance_dfs_annots, run_bank_of_performance_dfs_taxons, \
         run_bank_of_average_importances_annots, run_bank_of_average_importances_taxons = run_iterate(functional_profile_filepath, label_filepath, run_output_folder,
-                                                                                                                                                          run_nb, nb_iterations, esmecata_input, functional_occurrence_filepath,
-                                                                                                                                                          otu_abundance_filepath, reference_test_sets_filepath,
-                                                                                                                                                          classifiers, method, var_ranking_method, seed_rf=seed_rf[0], seed_split=seed_split[0], seed_valid=seed_valid[0])
+                                                                                                        run_nb, nb_iterations, esmecata_input, functional_occurrence_filepath,
+                                                                                                        organism_abundance_filepath, reference_test_sets_filepath,
+                                                                                                        classifiers, method, var_ranking_method, seed_rf[0], seed_split[0], seed_valid[0],
+                                                                                                        preselected_organisms_filepath, preselected_annots_filepath)
         bank_of_selections_annots = update_iteration_dict(bank_of_selections_annots, run_bank_of_selections_annots)
         bank_of_selections_taxons = update_iteration_dict(bank_of_selections_taxons, run_bank_of_selections_taxons)
         bank_of_performance_dfs_annots = update_iteration_dict(bank_of_performance_dfs_annots, run_bank_of_performance_dfs_annots)
@@ -172,7 +177,8 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
 
     visualisation_file = os.path.join(output_folder, 'median_OTU_vs_SoFA_(best_vs_best).png')
     visualisation_file_v2 = os.path.join(output_folder, 'median_OTU_vs_SoFA_(best_vs_best)_v2.png')
-    best_selec_iter_annots, best_selec_iter_taxons = plot_classifs(bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, 'test', visualisation_file, visualisation_file_v2, otu_abundance_filepath)
+    best_selec_iter_annots, best_selec_iter_taxons = plot_classifs(bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, 'test', visualisation_file,
+                                                                   visualisation_file_v2, organism_abundance_filepath)
 
     ##We only calculate Core and Meta selections if there was a variable selection (i.e: not SVM)
     if method == 'rf':
@@ -202,7 +208,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         df_perfs_and_selection_per_iter, warning_annots, warning_taxons = extract_and_write_core_meta((core_and_meta_outputs_folder, core_and_meta_outputs_folder_v2), bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots,
                                                                                                       bank_of_performance_dfs_taxons, bank_of_average_importances_annots, bank_of_average_importances_taxons,
                                                                                                       best_selec_iter_annots, best_selec_iter_taxons,
-                                                                                                      info_annots, info_taxons, nb_runs, esmecata_input, functional_profile_df, otu_abundance_filepath)
+                                                                                                      info_annots, info_taxons, nb_runs, esmecata_input, functional_profile_df, organism_abundance_filepath)
         overall_selection_and_performance_metrics_filepath = os.path.join(output_folder, 'Overall_selection_and_performance_metrics.csv')
         pd.DataFrame.from_dict(df_perfs_and_selection_per_iter).to_csv(overall_selection_and_performance_metrics_filepath)
 

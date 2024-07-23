@@ -53,7 +53,8 @@ def create_test_train_subsets(full_dataset, indices):
 
     return(dataset_train, dataset_test)
 
-def run_deep_micro(set_test, set_train, label_test, label_train, dataset_name, iteration_nb, run_nb, data_dir, profile, classifiers=20, method='rf', var_ranking_method='gini', real_seed = 0, seed_valid = 0):
+def run_deep_micro(set_test, set_train, label_test, label_train, dataset_name, iteration_nb, run_nb, data_dir, profile,
+                   classifiers=20, method='rf', var_ranking_method='gini', real_seed = 0, seed_valid = 0):
     samples_labels_splits = {}
     try:
         ##IMPORT SEPARATE TEST DATASET
@@ -231,12 +232,12 @@ def find_relevant_otus(dataframe, functional_occurrence_filepath, otu_name_df):
     return dataframe
 
 
-def get_info_annots(score_db, output_folder, otu_abundance_filepath, esmecata_input, functional_occurrence_filepath):
+def get_info_annots(score_db, output_folder, organism_abundance_filepath, esmecata_input, functional_occurrence_filepath):
     
     list_of_annots = list(score_db.index)
     annots_with_names = add_reaction_names(list_of_annots, output_folder)
 
-    if otu_abundance_filepath is not None and functional_occurrence_filepath is not None:
+    if organism_abundance_filepath is not None and functional_occurrence_filepath is not None:
         annots_with_names_and_associated_otus = find_relevant_otus(annots_with_names, functional_occurrence_filepath, esmecata_input)
     else:
         annots_with_names_and_associated_otus = annots_with_names
@@ -266,23 +267,23 @@ def average_per_group(score_dataframe, label_refs, label_value = None):
 
     return(filtered_table_group)
 
-def averaging_and_info_step(functional_profile_df, label_refs, output_folder, esmecata_input=None, functional_occurrence_filepath=None, otu_abundance_filepath=None):
+def averaging_and_info_step(functional_profile_df, label_refs, output_folder, esmecata_input=None, functional_occurrence_filepath=None, organism_abundance_filepath=None):
     '''
     This script runs the steps to build an info database on the taxons and annotations from the dataset. Said databases will be used to add information to the final outputs.
     '''
-    if otu_abundance_filepath is not None:
-        otu_count_df = pd.read_csv(otu_abundance_filepath, sep='\t', index_col=0)
+    if organism_abundance_filepath is not None:
+        otu_count_df = pd.read_csv(organism_abundance_filepath, sep='\t', index_col=0)
         info_taxons = get_info_taxons(otu_count_df, esmecata_input, functional_occurrence_filepath)
         avg_count_total = average_count_per_group(otu_count_df, label_refs)
 
-    info_annots = get_info_annots(functional_profile_df, output_folder, otu_abundance_filepath, esmecata_input, functional_occurrence_filepath)
+    info_annots = get_info_annots(functional_profile_df, output_folder, organism_abundance_filepath, esmecata_input, functional_occurrence_filepath)
     avg_score_total = average_per_group(functional_profile_df, label_refs)
 
     df_max_scores = pd.DataFrame()
     df_max_counts = pd.DataFrame()
 
     for label in np.unique(label_refs.values):
-        if otu_abundance_filepath is not None:
+        if organism_abundance_filepath is not None:
             avg_count_group = average_count_per_group(otu_count_df, label_refs, label)
             df_max_counts[label] = avg_count_group['average']
             info_taxons['Average presence in '+str(label)] = avg_count_group['average'].values
@@ -292,7 +293,7 @@ def averaging_and_info_step(functional_profile_df, label_refs, output_folder, es
         info_annots['Average presence in '+str(label)] = avg_score_group['average'].values
         
     
-    if otu_abundance_filepath is not None:
+    if organism_abundance_filepath is not None:
         info_taxons['Representative_group'] = df_max_counts.idxmax(axis=1).values
         info_taxons['Average presence (total)'] = avg_count_total['average'].values
 
@@ -310,9 +311,30 @@ def averaging_and_info_step(functional_profile_df, label_refs, output_folder, es
     return info_annots, info_taxons
 
 
-def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, run_nb, nb_iterations, esmecata_input=None, esmecata_annotation_reference=None,
-                otu_abundance_filepath=None, reference_test_sets_filepath=None,
-                classifiers=20, method='rf', var_ranking_method='gini', seed_rf=0, seed_split=0, seed_valid=0):
+def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, run_nb, nb_iterations, esmecata_input=None, functional_occurrence_filepath=None,
+                organism_abundance_filepath=None, reference_test_sets_filepath=None,
+                classifiers=20, method='rf', var_ranking_method='gini', seed_rf=0, seed_split=0, seed_valid=0, preselected_organisms_filepath=None, preselected_annots_filepath=None):
+    """ Launch the different iterations to select features from classification.
+
+    Args:
+        functional_profile_filepath (str): Path to the functional profile file.
+        label_filepath (str): Path to the label file.
+        run_output_folder (str): Path to the output folder associated with the run.
+        run_nb (int): Run number that is performed.
+        nb_iterations (int): Number of iterations per run, that will be launched.
+        esmecata_input (str): Path to esmecata input file.
+        functional_occurrence_filepath (str): Path to functional occurrence file.
+        organism_abundance_filepath (str): Path to the abundance file associating Organism and their abundances in samples.
+        reference_test_sets_filepath (str): Path to a file indicating the test sets to used.
+        classifiers (int): Number of repeat of classification to perform in an iteration.
+        method (str): Classifier to use (either rf or svm).
+        var_ranking_method (str): Variable ranking method (gini or shap).
+        seed_rf (int): Seed for the random state of GridSearchCV (RandomForestClassifier and StratifiedKFold).
+        seed_split (int): Seed for the random state to split train/validation set and test set.
+        seed_valid (int): Seed for the random state to split train set and validation set.
+        preselected_organisms_filepath (str): Path to csv file indicating for each run preselected organisms.
+        preselected_annots_filepath (str): Path to csv file indicating for each run preselected annotations.
+    """
     functional_profile_df = pd.read_csv(functional_profile_filepath, sep=',', index_col=0)
 
     label_file_df = pd.read_csv(label_filepath)
@@ -327,7 +349,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
     bank_of_average_importances_taxons = {}
 
     ## Calculating average presence of taxons and annotations per label, and collecting info about them
-    info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, run_output_folder, esmecata_input, esmecata_annotation_reference, otu_abundance_filepath)
+    info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, run_output_folder, esmecata_input, functional_occurrence_filepath, organism_abundance_filepath)
     info_annots.to_csv(run_output_folder+'/info_annots_check.csv')
 
     if reference_test_sets_filepath:
@@ -358,10 +380,11 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
     #Keeping track of the selected test sets (and writing them at every run, in case of a crash)
     test_set_dict['Run_'+str(run_nb)] = test_labels
 
-    if otu_abundance_filepath is not None:
-        deepmicro_otu_iteration0 = pd.read_csv(otu_abundance_filepath, sep='\t', index_col=0).transpose()
+    if organism_abundance_filepath is not None:
+        deepmicro_otu_iteration0 = pd.read_csv(organism_abundance_filepath, sep='\t', index_col=0).transpose()
     deepmicro_sofa_iteration0 = functional_profile_df.transpose()
-
+    deepmicro_sofa_iteration = deepmicro_sofa_iteration0 
+    
     trained_classifiers_folder = os.path.join(run_output_folder, 'Trained_classifiers')
     if not os.path.exists(trained_classifiers_folder):
         os.mkdir(trained_classifiers_folder)
@@ -379,15 +402,24 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
     
     seed_rf_vec = random.sample(range(1000),nb_iterations)
     
-    if otu_abundance_filepath is not None:
+    if organism_abundance_filepath is not None:
         deepmicro_otu_iteration = pd.DataFrame()
         deepmicro_otu_iteration = deepmicro_otu_iteration0
-    deepmicro_sofa_iteration = deepmicro_sofa_iteration0
-    
+        if preselected_organisms_filepath is not None:
+            preselected_organisms = pd.read_csv(preselected_organisms_filepath)
+            preselected_organisms_run = preselected_organisms['Run_'+str(run_nb)].dropna()
+            deepmicro_otu_iteration = deepmicro_otu_iteration0.loc[preselected_organisms_run.values].transpose()
+  
+    if preselected_annots_filepath is not None:
+        preselected_annots = pd.read_csv(preselected_annots_filepath)
+        selected_annots_run = preselected_annots['Run_'+str(run_nb)].dropna()
+        deepmicro_sofa_iteration = functional_profile_df.loc[selected_annots_run.values].transpose()
+
+       
     #ITERATED:
     for iteration_number in range(nb_iterations):
     #Separate test and train subsets
-        if otu_abundance_filepath is not None:
+        if organism_abundance_filepath is not None:
             otu_train, otu_test = create_test_train_subsets(deepmicro_otu_iteration, test_labels)
             otu_train = deepmicro_otu_iteration.loc[train_samples]
         annots_train, annots_test = create_test_train_subsets(deepmicro_sofa_iteration, test_labels)
@@ -399,12 +431,12 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
             os.mkdir(trained_classifiers_iteration_folder)
 
         # Run classification wtih DeepMicro.
-        if otu_abundance_filepath is not None:
+        if organism_abundance_filepath is not None:
             perf_df_otu, best_feature_records_otu, taxon_training_validation_sets = run_deep_micro(otu_test, otu_train, labels_test, labels_train, 'test_OTU', iteration_number, run_nb, trained_classifiers_iteration_folder, "Taxonomic",
                                                                     classifiers, method, var_ranking_method, real_seed=seed_rf_vec[nb_iterations-1], seed_valid=seed_valid)
         perf_df_sofa, best_feature_records_sofa, function_training_validation_sets = run_deep_micro(annots_test, annots_train, labels_test, labels_train, 'test_Functions', iteration_number, run_nb, trained_classifiers_iteration_folder, "Functional",
                                                                   classifiers, method, var_ranking_method, real_seed=seed_rf_vec[nb_iterations-1], seed_valid=seed_valid)
-        if otu_abundance_filepath is not None:
+        if organism_abundance_filepath is not None:
             taxon_dataset_separation_iteration_file = os.path.join(dataset_separation_folder, 'Taxonomic_samples_separation_Iteration_'+str(iteration_number)+'.csv')
             pd.DataFrame(taxon_training_validation_sets).to_csv(taxon_dataset_separation_iteration_file)
 
@@ -415,13 +447,13 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
         if not os.path.exists(classification_performances_iteration_folder):
             os.mkdir(classification_performances_iteration_folder)
         
-        if otu_abundance_filepath is not None:
+        if organism_abundance_filepath is not None:
             taxonomic_performances_file = os.path.join(classification_performances_iteration_folder, 'Taxonomic_performances.csv')
             perf_df_otu.to_csv(taxonomic_performances_file)
         annotation_performances_file = os.path.join(classification_performances_iteration_folder, 'Annotation_performances.csv')
         perf_df_sofa.to_csv(annotation_performances_file)
 
-        if otu_abundance_filepath is not None:
+        if organism_abundance_filepath is not None:
             if iteration_number not in bank_of_performance_dfs_taxons:
                 bank_of_performance_dfs_taxons[iteration_number] = {}
             bank_of_performance_dfs_taxons[iteration_number][run_nb] = perf_df_otu
@@ -431,7 +463,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
 
         #If a variable ranking was made (not SVM): select, record and prepare datasets for next iteration 
         if method == "rf":
-            if otu_abundance_filepath is not None:
+            if organism_abundance_filepath is not None:
                 best_feature_records_otu_df = pd.concat(best_feature_records_otu, axis=1)
                 best_feature_records_otu_df.columns = ['Model_'+str(i) for i in range(int(classifiers))]
                 best_feature_records_otu_df.index = deepmicro_otu_iteration.columns
@@ -443,7 +475,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
             #best_feature_records_sofa_df.to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/Run_'+str(run_nb)+'/Classification_performances/Iteration_'+str(iteration_number)+'/Best_feature_records_annotations.csv')
 
             #Average Gini importances
-            if otu_abundance_filepath is not None:
+            if organism_abundance_filepath is not None:
                 best_feature_records_otu_df['Average'] = best_feature_records_otu_df.mean(axis=1)
                 feature_importance_records_taxons_filepath = os.path.join(classification_performances_iteration_folder, 'Feature_importance_records_taxons.csv')
                 best_feature_records_otu_df.to_csv(feature_importance_records_taxons_filepath)
@@ -462,11 +494,11 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
             if not os.path.exists(selected_variables_iteration_folder):
                 os.mkdir(selected_variables_iteration_folder)
 
-            if otu_abundance_filepath is not None:
+            if organism_abundance_filepath is not None:
                 retained_otus = inflexion_cutoff(best_feature_records_otu_df)
             retained_annots = inflexion_cutoff(best_feature_records_sofa_df)
 
-            if otu_abundance_filepath is not None:
+            if organism_abundance_filepath is not None:
                 selection_plus_info_taxons = info_taxons[info_taxons['ID'].isin(list(retained_otus.index))]
                 selection_plus_info_taxons['Average_importance'] = [best_feature_records_otu_df.loc[tax, 'Average'] for tax in selection_plus_info_taxons['ID'].values]
                 selection_plus_info_taxons = selection_plus_info_taxons.sort_values(by='Average_importance')
@@ -475,7 +507,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
             selection_plus_info_annots = selection_plus_info_annots.sort_values(by='Average_importance')
 
             # Write the selection files with info
-            if otu_abundance_filepath is not None:
+            if organism_abundance_filepath is not None:
                 signif_otus = []
                 signif_otu_names = []
 
@@ -520,7 +552,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
             selection_plus_info_annots.to_csv(selected_annotations_run_file)
 
             # Store the selections for later incorporation to the Core/Meta sets
-            if otu_abundance_filepath is not None:
+            if organism_abundance_filepath is not None:
                 if iteration_number not in bank_of_selections_taxons:
                     bank_of_selections_taxons[iteration_number] = {}
                 bank_of_selections_taxons[iteration_number][run_nb] = list(retained_otus.index)
@@ -529,7 +561,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
             bank_of_selections_annots[iteration_number][run_nb] = list(retained_annots.index)
 
             # Update deepmicro_sofa_iteration
-            if otu_abundance_filepath is not None:
+            if organism_abundance_filepath is not None:
                 deepmicro_otu_iteration = deepmicro_otu_iteration0[retained_otus.index]
             deepmicro_sofa_iteration = deepmicro_sofa_iteration0[retained_annots.index]
             

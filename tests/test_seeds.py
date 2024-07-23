@@ -15,8 +15,9 @@ from SPARTA.classification import run_sparta_classification
 
 
 def test_seeding_run_iterate(seed_init=0):
-    functional_profile_filepath = 'test_functional_profile.csv'
-    label_filepath = 'test_label.csv'
+    functional_profile_filepath = os.path.join('input', 'test_functional_profile.csv')
+    label_filepath = os.path.join('input', 'test_label.csv')
+    reference_test_sets_filepath = os.path.join('input', 'test_reference_sets.csv')
     output_folder = 'output_folder' + "_seed" + str(seed_init)
     output_folder_verif = output_folder + "_verif"
     run_nb = 2
@@ -31,13 +32,13 @@ def test_seeding_run_iterate(seed_init=0):
 
     if not os.path.exists(output_folder_verif):
         os.mkdir(output_folder_verif)
-        run_iterate(functional_profile_filepath, label_filepath, output_folder_verif, run_nb, nb_iterations, classifiers=2, reference_test_sets_filepath='test_reference_sets.csv',
+        run_iterate(functional_profile_filepath, label_filepath, output_folder_verif, run_nb, nb_iterations, classifiers=2, reference_test_sets_filepath=reference_test_sets_filepath,
                     seed_rf=seed_rf[0], seed_split=seed_split[0], seed_valid=seed_valid[0])
 
     if not os.path.exists(output_folder):
         os.mkdir(output_folder)
 
-    run_iterate(functional_profile_filepath, label_filepath, output_folder, run_nb, nb_iterations, classifiers=2, reference_test_sets_filepath='test_reference_sets.csv',
+    run_iterate(functional_profile_filepath, label_filepath, output_folder, run_nb, nb_iterations, classifiers=2, reference_test_sets_filepath=reference_test_sets_filepath,
                 seed_rf=seed_rf[0], seed_split=seed_split[0], seed_valid=seed_valid[0])
 
     # Expected sets with seed_init = 0
@@ -92,10 +93,10 @@ def test_seeding_run_iterate(seed_init=0):
     shutil.rmtree(output_folder_verif)
 
 def test_seeding_run_sparta_classification(seed_init=0):
-    functional_profile_filepath = 'test_functional_profile.csv'
-    label_filepath = 'test_label.csv'
+    functional_profile_filepath = os.path.join('input', 'test_functional_profile.csv')
+    label_filepath = os.path.join('input', 'test_label.csv')
     output_folder = 'output_folder' + "_seed" + str(seed_init)
-
+    
     run_nb = 2
     nb_iterations = 1
 
