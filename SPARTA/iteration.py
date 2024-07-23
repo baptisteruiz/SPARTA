@@ -185,9 +185,6 @@ def add_reaction_names(list_of_annots, output_folder):
 
     go = obo_parser.GODag(go_basic_file)
 
-    handle = open(enzyme_dat_file)
-    records = Enzyme.parse(handle)
-
     reaction_names = []
     for id in tqdm(list_of_annots, desc='Checking out annotation names...'):
         reaction_names.append("Not Found")
@@ -196,8 +193,10 @@ def add_reaction_names(list_of_annots, output_folder):
                 go_term = go[id]
                 reaction_names[-1] = go_term.name
         else:
-            de_found = next((item["DE"] for item in records if item["ID"] == id), "Not Found")
-            reaction_names[-1] = de_found
+            with open(enzyme_dat_file) as handle: 
+                records = Enzyme.parse(handle)
+                de_found = next((item["DE"] for item in records if item["ID"] == id), "Not Found")
+                reaction_names[-1] = de_found
 
     dataframe = pd.DataFrame(list(zip(list_of_annots, reaction_names)), columns=["ID","Name"])
                              
@@ -499,9 +498,11 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
 
             if organism_abundance_filepath is not None:
                 selection_plus_info_taxons = info_taxons[info_taxons['ID'].isin(list(retained_otus.index))]
-                selection_plus_info_taxons['Average_importance'] = [best_feature_records_otu_df.loc[tax, 'Average'] for tax in retained_otus.index]
+                selection_plus_info_taxons['Average_importance'] = [best_feature_records_otu_df.loc[tax, 'Average'] for tax in selection_plus_info_taxons['ID'].values]
+                selection_plus_info_taxons = selection_plus_info_taxons.sort_values(by='Average_importance', ascending=False)
             selection_plus_info_annots = info_annots[info_annots['ID'].isin(list(retained_annots.index))]
-            selection_plus_info_annots['Average_importance'] = [best_feature_records_sofa_df.loc[func, 'Average'] for func in retained_annots.index]
+            selection_plus_info_annots['Average_importance'] = [best_feature_records_sofa_df.loc[func, 'Average'] for func in selection_plus_info_annots['ID'].values]
+            selection_plus_info_annots = selection_plus_info_annots.sort_values(by='Average_importance', ascending=False)
 
             # Write the selection files with info
             if organism_abundance_filepath is not None:
