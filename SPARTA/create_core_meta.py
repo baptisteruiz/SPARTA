@@ -52,16 +52,20 @@ def formatting_core_meta_outputs(info_df, core_df, meta_df, average_importances,
         meta_info = None
 
     else:
+        
+
+        meta_info = info_df[info_df['ID'].isin(list(meta_df['ID'].values))]
+        meta_info['Significance_count'] = [meta_df[meta_df['ID'] == func]['Count'].values[0] for func in meta_info['ID'].values]
+
         significance_category = []
-        for count in meta_df['Count'].values:
+        for count in meta_info['Significance_count'].values:
             if count > runs*0.75:
                 significance_category.append('Confident')
             else:
                 significance_category.append('Candidate')
 
-        meta_info = info_df[info_df['ID'].isin(list(meta_df['ID'].values))]
-        meta_info['Significance_count'] = meta_df['Count'].values
         meta_info['Significance_category'] = significance_category
+        meta_info = meta_info.sort_values(by='Significance_count', ascending=False)
 
     return core_info, meta_info
 
@@ -73,12 +77,12 @@ def extract_core_associates(dataframe, core_list, esmecata_input=None):
 
     if 'Linked_annotations' in dataframe.columns:
         col_ref = 'Linked_annotations'
-        new_col = 'Core_linked_annotaions'
+        new_col = 'Robust_linked_annotaions'
         otu_links = False
     else:
-        if 'Linked_annotations' in dataframe.columns:
+        if 'Linked_OTUs' in dataframe.columns:
             col_ref = 'Linked_OTUs'
-            new_col = 'Significant_linked_OTUs'
+            new_col = 'Robust_linked_OTUs'
             otu_links = True
         else:
             col_ref = None
@@ -107,7 +111,7 @@ def extract_core_associates(dataframe, core_list, esmecata_input=None):
                 otu_name_translated_species = otu_name_translated.split(';')[-1]
                 named_links.append(otu_name_translated_species)
             signif_links_named.append(named_links)
-        dataframe['Named_significant_linked_OTUs'] = signif_links_named
+        dataframe['Named_Robust_linked_OTUs'] = signif_links_named
 
     return dataframe
 
