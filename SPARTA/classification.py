@@ -140,7 +140,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         seed_valid = random.sample(range(1000),1)
         seed_split = random.sample(range(1000),1)
         seed_rf = random.sample(range(1000),1)
-        print(seed_valid, seed_split, seed_rf)
+
         logger.info('SPARTA|classification| Run number {0}.'.format(run_nb))
         run_output_folder = os.path.join(output_folder, 'Run_'+str(run_nb) + '_MasterSeed_' + str(master_seeds[run_nb-1]))
         if not os.path.exists(run_output_folder):
@@ -148,11 +148,13 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         # Launch the different iterations for the run.
         run_test_set_dict, run_bank_of_selections_annots, run_bank_of_selections_taxons, \
         run_bank_of_performance_dfs_annots, run_bank_of_performance_dfs_taxons, \
-        run_bank_of_average_importances_annots, run_bank_of_average_importances_taxons = run_iterate(functional_profile_filepath, label_filepath, run_output_folder,
-                                                                                                        run_nb, nb_iterations, esmecata_input, functional_occurrence_filepath,
-                                                                                                        organism_abundance_filepath, reference_test_sets_filepath,
-                                                                                                        classifiers, method, var_ranking_method, seed_rf[0], seed_split[0], seed_valid[0],
-                                                                                                        preselected_organisms_filepath, preselected_annots_filepath)
+        run_bank_of_average_importances_annots, run_bank_of_average_importances_taxons = run_iterate(functional_profile_filepath, label_filepath, run_output_folder, run_nb, nb_iterations,
+                                                                                                     esmecata_input=esmecata_input, functional_occurrence_filepath=functional_occurrence_filepath,
+                                                                                                        organism_abundance_filepath=organism_abundance_filepath, reference_test_sets_filepath=reference_test_sets_filepath,
+                                                                                                        classifiers=classifiers, method=method, var_ranking_method=var_ranking_method,
+                                                                                                        seed_rf=seed_rf[0], seed_split=seed_split[0], seed_valid=seed_valid[0],
+                                                                                                        preselected_organisms_filepath=preselected_organisms_filepath, preselected_annots_filepath=preselected_annots_filepath,
+                                                                                                        info_annots=info_annots, info_taxons=info_taxons)
         bank_of_selections_annots = update_iteration_dict(bank_of_selections_annots, run_bank_of_selections_annots)
         bank_of_selections_taxons = update_iteration_dict(bank_of_selections_taxons, run_bank_of_selections_taxons)
         bank_of_performance_dfs_annots = update_iteration_dict(bank_of_performance_dfs_annots, run_bank_of_performance_dfs_annots)

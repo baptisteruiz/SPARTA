@@ -47,12 +47,12 @@ def formatting_core_meta_outputs(info_df, core_df, meta_df, average_importances,
             for annot in core_info['ID'].values:
                 avg_imps.append([])
         core_info['Average Importance'] = avg_imps
+        core_info = core_info.sort_values(by='Average Importance', ascending=False)
 
     if meta_skip:
         meta_info = None
 
     else:
-
         meta_info = info_df[info_df['ID'].isin(list(meta_df['ID'].values))]
         meta_info['Significance_count'] = [meta_df[meta_df['ID'] == func]['Count'].values[0] for func in meta_info['ID'].values]
 
@@ -63,7 +63,6 @@ def formatting_core_meta_outputs(info_df, core_df, meta_df, average_importances,
             else:
                 significance_category.append('Candidate')
 
-        
         meta_info['Significance_category'] = significance_category
         meta_info = meta_info.sort_values(by='Significance_count', ascending=False)
 

@@ -183,7 +183,7 @@ def add_reaction_names(list_of_annots, output_folder):
         r = requests.get(go_obo_url, allow_redirects=True)
         open(go_basic_file, 'wb').write(r.content)
 
-    go = obo_parser.GODag(go_basic_file)
+    go = obo_parser.GODag(go_basic_file, load_obsolete=True)
 
     with open(enzyme_dat_file) as handle:
         records = Enzyme.parse(handle)
@@ -197,11 +197,16 @@ def add_reaction_names(list_of_annots, output_folder):
                 go_term = go[annotation_id]
                 reaction_names[-1] = go_term.name
         else:
-            de_found = next((mapping_ec_names[ec_id] for ec_id in mapping_ec_names if ec_id == annotation_id), "Not Found")
+            if annotation_id in mapping_ec_names:
+                de_found = mapping_ec_names[annotation_id]
+            else:
+                de_found = "Not Found"
             reaction_names[-1] = de_found
 
     dataframe = pd.DataFrame(list(zip(list_of_annots, reaction_names)), columns=["ID","Name"])
-                             
+    mapping_annotation_filepath = os.path.join(data_folder, 'mapping_annotation.csv')
+    dataframe.to_csv(mapping_annotation_filepath)
+
     return dataframe
 
 def find_relevant_otus(dataframe, functional_occurrence_filepath, otu_name_df):
@@ -313,7 +318,8 @@ def averaging_and_info_step(functional_profile_df, label_refs, output_folder, es
 
 def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, run_nb, nb_iterations, esmecata_input=None, functional_occurrence_filepath=None,
                 organism_abundance_filepath=None, reference_test_sets_filepath=None,
-                classifiers=20, method='rf', var_ranking_method='gini', seed_rf=0, seed_split=0, seed_valid=0, preselected_organisms_filepath=None, preselected_annots_filepath=None):
+                classifiers=20, method='rf', var_ranking_method='gini', seed_rf=0, seed_split=0, seed_valid=0, preselected_organisms_filepath=None, preselected_annots_filepath=None,
+                info_annots=None, info_taxons=None):
     """ Launch the different iterations to select features from classification.
 
     Args:
@@ -334,6 +340,8 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
         seed_valid (int): Seed for the random state to split train set and validation set.
         preselected_organisms_filepath (str): Path to csv file indicating for each run preselected organisms.
         preselected_annots_filepath (str): Path to csv file indicating for each run preselected annotations.
+        info_annots (pd.DataFrame): Dataframe indicating information associated with annotations.
+        info_taxons (pd.DataFrame): Dataframe indicating information associated with organisms.
     """
     functional_profile_df = pd.read_csv(functional_profile_filepath, sep=',', index_col=0)
 
@@ -348,8 +356,9 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
     bank_of_average_importances_annots = {}
     bank_of_average_importances_taxons = {}
 
-    ## Calculating average presence of taxons and annotations per label, and collecting info about them
-    info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, run_output_folder, esmecata_input, functional_occurrence_filepath, organism_abundance_filepath)
+    ## Calculating average presence of taxons and annotations per label, and collecting info about them.
+    if info_annots is None:
+        info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, run_output_folder, esmecata_input, functional_occurrence_filepath, organism_abundance_filepath)
     info_annots.to_csv(run_output_folder+'/info_annots_check.csv')
 
     if reference_test_sets_filepath:
