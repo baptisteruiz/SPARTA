@@ -2,7 +2,7 @@ import shutil
 import pandas as pd
 import os
 
-from SPARTA.iteration import run_iterate
+from sparta_pipeline.iteration import run_iterate
 
 def test_run_iterate():
     functional_profile_filepath = os.path.join('input', 'test_functional_profile.csv')

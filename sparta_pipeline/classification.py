@@ -8,10 +8,10 @@ import sys
 import json
 import random
 
-from SPARTA.iteration import run_iterate, averaging_and_info_step
-from SPARTA.visualize import plot_classifs
-from SPARTA.create_core_meta import extract_and_write_core_meta
-from SPARTA import __version__ as sparta_version
+from sparta_pipeline.iteration import run_iterate, averaging_and_info_step
+from sparta_pipeline.visualize import plot_classifs
+from sparta_pipeline.create_core_meta import extract_and_write_core_meta
+from sparta_pipeline import __version__ as sparta_version
  
 from tqdm import __version__ as tqdm_version
 from requests import __version__ as requests_version

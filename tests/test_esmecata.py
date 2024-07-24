@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-from SPARTA.esmecata import sofa_calculation
+from sparta_pipeline.esmecata import sofa_calculation
 
 def test_sofa_calculation():
     esmecata_annotation_reference = os.path.join('input', 'annotation_reference')

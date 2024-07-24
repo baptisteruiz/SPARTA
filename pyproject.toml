@@ -28,15 +28,15 @@ dependencies = [
 ]
 
 [project.scripts]
-sparta = "SPARTA.__main__:main"
+sparta = "sparta_pipeline.__main__:main"
 
 [project.urls]
 Homepage = "https://github.com/baptisteruiz/SPARTA"
 
 [tool.setuptools]
-packages = ['SPARTA']
-package-dir = {'SPARTA' = 'SPARTA'}
+packages = ['sparta_pipeline']
+package-dir = {'sparta_pipeline' = 'sparta_pipeline'}
 
 [tool.setuptools.dynamic]
-version = { attr = "SPARTA.__version__" }
+version = { attr = "sparta_pipeline.__version__" }
 dependencies = {file = ["requirements.txt"]}

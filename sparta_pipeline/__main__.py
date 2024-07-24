@@ -1,9 +1,6 @@
 import os
-import shutil
 
 import pandas as pd
-
-from collections import defaultdict
 
 import logging
 from datetime import datetime
@@ -13,9 +10,9 @@ from tqdm.contrib.logging import logging_redirect_tqdm
 
 import argparse
 
-from SPARTA import __version__ as VERSION
-from SPARTA.esmecata import run_esmecata
-from SPARTA.classification import run_sparta_classification
+from sparta_pipeline import __version__ as VERSION
+from sparta_pipeline.esmecata import run_esmecata
+from sparta_pipeline.classification import run_sparta_classification
 
 MESSAGE = '''
 A program that averages the RF importance scores of the functional annotations, and associates them to OTUs.

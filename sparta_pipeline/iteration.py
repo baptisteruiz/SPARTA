@@ -4,13 +4,13 @@ import numpy as np
 import requests
 import random
 
-
 from tqdm import tqdm
 from kneebow.rotor import Rotor
 from Bio.ExPASy import Enzyme
 from goatools import obo_parser
 from sklearn.model_selection import train_test_split
-from SPARTA.Deepmicro import run_exp
+
+from sparta_pipeline.Deepmicro import run_exp
 
 def inflexion_cutoff(datatable):
     

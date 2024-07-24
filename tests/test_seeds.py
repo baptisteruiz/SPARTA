@@ -10,8 +10,8 @@ import pandas as pd
 import os
 import random
 
-from SPARTA.iteration import run_iterate
-from SPARTA.classification import run_sparta_classification
+from sparta_pipeline.iteration import run_iterate
+from sparta_pipeline.classification import run_sparta_classification
 
 
 def test_seeding_run_iterate(seed_init=0):
