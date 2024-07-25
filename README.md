@@ -108,7 +108,7 @@ Perform classification (with Random Forests or SVM) on functional profile (optio
 | Function 2 | 50       | 45       | 35       | 15       |
 | Function 3 | 0        | 0        | 200      | 180      |
 
-Example can be found in the tests folder ([test_functional_profile.csv](https://github.com/baptisteruiz/SPARTA/blob/packaging/tests/test_functional_profile.csv)).
+Example can be found in the tests folder ([test_functional_profile.csv](https://github.com/baptisteruiz/SPARTA/blob/packaging/tests/input/test_functional_profile.csv)).
 
 - `label` (with the `-l` parameter): a csv file indicating the label of each sample to make the classification:
 
@@ -116,7 +116,7 @@ Example can be found in the tests folder ([test_functional_profile.csv](https://
 |----------|----------|----------|----------|
 | 0        | 0        | 1        | 1        |
 
-Example can be found in the tests folder ([test_label.csv](https://github.com/baptisteruiz/SPARTA/blob/packaging/tests/test_label.csv)).
+Example can be found in the tests folder ([test_label.csv](https://github.com/baptisteruiz/SPARTA/blob/packaging/tests/input/test_label.csv)).
 
 #### Classification optional inputs
 
@@ -132,7 +132,7 @@ Then other optional inputs files can be given to expand the results provided by 
 | Organism 2 | 10       | 5        | 15       | 10       |
 | Organism 3 | 0        | 0        | 100      | 90       |
 
-Example can be found in the tests folder ([test_taxon_profile.tsv](https://github.com/baptisteruiz/SPARTA/blob/packaging/tests/test_taxon_profile.tsv)).
+Example can be found in the tests folder ([test_taxon_profile.tsv](https://github.com/baptisteruiz/SPARTA/blob/packaging/tests/input/test_taxon_profile.tsv)).
 
 This input will be used by SPARTA to make a second classification with the taxon abundance. Then it will compare the performance of the classification with the functions and the one with the taxon.
 
@@ -145,6 +145,8 @@ This input will be used by SPARTA to make a second classification with the taxon
 | Function 3 | 0          | 0         | 2          |
 
 It will be used by SPARTA to link function to organisms when showing the feature of importance between classifications with function and with taxon.
+Example can be found in the tests folder ([test_functional_occurrence.tsv](https://github.com/baptisteruiz/SPARTA/blob/packaging/tests/input/test_functional_occurrence.tsv)).
+
 
 - `taxonomic affiliations` (with the `-ta` parameter): a csv file indicating the taxonomic affiliations of the organisms, such as this one:
 
