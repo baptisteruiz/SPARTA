@@ -491,7 +491,14 @@ def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no 
 
     if os.path.isdir(esmecata_output_folder):
         if esmecata_relaunch is None:
-            logger.info('An EsMeCaTa output has been found for your dataset. This output will be used for the rest of the pipeline. If you wish to re-launch EsMeCaTa, please remove the existing output before launching SPARTA.')
+            annotation_reference_folder = os.path.join(output_folder, 'EsMeCaTa_outputs', 'esmecata_outputs_annots', 'annotation_reference')
+            reference_proteins_consensus_fasta_folder = os.path.join(output_folder, 'EsMeCaTa_outputs', 'esmecata_outputs_clustering', 'reference_proteins_consensus_fasta')
+            proteomes_tax_id = os.path.join(output_folder, 'EsMeCaTa_outputs', 'esmecata_outputs_clustering', 'proteome_tax_id.tsv')
+            check_outputs, empty_ids = check_annotation(reference_proteins_consensus_fasta_folder, esmecata_output_folder, proteomes_tax_id)
+            if check_outputs is False:
+                esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi)
+            else:
+                logger.info('An EsMeCaTa output has been found for your dataset. This output will be used for the rest of the pipeline. If you wish to re-launch EsMeCaTa, please remove the existing output before launching SPARTA.')
         else:
             logger.info('Re-launching EsMeCaTa over previous results')
             if os.path.isdir(annotation_reference_folder):
