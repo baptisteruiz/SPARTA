@@ -52,7 +52,7 @@ def update_iteration_dict(general_dict, iteration_dict):
 
 def run_sparta_classification(functional_profile_filepath, label_filepath, output_folder, nb_runs, nb_iterations,
                             esmecata_input=None, functional_occurrence_filepath=None, organism_abundance_filepath=None, reference_test_sets_filepath=None,
-                            classifiers=20, method='rf', var_ranking_method='gini', keep_temp=None, seed_init=0, preselected_organisms_filepath=None,
+                            classifiers=20, method='rf', var_ranking_method='gini', keep_temp=None, seed_init=42, preselected_organisms_filepath=None,
                             preselected_annots_filepath=None):
     """ Run the classification part of SPARTA using either:
         - (1) a functional profile file (associating functions to samples) with a label file associating samples and labels.
