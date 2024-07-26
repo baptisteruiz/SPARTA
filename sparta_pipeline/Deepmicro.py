@@ -167,9 +167,13 @@ def run_exp(seed, best_auc, threshold_opt, perf_dict, Xtest_ext, Ytest_ext, Y_da
 
     random.seed(real_seed)
     vec_rand = random.sample(range(1000), 2)
+
+    np.random.seed(real_seed)
+
     dm = DeepMicrobiome(data=dataset_name, seed=seed, data_dir=data_dir, rand_state = vec_rand)
     random.seed(seed_valid)
     seed_valid_split = random.sample(range(1000), 1)[0]
+
 
 
     dm.loadCustomDataWithLabels(Y_data=Y_data, label_data=label_data, Ytest_ext=Ytest_ext, dtype=None, seed_valid_split = seed_valid_split )
