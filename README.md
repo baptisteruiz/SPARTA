@@ -164,7 +164,7 @@ Use [esmecata](https://github.com/AuReMe/esmecata/tree/main) to predict function
 
 #### `sparta esmecata` required inputs
 
-`sparta esmecata` can be run with different inputs but always two are required:
+`sparta esmecata` requires one input:
 
 - `taxon abundance` (with the `-p` parameter): a csv file indicating the taxonomic affiliatiosn of the organisms the sampels and their abundance:
 
@@ -182,7 +182,23 @@ First, using the sampleID columns, an input file for esmecata will be created, l
 | Organism 2          | Kingdom;Phylum_2;Class_2;Order_2;Family_2;Genus_2 |
 | Organism 3          | Kingdom;Phylum_3;Class_3;Order_3;Family_3;Genus_3 |
 
-Then esmecata will infer the associated functions fro mthese taxonomic affiliations.
+Then esmecata will infer the associated functions from these taxonomic affiliations.
+
+#### `sparta esmecata` options
+
+The following arguments can be used with `sparta esmecata`:
+
+- `treatment` (with the `-t` parameter) : Data treatment for the functional table (can be: 'tf_igm', default: no treatment)
+
+- `scaling` (with the `-s` parameter) : Scaling method to apply to the taxonomic table (can be: 'relative', default: no scaling)
+
+- `eggnog`: Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launched with the 'UniProt' workflow by default.
+
+- `esmecata_relaunch`: This option allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.
+
+- `parent_parser_keep_temp` : This option allows the user to keep the contents of the 'Outputs_temp' folder at the end of the run.
+
+- `parent_parser_update_ncbi` : This option allows the user to force an update of the local NCBI database (taxdump.tar.gz). **This option is particularly recommended if you are running EsMeCaTa for the first time.**
 
 ### `sparta pipeline`
 
