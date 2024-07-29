@@ -196,9 +196,9 @@ The following arguments can be used with `sparta esmecata`:
 
 - `esmecata_relaunch`: This option allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.
 
-- `parent_parser_keep_temp` : This option allows the user to keep the contents of the 'Outputs_temp' folder at the end of the run.
+- `keep_temp` : This option allows the user to keep the contents of the 'Outputs_temp' folder at the end of the run.
 
-- `parent_parser_update_ncbi` : This option allows the user to force an update of the local NCBI database (taxdump.tar.gz). **This option is particularly recommended if you are running EsMeCaTa for the first time.**
+- `update_ncbi` : This option allows the user to force an update of the local NCBI database (taxdump.tar.gz). **This option is particularly recommended if you are running EsMeCaTa for the first time.**
 
 ### `sparta pipeline`
 
