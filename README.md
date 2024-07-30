@@ -204,106 +204,45 @@ The following arguments can be used with `sparta esmecata`:
 
 Use [esmecata](https://github.com/AuReMe/esmecata/tree/main) to predict functions from taxonomic affiliations. Then use `sparta classification` for the classification part.
 
-### REQUIRED:
-    
-"-d","--dataset_name": Name of the dataset
-
-### OPTIONAL:
-
-    - "-t", "--treatment" (str, default=None): Data treatment for the functional table (can be: 'tf_igm', default: no treatment)
-    - "-s", "--scaling" (str, default=None): Scaling method to apply to the taxonomic table (can be: 'relative', default: no scaling)
-    - "-i", "--iterations" (int, default=5): Number of iterations of the method
-    - "-f", "--forests" (int, default=20): Amount of trained classifiers per iteration of the command
-    - "-r", "--runs" (int, default=10): Amount of pipeline runs
-    - "-e", "--esmecata" (bool, default=True): Launch EsMeCaTa within the pipeline
-    - "--eggnog" (default=False): Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launched with the 'UniProt' workflow by default.
-    - "--annotations_only" (default=False): This is a flag that signals that the input is a functional table. If True, all steps involving taxonomic tables will be skipped, and SPARTA will iteratively classify and select on the given functional table alone.
-    - "--reference_test_sets" (default=False): This is a flag that allows the user to give their own test sets to be used during classification.
-    - "--esmecata_relaunch" (default=False): This is a flag that allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.
-    
-EXAMPLE:
-python main.py -d abundance_testing -s relative -t tf_igm -i 3 -r 4
-
-## INPUTS:
-All input files should be stored inside the 'Inputs' folder before launching the pipeline.
-### REQUIRED:
-
-    - Abundance profile:
-    
-        Must be a .txt file with tabular separation
-        
-        First row must be named 'sampleID', with the subsequent sample names heading each column
-        
-        If the input is a taxonomic abundance file:
-        
-            Metadata can also be included within the file, it will not be taken account of
-            
-            Each row must be named after an OTU, and give its abundance per sample
-            
-            The OTU names should be in the format: "k__kingdom|p__phylum|c__class|o__order|f__family|g__genus|s__species"
-            
-        If the input is a functional abundance file:
-        
-            Please do not include metadata in the file
-            
-            Each row must be named after an annotation (ID: GO term or EC number), and give its abundance per sample
-            
-            If the input is functional, please raise the --annotations_only flag. No other profile will be calculated.
-            
-    - Labels:
-    
-        Must be a .csv file named according to the corresponding abundance file (i.e: if the abundance data is named 'abundance_tryout.txt', the associated labels must be named 'Label_abundance_tryout.csv')
-        
-        Must be a vector of the individuals' labels (numerical category descriptor), respecting the order in which said samples are given in the taxonomic abundance table.
-
-### CAN BE REQUIRED:
-    
-    - Test sets to be used (only if the --reference_test_sets flag is used):
-    
-        Name the file according to the corresponding input (i.e: if the abundance data is named 'abundance_tryout.txt', the associated test set dataframe must be named 'Test_sets_abundance_tryout.csv')
-        
-        The 'Test_sets.csv' output file from a previous iteration can be used for reproductibility
-        
-        Column names: 'Run_i' for i in the required amount of runs (make sure it matches the -i argument) 
-        
-        List the sample IDs to be used as test subsets for each run in the columns
-        
-        An index column is required 
-        
+     
 
 ## OUTPUTS DESCRIPTION:
 
-    Meta_Outputs:
-       └── run reference (name of the dataset + transformation arguments + date of beginning):
-            └── median_OTU_vs_SoFA_(best_vs_best).png: graphical representation of the classification performances (median ROC AUC per run) at the optimal selective iteration for both taxonomic and functional profiles. Both performance 
-            |       distributions are compared statistically by a Mann-Whitney U-test, the p-value of which is given in the figure's title. The optimal selection levels for both profiles are also given.
-            └── Test_sets.csv: sample IDs used as test sets for each run of the pipeline.
-            └── SoFA_table_[dataset_name].csv: functional profile calculated from the taxonomic input
-            └── Run_n (for n in the amount of pipeline repetitions)
-            |    ├──  Classification_performances
-            |    |     └── Iteration_i (for all i iterations of the method
-            |    |           ├── Taxonomic_performances.csv: Performance metrics of each RF model trained during this iteration on the training, validation and test subsets of the taxonomic data, and their optimal found parameters
-            |    |           └── Annotation_performances.csv: Performance metrics of each RF model trained during this iteration on the training, validation and test subsets of the functional data, and their optimal found parameters
-            |    ├── Selected_outputs
-            |    |     └── Iteration_i (for all i iterations of the method
-            |    |           ├── Selected_annotations_run_n_iter_i.csv : List of all functional annotations selected at this run and iteration, ranked by decreasing importance
-            |    |           └── Selected_taxons_run_n_iter_i.csv : List of all taxons selected at this run and iteration, ranked by decreasing importance
-            |    └── Trained Classifiers
-            |       └── [dataset_name]_[Functions/OTU]_saved_classifier.joblib : best performing classifiers, as determined by performance on validation set, in this iteration.
-            └── Core_and_Meta_outputs
-                ├── All_iterations
-                |      ├── Core_annots_iteration_i (for i in the amount of iterations of the process per repetition): list of the robust (Core) annotations at selection level i
-                |      ├── Meta_annots_iteration_i (for i in the amount of iterations of the process per repetition): list of the candidate and confident (Meta) annotations at selection level i (the 'Significance_count' column gives the amount of classifiers that count the feature as significant)
-                |      ├── Core_taxons_iteration_i (for i in the amount of iterations of the process per repetition): list of the robust (Core) taxons at selection level i
-                |      └── Meta_taxons_iteration_i (for i in the amount of iterations of the process per repetition): list of the candidate and confident (Meta) taxons at selection level i (the 'Significance_count' column gives the amount of classifiers that count the feature as significant)
-                |    For each variable in these sublists, the following extra information is given:
-                |         - The name of the taxon/annotation
-                |         - The associated counterpart variables (if annotation: the taxons that express it; if taxon: the annotation that it expresses), and among them, those that are 'Robust' at the same level of iteration
-                |         - Their average expression in each label category, and the group it is representative of (highest average expression)
-                |         - If Meta: the amount of times the variable has been selected over all runs of the pipeline at the given iteration level, and which category ('Candidate' or 'Confident')
-                |
-                └── Best_iterations
-                        └── Same outputs as 'All iterations', but only for the level of selection that gives the best classification performances for the functional and taxonomic profiles
+output_folder (given by the -o argument):
+        └── median_OTU_vs_SoFA_(best_vs_best).png: graphical representation of the classification performances (median ROC AUC per run) at the optimal selective iteration for both taxonomic and functional profiles. Both performance 
+        |       distributions are compared statistically by a Mann-Whitney U-test, the p-value of which is given in the figure's title. The optimal selection levels for both profiles are also given.
+        └── stopwatch.txt: Records of the duration of the process, divided by step.
+        └── Overall_selection_and_performance_metrics.csv: A summary of the median AUC and sizes of the Robust, Confident and Candidate subsets obtained after each iteration, on each profile.
+        └── Test_sets.csv: sample IDs used as test sets for each run of the pipeline.
+        └── SoFA_table_[dataset_name].csv: functional profile calculated from the taxonomic input
+        └── Run_n (for n in the amount of pipeline repetitions. The random seed used for this run is also given in the name of the folder.)
+        |    ├──  Classification_performances
+        |    |     └── Iteration_i (for all i iterations of the method
+        |    |           ├── Taxonomic_performances.csv: Performance metrics of each RF model trained during this iteration on the training, validation and test subsets of the taxonomic data, and their optimal found parameters
+        |    |           └── Annotation_performances.csv: Performance metrics of each RF model trained during this iteration on the training, validation and test subsets of the functional data, and their optimal found parameters
+        |    ├── Selected_Variables
+        |    |     └── Iteration_i (for all i iterations of the method
+        |    |           ├── Selected_annotations_run_n_iter_i.csv : List of all functional annotations selected at this run and iteration, ranked by decreasing importance
+        |    |           └── Selected_taxons_run_n_iter_i.csv : List of all taxons selected at this run and iteration, ranked by decreasing importance
+        |    └── Trained Classifiers
+        |    |      └── Iteration_i (for all i iterations of the method
+        |    |             └── test_[Functions/OTU]_saved_classifier.joblib : best performing classifiers, as determined by performance on validation set, in this iteration.
+        |    └── Dataset_separation
+        |           └── [Annotation/Taxonomic]_samples_separation_Iteration_i.csv: records of the labels and indices of all individuals in the training, validation and test sets for this iteration.
+        └── Core_and_Meta_outputs
+            ├── All_iterations
+            |      ├── Core_annots_iteration_i (for i in the amount of iterations of the process per repetition): list of the robust (Core) annotations at selection level i
+            |      ├── Meta_annots_iteration_i (for i in the amount of iterations of the process per repetition): list of the candidate and confident (Meta) annotations at selection level i (the 'Significance_count' column gives the amount of classifiers that count the feature as significant)
+            |      ├── Core_taxons_iteration_i (for i in the amount of iterations of the process per repetition): list of the robust (Core) taxons at selection level i
+            |      └── Meta_taxons_iteration_i (for i in the amount of iterations of the process per repetition): list of the candidate and confident (Meta) taxons at selection level i (the 'Significance_count' column gives the amount of classifiers that count the feature as significant)
+            |    For each variable in these sublists, the following extra information is given:
+            |         - The name of the taxon/annotation
+            |         - The associated counterpart variables (if annotation: the taxons that express it; if taxon: the annotation that it expresses), and among them, those that are 'Robust' at the same level of iteration
+            |         - Their average expression in each label category, and the group it is representative of (highest average expression)
+            |         - If Meta: the amount of times the variable has been selected over all runs of the pipeline at the given iteration level, and which category ('Candidate' or 'Confident')
+            |
+            └── Best_iterations
+                    └── Same outputs as 'All iterations', but only for the level of selection that gives the best classification performances for the functional and taxonomic profiles
 
 ### Other outputs:
     - EsMeCaTa_outputs: outputs of the EsMeCaTa pipeline, only the results of the 'annotation' step are kept for storage efficiency. These outputs can be re-used from one application of the pipeline to a dataset to another.
