@@ -207,7 +207,7 @@ Use [esmecata](https://github.com/AuReMe/esmecata/tree/main) to predict function
      
 
 ## OUTPUTS DESCRIPTION:
-
+```
 output_folder (given by the -o argument):
         └── median_OTU_vs_SoFA_(best_vs_best).png: graphical representation of the classification performances (median ROC AUC per run) at the optimal selective iteration for both taxonomic and functional profiles. Both performance 
         |       distributions are compared statistically by a Mann-Whitney U-test, the p-value of which is given in the figure's title. The optimal selection levels for both profiles are also given.
@@ -243,7 +243,7 @@ output_folder (given by the -o argument):
             |
             └── Best_iterations
                     └── Same outputs as 'All iterations', but only for the level of selection that gives the best classification performances for the functional and taxonomic profiles
-
+```
 ### Other outputs:
     - EsMeCaTa_outputs: outputs of the EsMeCaTa pipeline, only the results of the 'annotation' step are kept for storage efficiency. These outputs can be re-used from one application of the pipeline to a dataset to another.
     - data: enzyme and GO OBO databases, for reference. Only downloaded once.
