@@ -250,6 +250,7 @@ output_folder (given by the -o argument):
 
 ## STEPS OF THE PIPELINE:
 
+### `sparta esmecata` steps
 1) Formatting:
    
 This step shapes the inputs of the pipeline into a form that is compatible with the next steps of the pipeline, notably those based on external tools (EsMeCaTa and DeepMicro), and removes eventual 
@@ -325,8 +326,10 @@ Main function: sofa_calculation(pipeline_path, dataset_name, data_ref_output_nam
     Outputs: sofa_table: a taxonomic description of the microbian communities described by the original taxonomic abundance table. Abundance of taxonomic units are replaced by scores of functional annotations, 
     for the GO terms and EC numbers associated to the taxonomic profile by EsMeCaTa.
              deepmicro_sofa: a transposed version of sofa_table, compatible as a functional input for DeepMicro
-        
-5) Averaging scores and fetching information:
+
+### `sparta classification` steps
+
+4) Averaging scores and fetching information:
 
 In this step, descriptive tables are created for each taxonomic unit and/or functional annotation in our profiles. These descriptions notably tell: the average persence of a feature in each labeled catgory, the 
 category that expresses it the most on average, and the total average expression of the feature over the whole profile. For taxons, the detailed taxonomy and the annotations it expresses are fetched. For each 
@@ -350,7 +353,8 @@ Main function: averaging_and_info_step(otu_table_stripped, sofa_table, label_fil
         - goatools' obo_parser function for GO terms (https://github.com/tanghaibao/goatools)
         - the Enzyme module of Bio.ExPASy (https://biopython.org/docs/1.75/api/Bio.ExPASy.html)
 
-6) Iterated classification and selection:
+
+5) Iterated classification and selection:
    
 This step is repeated as many times as indicated by the '-r' argument. It consists in classifying individuals based on their functional and, if given, taxonomic profiles. This takes place in three steps:
 
@@ -436,7 +440,7 @@ C) Variable selection:
 
 Classification performances and lists of selected variables for all runs and iterations are passed on to the subsequent steps of the pipeline.
 
-7) Plotting classification performances:
+6) Plotting classification performances:
 
 Main function: plot_classifs(bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, dataset_name, pipeline_path, data_ref_output_name, args_passed)
 
@@ -456,7 +460,7 @@ Main function: plot_classifs(bank_of_performance_dfs_annots, bank_of_performance
     Plotting is done using the matplotlib and seaborn libraries. A statistical comparison of the median performances per run at optimal iteration for each profile is also made at this point, using scipy's 
     implementation of the Mann-Whitney U-test (https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html). The test's p-value is indicated on the plot.
 
-8) Measuring the robustness of variables over all runs:
+7) Measuring the robustness of variables over all runs:
 
 Main function: extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_of_selections_taxons, best_selec_iter_annots, best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, otu_table_stripped, sofa_table)
 
