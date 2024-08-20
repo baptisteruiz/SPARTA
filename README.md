@@ -110,6 +110,8 @@ Perform classification (with Random Forests or SVM) on functional profile (optio
 
 Example can be found in the tests folder ([test_functional_profile.csv](https://github.com/baptisteruiz/SPARTA/blob/packaging/tests/input/test_functional_profile.csv)).
 
+If the functional profile was obtained using HuMAnN, the user should remove the partial functional abundances per associated taxon.
+
 - `label` (with the `-l` parameter): a csv file indicating the label of each sample to make the classification:
 
 | Sample A | Sample B | Sample C | Sample D |
@@ -146,6 +148,7 @@ This input will be used by SPARTA to make a second classification with the taxon
 
 It will be used by SPARTA to link function to organisms when showing the feature of importance between classifications with function and with taxon.
 Example can be found in the tests folder ([test_functional_occurrence.tsv](https://github.com/baptisteruiz/SPARTA/blob/packaging/tests/input/test_functional_occurrence.tsv)).
+
 
 
 - `taxonomic affiliations` (with the `-ta` parameter): a csv file indicating the taxonomic affiliations of the organisms, such as this one:
