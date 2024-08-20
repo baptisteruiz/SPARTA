@@ -110,7 +110,7 @@ Perform classification (with Random Forests or SVM) on functional profile (optio
 
 Example can be found in the tests folder ([test_functional_profile.csv](https://github.com/baptisteruiz/SPARTA/blob/packaging/tests/input/test_functional_profile.csv)).
 
-If the functional profile was obtained using HuMAnN, the user should remove the partial functional abundances per associated taxon.
+If the functional profile was obtained using HuMAnN, the user should remove the partial functional abundances per associated taxon, as well as the UNMAPPED and UNINTEGRATED results.
 
 - `label` (with the `-l` parameter): a csv file indicating the label of each sample to make the classification:
 
