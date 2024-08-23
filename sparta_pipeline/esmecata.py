@@ -16,12 +16,12 @@ import multiprocessing
 from esmecata import __version__ as esmecata_version
 esmecata_version = tuple(esmecata_version.split('.'))
 
-if esmecata_version < ('0', '5', '0') is True:
+if esmecata_version < ('0', '5', '0') == True:
     from esmecata.proteomes import retrieve_proteomes
     from esmecata.clustering import make_clustering
     from esmecata.annotation import annotate_proteins
     from esmecata.eggnog import annotate_with_eggnog
-elif esmecata_version >= ('0', '5', '0') is True:
+elif esmecata_version >= ('0', '5', '0') == True:
     from esmecata.core.proteomes import retrieve_proteomes
     from esmecata.core.clustering import make_clustering
     from esmecata.core.annotation import annotate_proteins
@@ -289,7 +289,7 @@ def check_annotation(reference_proteins_consensus_fasta_folder, annotation_refer
     annotated_observation_names = [observation_name.replace('.tsv', '') for observation_name in os.listdir(annotation_reference_folder)]
     expected_annotations = [observation_name for observation_name in proteomes_taxa_names
                                                 if os.path.exists(os.path.join(reference_proteins_consensus_fasta_folder, proteomes_taxa_names[observation_name] + '.faa'))]
-    
+
     logger.info('Annotated observations: '+str(annotated_observation_names))
     logger.info('Expected observations: '+str(expected_annotations))
 
@@ -367,7 +367,7 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
         if os.path.exists(esmecata_cluster_out):
             logger.info('Previous incomplete iteration of the clustering step found: deleting and starting over')
             shutil.rmtree(esmecata_cluster_out, ignore_errors=True)
-        if esmecata_version >= ('0', '5', '0') is True:
+        if esmecata_version >= ('0', '5', '0') == True:
             make_clustering(esmecata_prot_out, esmecata_cluster_out, nb_core=nb_cpu_available, mmseqs_options=None, clust_threshold=0.5, linclust=None, remove_tmp=True)
         else:
             make_clustering(esmecata_prot_out, esmecata_cluster_out, nb_cpu=nb_cpu_available, mmseqs_options=None, clust_threshold=0.5, linclust=None, remove_tmp=True)
@@ -379,7 +379,7 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
             annotate_proteins(esmecata_cluster_out, esmecata_annots_out, uniprot_sparql_endpoint=None,
                             propagate_annotation=1, uniref_annotation=None, expression_annotation=None, option_bioservices=True)
         else:
-            if esmecata_version >= ('0', '5', '0') is True:
+            if esmecata_version >= ('0', '5', '0') == True:
                 annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_core=nb_cpu_available)
             else:
                 annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_cpu=nb_cpu_available)
@@ -400,7 +400,7 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
                 annotate_proteins(esmecata_cluster_out, esmecata_annots_out, uniprot_sparql_endpoint=None,
                                 propagate_annotation=1, uniref_annotation=None, expression_annotation=None, option_bioservices=True)
             else:
-                if esmecata_version >= ('0', '5', '0') is True:
+                if esmecata_version >= ('0', '5', '0') == True:
                     annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_core=nb_cpu_available)
                 else:
                     annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_cpu=nb_cpu_available)
@@ -512,7 +512,7 @@ def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no 
             annotation_reference_folder = os.path.join(output_folder, 'EsMeCaTa_outputs', 'esmecata_outputs_annots', 'annotation_reference')
             reference_proteins_consensus_fasta_folder = os.path.join(output_folder, 'EsMeCaTa_outputs', 'esmecata_outputs_clustering', 'reference_proteins_consensus_fasta')
             proteomes_tax_id = os.path.join(output_folder, 'EsMeCaTa_outputs', 'esmecata_outputs_clustering', 'proteome_tax_id.tsv')
-            check_outputs, empty_ids = check_annotation(reference_proteins_consensus_fasta_folder, esmecata_output_folder, proteomes_tax_id)
+            check_outputs, empty_ids = check_annotation(reference_proteins_consensus_fasta_folder, annotation_reference_folder, proteomes_tax_id)
             if check_outputs is False:
                 esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi)
             else:
