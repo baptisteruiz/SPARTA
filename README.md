@@ -13,13 +13,13 @@
       - [Classification optional inputs](#classification-optional-inputs)
     - [`sparta esmecata`](#sparta-esmecata)
       - [`sparta esmecata` required inputs](#sparta-esmecata-required-inputs)
+      - [`sparta esmecata` options](#sparta-esmecata-options)
     - [`sparta pipeline`](#sparta-pipeline)
-    - [REQUIRED:](#required)
-  - [INPUTS:](#inputs)
-    - [CAN BE REQUIRED:](#can-be-required)
   - [OUTPUTS DESCRIPTION:](#outputs-description)
     - [Other outputs:](#other-outputs)
   - [STEPS OF THE PIPELINE:](#steps-of-the-pipeline)
+    - [`sparta esmecata` steps](#sparta-esmecata-steps)
+    - [`sparta classification` steps](#sparta-classification-steps)
 
 ## Installation
 
