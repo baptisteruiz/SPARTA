@@ -1,120 +1,259 @@
 # SPARTA (Shifting Paradigms to Annotation Representation from Taxonomy to identify Archetypes)
 
+## Table of contents
+- [SPARTA (Shifting Paradigms to Annotation Representation from Taxonomy to identify Archetypes)](#sparta-shifting-paradigms-to-annotation-representation-from-taxonomy-to-identify-archetypes)
+  - [Table of contents](#table-of-contents)
+  - [Installation](#installation)
+    - [Requirements](#requirements)
+    - [Classification installation](#classification-installation)
+    - [Pipeline and esmecata installation](#pipeline-and-esmecata-installation)
+  - [Usage](#usage)
+    - [`sparta classification`](#sparta-classification)
+      - [Classification required inputs](#classification-required-inputs)
+      - [Classification optional inputs](#classification-optional-inputs)
+    - [`sparta esmecata`](#sparta-esmecata)
+      - [`sparta esmecata` required inputs](#sparta-esmecata-required-inputs)
+      - [`sparta esmecata` options](#sparta-esmecata-options)
+    - [`sparta pipeline`](#sparta-pipeline)
+  - [OUTPUTS DESCRIPTION:](#outputs-description)
+    - [Other outputs:](#other-outputs)
+  - [STEPS OF THE PIPELINE:](#steps-of-the-pipeline)
+    - [`sparta esmecata` steps](#sparta-esmecata-steps)
+    - [`sparta classification` steps](#sparta-classification-steps)
 
-## DEPENDENCIES:
-pandas, numpy, scikit-learn, scipy, matplotlib, seaborn, joblib, tqdm, goatools, Biopython, requests, kneebow, esmecata.
+## Installation
 
-## HOW TO USE:
+### Requirements
 
-Run the main.py script from the command line, with the following arguments:
-    
-### REQUIRED:
-    
-"-d","--dataset_name": Name of the dataset
+- [pandas](https://pypi.org/project/pandas/): To read the input files and manage the matrix through all pipeline.
+- [numpy](https://github.com/numpy/numpy): To manage the matrix through all pipeline.
+- [scikit-learn](https://github.com/scikit-learn/scikit-learn): To perform the classification, the search for hyperparameters and the computation of performance.
+- [joblib](https://github.com/joblib/joblib): used to save classifiers.
+- [kneebow](https://github.com/georg-un/kneebow): To detect the elbow of the variable importance curve to decide a threshold.
+- [shap](https://github.com/shap/shap): used as an optional alternative to gini to rank variable importance.
+- [tqdm](https://github.com/tqdm/tqdm): used to create progress bar.
+- [scipy](https://github.com/scipy/scipy): used to compute statistical tests between iteration and function/organism classifications.
+- [matplotlib](https://github.com/matplotlib/matplotlib): used to plot comparison of performance between functions and organism classifications.
+- [seaborn](https://github.com/mwaskom/seaborn): used to plot comparison of performance between functions and organism classifications.
+- [goatools](https://github.com/tanghaibao/goatools): used to handle Gene Ontology Terms.
+- [biopython](https://github.com/biopython/biopython): used to handle Enzyme Commission numbers.
+- [requests](https://pypi.org/project/requests/): For the REST queries to download GO and EC databases.
+- [esmecata](https://github.com/AuReMe/esmecata): To infer functions occurrences (EC numbers and GO Terms) from taxonomic affiliations.
 
-### OPTIONAL:
+### Classification installation
 
-    - "-t", "--treatment" (str, default=None): Data treatment for the functional table (can be: 'tf_igm', default: no treatment)
-    - "-s", "--scaling" (str, default=None): Scaling method to apply to the taxonomic table (can be: 'relative', default: no scaling)
-    - "-i", "--iterations" (int, default=5): Number of iterations of the method
-    - "-f", "--forests" (int, default=20): Amount of trained classifiers per iteration of the command
-    - "-r", "--runs" (int, default=10): Amount of pipeline runs
-    - "-e", "--esmecata" (bool, default=True): Launch EsMeCaTa within the pipeline
-    - "--eggnog" (default=False): Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launched with the 'UniProt' workflow by default.
-    - "--annotations_only" (default=False): This is a flag that signals that the input is a functional table. If True, all steps involving taxonomic tables will be skipped, and SPARTA will iteratively classify and select on the given functional table alone.
-    - "--reference_test_sets" (default=False): This is a flag that allows the user to give their own test sets to be used during classification.
-    - "--esmecata_relaunch" (default=False): This is a flag that allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.
-    
-EXAMPLE:
-python main.py -d abundance_testing -s relative -t tf_igm -i 3 -r 4
+SPARTA can be installed using pip:
 
-## INPUTS:
-All input files should be stored inside the 'Inputs' folder before launching the pipeline.
-### REQUIRED:
+````sh
+git clone https://github.com/baptisteruiz/SPARTA.git
+cd SPARTA
+pip install -e .
+````
 
-    - Abundance profile:
-    
-        Must be a .txt file with tabular separation
-        
-        First row must be named 'sampleID', with the subsequent sample names heading each column
-        
-        If the input is a taxonomic abundance file:
-        
-            Metadata can also be included within the file, it will not be taken account of
-            
-            Each row must be named after an OTU, and give its abundance per sample
-            
-            The OTU names should be in the format: "k__kingdom|p__phylum|c__class|o__order|f__family|g__genus|s__species"
-            
-        If the input is a functional abundance file:
-        
-            Please do not include metadata in the file
-            
-            Each row must be named after an annotation (ID: GO term or EC number), and give its abundance per sample
-            
-            If the input is functional, please raise the --annotations_only flag. No other profile will be calculated.
-            
-    - Labels:
-    
-        Must be a .csv file named according to the corresponding abundance file (i.e: if the abundance data is named 'abundance_tryout.txt', the associated labels must be named 'Label_abundance_tryout.csv')
-        
-        Must be a vector of the individuals' labels (numerical category descriptor), respecting the order in which said samples are given in the taxonomic abundance table.
+This will download all dependencies required for the `classification` subcommand of SPARTA (the main part of SPARTA peforming the Random Forests and then selecting informative features).
+For example, to redo the analysis perform in the article, you can install SPARTA this way and use the provided input files in the INPUTS folder.
 
-### CAN BE REQUIRED:
-    
-    - Test sets to be used (only if the --reference_test_sets flag is used):
-    
-        Name the file according to the corresponding input (i.e: if the abundance data is named 'abundance_tryout.txt', the associated test set dataframe must be named 'Test_sets_abundance_tryout.csv')
-        
-        The 'Test_sets.csv' output file from a previous iteration can be used for reproductibility
-        
-        Column names: 'Run_i' for i in the required amount of runs (make sure it matches the -i argument) 
-        
-        List the sample IDs to be used as test subsets for each run in the columns
-        
-        An index column is required 
-        
+### Pipeline and esmecata installation
+
+To use the `pipeline` or `esmecata` subcommands (to create functional profile from taxonomic affiliations), you need to install `mmseqs` and potentially `eggnog-mapper`.  This can be done with `conda`:
+
+```sh
+conda install mmseqs2 eggnog-mapper -c conda-forge -c bioconda
+```
+
+To work eggnog-mapper requires its database, you have to setup it and install [its database](https://github.com/eggnogdb/eggnog-mapper/wiki/eggNOG-mapper-v2.1.5-to-v2.1.12#storage-requirements), refer to the [setup part of the doc](https://github.com/eggnogdb/eggnog-mapper/wiki/eggNOG-mapper-v2.1.5-to-v2.1.12#setup).
+
+## Usage
+
+SPARTA wille be installed as a command-line:
+
+```sh
+sparta -h
+
+usage: sparta [-h] [--version] {pipeline,esmecata,classification} ...
+
+A program that averages the RF importance scores of the functional annotations, and associates them to OTUs. For specific help on each subcommand use: esmecata {cmd} --help
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+
+subcommands:
+  valid subcommands:
+
+  {pipeline,esmecata,classification}
+    pipeline            Run all SPARTA pipeline with esmecata.
+    esmecata            Run functional profile prediction with esmecata.
+    classification      Classify functions from functional profile and label files.
+```
+
+Three subcommands can be used:
+- `sparta classification`: to run classification on functional profile and labels to find functions of importance allowing to classify the labels.
+- `sparta esmecata`: to run esmecata on taxonomic affiliations and taxonomic profile to create functional profile.
+- `sparta pipeline`: to run `sparta esmecata` then `sparta classification`.
+
+### `sparta classification`
+
+Perform classification (with Random Forests or SVM) on functional profile (optionaly on taxon profile) to identify separating functions (or taxon) according to samples.
+
+#### Classification required inputs
+
+`sparta classification` can be run with different inputs but always two are required:
+
+- `functional profile` (with the `-fp` parameter): a csv file indicating the abundance of functions in samples, such as this one:
+
+|            | Sample A | Sample B | Sample C | Sample D |
+|------------|----------|----------|----------|----------|
+| Function 1 | 180      | 180      | 50       | 40       |
+| Function 2 | 50       | 45       | 35       | 15       |
+| Function 3 | 0        | 0        | 200      | 180      |
+
+Example can be found in the tests folder ([test_functional_profile.csv](https://github.com/baptisteruiz/SPARTA/blob/packaging/tests/input/test_functional_profile.csv)).
+
+If the functional profile was obtained using HuMAnN, the user should remove the partial functional abundances per associated taxon, as well as the UNMAPPED and UNINTEGRATED results.
+
+- `label` (with the `-l` parameter): a csv file indicating the label of each sample to make the classification:
+
+| Sample A | Sample B | Sample C | Sample D |
+|----------|----------|----------|----------|
+| 0        | 0        | 1        | 1        |
+
+Example can be found in the tests folder ([test_label.csv](https://github.com/baptisteruiz/SPARTA/blob/packaging/tests/input/test_label.csv)).
+
+#### Classification optional inputs
+
+Then other optional inputs files can be given to expand the results provided by SPARTA:
+
+- Users can select the number of Run, Iteration and Classifiers launched in the analysis with respectively `-r`, `-i` and `-c`.
+
+- `taxonomic profile` (with the `-tp` parameter): a csv file indicating the abundance of organisms in samples, such as this one:
+
+|            | Sample A | Sample B | Sample C | Sample D |
+|------------|----------|----------|----------|----------|
+| Organism 1 | 40       | 40       | 5        | 5        |
+| Organism 2 | 10       | 5        | 15       | 10       |
+| Organism 3 | 0        | 0        | 100      | 90       |
+
+Example can be found in the tests folder ([test_taxon_profile.tsv](https://github.com/baptisteruiz/SPARTA/blob/packaging/tests/input/test_taxon_profile.tsv)).
+
+This input will be used by SPARTA to make a second classification with the taxon abundance. Then it will compare the performance of the classification with the functions and the one with the taxon.
+
+- `functional occurrence` (with the `-fo` parameter): a csv file indicating the occurrence of functions in organisms, such as this one:
+
+|            | Organism 1 | Organism 2| Organism 3 |
+|------------|------------|-----------|------------|
+| Function 1 | 4          | 2         | 0          |
+| Function 2 | 1          | 1         | 0          |
+| Function 3 | 0          | 0         | 2          |
+
+It will be used by SPARTA to link function to organisms when showing the feature of importance between classifications with function and with taxon.
+Example can be found in the tests folder ([test_functional_occurrence.tsv](https://github.com/baptisteruiz/SPARTA/blob/packaging/tests/input/test_functional_occurrence.tsv)).
+
+
+
+- `taxonomic affiliations` (with the `-ta` parameter): a csv file indicating the taxonomic affiliations of the organisms, such as this one:
+
+|  observation_name   | taxonomic_affiliation            |
+|---------------------|----------------------------------|
+| Organism 1          | Kingdom;Class;Order;Family;Genus |
+| Organism 2          | Kingdom;Class;Order;Family;Genus |
+| Organism 3          | Kingdom;Class;Order;Family;Genus |
+
+It will be used to link taxon name to feature of importance in the results.
+
+### `sparta esmecata`
+
+Use [esmecata](https://github.com/AuReMe/esmecata/tree/main) to predict functions from taxonomic affiliations.
+
+#### `sparta esmecata` required inputs
+
+`sparta esmecata` requires one input:
+
+- `taxon abundance` (with the `-p` parameter): a csv file indicating the taxonomic affiliatiosn of the organisms the sampels and their abundance:
+
+|                             sampleID                                       | Sample A | Sample B | Sample C | Sample D |
+|----------------------------------------------------------------------------|----------|----------|----------|----------|
+| k__Kingdom\|p__Phylum_1\|c__Class_1\|o__Order_1\|f__Family_1\|g__Genus_1   | 40       | 40       | 5        | 5        |
+| k__Kingdom\|p__Phylum_2\|c__Class_2\|o__Order_2\|f__Family_2\|g__Genus_2   | 10       | 5        | 15       | 10       |
+| k__Kingdom\|p__Phylum_3\|c__Class_3\|o__Order_3\|f__Family_3\|g__Genus_3   | 0        | 0        | 100      | 90       |
+
+First, using the sampleID columns, an input file for esmecata will be created, looking like this table:
+
+|  observation_name   | taxonomic_affiliation            |
+|---------------------|----------------------------------|
+| Organism 1          | Kingdom;Phylum_1;Class_1;Order_1;Family_1;Genus_1 |
+| Organism 2          | Kingdom;Phylum_2;Class_2;Order_2;Family_2;Genus_2 |
+| Organism 3          | Kingdom;Phylum_3;Class_3;Order_3;Family_3;Genus_3 |
+
+Then esmecata will infer the associated functions from these taxonomic affiliations.
+
+#### `sparta esmecata` options
+
+The following arguments can be used with `sparta esmecata`:
+
+- `treatment` (with the `-t` parameter) : Data treatment for the functional table (can be: 'tf_igm', default: no treatment)
+
+- `scaling` (with the `-s` parameter) : Scaling method to apply to the taxonomic table (can be: 'relative', default: no scaling)
+
+- `eggnog`: Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launched with the 'UniProt' workflow by default.
+
+- `esmecata_relaunch`: This option allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.
+
+- `keep_temp` : This option allows the user to keep the contents of the 'Outputs_temp' folder at the end of the run.
+
+- `update_ncbi` : This option allows the user to force an update of the local NCBI database (taxdump.tar.gz). **This option is particularly recommended if you are running EsMeCaTa for the first time.**
+
+### `sparta pipeline`
+
+Use [esmecata](https://github.com/AuReMe/esmecata/tree/main) to predict functions from taxonomic affiliations. Then use `sparta classification` for the classification part.
+
+     
 
 ## OUTPUTS DESCRIPTION:
-
-    Meta_Outputs:
-       └── run reference (name of the dataset + transformation arguments + date of beginning):
-            └── median_OTU_vs_SoFA_(best_vs_best).png: graphical representation of the classification performances (median ROC AUC per run) at the optimal selective iteration for both taxonomic and functional profiles. Both performance 
-            |       distributions are compared statistically by a Mann-Whitney U-test, the p-value of which is given in the figure's title. The optimal selection levels for both profiles are also given.
-            └── Test_sets.csv: sample IDs used as test sets for each run of the pipeline.
-            └── SoFA_table_[dataset_name].csv: functional profile calculated from the taxonomic input
-            └── Run_n (for n in the amount of pipeline repetitions)
-            |    ├──  Classification_performances
-            |    |     └── Iteration_i (for all i iterations of the method
-            |    |           ├── Taxonomic_performances.csv: Performance metrics of each RF model trained during this iteration on the training, validation and test subsets of the taxonomic data, and their optimal found parameters
-            |    |           └── Annotation_performances.csv: Performance metrics of each RF model trained during this iteration on the training, validation and test subsets of the functional data, and their optimal found parameters
-            |    ├── Selected_outputs
-            |    |     └── Iteration_i (for all i iterations of the method
-            |    |           ├── Selected_annotations_run_n_iter_i.csv : List of all functional annotations selected at this run and iteration, ranked by decreasing importance
-            |    |           └── Selected_taxons_run_n_iter_i.csv : List of all taxons selected at this run and iteration, ranked by decreasing importance
-            |    └── Trained Classifiers
-            |       └── [dataset_name]_[Functions/OTU]_saved_classifier.joblib : best performing classifiers, as determined by performance on validation set, in this iteration.
-            └── Core_and_Meta_outputs
-                ├── All_iterations
-                |      ├── Core_annots_iteration_i (for i in the amount of iterations of the process per repetition): list of the robust (Core) annotations at selection level i
-                |      ├── Meta_annots_iteration_i (for i in the amount of iterations of the process per repetition): list of the candidate and confident (Meta) annotations at selection level i (the 'Significance_count' column gives the amount of classifiers that count the feature as significant)
-                |      ├── Core_taxons_iteration_i (for i in the amount of iterations of the process per repetition): list of the robust (Core) taxons at selection level i
-                |      └── Meta_taxons_iteration_i (for i in the amount of iterations of the process per repetition): list of the candidate and confident (Meta) taxons at selection level i (the 'Significance_count' column gives the amount of classifiers that count the feature as significant)
-                |    For each variable in these sublists, the following extra information is given:
-                |         - The name of the taxon/annotation
-                |         - The associated counterpart variables (if annotation: the taxons that express it; if taxon: the annotation that it expresses), and among them, those that are 'Robust' at the same level of iteration
-                |         - Their average expression in each label category, and the group it is representative of (highest average expression)
-                |         - If Meta: the amount of times the variable has been selected over all runs of the pipeline at the given iteration level, and which category ('Candidate' or 'Confident')
-                |
-                └── Best_iterations
-                        └── Same outputs as 'All iterations', but only for the level of selection that gives the best classification performances for the functional and taxonomic profiles
-
+```
+output_folder (given by the -o argument):
+        └── median_OTU_vs_SoFA_(best_vs_best).png: graphical representation of the classification performances (median ROC AUC per run) at the optimal selective iteration for both taxonomic and functional profiles. Both performance 
+        |       distributions are compared statistically by a Mann-Whitney U-test, the p-value of which is given in the figure's title. The optimal selection levels for both profiles are also given.
+        └── stopwatch.txt: Records of the duration of the process, divided by step.
+        └── Overall_selection_and_performance_metrics.csv: A summary of the median AUC and sizes of the Robust, Confident and Candidate subsets obtained after each iteration, on each profile.
+        └── Test_sets.csv: sample IDs used as test sets for each run of the pipeline.
+        └── SoFA_table_[dataset_name].csv: functional profile calculated from the taxonomic input
+        └── Run_n (for n in the amount of pipeline repetitions. The random seed used for this run is also given in the name of the folder.)
+        |    ├──  Classification_performances
+        |    |     └── Iteration_i (for all i iterations of the method
+        |    |           ├── Taxonomic_performances.csv: Performance metrics of each RF model trained during this iteration on the training, validation and test subsets of the taxonomic data, and their optimal found parameters
+        |    |           └── Annotation_performances.csv: Performance metrics of each RF model trained during this iteration on the training, validation and test subsets of the functional data, and their optimal found parameters
+        |    ├── Selected_Variables
+        |    |     └── Iteration_i (for all i iterations of the method
+        |    |           ├── Selected_annotations_run_n_iter_i.csv : List of all functional annotations selected at this run and iteration, ranked by decreasing importance
+        |    |           └── Selected_taxons_run_n_iter_i.csv : List of all taxons selected at this run and iteration, ranked by decreasing importance
+        |    └── Trained Classifiers
+        |    |      └── Iteration_i (for all i iterations of the method
+        |    |             └── test_[Functions/OTU]_saved_classifier.joblib : best performing classifiers, as determined by performance on validation set, in this iteration.
+        |    └── Dataset_separation
+        |           └── [Annotation/Taxonomic]_samples_separation_Iteration_i.csv: records of the labels and indices of all individuals in the training, validation and test sets for this iteration.
+        └── Core_and_Meta_outputs
+            ├── All_iterations
+            |      ├── Core_annots_iteration_i (for i in the amount of iterations of the process per repetition): list of the robust (Core) annotations at selection level i
+            |      ├── Meta_annots_iteration_i (for i in the amount of iterations of the process per repetition): list of the candidate and confident (Meta) annotations at selection level i (the 'Significance_count' column gives the amount of classifiers that count the feature as significant)
+            |      ├── Core_taxons_iteration_i (for i in the amount of iterations of the process per repetition): list of the robust (Core) taxons at selection level i
+            |      └── Meta_taxons_iteration_i (for i in the amount of iterations of the process per repetition): list of the candidate and confident (Meta) taxons at selection level i (the 'Significance_count' column gives the amount of classifiers that count the feature as significant)
+            |    For each variable in these sublists, the following extra information is given:
+            |         - The name of the taxon/annotation
+            |         - The associated counterpart variables (if annotation: the taxons that express it; if taxon: the annotation that it expresses), and among them, those that are 'Robust' at the same level of iteration
+            |         - Their average expression in each label category, and the group it is representative of (highest average expression)
+            |         - If Meta: the amount of times the variable has been selected over all runs of the pipeline at the given iteration level, and which category ('Candidate' or 'Confident')
+            |
+            └── Best_iterations
+                    └── Same outputs as 'All iterations', but only for the level of selection that gives the best classification performances for the functional and taxonomic profiles
+```
 ### Other outputs:
     - EsMeCaTa_outputs: outputs of the EsMeCaTa pipeline, only the results of the 'annotation' step are kept for storage efficiency. These outputs can be re-used from one application of the pipeline to a dataset to another.
     - data: enzyme and GO OBO databases, for reference. Only downloaded once.
 
 ## STEPS OF THE PIPELINE:
 
+### `sparta esmecata` steps
 1) Formatting:
    
 This step shapes the inputs of the pipeline into a form that is compatible with the next steps of the pipeline, notably those based on external tools (EsMeCaTa and DeepMicro), and removes eventual 
@@ -190,8 +329,10 @@ Main function: sofa_calculation(pipeline_path, dataset_name, data_ref_output_nam
     Outputs: sofa_table: a taxonomic description of the microbian communities described by the original taxonomic abundance table. Abundance of taxonomic units are replaced by scores of functional annotations, 
     for the GO terms and EC numbers associated to the taxonomic profile by EsMeCaTa.
              deepmicro_sofa: a transposed version of sofa_table, compatible as a functional input for DeepMicro
-        
-5) Averaging scores and fetching information:
+
+### `sparta classification` steps
+
+4) Averaging scores and fetching information:
 
 In this step, descriptive tables are created for each taxonomic unit and/or functional annotation in our profiles. These descriptions notably tell: the average persence of a feature in each labeled catgory, the 
 category that expresses it the most on average, and the total average expression of the feature over the whole profile. For taxons, the detailed taxonomy and the annotations it expresses are fetched. For each 
@@ -215,7 +356,8 @@ Main function: averaging_and_info_step(otu_table_stripped, sofa_table, label_fil
         - goatools' obo_parser function for GO terms (https://github.com/tanghaibao/goatools)
         - the Enzyme module of Bio.ExPASy (https://biopython.org/docs/1.75/api/Bio.ExPASy.html)
 
-6) Iterated classification and selection:
+
+5) Iterated classification and selection:
    
 This step is repeated as many times as indicated by the '-r' argument. It consists in classifying individuals based on their functional and, if given, taxonomic profiles. This takes place in three steps:
 
@@ -301,7 +443,7 @@ C) Variable selection:
 
 Classification performances and lists of selected variables for all runs and iterations are passed on to the subsequent steps of the pipeline.
 
-7) Plotting classification performances:
+6) Plotting classification performances:
 
 Main function: plot_classifs(bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, dataset_name, pipeline_path, data_ref_output_name, args_passed)
 
@@ -321,7 +463,7 @@ Main function: plot_classifs(bank_of_performance_dfs_annots, bank_of_performance
     Plotting is done using the matplotlib and seaborn libraries. A statistical comparison of the median performances per run at optimal iteration for each profile is also made at this point, using scipy's 
     implementation of the Mann-Whitney U-test (https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html). The test's p-value is indicated on the plot.
 
-8) Measuring the robustness of variables over all runs:
+7) Measuring the robustness of variables over all runs:
 
 Main function: extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_of_selections_taxons, best_selec_iter_annots, best_selec_iter_taxons, info_annots, info_taxons, runs, esmecata_input, otu_table_stripped, sofa_table)
 
