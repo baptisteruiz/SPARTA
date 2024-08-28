@@ -1,0 +1,1995 @@
+protein	protein_name	gene_name	GO	EC
+G1WFX8	Coenzyme A biosynthesis bifunctional protein CoaBC	coaBC	GO:0004632,GO:0004633,GO:0010181,GO:0015937,GO:0015941,GO:0046872	4.1.1.36,6.3.2.5
+G1WG12	Polyribonucleotide nucleotidyltransferase	pnp	GO:0000287,GO:0003723,GO:0004654,GO:0005737,GO:0006396,GO:0006402	2.7.7.8
+G1WGQ7	Riboflavin biosynthesis protein		GO:0003919,GO:0005524,GO:0006747,GO:0008531,GO:0009231,GO:0009398,GO:0016310	2.7.1.26,2.7.7.2
+G1WI85	Type III pantothenate kinase	coaX	GO:0004594,GO:0005524,GO:0005737,GO:0015937,GO:0016310,GO:0046872	2.7.1.33
+G1WJR0	Holliday junction ATP-dependent DNA helicase RuvB	ruvB	GO:0003677,GO:0005524,GO:0006281,GO:0006310,GO:0009378,GO:0009432,GO:0016887	3.6.4.12
+G1WFJ3	Ribonuclease H	rnhA	GO:0000287,GO:0003676,GO:0004523,GO:0005737,GO:0006401	3.1.26.4
+G1WFV7	PDZ domain-containing protein		GO:0004222,GO:0006508,GO:0016021	
+G1WG41	Aldehyde-alcohol dehydrogenase		GO:0004022,GO:0006066,GO:0008774,GO:0015976,GO:0046872	
+G1WGT9	ATP-dependent Clp protease proteolytic subunit	clpP	GO:0004176,GO:0004252,GO:0005737,GO:0006508	3.4.21.92
+G1WH82	Thymidylate kinase	tmk	GO:0004798,GO:0005524,GO:0006233,GO:0006235,GO:0016310	2.7.4.9
+G1WHZ5	DNA helicase		GO:0003676,GO:0005524,GO:0006260,GO:0006281,GO:0006310,GO:0016787,GO:0043138	3.6.4.12
+G1WIF8	Hydrogenase maturation factor HypA	hypA	GO:0008270,GO:0016151,GO:0051604	
+G1WIV1	Glutamine amidotransferase type-2 domain-containing protein		GO:0006537,GO:0006541,GO:0015930,GO:0046872,GO:0051538	
+G1WJE2	Peptidoglycan glycosyltransferase		GO:0004180,GO:0006508,GO:0008658,GO:0008955,GO:0016021	2.4.1.129
+G1WJU5	S-adenosylmethionine:tRNA ribosyltransferase-isomerase	queA	GO:0005737,GO:0008616,GO:0051075	2.4.99.17
+G1WKC4	Peptide chain release factor 1	prfA	GO:0005737,GO:0016149	
+G1WKP9	DNA-directed RNA polymerase subunit beta	rpoB	GO:0000428,GO:0003677,GO:0003899,GO:0006351,GO:0032549	2.7.7.6
+G1WL26	Acetyl-coenzyme A carboxylase carboxyl transferase subunit alpha	accA	GO:0003989,GO:0005524,GO:0006633,GO:0009317,GO:0016743,GO:2001295	2.1.3.15
+G1WF99	Twin-arginine translocation signal domain-containing protein			
+G1WFF0	HMA domain-containing protein		GO:0016021,GO:0019829,GO:0046872	
+G1WFI5	FctA domain-containing protein		GO:0016021	
+G1WFN0	HTH gntR-type domain-containing protein		GO:0003677,GO:0003700	
+G1WFS3	DUF697 domain-containing protein			
+G1WG15	Helix-turn-helix domain-containing protein		GO:0003677,GO:0016021	
+G1WG72	ABC transporter domain-containing protein		GO:0005524	
+G1WGA7	Tail fiber protein			
+G1WGE0	Holin			
+G1WGH2	Coil containing protein			
+G1WGM0	ATP-binding protein			
+G1WGS7			GO:0016021	
+G1WGX3	Peptidylprolyl isomerase			
+G1WH32	O-Antigen ligase		GO:0016021	
+G1WHB4	DUF4352 domain-containing protein			
+G1WHR3	Capsular biosynthesis protein		GO:0005524,GO:0045226	
+G1WHU9	T2SSF domain-containing protein		GO:0005886,GO:0016021	
+G1WHY7	PTS sugar transporter subunit IIC		GO:0005886,GO:0009401,GO:0016021	
+G1WI26	Phosphoesterase		GO:0016787,GO:0046872,GO:0110165	3.1.4.-
+G1WIB5	NADAR domain-containing protein			
+G1WIG1	HTH cro/C1-type domain-containing protein		GO:0003677	
+G1WIU9	Glutamine synthetase		GO:0004356,GO:0006542	
+G1WIY5	DUF3168 domain-containing protein			
+G1WJ17	Addiction module toxin, HicA family		GO:0003729,GO:0004519	
+G1WJ65	S-layer homology domain-containing protein			
+G1WJA2	Transcriptional regulator			
+G1WJK3	DUF1275 domain-containing protein		GO:0016021	
+G1WJP3	PABS domain-containing protein			
+G1WJU3	DUF3267 domain-containing protein		GO:0016021	
+G1WJY7	ABC transporter domain-containing protein		GO:0005524,GO:0005886,GO:0016021	
+G1WK30	FAD-binding protein		GO:0008202,GO:0033765	
+G1WK66	DUF3666 domain-containing protein		GO:0005975,GO:0016861	
+G1WKG2	DUF4367 domain-containing protein		GO:0016021	
+G1WKL0	Restriction endonuclease subunit M			
+G1WKR5	BcrAD_BadFG domain-containing protein			
+G1WKW3	BFN domain-containing protein		GO:0004518	
+G1WL11	SHSP domain-containing protein			
+G1WL57	Divalent metal cation transporter		GO:0016021,GO:0046873	
+G1WL96	DUF3040 domain-containing protein		GO:0016021	
+G1WLD2	DUF2974 domain-containing protein			
+G1WLG7			GO:0005524,GO:0016021,GO:0042883,GO:0140359	
+G1WGY9	CTP synthase	pyrG	GO:0003883,GO:0005524,GO:0006541,GO:0044210,GO:0046872	6.3.4.2
+G1WG17	Ribosomal protein S12 methylthiotransferase RimO	rimO	GO:0005737,GO:0006400,GO:0046872,GO:0051539	
+G1WGS2	Threonine--tRNA ligase	thrS	GO:0000049,GO:0004829,GO:0005524,GO:0005737,GO:0006435,GO:0046872	6.1.1.3
+G1WIA2	Glutamine--fructose-6-phosphate aminotransferase [isomerizing]	glmS	GO:0004360,GO:0005737,GO:0005975,GO:0006541,GO:0097367,GO:1901137	2.6.1.16
+G1WJR2	Bifunctional protein FolD	folD	GO:0000105,GO:0004477,GO:0004488,GO:0006164,GO:0009086,GO:0035999	1.5.1.5,3.5.4.9
+G1WKU6	3-isopropylmalate dehydratase large subunit	leuC	GO:0003861,GO:0009098,GO:0046872,GO:0047456,GO:0051539	4.2.1.33,4.2.1.99
+G1WFK6	Adenine deaminase	ade	GO:0000034,GO:0006146	3.5.4.2
+G1WFV8	4-hydroxy-3-methylbut-2-en-1-yl diphosphate synthase (flavodoxin)	ispG	GO:0005506,GO:0016114,GO:0019288,GO:0046429,GO:0051539	1.17.7.3
+G1WG46	Alpha-1,4 glucan phosphorylase		GO:0005975,GO:0008184,GO:0030170,GO:0102250,GO:0102499	2.4.1.1
+G1WGU0	Trigger factor	tig	GO:0003755,GO:0005737,GO:0006457,GO:0007049,GO:0015031,GO:0051301	5.2.1.8
+G1WH87	Hydrogenase maturation factor HypA	hypA	GO:0008270,GO:0016151,GO:0051604	
+G1WI08	DUF2179 domain-containing protein		GO:0005886,GO:0016021	
+G1WIH6	Non-specific serine/threonine protein kinase		GO:0004674,GO:0005524,GO:0006468,GO:0016021	2.7.11.1
+G1WIW4	N-acetyl-gamma-glutamyl-phosphate reductase	argC	GO:0003942,GO:0005737,GO:0006526,GO:0046983,GO:0051287	1.2.1.38
+G1WJF2	Citrate synthase		GO:0006099,GO:0036440	2.3.3.16
+G1WJV6	Cytokinin riboside 5'-monophosphate phosphoribohydrolase		GO:0009691,GO:0102682	3.2.2.n1
+G1WKC6	1,4-dihydroxy-2-naphthoate octaprenyltransferase	menA	GO:0005887,GO:0009234,GO:0046428	2.5.1.74
+G1WKQ1	DNA helicase		GO:0003677,GO:0003678,GO:0005524,GO:0016887	3.6.4.12
+G1WL29	Malonyl CoA-acyl carrier protein transacylase		GO:0004314	2.3.1.39
+G1WFA0	ABC transporter permease		GO:0016021	
+G1WFF1	HTH arsR-type domain-containing protein		GO:0003700	
+G1WFI6	Class B sortase		GO:0016021,GO:0016787	
+G1WFS4	Radical SAM core domain-containing protein		GO:0003824,GO:0051536	
+G1WG16	UPF0234 protein HMPREF9452_00279			
+G1WG73	ABC transmembrane type-1 domain-containing protein		GO:0005886,GO:0016021,GO:0055085	
+G1WGA8	Phage protein			
+G1WGE1	ANT domain-containing protein		GO:0003677	
+G1WGH3	SCP2 domain-containing protein			
+G1WGM1	DUF948 domain-containing protein		GO:0016021	
+G1WGS8	Aminopeptidase P family protein		GO:0016787	
+G1WGX4	HTH cro/C1-type domain-containing protein		GO:0003677	
+G1WH33	Capsular polysaccharide synthesis protein		GO:0016757	
+G1WH67	PTS EIIB type-3 domain-containing protein		GO:0008982,GO:0009401,GO:0016301,GO:0016310	
+G1WHB5	ABC transporter domain-containing protein		GO:0005524	
+G1WHF4	HTH deoR-type domain-containing protein		GO:0003677,GO:0003700	
+G1WHJ1	Nif11 domain-containing protein			
+G1WHN0	GyrI-like domain-containing protein			
+G1WHR4	Lipopolysaccharide biosynthesis protein		GO:0005886,GO:0009103,GO:0016021	
+G1WHV0	T2SSF domain-containing protein		GO:0005886,GO:0016021	
+G1WI27	Phage holin family protein		GO:0016021	
+G1WI79	Fructokinase			
+G1WIB6	HTH marR-type domain-containing protein		GO:0003700	
+G1WIG2	Ig-like domain-containing protein			
+G1WIP6	Histidine kinase domain-containing protein		GO:0000155,GO:0016021	
+G1WIV0	Glutamate synthase subunit beta		GO:0006537,GO:0016639,GO:0051536	
+G1WIY6	Aldehyde dehydrogenase			
+G1WJ18	Type II toxin-antitoxin system HicB family antitoxin			
+G1WJ66	NGN domain-containing protein		GO:0006355	
+G1WJA3	DUF389 domain-containing protein		GO:0016021	
+G1WJG3	DUF4179 domain-containing protein		GO:0016021	
+G1WJP4	ATP-dependent helicase		GO:0003676,GO:0005524	
+G1WJU6	Radical SAM core domain-containing protein		GO:0003824,GO:0051536	
+G1WJY8	HTH cro/C1-type domain-containing protein		GO:0003677	
+G1WK31	AraC family transcriptional regulator			
+G1WK67	HTH lacI-type domain-containing protein		GO:0003677,GO:0006355	
+G1WKC1			GO:0003725	
+G1WKL1	Site-specific DNA-methyltransferase (adenine-specific)		GO:0003677,GO:0009007	2.1.1.72
+G1WKR6	UPF0145 protein HMPREF9452_01919			
+G1WKW4	Fn3_like domain-containing protein		GO:0004553,GO:0005975	
+G1WL12	Lactamase_B domain-containing protein			
+G1WL58	HTH araC/xylS-type domain-containing protein		GO:0003700,GO:0043565	
+G1WL97	Transcriptional regulator			
+G1WLG8	Transcriptional regulator			
+G1WI70	Bifunctional NAD(P)H-hydrate repair enzyme	nnrD	GO:0005524,GO:0046496,GO:0046872,GO:0052855,GO:0052856,GO:0052857	4.2.1.136,5.1.99.6
+G1WGT1	Valine--tRNA ligase	valS	GO:0002161,GO:0004832,GO:0005524,GO:0005737,GO:0006438	6.1.1.9
+G1WIC1	Branched-chain-amino-acid transaminase		GO:0009097,GO:0009098,GO:0009099,GO:0052654,GO:0052655,GO:0052656	2.6.1.42
+G1WJT0	Adenosylcobinamide kinase		GO:0005524,GO:0005525,GO:0008820,GO:0009236,GO:0016310,GO:0043752	2.7.1.156,2.7.7.62
+G1WKV2	Protein translocase subunit SecE	secE	GO:0005886,GO:0006605,GO:0008320,GO:0009306,GO:0016021,GO:0043952,GO:0065002	
+G1WFK8	Probable endonuclease 4	nfo	GO:0003677,GO:0006281,GO:0008270,GO:0008833	3.1.21.2
+G1WFV9	Proline--tRNA ligase	proS	GO:0002161,GO:0004827,GO:0005524,GO:0005737,GO:0006433	6.1.1.15
+G1WG50	4-alpha-glucanotransferase		GO:0004134,GO:0005975,GO:0102500	2.4.1.25
+G1WGU2	Glutamate dehydrogenase		GO:0000166,GO:0004353,GO:0006520	
+G1WH88	Sec-independent protein translocase protein TatC	tatC	GO:0005887,GO:0008320,GO:0033281,GO:0043953	
+G1WI09	Pyrroline-5-carboxylate reductase	proC	GO:0004735,GO:0005737,GO:0055129	1.5.1.2
+G1WIH8	PPM-type phosphatase domain-containing protein		GO:0004722,GO:0006470,GO:0016021	
+G1WJ20	UDP-MurNAc-tripeptide synthetase		GO:0005524,GO:0005737,GO:0007049,GO:0008360,GO:0009252,GO:0016881,GO:0051301,GO:0071555	
+G1WJF4	50S ribosomal protein L31	rpmE	GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:0046872,GO:1990904	
+G1WJW7	M18 family aminopeptidase		GO:0004177,GO:0006508,GO:0008237,GO:0008270	3.4.11.-
+G1WKC8	ABC transmembrane type-1 domain-containing protein		GO:0005886,GO:0016021,GO:0055085	
+G1WKQ3	SpaA domain-containing protein		GO:0005975,GO:0016021	
+G1WL30	Gluconate 5-dehydrogenase			
+G1WFA1	DUF418 domain-containing protein		GO:0016021	
+G1WFF2	Integral membrane protein		GO:0016021	
+G1WFI7	LytR_cpsA_psr domain-containing protein		GO:0016021	
+G1WFS5	DUF2344 domain-containing protein			
+G1WG19	CinA domain-containing protein			
+G1WG74	ABC transmembrane type-1 domain-containing protein		GO:0005886,GO:0016021,GO:0055085	
+G1WGA9	Aminoglycoside phosphotransferase			
+G1WGE2	Bro-N domain-containing protein			
+G1WGH4	Integrase			
+G1WGM3	HD domain-containing protein			
+G1WGS9	Radical SAM core domain-containing protein		GO:0016491,GO:0046872,GO:0051536	
+G1WGY4	Penicillin-binding protein 2		GO:0008658,GO:0016020	
+G1WH34	Acyl_transf_3 domain-containing protein		GO:0016021,GO:0016747	
+G1WH68	PTS system EIIA component		GO:0006355	
+G1WHB6	ABC transporter permease		GO:0016021	
+G1WHF5	PINc domain-containing protein		GO:0046872	
+G1WHJ2	Ethanolamine utilization protein EutN		GO:0031469	
+G1WHN1	DUF4829 domain-containing protein			
+G1WHR5	Histidine kinase domain-containing protein		GO:0000155,GO:0016021	
+G1WHV1	AAA domain-containing protein			
+G1WI80	Carbohydrate-binding domain-containing protein			
+G1WIG3	RNA-binding protein			
+G1WIK5	MFS domain-containing protein		GO:0016021,GO:0022857	
+G1WIP7	ATP-binding protein			
+G1WIY7	Phage protein			
+G1WJ19	Tyr recombinase domain-containing protein		GO:0003677,GO:0006310,GO:0015074	
+G1WJ67	PfkB domain-containing protein		GO:0016301,GO:0016310,GO:0016773	
+G1WJA4	NifU domain-containing protein		GO:0005506,GO:0016226,GO:0051536	
+G1WJG4	TRANSKETOLASE_1 domain-containing protein			
+G1WJK7	Rrf2 family transcriptional regulator			
+G1WJP5	ABC transporter domain-containing protein		GO:0005524,GO:0016021	
+G1WJU7	ATPase involved in DNA repair		GO:0016021	
+G1WJY9	Twin-arginine translocase TatA/TatE family subunit		GO:0016021	
+G1WK32	Lactate dehydrogenase		GO:0016616,GO:0051287	
+G1WK68	Type II toxin-antitoxin system HipA family toxin		GO:0016740	
+G1WKG4	Nudix hydrolase domain-containing protein		GO:0016787	
+G1WKL2	T5orf172 domain-containing protein			
+G1WKR7	MFS domain-containing protein		GO:0016021,GO:0022857	
+G1WKW7	DUF721 domain-containing protein			
+G1WL16	Membrane spanning protein		GO:0016021	
+G1WL60	Beta-galactosidase		GO:0004553,GO:0016052	
+G1WL98	DUF1016 domain-containing protein			
+G1WLD4	DUF4179 domain-containing protein			
+G1WLG9	PF03932 family protein CutC	cutC	GO:0005737	
+G1WJ37	Aspartate-semialdehyde dehydrogenase	asd	GO:0004073,GO:0009088,GO:0009089,GO:0009097,GO:0019877,GO:0046983,GO:0050661,GO:0051287,GO:0071266	1.2.1.11
+G1WG26	tRNA dimethylallyltransferase	miaA	GO:0005524,GO:0008033,GO:0052381	2.5.1.75
+G1WGV2	Xanthine phosphoribosyltransferase	xpt	GO:0000310,GO:0005737,GO:0006166,GO:0032265,GO:0046110	2.4.2.22
+G1WID4	Ribokinase	rbsK	GO:0004747,GO:0005524,GO:0005737,GO:0019303,GO:0046872	2.7.1.15
+G1WJT1	Adenosylcobinamide-GDP ribazoletransferase	cobS	GO:0005886,GO:0008818,GO:0009236,GO:0016021,GO:0051073	2.7.8.26
+G1WKV8	2-C-methyl-D-erythritol 2,4-cyclodiphosphate synthase	ispF	GO:0008685,GO:0016114,GO:0019288,GO:0046872	4.6.1.12
+G1WFL0	ABC transmembrane type-1 domain-containing protein		GO:0006865,GO:0022857,GO:0043190	
+G1WFW3	Peptidase_M50 domain-containing protein		GO:0004222,GO:0005886,GO:0006508,GO:0016021,GO:0046872	
+G1WG52	SAM_MT_RSMB_NOP domain-containing protein		GO:0001510,GO:0003723,GO:0006355,GO:0008168	
+G1WGU5	ABC transmembrane type-1 domain-containing protein		GO:0005886,GO:0015098,GO:0016021	
+G1WH97	Na(+)/H(+) antiporter NhaA	nhaA	GO:0005886,GO:0006885,GO:0015081,GO:0015297,GO:0016021	
+G1WI21	Pyridinium-3,5-bisthiocarboxylic acid mononucleotide nickel insertion protein	larC	GO:0016151,GO:0016829,GO:0051604	4.99.1.12
+G1WII2	Non-specific serine/threonine protein kinase		GO:0004674,GO:0005524,GO:0006468,GO:0016021	2.7.11.1
+G1WJ22	Glutamate racemase	murI	GO:0008360,GO:0008881,GO:0009252,GO:0071555	5.1.1.3
+G1WJW8	DNA polymerase I	polA	GO:0003677,GO:0003887,GO:0006261,GO:0006281,GO:0016787	2.7.7.7
+G1WKD8	Probable potassium transport system protein kup	kup	GO:0005886,GO:0015079,GO:0016021	
+G1WL31	3-oxoacyl-[acyl-carrier-protein] synthase 2		GO:0004315,GO:0006633	2.3.1.179
+G1WFA2	ABC transporter domain-containing protein		GO:0005524	
+G1WFF3	HTH cro/C1-type domain-containing protein		GO:0003677	
+G1WFI8	Transcriptional repressor		GO:0003700	
+G1WFT0	Bis(5'-nucleosyl)-tetraphosphatase (symmetrical)			3.6.1.41
+G1WG21	Regulatory protein RecX	recX	GO:0005737,GO:0006282	
+G1WG75	SBP_bac_5 domain-containing protein		GO:0042597,GO:0043190,GO:0055085	
+G1WGB0	C1q domain-containing protein			
+G1WGE3	RHH_1 domain-containing protein		GO:0006355	
+G1WGH5			GO:0016021	
+G1WGM4	Peptidase_A24 domain-containing protein		GO:0004190,GO:0016021	
+G1WGT0	Mur_ligase_M domain-containing protein		GO:0004326,GO:0005524,GO:0046872	
+G1WGY5	Cell division protein FtsL		GO:0005886,GO:0016021,GO:0051301	
+G1WH35	Acyltransferase			
+G1WH70	DUF386 domain-containing protein			
+G1WHB7	Formate transporter FocA		GO:0016021,GO:0022857	
+G1WHF6	RelB antitoxin		GO:0006355	
+G1WHJ3	BMC domain-containing protein		GO:0031469	
+G1WHN2	DUF1648 domain-containing protein		GO:0016021	
+G1WHV2	CbiA domain-containing protein			
+G1WHZ0	Aldolase_II domain-containing protein			
+G1WI29	Lar_N domain-containing protein		GO:0050043	
+G1WI82	DHC_N2 domain-containing protein			
+G1WIK6	QueT transporter family protein		GO:0016021	
+G1WIP8	Usp domain-containing protein			
+G1WIY8	Bacteriophage protein			
+G1WJ21	HAD family phosphatase			
+G1WJ68	Sucrose-6-phosphate hydrolase		GO:0004553,GO:0005975	
+G1WJA6	Zf_CopZ domain-containing protein			
+G1WJG5	Transket_pyr domain-containing protein		GO:0016740	
+G1WJK8	HTH cro/C1-type domain-containing protein		GO:0003677,GO:0003824,GO:0009058,GO:0030170	
+G1WJP6	ABC transporter substrate-binding protein			
+G1WJU9			GO:0005887,GO:0055085	
+G1WK33	HTH domain-containing protein			
+G1WK69	HTH cro/C1-type domain-containing protein		GO:0003677	
+G1WKG8				
+G1WKL3	Ntox8 domain-containing protein			
+G1WKR8	Rhodanese domain-containing protein			
+G1WKX1	HATPase_c domain-containing protein		GO:0016310,GO:0016772	
+G1WL99	Nucleotide pyrophosphohydrolase		GO:0009143,GO:0047429	
+G1WLD5	B3_4 domain-containing protein		GO:0003723,GO:0004826	
+G1WLH0	Bile acid:sodium symporter family protein		GO:0016021	
+G1WK77	Bifunctional protein GlmU	glmU	GO:0000287,GO:0000902,GO:0003977,GO:0005737,GO:0006048,GO:0008360,GO:0009245,GO:0009252,GO:0019134,GO:0071555	2.3.1.157,2.7.7.23
+G1WG29	LexA repressor	lexA	GO:0003677,GO:0004252,GO:0006260,GO:0006281,GO:0006508,GO:0009432,GO:0045892	3.4.21.88
+G1WGX7	UDP-N-acetylenolpyruvoylglucosamine reductase	murB	GO:0005737,GO:0007049,GO:0008360,GO:0008762,GO:0009252,GO:0051301,GO:0071555,GO:0071949	1.3.1.98
+G1WIG4	Serine-type D-Ala-D-Ala carboxypeptidase		GO:0006508,GO:0008360,GO:0009002,GO:0009252,GO:0016021,GO:0071555	3.4.16.4
+G1WJT2	Adenosylcobinamide kinase		GO:0005524,GO:0008820,GO:0009236,GO:0016310,GO:0043752	2.7.1.156,2.7.7.62
+G1WKW5	DNA gyrase subunit A	gyrA	GO:0003677,GO:0005524,GO:0005694,GO:0005737,GO:0006261,GO:0006265,GO:0034335	5.6.2.2
+G1WFL5	Acetolactate synthase small subunit		GO:0003984,GO:0005737,GO:0009097,GO:0009099,GO:1990610	2.2.1.6
+G1WFW7	Cytidylate kinase	cmk	GO:0005524,GO:0005737,GO:0006220,GO:0016310,GO:0036430,GO:0036431	2.7.4.25
+G1WG53	Methionyl-tRNA formyltransferase	fmt	GO:0004479	2.1.2.9
+G1WGU6	Molybdate ABC transporter substrate-binding protein		GO:0015689,GO:0046872	
+G1WH98	Inorganic diphosphatase		GO:0004427,GO:0005737,GO:0046872	3.6.1.1
+G1WI33	Histidinol-phosphatase		GO:0000105,GO:0004401	3.1.3.15
+G1WII6	DNA polymerase III subunit gamma/tau	dnaX	GO:0003677,GO:0003887,GO:0005524,GO:0006260,GO:0009360	2.7.7.7
+G1WJ28	Sec-independent protein translocase protein TatA	tatA	GO:0005887,GO:0008320,GO:0033281,GO:0043953	
+G1WJX2	Argininosuccinate lyase	argH	GO:0004056,GO:0005737,GO:0042450	4.3.2.1
+G1WKF8	DUF4968 domain-containing protein		GO:0004553,GO:0005975,GO:0016021,GO:0030246	
+G1WKR1	50S ribosomal protein L7/L12	rplL	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+G1WL42	NADH-quinone oxidoreductase subunit D		GO:0008901,GO:0016151,GO:0016651,GO:0048038,GO:0051287	
+G1WFA3	DUF5011 domain-containing protein			
+G1WFF4	Methyltransf_11 domain-containing protein		GO:0008168	
+G1WFJ0			GO:0016491	
+G1WFN4	PTS sugar transporter subunit IIC		GO:0005886,GO:0009401,GO:0016021	
+G1WFU0	PPDK regulatory protein		GO:0004674,GO:0005524,GO:0016310	
+G1WG23	ATP-binding protein			
+G1WG76	HD domain-containing protein		GO:0003723,GO:0016779,GO:0031123	
+G1WGB1	Lipoprotein			
+G1WGE4	DUF1492 domain-containing protein			
+G1WGH6	DNA-binding protein			
+G1WGM5	Prostate androgen-regulated mucin-like protein 1		GO:0016021	
+G1WGT2	HTH luxR-type domain-containing protein		GO:0003677,GO:0006355,GO:0016021	
+G1WGZ0	DUF1846 domain-containing protein			
+G1WH36	Glycosyltransferase			
+G1WH71	Peptidylprolyl isomerase		GO:0016021	
+G1WHB8	Transcriptional regulator			
+G1WHF7	ABC transporter domain-containing protein		GO:0005524	
+G1WHJ4	Heat shock protein 70			
+G1WHN3	Transposase			
+G1WHV3				
+G1WHZ2	D-ribose pyranase		GO:0005996,GO:0048029,GO:0062193	5.4.99.62
+G1WI30	Glycerol uptake facilitator protein		GO:0015267,GO:0016021	
+G1WI83	ATP-binding protein			
+G1WIB9			GO:0016021	
+G1WIK7	Glycosyltransferase			
+G1WIQ1	Reductase			
+G1WIY9	Rho_N domain-containing protein			
+G1WJ26	Veg protein		GO:0006355	
+G1WJ70	LacI family transcriptional regulator		GO:0003677,GO:0006355	
+G1WJA8	ABC transmembrane type-1 domain-containing protein		GO:0005886,GO:0016021,GO:0055085	
+G1WJG6	Secreted peptide		GO:0016021	
+G1WJK9	MurR/RpiR family transcriptional regulator		GO:0003700,GO:0097367,GO:1901135	
+G1WJP7	Iron hydrogenase		GO:0046872,GO:0051536	
+G1WJV0	Sel1 repeat family protein			
+G1WK34	PRD domain-containing protein		GO:0006355	
+G1WK70	2-dehydro-3-deoxy-phosphogluconate aldolase		GO:0008675	4.1.2.14
+G1WKH0	DUF2232 domain-containing protein		GO:0016021	
+G1WKL4				
+G1WKR9	CoA-disulfide reductase		GO:0016491,GO:0045454,GO:0050660	
+G1WKX3			GO:0000049,GO:0004526,GO:0008033	
+G1WL18	POLIIIAc domain-containing protein			
+G1WL62	HTH gntR-type domain-containing protein		GO:0003677,GO:0003700	
+G1WLA0	DUF2075 domain-containing protein			
+G1WLD6	HTH lysR-type domain-containing protein		GO:0003700	
+G1WLH1	Transposase			
+G1WKY0	Probable dual-specificity RNA methyltransferase RlmN	rlmN	GO:0000049,GO:0002935,GO:0005737,GO:0019843,GO:0046872,GO:0051539,GO:0070040,GO:0070475	2.1.1.192
+G1WGX8	UDP-N-acetylmuramate--L-alanine ligase	murC	GO:0005524,GO:0005737,GO:0007049,GO:0008360,GO:0008763,GO:0009252,GO:0051301,GO:0071555	6.3.2.8
+G1WIJ6	Lipid II isoglutaminyl synthase (glutamine-hydrolyzing) subunit MurT	murT	GO:0005524,GO:0008270,GO:0008360,GO:0009252,GO:0071555,GO:0140282	6.3.5.13
+G1WJU4	Epoxyqueuosine reductase QueH	queH	GO:0008033,GO:0008616,GO:0046872,GO:0051539,GO:0052693	1.17.99.6
+G1WFL6	Acetolactate synthase		GO:0000287,GO:0003984,GO:0009097,GO:0009099,GO:0030976,GO:0050660	2.2.1.6
+G1WFX1	GTPase Der	der	GO:0005525,GO:0042254	
+G1WG54	Peptide deformylase	def	GO:0006412,GO:0042586,GO:0046872	3.5.1.88
+G1WGU8	Molybdopterin molybdenumtransferase		GO:0006777,GO:0032324,GO:0046872,GO:0061599	2.10.1.1
+G1WH99	Histidinol-phosphatase		GO:0000105,GO:0004401	3.1.3.15
+G1WI36	Phosphoribosyl-ATP pyrophosphatase	hisE	GO:0000105,GO:0004636,GO:0005524,GO:0005737	3.6.1.31
+G1WII8	Nucleoid-associated protein HMPREF9452_01151		GO:0003677,GO:0005737,GO:0043590	
+G1WJ29	Transcription elongation factor GreA	greA	GO:0003677,GO:0032784,GO:0070063	
+G1WJG7	Cell division ATP-binding protein FtsE	ftsE	GO:0005524,GO:0005886,GO:0007049,GO:0051301	
+G1WJX6	Nucleoside diphosphate kinase		GO:0004550,GO:0005524,GO:0006165,GO:0006183,GO:0006228,GO:0006241	2.7.4.6
+G1WKG5	Phosphoribosylamine--glycine ligase	purD	GO:0004637,GO:0005524,GO:0006189,GO:0009113,GO:0046872	6.3.4.13
+G1WKR2	50S ribosomal protein L10	rplJ	GO:0005840,GO:0006412,GO:0070180,GO:1990904	
+G1WL48	Hemolysin III		GO:0016021,GO:0019835	
+G1WFF5	Transmembrane protein		GO:0016021	
+G1WFJ2	GFO_IDH_MocA domain-containing protein		GO:0000166	
+G1WFU2	CDP-alcohol phosphatidyltransferase family protein		GO:0016021	
+G1WG24	Stage V sporulation protein S		GO:0003676	
+G1WGB2	SH2 domain-containing protein			
+G1WGE5	Phage protein			
+G1WGH7	Resolvase/invertase-type recombinase catalytic domain-containing protein			
+G1WGM6	Glycosyltransferase		GO:0016021	
+G1WGZ1	YfcC family protein		GO:0005886,GO:0016021	
+G1WH37	Glycosyltransferase		GO:0016757,GO:0044249,GO:1901576	
+G1WH72	Iso_dh domain-containing protein	leuB	GO:0000287,GO:0051287	
+G1WHC0	HTH cro/C1-type domain-containing protein		GO:0003677,GO:0016021	
+G1WHF8	NMT1 domain-containing protein		GO:0009228	
+G1WHJ5	DNA-binding protein			
+G1WHN4	ABC transporter permease		GO:0016021	
+G1WHR8	Histidine kinase domain-containing protein		GO:0000155,GO:0016021	
+G1WHV7	Zn_dep_PLPC domain-containing protein			
+G1WHZ3	Rhamnulokinase		GO:0005975,GO:0016773	
+G1WI31	Nitrous oxide-stimulated promoter family protein			
+G1WI84	HTH gntR-type domain-containing protein			
+G1WIC2	S-layer homology domain-containing protein			
+G1WIG7	PTS EIIA type-4 domain-containing protein		GO:0009401,GO:0016021,GO:0016301,GO:0016310	
+G1WIK8	Histidine kinase domain-containing protein		GO:0000155,GO:0016021	
+G1WIQ6	Sugar ABC transporter permease		GO:0005886,GO:0016021,GO:0022857	
+G1WIZ0	Major capsid protein			
+G1WJ31	Phage protein			
+G1WJ71	HD domain-containing protein			
+G1WJA9	NMT1 domain-containing protein			
+G1WJH0	TPR_REGION domain-containing protein			
+G1WJL0	Mannitol_dh_C domain-containing protein		GO:0016491	
+G1WJP8	Biotin carboxylase			
+G1WJV1	Ribosomal protein L16			
+G1WK35	Aminotran_1_2 domain-containing protein		GO:0003824,GO:0009058,GO:0030170	
+G1WK71	Sugar kinase			
+G1WKC9	PBPb domain-containing protein		GO:0016021	
+G1WKH4	DUF4013 domain-containing protein		GO:0016021	
+G1WKL5				
+G1WKS0	Rhodanese domain-containing protein			
+G1WKX5	R3H domain-containing protein		GO:0003723,GO:0008360,GO:0071555	
+G1WL19	FmdE domain-containing protein			
+G1WL63				
+G1WLA1	5-methylcytosine-specific restriction endonuclease system specificity protein McrC		GO:0009307	
+G1WLD7	Aldo_ket_red domain-containing protein			
+G1WLH4	S1 motif domain-containing protein		GO:0003676,GO:0006139	
+G1WL15	ATP-dependent zinc metalloprotease FtsH	ftsH	GO:0004176,GO:0004222,GO:0005524,GO:0005886,GO:0006508,GO:0008270,GO:0016021,GO:0016887,GO:0030163	3.4.24.-
+G1WG45	1,4-alpha-glucan branching enzyme GlgB	glgB	GO:0003844,GO:0004553,GO:0005978,GO:0043169,GO:0102752	2.4.1.18
+G1WGX9	UDP-N-acetylglucosamine--N-acetylmuramyl-(pentapeptide) pyrophosphoryl-undecaprenol N-acetylglucosamine transferase	murG	GO:0005886,GO:0005975,GO:0007049,GO:0008360,GO:0009252,GO:0030259,GO:0050511,GO:0051301,GO:0051991,GO:0071555	2.4.1.227
+G1WIM4	Endonuclease III	nth	GO:0003677,GO:0004519,GO:0006284,GO:0019104,GO:0046872,GO:0051539,GO:0140078	4.2.99.18
+G1WJU8	Queuine tRNA-ribosyltransferase	tgt	GO:0008479,GO:0008616,GO:0046872,GO:0101030	2.4.2.29
+G1WKY1	D-alanine--D-alanine ligase	ddl	GO:0005524,GO:0005737,GO:0008360,GO:0008716,GO:0009252,GO:0046872,GO:0071555	6.3.2.4
+G1WFL8	Threonine ammonia-lyase		GO:0004794,GO:0006567,GO:1901607	4.3.1.19
+G1WFX5	Cysteine desulfurase		GO:0030170,GO:0031071,GO:0044571,GO:0046872,GO:0051536	2.8.1.7
+G1WG58	L-serine dehydratase		GO:0003941,GO:0006094,GO:0046872,GO:0051539	4.3.1.17
+G1WGV4	Large-conductance mechanosensitive channel	mscL	GO:0005887,GO:0008381	
+G1WHA4	Pyruvate formate-lyase-activating enzyme		GO:0005737,GO:0016829,GO:0043365,GO:0046872,GO:0051539	1.97.1.4
+G1WI39	1-(5-phosphoribosyl)-5-[(5-phosphoribosylamino)methylideneamino] imidazole-4-carboxamide isomerase	hisA	GO:0000105,GO:0003949,GO:0005737	5.3.1.16
+G1WII9	Recombination protein RecR	recR	GO:0003677,GO:0006281,GO:0006310,GO:0046872	
+G1WJ34	Homoserine kinase	thrB	GO:0004413,GO:0005524,GO:0005737,GO:0009088,GO:0016310	2.7.1.39
+G1WJG8	Cell division protein FtsX		GO:0005886,GO:0007049,GO:0016021,GO:0051301	
+G1WJY3	Phosphate transport system permease protein		GO:0005315,GO:0005886,GO:0006817,GO:0016021	
+G1WKG7	Replicative DNA helicase		GO:0003677,GO:0003678,GO:0005524,GO:0006269,GO:0016887,GO:1990077	3.6.4.12
+G1WKT0	Phospho-2-dehydro-3-deoxyheptonate aldolase		GO:0003849,GO:0008652,GO:0009073,GO:0009423	2.5.1.54
+G1WFA6	Cys-tRNA(Pro)/Cys-tRNA(Cys) deacylase		GO:0002161,GO:0006412,GO:0016829	4.2.-.-
+G1WFF6	ABC2_membrane domain-containing protein		GO:0016021	
+G1WFJ4	DUF3795 domain-containing protein			
+G1WFN6	HAD family phosphatase		GO:0016791	
+G1WFU5	UPF0102 protein HMPREF9452_00208		GO:0003676	
+G1WG28	HGSNAT_cat domain-containing protein		GO:0016021	
+G1WG79	HPr domain-containing protein			
+G1WGB3	Tail fiber protein			
+G1WGE6	Two-component sensor histidine kinase		GO:0016021	
+G1WGH8	HTH cro/C1-type domain-containing protein		GO:0003677	
+G1WGN0	DUF523 domain-containing protein			
+G1WGT4	IS5/IS1182 family transposase			
+G1WGZ5			GO:0006396,GO:0008173	
+G1WH38	Acyl_transf_3 domain-containing protein		GO:0016021,GO:0016747	
+G1WH73	HEAT repeat domain-containing protein			
+G1WHC1	3-oxoacyl-ACP reductase			
+G1WHF9	ABC transmembrane type-1 domain-containing protein		GO:0005886,GO:0016021,GO:0055085	
+G1WHJ6	Ethanolamine utilization protein EutP		GO:0005524,GO:0006576	
+G1WHR9	AAA_14 domain-containing protein			
+G1WHV8	bPH_1 domain-containing protein			
+G1WHZ4	ATP-binding protein			
+G1WI32	Arsenate reductase family protein			
+G1WI86	Cytochrome C biogenesis protein		GO:0005886,GO:0017003,GO:0017004,GO:0020037	
+G1WIG8	PTS EIIB type-4 domain-containing protein		GO:0005737,GO:0008982,GO:0009401,GO:0016301,GO:0016310	
+G1WIK9	DNA-binding response regulator		GO:0000160,GO:0003677	
+G1WIQ7	ABC transporter permease		GO:0005886,GO:0016021,GO:0022857	
+G1WIV6	Biotin transporter		GO:0005886,GO:0015225,GO:0016021	
+G1WIZ1	DUF4355 domain-containing protein			
+G1WJ32	Aminoacyl-histidine dipeptidase		GO:0006508,GO:0016787	
+G1WJ72	ABC transporter permease		GO:0016021	
+G1WJB0	PMT_2 domain-containing protein		GO:0016021	
+G1WJH2	Flavin_Reduct domain-containing protein		GO:0010181,GO:0016646	
+G1WJL1	Mannose-6-phosphate isomerase		GO:0004476,GO:0005975,GO:0046872	
+G1WJP9	TerB-C domain-containing protein			
+G1WJV2	Macro domain-containing protein			
+G1WJZ7	ABC transporter permease		GO:0016021	
+G1WK38	PTS EIIB type-3 domain-containing protein		GO:0008982,GO:0009401,GO:0016301,GO:0016310	
+G1WK72	HTH lacI-type domain-containing protein		GO:0003677,GO:0006355	
+G1WKD0	LMWPc domain-containing protein		GO:0004725,GO:0006470	
+G1WKH5	DUF3846 domain-containing protein			
+G1WKL6	DUF4178 domain-containing protein			
+G1WKS1	HTH crp-type domain-containing protein		GO:0003677,GO:0006355	
+G1WKX7	AAA_31 domain-containing protein			
+G1WL20	Lipase_3 domain-containing protein		GO:0006629,GO:0016021	
+G1WL64	Mannitol dehydrogenase family protein		GO:0016491	
+G1WLA2	AAA domain-containing protein		GO:0005524,GO:0016887	
+G1WLD8	HTH tetR-type domain-containing protein		GO:0003677,GO:0010468	
+G1WLH5	Lactamase_B domain-containing protein			
+G1WFA4	UvrABC system protein A	uvrA	GO:0003677,GO:0005524,GO:0005737	
+G1WG47	Glucose-1-phosphate adenylyltransferase	glgC	GO:0005524,GO:0005978,GO:0008878	2.7.7.27
+G1WGY1	UDP-N-acetylmuramoylalanine--D-glutamate ligase	murD	GO:0005524,GO:0005737,GO:0007049,GO:0008360,GO:0008764,GO:0009252,GO:0051301,GO:0071555	6.3.2.9
+G1WIM7	Serine--tRNA ligase	serS	GO:0004828,GO:0005524,GO:0005737,GO:0006434,GO:0016260,GO:0097056	6.1.1.11
+G1WJW2	Phosphoenolpyruvate carboxykinase (ATP)	pckA	GO:0004612,GO:0005524,GO:0005737,GO:0006094,GO:0016301,GO:0016310,GO:0046872	4.1.1.49
+G1WL25	Acetyl-coenzyme A carboxylase carboxyl transferase subunit beta	accD	GO:0003989,GO:0005524,GO:0006633,GO:0008270,GO:0009317,GO:0016743,GO:2001295	2.1.3.15
+G1WFM0	Coproporphyrin III ferrochelatase	cpfC	GO:0004325,GO:0005737,GO:0006783,GO:0046872	4.99.1.9
+G1WFY5	Bifunctional protein PyrR	pyrR	GO:0004845,GO:0006355	2.4.2.9
+G1WG67	HlyD_D23 domain-containing protein		GO:0016021,GO:0022857	
+G1WGW3	Cell wall synthesis protein Wag31		GO:0005737,GO:0007049,GO:0051301	
+G1WHB3	Probable GTP-binding protein EngB	engB	GO:0000917,GO:0005525,GO:0046872	
+G1WI41	Imidazoleglycerol-phosphate dehydratase	hisB	GO:0000105,GO:0004424,GO:0005737	4.2.1.19
+G1WIJ0			GO:0005506,GO:0016903,GO:0022900,GO:0030976,GO:0051539	
+G1WJ47	PFK domain-containing protein		GO:0003872,GO:0005524,GO:0005737,GO:0006002,GO:0046872	
+G1WJG9	Ribonuclease R	rnr	GO:0003723,GO:0005737,GO:0008859	3.1.13.1
+G1WKG9	50S ribosomal protein L9	rplI	GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WKT5	Asparagine--tRNA ligase	asnS	GO:0003676,GO:0004816,GO:0005524,GO:0005737,GO:0006421	6.1.1.22
+G1WL59	PTS beta-glucoside transporter subunit IIABC		GO:0005886,GO:0008982,GO:0009401,GO:0016021,GO:0016301,GO:0016310	
+G1WFA9	N-acetyltransferase domain-containing protein		GO:0016407,GO:0016755,GO:0044038	
+G1WFJ5	Tat pathway signal sequence		GO:0016021	
+G1WFU6			GO:0005524	
+G1WG30	LysM domain-containing protein		GO:0016021	
+G1WG80	Glyco_trans_2-like domain-containing protein		GO:0016021	
+G1WGB4	Lipoprotein			
+G1WGE7	dUTPase domain-containing protein	dut	GO:0000287,GO:0004170,GO:0006226,GO:0046081	3.6.1.23
+G1WGH9	DUF5325 family protein		GO:0016021	
+G1WGN1	Fe-ADH domain-containing protein		GO:0016614,GO:0046872	
+G1WGT5	PTS_EIIC domain-containing protein		GO:0005886,GO:0008982,GO:0009401,GO:0016021	
+G1WGZ6	DJ-1_PfpI domain-containing protein			
+G1WH39	Radical SAM protein		GO:0003824,GO:0046872,GO:0051536	
+G1WH74	DUF2516 family protein		GO:0016021	
+G1WHC2	DUF3149 domain-containing protein		GO:0016021	
+G1WHG0	Thiamine_BP domain-containing protein			
+G1WHJ7	BMC circularly permuted domain-containing protein		GO:0031469	
+G1WHN6	HTH cro/C1-type domain-containing protein		GO:0003677,GO:0016021	
+G1WHV9	DUF4115 domain-containing protein		GO:0016021	
+G1WHZ6	AAA_14 domain-containing protein			
+G1WI34	Aminotransferase class V-fold PLP-dependent enzyme		GO:0006520,GO:0016831,GO:0030170	
+G1WI88	ABC transporter domain-containing protein		GO:0005524	
+G1WIL0	Phosphoesterase		GO:0016787,GO:0046872,GO:0110165	3.1.4.-
+G1WIQ8	ABC transporter ATP-binding protein		GO:0005524	
+G1WIV7	4Fe-4S ferredoxin-type domain-containing protein			
+G1WIZ2	Conserved protein			
+G1WJ74	Histidine kinase domain-containing protein		GO:0000155,GO:0016020	
+G1WJB1	Probable transcriptional regulatory protein HMPREF9452_01424		GO:0003677,GO:0005737,GO:0006355	
+G1WJH3	Rubredoxin-like domain-containing protein		GO:0005506	
+G1WJL2	PTS system mannose/fructose/sorbose family transporter subunit IID		GO:0005886,GO:0009401,GO:0016021	
+G1WJQ0	MFS domain-containing protein		GO:0016021,GO:0022857	
+G1WJV3	ADP-ribosylglycohydrolase			
+G1WJZ8	ABC transporter permease		GO:0016021	
+G1WK40	Aminopeptidase P family protein		GO:0016787	
+G1WK73	Deacetylase sirtuin-type domain-containing protein		GO:0016740,GO:0070403	
+G1WKH8	Regulator of Ras-like GTPase activity (Roadblock/LC7/MglB family)			
+G1WKL7	Hemagglutinin			
+G1WKS2	DUF2974 domain-containing protein			
+G1WKX8	ParB domain-containing protein		GO:0003677	
+G1WL21			GO:0008173,GO:0034470	
+G1WLA3	GIY-YIG domain-containing protein			
+G1WLD9	MFS transporter		GO:0016021,GO:0022857	
+G1WFC4	Triosephosphate isomerase	tpiA	GO:0004807,GO:0005737,GO:0006094,GO:0006096	5.3.1.1
+G1WG49	Glycogen synthase	glgA	GO:0004373,GO:0005978,GO:0009011,GO:0033201	2.4.1.21
+G1WGY2	Phospho-N-acetylmuramoyl-pentapeptide-transferase	mraY	GO:0005886,GO:0007049,GO:0008360,GO:0008963,GO:0009252,GO:0016021,GO:0046872,GO:0051301,GO:0051992,GO:0071555	2.7.8.13
+G1WIM9	N-acetylmuramic acid 6-phosphate etherase	murQ	GO:0005975,GO:0016835,GO:0046348,GO:0097173,GO:0097367	4.2.1.126
+G1WJX0	Argininosuccinate synthase	argG	GO:0004055,GO:0005524,GO:0005737,GO:0006526	6.3.4.5
+G1WL27	3-oxoacyl-[acyl-carrier-protein] synthase 3	fabH	GO:0004315,GO:0005737,GO:0006633,GO:0033818	2.3.1.180
+G1WFP9	PTS fructose transporter subunit IIABC		GO:0005351,GO:0005886,GO:0009401,GO:0016021,GO:0022877	
+G1WFY6	Aspartate carbamoyltransferase	pyrB	GO:0004070,GO:0006207,GO:0006520,GO:0016597,GO:0044205	2.1.3.2
+G1WG92	NlpC/P60 domain-containing protein		GO:0003796,GO:0009253,GO:0016998	
+G1WGW9	Phosphate transport system permease protein PstA		GO:0005315,GO:0005887,GO:0035435	
+G1WHC6	Ion-translocating oxidoreductase complex subunit D	rnfD	GO:0005886,GO:0016021,GO:0022900,GO:0055085	7.-.-.-
+G1WI42	Histidinol-phosphate aminotransferase	hisC	GO:0000105,GO:0004400,GO:0030170	2.6.1.9
+G1WIJ2	PTS system beta-glucosides-specific IIC component		GO:0005886,GO:0008982,GO:0009401,GO:0016021,GO:0016301,GO:0016310	
+G1WJ48	M18 family aminopeptidase		GO:0004177,GO:0006508,GO:0008237,GO:0008270	3.4.11.-
+G1WJH1	SsrA-binding protein	smpB	GO:0003723,GO:0005737,GO:0070929	
+G1WJZ1	Histidine kinase		GO:0000155,GO:0016021	2.7.13.3
+G1WKH1	30S ribosomal protein S18	rpsR	GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WKU5	3-isopropylmalate dehydratase small subunit	leuD	GO:0003861,GO:0009098	4.2.1.33
+G1WL65	Mannonate dehydratase	uxuA	GO:0006064,GO:0008927	4.2.1.8
+G1WFB0	ATP-grasp domain-containing protein		GO:0005524,GO:0046872	
+G1WFF8	DUF4097 domain-containing protein			
+G1WFJ6	GFO_IDH_MocA domain-containing protein		GO:0000166	
+G1WFN8	DUF3276 family protein			
+G1WFU7	DNA-protecting protein DprA		GO:0009294	
+G1WG33	UDP-N-acetylglucosamine--LPS N-acetylglucosamine transferase		GO:0009247,GO:0016020,GO:0016758	
+G1WG81	Sulfatase domain-containing protein		GO:0008484,GO:0016021	
+G1WGB5	Mtd_N domain-containing protein			
+G1WGE8	HNHc domain-containing protein			
+G1WGI0	Threonine efflux protein		GO:0016021	
+G1WGN2	HTH OST-type domain-containing protein		GO:0004540	
+G1WGT6	Probable membrane transporter protein		GO:0005886,GO:0016021	
+G1WGZ8	Peptidase S58 family protein			
+G1WH40	Glycos_transf_1 domain-containing protein		GO:0016757	
+G1WH75	NAD(P)-dependent oxidoreductase		GO:0016054,GO:0016491,GO:0050661,GO:0051287	
+G1WHC3	Electron transport complex protein RnfA		GO:0016021	
+G1WHG1	HalOD1 domain-containing protein			
+G1WHK0	Aldedh domain-containing protein		GO:0016620	
+G1WHN7	Secreted protein			
+G1WHS2	POLIIIAc domain-containing protein		GO:0003824	
+G1WHW2	Transposase			
+G1WHZ7	DUF4143 domain-containing protein			
+G1WI35	HTH lysR-type domain-containing protein		GO:0003700	
+G1WI89	Heme ABC transporter permease CcmB		GO:0015232,GO:0016021,GO:0017004	
+G1WIC7	DUF5105 domain-containing protein			
+G1WIQ9	Bmp domain-containing protein		GO:0005886	
+G1WIZ3	Integrase			
+G1WJ35	Threonine synthase		GO:1901607	
+G1WJ75	ABC transporter permease		GO:0016021	
+G1WJB2	Alkaline shock response membrane anchor protein AmaP		GO:0016021	
+G1WJH4	SnoaL-like domain-containing protein			
+G1WJQ2	SLT domain-containing protein		GO:0000270,GO:0008933,GO:0016020	
+G1WJV4	Transcriptional regulator			
+G1WJZ9	ABC transporter permease		GO:0016021	
+G1WK41	RDD domain-containing protein		GO:0016021	
+G1WK74			GO:0016021	
+G1WKD2	HTH marR-type domain-containing protein		GO:0003700	
+G1WKL8	DUF4417 domain-containing protein			
+G1WKS3	Esterase			
+G1WKX9	4HB_MCP_1 domain-containing protein			
+G1WL23	Biotin carboxyl carrier protein of acetyl-CoA carboxylase		GO:0003989,GO:0006633,GO:0009317	
+G1WL68	Big_13 domain-containing protein			
+G1WLA4	Retrotransposon hot spot (RHS) protein			
+G1WLE0	Pyridoxamine 5'-phosphate oxidase family protein			
+G1WLH7	TGc domain-containing protein			
+G1WFC5	2,3-bisphosphoglycerate-independent phosphoglycerate mutase	gpmI	GO:0005737,GO:0006007,GO:0006096,GO:0030145,GO:0046537	5.4.2.12
+G1WG55	Primosomal protein N'	priA	GO:0003677,GO:0003678,GO:0005524,GO:0006268,GO:0006269,GO:0008270,GO:0016787,GO:1990077	3.6.4.-
+G1WGY3	UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine ligase	murF	GO:0005524,GO:0005737,GO:0007049,GO:0008360,GO:0008766,GO:0009252,GO:0047480,GO:0051301,GO:0071555	6.3.2.10
+G1WIP9	Undecaprenyl-diphosphatase	uppP	GO:0005886,GO:0008360,GO:0009252,GO:0016021,GO:0016311,GO:0046677,GO:0050380,GO:0071555	3.6.1.27
+G1WJZ5	Potassium-transporting ATPase ATP-binding subunit	kdpB	GO:0000287,GO:0005524,GO:0005887,GO:0008556,GO:0016887	7.2.2.6
+G1WFR4	HAD family hydrolase		GO:0005524,GO:0005886,GO:0016021,GO:0016887	
+G1WFY7	Dihydroorotase	pyrC	GO:0004151,GO:0008270,GO:0044205	3.5.2.3
+G1WG97	Transport permease protein		GO:0043190,GO:0046677,GO:0140359	
+G1WHC7	Ion-translocating oxidoreductase complex subunit C	rnfC	GO:0005886,GO:0009055,GO:0046872,GO:0051539	7.-.-.-
+G1WI43	Histidinol dehydrogenase	hisD	GO:0000105,GO:0004399,GO:0008270,GO:0051287	1.1.1.23
+G1WIL7	Hydrogenase		GO:0008901,GO:0009375,GO:0046872,GO:0051536	
+G1WJ49	2-dehydropantoate 2-reductase		GO:0008677,GO:0015940	1.1.1.169
+G1WJI4	FAD:protein FMN transferase		GO:0016740,GO:0017013,GO:0046872	2.7.1.180
+G1WJZ4	Potassium-transporting ATPase potassium-binding subunit	kdpA	GO:0005887,GO:0008556,GO:0030955	
+G1WKH2	Single-stranded DNA-binding protein		GO:0003697,GO:0006260,GO:0006281,GO:0006310	
+G1WKU7	2-isopropylmalate synthase	leuA	GO:0003852,GO:0009098	2.3.3.13
+G1WL66	Uronate isomerase	uxaC	GO:0006064,GO:0008880	5.3.1.12
+G1WFB2	SBP_bac_5 domain-containing protein		GO:0042597,GO:0043190,GO:0055085	
+G1WFF9	DUF1700 domain-containing protein		GO:0016021	
+G1WFN9	PfkB domain-containing protein			
+G1WFV0	30S ribosomal protein S2	rpsB	GO:0003735,GO:0006412,GO:0015935	
+G1WG34	Pyr_redox_2 domain-containing protein		GO:0016668	
+G1WG82	Glyco_trans_2-like domain-containing protein			
+G1WGB6	Phage tail protein I			
+G1WGE9	Prophage protein			
+G1WGI1	HTH cro/C1-type domain-containing protein			
+G1WGN4	Cob(I)yrinic acid a,c-diamide adenosyltransferase		GO:0005524,GO:0008817,GO:0009236	
+G1WGT7	WS_DGAT_C domain-containing protein			
+G1WH00	DUF559 domain-containing protein			
+G1WH41	Glyco_trans_4-like_N domain-containing protein		GO:0016757,GO:0044249,GO:1901576	
+G1WH76	DegV family protein		GO:0008289	
+G1WHC4	Electron transport complex protein RnfE		GO:0016021	
+G1WHG2	UTRA domain-containing protein		GO:0003677,GO:0006355	
+G1WHK1	BMC domain-containing protein		GO:0031469	
+G1WHN8	DUF983 domain-containing protein		GO:0016021	
+G1WHW3	N-acetyltransferase domain-containing protein		GO:0016407	
+G1WHZ8				
+G1WI45	DUF4867 family protein		GO:0004848	
+G1WIC8	HAD family hydrolase			
+G1WIH1	Sulfatase domain-containing protein		GO:0008484	
+G1WIL2	ENDO3c domain-containing protein		GO:0006284,GO:0016798	
+G1WIR0	Uridine phosphorylase		GO:0004731,GO:0009164	
+G1WIV9	Tetratricopeptide repeat protein			
+G1WIZ4	DUF2513 domain-containing protein			
+G1WJ38	HTH tetR-type domain-containing protein		GO:0003677,GO:0010468	
+G1WJB3	DUF2273 domain-containing protein		GO:0016021	
+G1WJH5	Amidohydro-rel domain-containing protein		GO:0016810	
+G1WJL4	PTS EIIB type-4 domain-containing protein		GO:0005737,GO:0008982,GO:0009401,GO:0016301,GO:0016310	
+G1WJV5			GO:0042586	
+G1WK00	ABC transporter permease		GO:0016021	
+G1WK75			GO:0003677,GO:0004519,GO:0006281,GO:0008853	
+G1WKD3	ABC transporter ATP-binding protein		GO:0005524,GO:0016021,GO:0140359	
+G1WKL9	Zf-CGNR domain-containing protein			
+G1WKY2	Helicase ATP-binding domain-containing protein		GO:0003676,GO:0004386,GO:0004527,GO:0005524,GO:0016818	
+G1WL28	NMO domain-containing protein		GO:0018580	
+G1WL69	Flg_new_2 domain-containing protein			
+G1WLA5	N-acetyltransferase domain-containing protein		GO:0016407	
+G1WLE1			GO:0003677	
+G1WLH9	50S ribosomal protein L35	rpmI	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+G1WFE1	GTP cyclohydrolase 1	folE	GO:0003934,GO:0005525,GO:0006730,GO:0008270,GO:0035998,GO:0046654	3.5.4.16
+G1WG56	S-adenosylmethionine synthase	metK	GO:0000287,GO:0004478,GO:0005524,GO:0005737,GO:0006556,GO:0006730	2.5.1.6
+G1WGZ4	Polyphosphate kinase	ppk	GO:0005524,GO:0006799,GO:0008976,GO:0009358,GO:0016310,GO:0046872	2.7.4.1
+G1WIQ2	Phosphopentomutase	deoB	GO:0000287,GO:0005737,GO:0006015,GO:0008973,GO:0009264,GO:0030145,GO:0043094	5.4.2.7
+G1WK15	Glutamate 5-kinase	proB	GO:0003723,GO:0004349,GO:0005524,GO:0005737,GO:0016310,GO:0055129	2.7.2.11
+G1WLG0	Homoserine dehydrogenase		GO:0004412,GO:0009086,GO:0009088,GO:0009097,GO:0050661	1.1.1.3
+G1WFR6	Peptidyl-prolyl cis-trans isomerase		GO:0000413,GO:0003755	5.2.1.8
+G1WFY8	FAD-binding FR-type domain-containing protein		GO:0006221,GO:0016491,GO:0046872,GO:0050660,GO:0051537	
+G1WGD3	ATP-dependent Clp protease proteolytic subunit		GO:0004176,GO:0004252,GO:0006508	
+G1WGX2	Laccase domain-containing protein		GO:0004000,GO:0017061,GO:0046872	2.4.2.1,2.4.2.28,3.5.4.4
+G1WHC8	PDZ domain-containing protein		GO:0004252,GO:0006508,GO:0016021	
+G1WI44	ATP phosphoribosyltransferase		GO:0000105,GO:0003879,GO:0005737	2.4.2.17
+G1WIL9	Ni_hydr_CYTB domain-containing protein		GO:0005506,GO:0005886,GO:0009055,GO:0016021,GO:0022904	
+G1WJI9	DNA helicase		GO:0003677,GO:0003678,GO:0004527,GO:0005524,GO:0006281	3.6.4.12
+G1WJZ6	Potassium-transporting ATPase KdpC subunit	kdpC	GO:0005524,GO:0005887,GO:0008556	
+G1WKH3	30S ribosomal protein S6	rpsF	GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WKU9	50S ribosomal protein L1	rplA	GO:0000049,GO:0003735,GO:0006412,GO:0006417,GO:0015934,GO:0019843	
+G1WL84	DNA topoisomerase (ATP-hydrolyzing)		GO:0003677,GO:0005524,GO:0006265,GO:0034335	5.6.2.2
+G1WFG0	PadR domain-containing protein			
+G1WFJ8	4Fe-4S ferredoxin-type domain-containing protein		GO:0016491,GO:0046872,GO:0051536	
+G1WFP0	SGNH_hydro domain-containing protein			
+G1WFV5			GO:0016021,GO:0016779	
+G1WG35	DegV family EDD domain-containing protein		GO:0008289	
+G1WGB7				
+G1WGI2	Inner membrane protein		GO:0016021	
+G1WGN5	MATE family efflux transporter		GO:0015297,GO:0016021,GO:0042910	
+G1WH01	Glyco_trans_2-like domain-containing protein			
+G1WH42	Glyco_trans_4-like_N domain-containing protein		GO:0016757,GO:0044249,GO:1901576	
+G1WH78	PBPb domain-containing protein		GO:0016021	
+G1WHC5	FMN_bind domain-containing protein		GO:0005886,GO:0009055,GO:0010181	
+G1WHG4	HTH merR-type domain-containing protein		GO:0003677,GO:0006355	
+G1WHS4	Amidohydro-rel domain-containing protein		GO:0016810,GO:0019700	
+G1WHW4	DUF1778 domain-containing protein		GO:0006355	
+G1WHZ9	Metallophos domain-containing protein			
+G1WI46			GO:0016021	
+G1WI91	Peptidase S8		GO:0004252,GO:0006508	
+G1WIC9	FUSC family protein		GO:0016021	
+G1WIH2	Sulfatase domain-containing protein		GO:0008484	
+G1WIL3	Rubrerythrin family protein		GO:0005506,GO:0016491	
+G1WIR3	HTH gntR-type domain-containing protein		GO:0003677,GO:0003700	
+G1WIW0	TPR_REGION domain-containing protein			
+G1WIZ5	DUF5348 domain-containing protein			
+G1WJ77	ABC transporter permease		GO:0016021	
+G1WJB4	Asp23/Gls24 family envelope stress response protein			
+G1WJH6	Tetratricopeptide repeat protein		GO:0016021	
+G1WJL5	Integrase catalytic domain-containing protein			
+G1WJQ6	Desulfoferrodox domain-containing protein		GO:0005506,GO:0016491	
+G1WJV7	HARE-HTH domain-containing protein			
+G1WK01	ABC transporter domain-containing protein		GO:0005524	
+G1WK43	GGGtGRT protein			
+G1WK76	Ig-like domain-containing protein		GO:0016021	
+G1WKI1	IS256 family transposase		GO:0003677,GO:0004803,GO:0006313	
+G1WKM0	Amidohydro_3 domain-containing protein		GO:0016810	
+G1WKS5	Phosphohistidine phosphatase SixA			
+G1WKY3	WYL domain-containing protein			
+G1WL32	3-hydroxyacyl-[acyl-carrier-protein] dehydratase			
+G1WL70	S-layer homology domain-containing protein			
+G1WLA6	HTH araC/xylS-type domain-containing protein		GO:0003700,GO:0043565	
+G1WLE2	HTH merR-type domain-containing protein		GO:0003677,GO:0006355	
+G1WFH7	Phosphoserine aminotransferase	serC	GO:0004648,GO:0005737,GO:0006564,GO:0008615,GO:0030170	2.6.1.52
+G1WG57	Glutamate--tRNA ligase	gltX	GO:0000049,GO:0004818,GO:0005524,GO:0005737,GO:0006424,GO:0008270	6.1.1.17
+G1WGZ7	dTTP/UTP pyrophosphatase		GO:0005737,GO:0009117,GO:0036218,GO:0036221	3.6.1.9
+G1WIQ3	Deoxyribose-phosphate aldolase	deoC	GO:0004139,GO:0005737,GO:0009264,GO:0016052,GO:0046386	4.1.2.4
+G1WK24	Transcription termination factor Rho	rho	GO:0003723,GO:0004386,GO:0005524,GO:0006353,GO:0008186,GO:0016787	3.6.4.-
+G1WF96	Iron-sulfur cluster carrier protein		GO:0005524,GO:0016226,GO:0016887,GO:0046872,GO:0051536,GO:0140663	
+G1WFR8	Cell shape-determining protein MreB	mreB	GO:0000902,GO:0005524,GO:0005737,GO:0008360	
+G1WFZ2	Guanylate kinase		GO:0004385,GO:0005524,GO:0016310	2.7.4.8
+G1WGX5	Cell division protein FtsZ	ftsZ	GO:0000917,GO:0003924,GO:0005525,GO:0005737,GO:0032153,GO:0043093,GO:0051258	
+G1WI47	FAD:protein FMN transferase		GO:0016740,GO:0017013,GO:0046872	2.7.1.180
+G1WIM5	Transcription-repair-coupling factor	mfd	GO:0000716,GO:0003684,GO:0004386,GO:0005524,GO:0005737,GO:0006355,GO:0016787	3.6.4.-
+G1WJ69	PTS glucose transporter subunit IIB		GO:0005886,GO:0008982,GO:0009401,GO:0016021,GO:0016301,GO:0016310	
+G1WKH6	Trimeric intracellular cation channel family protein		GO:0005886,GO:0016021	
+G1WKV0	50S ribosomal protein L11	rplK	GO:0003735,GO:0005840,GO:0006412,GO:0070180,GO:1990904	
+G1WL85	DNA topoisomerase (ATP-hydrolyzing)	gyrB	GO:0003677,GO:0005524,GO:0006265,GO:0034335	5.6.2.2
+G1WFB6	Dihydrodipicolinate synthase family protein		GO:0016829	
+G1WFG1	Damage-inducible protein J		GO:0006355	
+G1WFJ9	Polysaccharide biosynthesis protein		GO:0016021	
+G1WFP1	TatD family deoxyribonuclease		GO:0016788	
+G1WFW0	Transmembrane protein		GO:0016021	
+G1WG36	DUF1836 domain-containing protein			
+G1WGB8	Bacteriophage protein			
+G1WGF1	Four helix bundle protein			
+G1WGI3	Transposase			
+G1WGN6	VOC domain-containing protein		GO:0004462,GO:0046872	
+G1WGU3	Exo-alpha-sialidase		GO:0004308	
+G1WH02			GO:0008767	
+G1WH43	Bac_transf domain-containing protein			
+G1WH79	ComF family protein			
+G1WHC9	OmpR/PhoB-type domain-containing protein		GO:0000160,GO:0003677,GO:0006355	
+G1WHG6	DUF554 domain-containing protein		GO:0016021	
+G1WHK3	Phage protein			
+G1WHP0	Fido domain-containing protein		GO:0005524	
+G1WHS5	ABC transporter domain-containing protein		GO:0005524	
+G1WHW5	MmcQ/YjbR family DNA-binding protein			
+G1WI93	CcmD family protein		GO:0016021	
+G1WID0				
+G1WIH3	TPR_REGION domain-containing protein			
+G1WIL4	Glycosyltransferase family 8 protein		GO:0016757	
+G1WIR8	YitT family protein		GO:0005886,GO:0016021	
+G1WIW1	NusG_II domain-containing protein			
+G1WIZ6	Ntox50 domain-containing protein			
+G1WJ40	ABC transporter permease		GO:0005886,GO:0016021	
+G1WJ78	DUF2238 domain-containing protein		GO:0016021	
+G1WJB5	ABC transporter domain-containing protein		GO:0005524,GO:0015821,GO:0042626	
+G1WJH7	HTH_17 domain-containing protein		GO:0003677	
+G1WJL6	DUF4130 domain-containing protein			
+G1WJQ7	NAD_synthase domain-containing protein			
+G1WJV8	Lipoyl-binding domain-containing protein			
+G1WK02	HTH luxR-type domain-containing protein		GO:0003677,GO:0006355,GO:0016021	
+G1WK44	NifU homolog involved in Fe-S cluster formation			
+G1WK79	N-acetyltransferase domain-containing protein		GO:0016407	
+G1WKD5	DUF4143 domain-containing protein			
+G1WKI2	HATPase_c domain-containing protein			
+G1WKM1	M20_dimer domain-containing protein		GO:0016787	
+G1WKS6			GO:0016491,GO:0045454,GO:0050660	
+G1WKY4	WYL domain-containing protein			
+G1WL33	HTH marR-type domain-containing protein		GO:0003700	
+G1WL71	Cu_amine_oxidN1 domain-containing protein			
+G1WLA7	STAS domain-containing protein		GO:0008271,GO:0016021	
+G1WLE3	Flavodoxin-like domain-containing protein		GO:0010181	
+G1WFL4	Ketol-acid reductoisomerase (NADP(+))	ilvC	GO:0000287,GO:0004455,GO:0009097,GO:0009099,GO:0016853,GO:0050661	1.1.1.86
+G1WG78	Phosphoenolpyruvate-protein phosphotransferase		GO:0005737,GO:0008965,GO:0009401,GO:0016301,GO:0016310,GO:0046872	2.7.3.9
+G1WH09	Acetate kinase	ackA	GO:0000287,GO:0005524,GO:0005737,GO:0006082,GO:0006085,GO:0008776,GO:0016310	2.7.2.1
+G1WIR4	Ribonucleoside-diphosphate reductase subunit beta		GO:0004748,GO:0006260,GO:0009263,GO:0016021,GO:0046872	1.17.4.1
+G1WK78	Ribose-phosphate pyrophosphokinase	prs	GO:0000287,GO:0004749,GO:0005524,GO:0005737,GO:0006015,GO:0009156,GO:0009165,GO:0016301,GO:0016310	2.7.6.1
+G1WF97	HTH luxR-type domain-containing protein		GO:0003677,GO:0006355,GO:0016021	
+G1WFR9	Cell shape-determining protein MreC		GO:0008360	
+G1WFZ3	DNA-directed RNA polymerase subunit omega	rpoZ	GO:0000428,GO:0003677,GO:0003899,GO:0006351	2.7.7.6
+G1WGJ3	Non-specific serine/threonine protein kinase		GO:0004674,GO:0005524,GO:0006468,GO:0016021	2.7.11.1
+G1WGX6	POTRA domain-containing protein		GO:0005886,GO:0007049,GO:0016021,GO:0051301	
+G1WHD7	Ferrous iron transport protein B		GO:0005525,GO:0005886,GO:0015093,GO:0016021,GO:0055072	
+G1WI49	Riboflavin transporter		GO:0005886,GO:0016021,GO:0032217	
+G1WJ73	1-deoxy-D-xylulose-5-phosphate synthase		GO:0008661,GO:0009228,GO:0016114,GO:0052865	2.2.1.7
+G1WJJ6	DEAD/DEAH box helicase		GO:0003676,GO:0003724,GO:0005524,GO:0016787	
+G1WK13	Nicotinate phosphoribosyltransferase		GO:0004514,GO:0004516,GO:0009435	6.3.4.21
+G1WKJ4	Asparaginase		GO:0004067,GO:0006520	3.5.1.1
+G1WKV1	Transcription termination/antitermination protein NusG	nusG	GO:0006353,GO:0006354,GO:0031564,GO:0032784	
+G1WL86	tRNA-dihydrouridine synthase		GO:0017150,GO:0050660	1.3.1.-
+G1WFB7	ROK family protein			
+G1WFG2	DUF4179 domain-containing protein		GO:0016021	
+G1WFK0	ABC transporter domain-containing protein		GO:0005524	
+G1WFP2	ThiF domain-containing protein		GO:0008641	
+G1WFW1	ABC transporter ATP-binding protein		GO:0005524	
+G1WG38	HTH merR-type domain-containing protein		GO:0003677,GO:0006355	
+G1WG85	PS_pyruv_trans domain-containing protein			
+G1WGB9	Phage tail protein			
+G1WGF2	Phage protein			
+G1WGI4	PepSY domain-containing protein			
+G1WGN7	SpoU_methylase domain-containing protein		GO:0003723,GO:0006396,GO:0008173	
+G1WGU4	ABC transporter domain-containing protein		GO:0005524	
+G1WH03	Phosphate acetyltransferase		GO:0016407	2.3.1.8
+G1WH44	Resolvase			
+G1WH80	PSP1 C-terminal domain-containing protein			
+G1WHD0	Glutamine synthetase		GO:0004356,GO:0006542	
+G1WHG7	UbiD family decarboxylase		GO:0016831	
+G1WHK4	Multidrug resistance efflux transporter family protein		GO:0016021	
+G1WHP1	HTH lysR-type domain-containing protein		GO:0003700	
+G1WHS6			GO:0016829,GO:0019700,GO:0051539	
+G1WHW6	IstB_IS21 domain-containing protein			
+G1WI01	PTS sugar transporter subunit IIC		GO:0005886,GO:0009401,GO:0016021	
+G1WI94	HTH marR-type domain-containing protein		GO:0003700	
+G1WID1			GO:0046872	
+G1WIH4	LysE family translocator		GO:0016021	
+G1WIL5	AI-2E family transporter		GO:0016021	
+G1WIR9	HTH rpiR-type domain-containing protein		GO:0003700,GO:0097367,GO:1901135	
+G1WIZ7	Phage portal protein			
+G1WJ41	DegV family EDD domain-containing protein		GO:0008289	
+G1WJ79	ATP-binding cassette domain-containing protein		GO:0005524,GO:0016021,GO:0140359	
+G1WJB6	ABC transmembrane type-1 domain-containing protein		GO:0005886,GO:0016021,GO:0055085	
+G1WJH8	Molecular chaperone HscC		GO:0005524,GO:0140662	
+G1WJL7	ATPase_AAA_core domain-containing protein			
+G1WJR3	CSD domain-containing protein		GO:0003676	
+G1WJV9	Glutaconyl-CoA decarboxylase		GO:0005886,GO:0006814,GO:0016021,GO:0016829	
+G1WK03	N-acetyltransferase domain-containing protein		GO:0016407	
+G1WK45	ABC transmembrane type-1 domain-containing protein		GO:0005886,GO:0016021,GO:0055085	
+G1WK81	HTH deoR-type domain-containing protein		GO:0003677,GO:0003700	
+G1WKD6	HAD family phosphatase			
+G1WKI3	HTH cro/C1-type domain-containing protein			
+G1WKM2	Flavodoxin_2 domain-containing protein			
+G1WKS7	Nitroreductase domain-containing protein		GO:0016491	
+G1WKY5	Peptidase_M28 domain-containing protein		GO:0016021	
+G1WL34	N-acetyltransferase domain-containing protein		GO:0016407	
+G1WL72	Fido domain-containing protein		GO:0005524	
+G1WLA9	Peptide transporter		GO:0016021,GO:0035673	
+G1WLE4	RNA polymerase sigma factor		GO:0003677,GO:0006352,GO:0006950,GO:0016987	
+G1WLI3	Abi family protein			
+G1WGJ8	3-dehydroquinate synthase	aroB	GO:0000166,GO:0003856,GO:0005737,GO:0008652,GO:0009073,GO:0009423,GO:0046872	4.2.3.4
+G1WH84	DNA topoisomerase 1	topA	GO:0003677,GO:0003917,GO:0005694,GO:0006265,GO:0046872	5.6.2.1
+G1WIT8	Glucosamine-6-phosphate deaminase	nagB	GO:0004342,GO:0005975,GO:0006044,GO:0019262	3.5.99.6
+G1WK93	Phosphoribosylglycinamide formyltransferase	purN	GO:0004644,GO:0006189	2.1.2.2
+G1WFA7	NlpC/P60 domain-containing protein			
+G1WFS6	50S ribosomal protein L21	rplU	GO:0003735,GO:0005737,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WFZ5	ComEA family DNA-binding protein		GO:0003677,GO:0006281,GO:0016021	
+G1WGK4	DNA repair protein RecN		GO:0005524,GO:0006281,GO:0006310	
+G1WGY0	Lipid II flippase FtsW		GO:0008360,GO:0016021,GO:0051301	
+G1WHF0	PTS EIIC type-2 domain-containing protein		GO:0005351,GO:0005886,GO:0008982,GO:0009401,GO:0016021	
+G1WI53	UDP-glucose 4-epimerase		GO:0003978,GO:0006012	5.1.3.2
+G1WIN9	Glutamyl-Q tRNA(Asp) synthetase	gluQ	GO:0004812,GO:0005524,GO:0006400,GO:0006424,GO:0008270,GO:0110165	6.1.1.-
+G1WJ81	Ammonium transporter		GO:0005886,GO:0008519,GO:0016021	
+G1WJK2	Magnesium-transporting ATPase, P-type 1		GO:0005524,GO:0005886,GO:0015444,GO:0016021,GO:0016887	7.2.2.14
+G1WK17	Gamma-glutamyl phosphate reductase	proA	GO:0004350,GO:0005737,GO:0050661,GO:0055129	1.2.1.41
+G1WKJ7	Ribosome-binding ATPase YchF	ychF	GO:0005524,GO:0005525,GO:0016887,GO:0043022,GO:0043023	
+G1WKV3	50S ribosomal protein L33	rpmG	GO:0003735,GO:0005737,GO:0005840,GO:0006412,GO:1990904	
+G1WL90	Tr-type G domain-containing protein		GO:0003924,GO:0005525,GO:0006412,GO:0046677	
+G1WFB9	Nucleotide-binding protein HMPREF9452_00032		GO:0005524,GO:0005525	
+G1WFP4	DUF2200 domain-containing protein			
+G1WFW2			GO:0016021	
+G1WG39	FHA domain-containing protein			
+G1WG86	Acyl_transf_3 domain-containing protein		GO:0016021,GO:0016747	
+G1WGC0	Baseplate assembly protein			
+G1WGF3			GO:0016021	
+G1WGI5	NYN domain-containing protein		GO:0004540	
+G1WGN8	Flavodoxin			
+G1WGU7	MoCF_biosynth domain-containing protein			
+G1WH04	Gamma-glutamyl-gamma-aminobutyrate hydrolase family protein		GO:0016811	
+G1WH81	DNA polymerase III subunit delta			
+G1WHD1	Pyr_redox_2 domain-containing protein		GO:0016491	
+G1WHG8	DUF2088 domain-containing protein			
+G1WHK5			GO:0005975,GO:0016861	
+G1WHP2	Meth_synt_2 domain-containing protein		GO:0003871,GO:0008270,GO:0009086	
+G1WHS7			GO:0019634	
+G1WHW7	DUF1016_N domain-containing protein			
+G1WI02	PTS sugar transporter subunit IIC		GO:0005886,GO:0009401,GO:0016021	
+G1WI52	Peptidase C51 domain-containing protein			
+G1WI95	HTH merR-type domain-containing protein		GO:0003677,GO:0006355	
+G1WID2				
+G1WIH5	DUF5673 domain-containing protein		GO:0016021	
+G1WIL6	F5/8 type C domain-containing protein		GO:0016021	
+G1WIW3	PMT_2 domain-containing protein		GO:0016021	
+G1WIZ8	Terminase			
+G1WJ42	TGc domain-containing protein		GO:0016021	
+G1WJ80			GO:0006808,GO:0030234	
+G1WJB7	Lipoprotein		GO:0016020	
+G1WJH9	Heat shock protein 70-like protein		GO:0005524,GO:0140662	
+G1WJL9	N-acetylmuramoyl-L-alanine amidase domain-containing protein			
+G1WJR5	Protein phosphatase CheZ			
+G1WJW0	Oxaloacetate decarboxylase gamma chain		GO:0016021	
+G1WK04	DNA_binding_1 domain-containing protein		GO:0003908,GO:0006281,GO:0032259	2.1.1.63
+G1WK82	GFO_IDH_MocA domain-containing protein		GO:0000166	
+G1WKD9	Nitroreductase domain-containing protein		GO:0016491	
+G1WKI4	VbhA domain-containing protein			
+G1WKM3	Transcriptional regulator			
+G1WKS8	PH domain-containing protein		GO:0016021,GO:0030153	
+G1WKY6	GST N-terminal domain-containing protein			
+G1WL73	CdiI_4 domain-containing protein			
+G1WLE5	Integral membrane protein		GO:0016021	
+G1WLI4	DUF2442 domain-containing protein			
+G1WFM8	Glucose-6-phosphate isomerase	pgi	GO:0004347,GO:0005737,GO:0006094,GO:0006096,GO:0097367	5.3.1.9
+G1WGJ9	3-phosphoshikimate 1-carboxyvinyltransferase	aroA	GO:0003866,GO:0005737,GO:0008652,GO:0009073,GO:0009423	2.5.1.19
+G1WH93	Demethylmenaquinone methyltransferase	menG	GO:0009234,GO:0032259,GO:0043770,GO:0102027,GO:0102094,GO:0102955	2.1.1.163
+G1WIU6	Methionine synthase		GO:0008705,GO:0031419,GO:0032259,GO:0042558,GO:0046872	2.1.1.13
+G1WK96	Amidophosphoribosyltransferase	purF	GO:0000287,GO:0004044,GO:0006189,GO:0006541,GO:0009113,GO:0051539	2.4.2.14
+G1WFA8	Murein biosynthesis integral membrane protein MurJ		GO:0005886,GO:0008360,GO:0009252,GO:0016021	
+G1WFS7	50S ribosomal protein L27	rpmA	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+G1WFZ9	30S ribosomal protein S20	rpsT	GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WGK8	Transcription antitermination protein NusB	nusB	GO:0003723,GO:0006353,GO:0006355,GO:0031564	
+G1WGY6	Ribosomal RNA small subunit methyltransferase H	rsmH	GO:0005737,GO:0070475,GO:0071424	2.1.1.199
+G1WHG5	Flavin prenyltransferase UbiX	ubiX	GO:0106141	2.5.1.129
+G1WI57	Histidine kinase		GO:0000155,GO:0016021	2.7.13.3
+G1WIP0	Ferritin		GO:0005737,GO:0006826,GO:0006879,GO:0008199	1.16.3.2
+G1WJ84	Aldose 1-epimerase		GO:0004034,GO:0019318,GO:0030246	5.1.3.3
+G1WJK6	Cysteine synthase		GO:0004124,GO:0006535	2.5.1.47
+G1WK22	Arginine--tRNA ligase	argS	GO:0004814,GO:0005524,GO:0005737,GO:0006420	6.1.1.19
+G1WKK5	PTS alpha-glucoside transporter subunit IIBC		GO:0005886,GO:0008982,GO:0009401,GO:0016021,GO:0016301,GO:0016310	
+G1WKV4	Elongation factor Tu	tuf	GO:0003746,GO:0003924,GO:0005525,GO:0005737	
+G1WLA8	Peptide chain release factor 3	prfC	GO:0003924,GO:0005525,GO:0005737,GO:0006449,GO:0016149	
+G1WFC0	Putative gluconeogenesis factor		GO:0005737,GO:0008360,GO:0043743	
+G1WFG4	HTH cro/C1-type domain-containing protein		GO:0003677	
+G1WFK2	IS110 family transposase			
+G1WFP5	DUF3825 domain-containing protein			
+G1WFW4			GO:0007059	
+G1WG40	CDP-alcohol phosphatidyltransferase family protein		GO:0008654,GO:0016021,GO:0016780	
+G1WG87	PMT_2 domain-containing protein		GO:0016021	
+G1WGC1	Phage late control D family protein			
+G1WGF4	Integration host factor		GO:0003676	
+G1WGI6	LexA_DNA_bind domain-containing protein			
+G1WGP2			GO:0005525,GO:0006614,GO:0016020	
+G1WGU9	Chloride transporter, ClC family		GO:0005247,GO:0016021	
+G1WH46	Aldose 1-epimerase family protein		GO:0005975,GO:0016853,GO:0030246	
+G1WH83	HAD family hydrolase			
+G1WHD2	SAF domain-containing protein		GO:0016829	
+G1WHG9	Conjugal transfer protein TraX		GO:0016021	
+G1WHK6				
+G1WHP3	ABC transporter ATP-binding protein		GO:0005524,GO:0016021,GO:0140359	
+G1WHS8			GO:0016829,GO:0019634	
+G1WHW8	Glutaminase			
+G1WI54	Polyprenyl synthetase family protein		GO:0008299,GO:0016740	
+G1WI96	Sporulation protein YjcZ		GO:0016021	
+G1WID3	IU_nuc_hydro domain-containing protein		GO:0006139,GO:0016799,GO:1901564	
+G1WIH7	Transpeptidase domain-containing protein		GO:0008360,GO:0008658,GO:0016021,GO:0051301	
+G1WIL8	Nickel-dependent hydrogenase large subunit		GO:0008901,GO:0016151	
+G1WIW7	Acetylornithine aminotransferase		GO:0008483,GO:0030170	
+G1WIZ9	Winged helix-turn-helix DNA-binding			
+G1WJ43	AAA domain-containing protein		GO:0005524,GO:0016887	
+G1WJD0	50S ribosomal protein L36	rpmJ	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+G1WJI0	MitMem_reg domain-containing protein			
+G1WJM0	DUF262 domain-containing protein			
+G1WJR6	ABC1 domain-containing protein		GO:0016021	
+G1WJW1	Pyruvate carboxyltransferase domain-containing protein		GO:0003824	
+G1WK05	MFS transporter		GO:0016021,GO:0022857	
+G1WK47	OpuAC domain-containing protein		GO:0022857,GO:0043190	
+G1WK84			GO:0016491,GO:0051536	
+G1WKI5			GO:0003924,GO:0005525,GO:0006412,GO:0046677	
+G1WKM4	RidA family protein			
+G1WKT1	Isochorismatase domain-containing protein			
+G1WKY7	DUF4229 domain-containing protein		GO:0016021	
+G1WL36	Flavodoxin-like domain-containing protein		GO:0009055,GO:0010181,GO:0046872	
+G1WL74	DUF4065 domain-containing protein			
+G1WLB3	CBAH domain-containing protein		GO:0016787	
+G1WLE6	ABC transporter domain-containing protein		GO:0005524	
+G1WFP3	Energy-dependent translational throttle protein EttA	ettA	GO:0000049,GO:0005524,GO:0005737,GO:0006412,GO:0016887,GO:0019843,GO:0043022,GO:0045900	3.6.1.-
+G1WGK0	Chorismate synthase	aroC	GO:0004107,GO:0008652,GO:0009073,GO:0009423	4.2.3.5
+G1WHA1	Cyclic pyranopterin monophosphate synthase	moaC	GO:0005525,GO:0006777,GO:0061799	4.6.1.17
+G1WIW5	Arginine biosynthesis bifunctional protein ArgJ	argJ	GO:0004042,GO:0004358,GO:0005737,GO:0006526,GO:0103045	2.3.1.1,2.3.1.35
+G1WKA8	UDP-N-acetylglucosamine 1-carboxyvinyltransferase	murA	GO:0005737,GO:0007049,GO:0008360,GO:0008760,GO:0009252,GO:0019277,GO:0051301,GO:0071555	2.5.1.7
+G1WFB1	UvrABC system protein C	uvrC	GO:0003677,GO:0005737,GO:0006289,GO:0009380,GO:0009381,GO:0009432	
+G1WFS8	GTPase Obg	obg	GO:0000287,GO:0003924,GO:0005525,GO:0005737,GO:0042254	3.6.5.-
+G1WG00	Elongation factor 4	lepA	GO:0003746,GO:0003924,GO:0005525,GO:0005886,GO:0043022,GO:0045727	3.6.5.n1
+G1WGL0	Elongation factor P	efp	GO:0003746,GO:0005737	
+G1WGY7	Transcriptional regulator MraZ	mraZ	GO:0003677,GO:0003700,GO:0005737,GO:0009295	
+G1WHH1	Phosphoenolpyruvate carboxylase		GO:0006099,GO:0008964,GO:0015977	4.1.1.31
+G1WI68	Type-4 uracil-DNA glycosylase		GO:0004844,GO:0046872,GO:0051539	3.2.2.27
+G1WIP3	Bifunctional purine biosynthesis protein PurH	purH	GO:0003937,GO:0004643,GO:0006189	2.1.2.3,3.5.4.10
+G1WJ86	Galactose-1-phosphate uridylyltransferase	galT	GO:0005737,GO:0006012,GO:0008108	2.7.7.12
+G1WJL8	Cytosine-specific methyltransferase		GO:0003677,GO:0003886,GO:0004519,GO:0009307	2.1.1.37
+G1WK28	Cytochrome ubiquinol oxidase subunit I		GO:0005886,GO:0009055,GO:0016021,GO:0019646,GO:0046872,GO:0070069	
+G1WKK8	Co-chaperonin GroES	groES	GO:0005524,GO:0005737,GO:0140662	
+G1WKV7	Cysteine--tRNA ligase	cysS	GO:0004817,GO:0005524,GO:0005737,GO:0006423,GO:0008270	6.1.1.16
+G1WLB2	Ribosomal RNA small subunit methyltransferase J	rsmJ	GO:0005737,GO:0008990	2.1.1.242
+G1WFC8	PTS mannose/fructose/sorbose transporter subunit IIC		GO:0005886,GO:0009401,GO:0016021	
+G1WFG5	ABC transporter permease		GO:0016021	
+G1WFK3	ABC transporter ATP-binding protein			
+G1WFP6	ABC transporter permease		GO:0016021	
+G1WFW5	SMC-Scp complex subunit ScpB		GO:0051301,GO:0051304	
+G1WG42	APH domain-containing protein			
+G1WG88	EamA domain-containing protein		GO:0016021	
+G1WGC2	LysM domain-containing protein			
+G1WGF5	DUF3310 domain-containing protein			
+G1WGI7	Tyr recombinase domain-containing protein		GO:0003677,GO:0006310,GO:0015074	
+G1WGP8	DUF177 domain-containing protein			
+G1WGV0	DAGKc domain-containing protein		GO:0016301	
+G1WH08	PBPb domain-containing protein			
+G1WH47			GO:0005975,GO:0006044,GO:0008448,GO:0046872	
+G1WH85	Retrovirus-related Pol polyprotein from transposon TNT 1-94			
+G1WHD3	Tagaturonate reductase		GO:0016491	
+G1WHH0	AAA family ATPase			
+G1WHK7	HTH deoR-type domain-containing protein		GO:0003700	
+G1WHS9	Phosphonate C-P lyase system protein PhnG		GO:0015716,GO:0019634	
+G1WHW9	Metal-dependent carboxypeptidase		GO:0004181,GO:0006508	
+G1WI04	SIS domain-containing protein		GO:0097367,GO:1901135	
+G1WI55	DUF3948 domain-containing protein		GO:0016021	
+G1WI97	Glucokinase			
+G1WID7	ESAT-6-like protein			
+G1WIH9	FHA domain-containing protein		GO:0016021	
+G1WIM0	Hydrogenase maturation protease		GO:0008047,GO:0008233	
+G1WIS2	HAD family hydrolase		GO:0016791	
+G1WIW8	DUF899 domain-containing protein			
+G1WJ00	HNHc domain-containing protein		GO:0003676,GO:0004519	
+G1WJ44	N-acetyltransferase domain-containing protein		GO:0016407	
+G1WJD6	ATP-binding cassette domain-containing protein		GO:0005524,GO:0016020,GO:0055085	
+G1WJI1	J domain-containing protein			
+G1WJM1	HNHc domain-containing protein			
+G1WJR7	ABC transporter domain-containing protein		GO:0005524	
+G1WJW3			GO:0004077,GO:0036211	
+G1WK06	HAD family phosphatase		GO:0016791	
+G1WK48	ABC transmembrane type-1 domain-containing protein		GO:0005886,GO:0016021,GO:0055085	
+G1WK85	Fibro-slime domain-containing protein		GO:0005975,GO:0016021	
+G1WKE1	TYR_PHOSPHATASE_2 domain-containing protein		GO:0004721	
+G1WKI6	Recombinase		GO:0003677,GO:0006310	
+G1WKT2	Abhydrolase_3 domain-containing protein		GO:0016787	
+G1WKY8	Class B sortase		GO:0016021,GO:0016787	
+G1WL37	DUF805 domain-containing protein		GO:0016021	
+G1WL75	RelA_SpoT domain-containing protein		GO:0015969	
+G1WLB4	Aamy domain-containing protein		GO:0005975	
+G1WLE7	ABC transporter permease		GO:0016021	
+G1WFP7	Glutamine-dependent NAD(+) synthetase	nadE	GO:0003952,GO:0004359,GO:0005524,GO:0005737,GO:0008795,GO:0009435	6.3.5.1
+G1WGK1	Bifunctional chorismate mutase/prephenate dehydratase		GO:0004106,GO:0004664,GO:0005737,GO:0009094,GO:0046417	4.2.1.51,5.4.99.5
+G1WHA2	GTP 3',8-cyclase	moaA	GO:0005525,GO:0006777,GO:0019008,GO:0046872,GO:0051539,GO:0061798,GO:1904047	4.1.99.22
+G1WIW6	Acetylglutamate kinase	argB	GO:0003991,GO:0005524,GO:0005737,GO:0016310,GO:0042450	2.7.2.8
+G1WKB2	ATP synthase subunit alpha	atpA	GO:0005524,GO:0005886,GO:0045261,GO:0046933,GO:0046961	7.1.2.2
+G1WFB3	ABC transmembrane type-1 domain-containing protein		GO:0005886,GO:0016021,GO:0055085	
+G1WFS9	Probable nicotinate-nucleotide adenylyltransferase	nadD	GO:0004515,GO:0005524,GO:0009435	2.7.7.18
+G1WG01	tRNA-dihydrouridine synthase		GO:0003723,GO:0017150,GO:0050660	1.3.1.-
+G1WGL6	Putative pre-16S rRNA nuclease		GO:0000967,GO:0004518,GO:0005737	3.1.-.-
+G1WHH2	Histidine--tRNA ligase	hisS	GO:0004821,GO:0005524,GO:0005737,GO:0006427	6.1.1.21
+G1WI69	Alanine racemase		GO:0008784,GO:0030170,GO:0030632	5.1.1.1
+G1WIQ0	NCS2 family permease		GO:0005886,GO:0015205,GO:0016021,GO:1904823	
+G1WJA7	Phosphatidylglycerol--prolipoprotein diacylglyceryl transferase	lgt	GO:0005887,GO:0008961,GO:0042158	2.5.1.145
+G1WJM3	PTS lactose/cellobiose transporter subunit IIA		GO:0009401,GO:0016740,GO:0046872	
+G1WK36	Aminopeptidase		GO:0004177,GO:0006508,GO:0046872	
+G1WKM6	50S ribosomal protein L24	rplX	GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WKV9	2-C-methyl-D-erythritol 4-phosphate cytidylyltransferase	ispD	GO:0016114,GO:0019288,GO:0050518	2.7.7.60
+G1WLC2	4Fe-4S dicluster domain-containing protein		GO:0009055,GO:0046872,GO:0050660,GO:0051536	
+G1WFC9	PTS mannose/fructose/sorbose transporter family subunit IID		GO:0005886,GO:0009401,GO:0016021	
+G1WFG6	Endonuclea_NS_2 domain-containing protein			
+G1WFK4	DUF4190 domain-containing protein		GO:0016021	
+G1WFP8	RpiR family transcriptional regulator		GO:0003700,GO:0097367,GO:1901135	
+G1WFW6	Pseudouridine synthase		GO:0000455,GO:0003723,GO:0120159	5.4.99.-
+G1WG43			GO:0004788,GO:0005524,GO:0006772,GO:0009229,GO:0016301,GO:0016310,GO:0030975	
+G1WG89	Glyco_trans_2-like domain-containing protein			
+G1WGC3	Tape measure protein		GO:0016021	
+G1WGF6	CopG family transcriptional regulator			
+G1WGI8	PTS EIIA type-1 domain-containing protein		GO:0009401,GO:0016740	
+G1WGP9	ATPase			
+G1WGV1	RF_PROK_I domain-containing protein		GO:0003747	
+G1WH10	HIT domain-containing protein		GO:0003824	
+G1WH48	SIS domain-containing protein		GO:0016787,GO:0097367,GO:1901135	
+G1WH86			GO:0003924,GO:0016151,GO:0051604	
+G1WHD5	HTH lacI-type domain-containing protein		GO:0003677,GO:0006355	
+G1WHH3	Beta_elim_lyase domain-containing protein		GO:0006520,GO:0016829	
+G1WHP5	HTH marR-type domain-containing protein		GO:0003700	
+G1WHT0	ABC transmembrane type-1 domain-containing protein		GO:0005886,GO:0016021,GO:0055085	
+G1WHX0	PHB domain-containing protein		GO:0016021	
+G1WI05	HTH gntR-type domain-containing protein		GO:0003677,GO:0003700	
+G1WI56	TVP38/TMEM64 family membrane protein		GO:0005886,GO:0016021	
+G1WI98	F5/8 type C domain-containing protein		GO:0016787	
+G1WID8	Thioredoxin		GO:0015035	
+G1WII0	FHA domain-containing protein			
+G1WIM1	Sensor histidine kinase		GO:0016021	
+G1WIS4	HPr domain-containing protein			
+G1WIW9	N-acetylmuramoyl-L-alanine amidase		GO:0008745,GO:0009253	
+G1WJ01	Sigma-70 family RNA polymerase sigma factor			
+G1WJ45	Antitoxin			
+G1WJ85	Galactokinase		GO:0004335,GO:0005524,GO:0005737,GO:0006012	
+G1WJD7	Energy-coupling factor transporter transmembrane protein EcfT		GO:0005886,GO:0016021	
+G1WJI2	Amino acid permease		GO:0016021,GO:0022857	
+G1WJM2	PTS system EIIA component		GO:0006355	
+G1WJR9	Fe/B12 periplasmic-binding domain-containing protein			
+G1WJW4	DUF2263 domain-containing protein			
+G1WK07	Tryptophan--tRNA ligase		GO:0004830,GO:0005524,GO:0006436	6.1.1.2
+G1WK49			GO:0005506,GO:0016226,GO:0051536	
+G1WK86	Cytidylate kinase-like family protein			
+G1WKE2	ABC-2 family transporter protein		GO:0016021	
+G1WKI7	AAA family ATPase			
+G1WKN8	Transposase			
+G1WKT3	Acyl-ACP thioesterase		GO:0006633,GO:0016297	
+G1WKY9	DUF11 domain-containing protein		GO:0016021	
+G1WL38	Hydrogenase		GO:0016021	
+G1WLB5	50S ribosomal protein L22			
+G1WLE8	ABC transporter permease		GO:0016021	
+G1WLI7	IS110 family transposase		GO:0003677,GO:0004803,GO:0006313	
+G1WFQ2	L-lactate dehydrogenase	ldh		
+G1WGK2	Shikimate kinase	aroK	GO:0000287,GO:0004764,GO:0004765,GO:0005524,GO:0005737,GO:0008652,GO:0009073,GO:0009423,GO:0016310	2.7.1.71
+G1WHB9	DNA ligase	ligA	GO:0003911,GO:0006260,GO:0006281,GO:0046872	6.5.1.2
+G1WJ23	Ribonuclease PH	rph	GO:0000049,GO:0000175,GO:0006364,GO:0008033,GO:0009022,GO:0016075	2.7.7.56
+G1WKB4	ATP synthase subunit b	atpF	GO:0005886,GO:0016021,GO:0045263,GO:0046933	
+G1WFB4	ATP-binding cassette domain-containing protein		GO:0005524,GO:0005886,GO:0015833,GO:0016021,GO:0055085	
+G1WFT1	Ribosomal silencing factor RsfS	rsfS	GO:0005737,GO:0017148,GO:0042256,GO:0090071	
+G1WG02	Heme chaperone HemW		GO:0004109,GO:0005737,GO:0006779,GO:0046872,GO:0051539	
+G1WGM2	AAA domain-containing protein		GO:0003677,GO:0005524,GO:0006260,GO:0006281,GO:0006310,GO:0009378	
+G1WGZ2	Ornithine carbamoyltransferase		GO:0004585,GO:0005737,GO:0016597	2.1.3.3
+G1WHJ0	Phosphate propanoyltransferase		GO:0016747,GO:0051144	2.3.1.222
+G1WI72	Ricin B-type lectin domain-containing protein		GO:0009252,GO:0016740	
+G1WIQ4	PYNP_C domain-containing protein		GO:0004645,GO:0006206,GO:0006213,GO:0016154	
+G1WJB8	50S ribosomal protein L5	rplE	GO:0000049,GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WJM5	Permease IIC component		GO:0005886,GO:0008982,GO:0009401,GO:0016021	
+G1WKM7	50S ribosomal protein L14	rplN	GO:0003735,GO:0006412,GO:0015934,GO:0019843	
+G1WKW8	DNA replication and repair protein RecF	recF	GO:0003697,GO:0005524,GO:0005737,GO:0006260,GO:0006281,GO:0009432	
+G1WLF6	D-alanyl-lipoteichoic acid biosynthesis protein DltB		GO:0005886,GO:0016021,GO:0016746,GO:0070395	
+G1WFD0	DUF956 family protein			
+G1WFG7	DNA-binding protein			
+G1WFK5	FMN_red domain-containing protein		GO:0016491	
+G1WFQ0			GO:0005975,GO:0016301,GO:0016310,GO:0016773	
+G1WFW8	PlsC domain-containing protein		GO:0016021,GO:0016746	
+G1WG44	HAD family phosphatase			
+G1WG90	Glyco_trans_2-like domain-containing protein			
+G1WGC4	Signal recognition particle-docking protein FtsY			
+G1WGF7	Phage protein			
+G1WGQ1			GO:0008168,GO:0031167	
+G1WGV3	MFS domain-containing protein		GO:0016021,GO:0022857	
+G1WH13	Peptidase		GO:0016021	
+G1WH49	HTH gntR-type domain-containing protein		GO:0003677,GO:0003700	
+G1WH89	Sec-independent protein translocase protein TatA		GO:0015031,GO:0016021	
+G1WHD6	FeoB-associated Cys-rich membrane protein			
+G1WHH4	FMN_red domain-containing protein		GO:0016491	
+G1WHL1	6-phospho-beta-glucosidase			
+G1WHP6	DUF1328 domain-containing protein		GO:0016021	
+G1WHT1	ABC transmembrane type-1 domain-containing protein		GO:0005886,GO:0016021,GO:0055085	
+G1WHX1	HIT domain-containing protein		GO:0003824	
+G1WI06	HTH gntR-type domain-containing protein		GO:0003700	
+G1WI99	ATP-dependent sacrificial sulfur transferase LarE		GO:0016783	
+G1WID9	Cob(I)yrinic acid a,c-diamide adenosyltransferase			
+G1WII1	DUF3662 domain-containing protein			
+G1WIM2	DUF2269 family protein		GO:0016021	
+G1WIS5			GO:0006450	
+G1WIX0	Holin		GO:0016021	
+G1WJ46	Putative mRNA interferase YoeB		GO:0004519,GO:0006401	
+G1WJ87	YbjN domain-containing protein			
+G1WJD9	Glyco_trans_2-like domain-containing protein			
+G1WJI3	Phage holin family protein		GO:0016021	
+G1WJS0	Lipoprotein			
+G1WJW5	UPF0246 protein HMPREF9452_01628			
+G1WK08	Undecaprenyl/decaprenyl-phosphate alpha-N-acetylglucosaminyl 1-phosphate transferase		GO:0016021,GO:0016780	
+G1WK51	SufD family Fe-S cluster assembly protein		GO:0016226	
+G1WK89	Amino acid ABC transporter substrate-binding protein		GO:0015276,GO:0016020	
+G1WKE3	ABC transporter domain-containing protein		GO:0005524	
+G1WKI8	AAA family ATPase			
+G1WKZ1	TetR family transcriptional regulator			
+G1WL39	Oxidored_q6 domain-containing protein		GO:0051536	
+G1WL77	DUF899 domain-containing protein			
+G1WLB6	DUF3325 domain-containing protein		GO:0016021	
+G1WLE9			GO:0004642,GO:0006164,GO:0046872	
+G1WLI9	AAA domain-containing protein		GO:0005524	
+G1WFR0	4-hydroxy-tetrahydrodipicolinate reductase	dapB	GO:0005737,GO:0008839,GO:0009089,GO:0016726,GO:0019877,GO:0050661,GO:0051287	1.17.1.8
+G1WGK3	3-dehydroquinate dehydratase	aroQ	GO:0003855,GO:0008652,GO:0009073,GO:0009423	4.2.1.10
+G1WHG3	Aspartate--tRNA(Asp/Asn) ligase	aspS	GO:0003676,GO:0004815,GO:0005524,GO:0005737,GO:0006422,GO:0050560	6.1.1.23
+G1WJ24	dITP/XTP pyrophosphatase		GO:0000166,GO:0009117,GO:0009146,GO:0017111,GO:0035870,GO:0036220,GO:0036222,GO:0046872	3.6.1.66
+G1WKB5	ATP synthase subunit c	atpE	GO:0005886,GO:0008289,GO:0016021,GO:0045263,GO:0046933	
+G1WFB8	Putative N-acetylmannosamine-6-phosphate 2-epimerase	nanE	GO:0005975,GO:0006051,GO:0009385,GO:0019262,GO:0047465	5.1.3.9
+G1WFT3	30S ribosomal protein S16	rpsP	GO:0003735,GO:0005737,GO:0005840,GO:0006412,GO:1990904	
+G1WG03	Molecular chaperone DnaJ		GO:0006260,GO:0006457,GO:0016021,GO:0031072,GO:0046872,GO:0051082	
+G1WGM7	Pseudouridine synthase		GO:0000455,GO:0003723,GO:0120159	5.4.99.-
+G1WGZ3	Arginine deiminase	arcA	GO:0005737,GO:0016990,GO:0019547	3.5.3.6
+G1WHJ9	Choline trimethylamine-lyase	cutC	GO:0016840,GO:0042426	4.3.99.4
+G1WI81	2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase		GO:0003848,GO:0004156,GO:0005524,GO:0016301,GO:0016310,GO:0046654,GO:0046656,GO:0046872	2.7.6.3
+G1WIQ5	Cytidine deaminase		GO:0004126,GO:0008270,GO:0047844	3.5.4.5
+G1WJB9	30S ribosomal protein S14 type Z	rpsZ	GO:0003735,GO:0005840,GO:0006412,GO:0008270,GO:0019843,GO:1990904	
+G1WJN0	RNA 2',3'-cyclic phosphodiesterase		GO:0004113,GO:0008664	3.1.4.58
+G1WKM8	30S ribosomal protein S17	rpsQ	GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WKW9	Beta sliding clamp		GO:0003677,GO:0003887,GO:0005737,GO:0006260,GO:0008408,GO:0009360	
+G1WLF7	D-alanyl carrier protein	dltC	GO:0005737,GO:0016874,GO:0036370,GO:0070395,GO:0071555	
+G1WFD1	SBP_bac_5 domain-containing protein		GO:0042597,GO:0043190,GO:0055085	
+G1WFG8	3'-5' exonuclease		GO:0003676	
+G1WFK7	Pentapeptide repeat-containing protein			
+G1WFQ1	Aminotransferase		GO:0008483,GO:0009058,GO:0030170	2.6.1.-
+G1WFX0	DUF512 domain-containing protein			
+G1WG48			GO:0005978,GO:0008878	
+G1WG91	Glyco_trans_2-like domain-containing protein			
+G1WGC5	Phage tail assembly protein			
+G1WGF8	Zinc ribbon domain-containing protein			
+G1WGJ1	PRD domain-containing protein		GO:0003723,GO:0006355	
+G1WGQ2	ATP-dependent DNA helicase RecG		GO:0003676,GO:0003678,GO:0005524	3.6.4.12
+G1WGV5	Hydrolase_4 domain-containing protein			
+G1WH15	DAGKc domain-containing protein		GO:0016301	
+G1WH50	PTS system mannose/fructose/sorbose family transporter subunit IID		GO:0005886,GO:0009401,GO:0016021	
+G1WH90	Anti-sigma factor antagonist		GO:0043856	
+G1WHD8	FeoA domain-containing protein		GO:0046914	
+G1WHH5	4Fe-4S dicluster domain-containing protein		GO:0046872,GO:0051536	
+G1WHL2	HTH lacI-type domain-containing protein		GO:0003677,GO:0006355	
+G1WHP7	UPF0178 protein HMPREF9452_00860			
+G1WHT2	ABC transporter domain-containing protein		GO:0005524	
+G1WHX2	EamA family transporter		GO:0016021	
+G1WI07	DUF1376 domain-containing protein			
+G1WI59	PG_binding_1 domain-containing protein			
+G1WIE3	Transcription repressor NadR		GO:0036094,GO:0046872	
+G1WII3	AbiEi antitoxin of type IV toxin-antitoxin system			
+G1WIM3	DNA recombination protein RmuC			
+G1WIS8	Transgly domain-containing protein			
+G1WIX1	DUF1515 domain-containing protein		GO:0016021	
+G1WJ03	Lipoprotein			
+G1WJ88	ZIP family metal transporter		GO:0016021,GO:0046873	
+G1WJE1	Transmembrane protein		GO:0016021	
+G1WJI5	Ig-like domain-containing protein		GO:0016021	
+G1WJM6	PTS EIIB type-3 domain-containing protein		GO:0008982,GO:0009401,GO:0016301,GO:0016310	
+G1WJS2			GO:0009236,GO:0032259,GO:0046026	
+G1WJW6	PfkB domain-containing protein		GO:0016301,GO:0016310,GO:0016773	
+G1WK10	DUF2871 domain-containing protein		GO:0016021	
+G1WK52			GO:0016226	
+G1WKE4	HTH gntR-type domain-containing protein		GO:0003700	
+G1WKI9	Mobilization protein			
+G1WKP0	ZT_dimer domain-containing protein		GO:0008324,GO:0016021	
+G1WKT6	HTH arsR-type domain-containing protein		GO:0003700	
+G1WKZ3	NifU_N domain-containing protein		GO:0005506,GO:0016226,GO:0051536	
+G1WL40	Complex1_30kDa domain-containing protein		GO:0008137	
+G1WL78	CPXCG motif-containing cysteine-rich protein			
+G1WLB7	DUF1385 domain-containing protein		GO:0016021	
+G1WLF0	Iron ABC transporter permease		GO:0005886,GO:0016021,GO:0022857	
+G1WLJ0	Integrase catalytic domain-containing protein		GO:0003676,GO:0015074	
+G1WFR1	4-hydroxy-tetrahydrodipicolinate synthase	dapA	GO:0005737,GO:0008840,GO:0009089,GO:0019877	4.3.3.7
+G1WGK5	NAD kinase	nadK	GO:0003951,GO:0005524,GO:0005737,GO:0006741,GO:0016310,GO:0019674,GO:0046872,GO:0051287	2.7.1.23
+G1WHJ8	Choline trimethylamine-lyase activating enzyme	cutD	GO:0016491,GO:0042426,GO:0046872,GO:0051539	1.97.1.-
+G1WJ25	D-aminoacyl-tRNA deacylase	dtd	GO:0000049,GO:0005737,GO:0019478,GO:0043908,GO:0051499,GO:0106026	3.1.1.96
+G1WKB8	Uracil phosphoribosyltransferase	upp	GO:0000287,GO:0004845,GO:0005525,GO:0006223,GO:0044206	2.4.2.9
+G1WFC1	Probable cell division protein WhiA	whiA	GO:0003677,GO:0007049,GO:0043937,GO:0051301	
+G1WFT4	RNA-binding protein KhpA	khpA	GO:0003723,GO:0005737	
+G1WG07	Endoribonuclease YbeY	ybeY	GO:0004222,GO:0004521,GO:0005737,GO:0006364,GO:0008270	3.1.-.-
+G1WGN9	Dihydrofolate reductase		GO:0004146,GO:0006545,GO:0046654,GO:0050661	1.5.1.3
+G1WGZ9	Amino acid permease		GO:0005886,GO:0006865,GO:0016021,GO:0022857	
+G1WI87	Cytochrome c-type biogenesis protein CcmF		GO:0015232,GO:0016021,GO:0017004,GO:0020037	
+G1WIR1	DNA helicase		GO:0003677,GO:0003678,GO:0005524,GO:0016787	3.6.4.12
+G1WJC0	30S ribosomal protein S8	rpsH	GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WJN1	GMP synthase (glutamine-hydrolyzing)		GO:0003922,GO:0005524,GO:0006541,GO:0016462	6.3.5.2
+G1WK50	Cysteine desulfurase		GO:0006534,GO:0030170,GO:0031071	2.8.1.7
+G1WKM9	50S ribosomal protein L29	rpmC	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+G1WKX0	Chromosomal replication initiator protein DnaA		GO:0003688,GO:0005524,GO:0005737,GO:0006270,GO:0006275	
+G1WLH2	Single-stranded-DNA-specific exonuclease RecJ		GO:0003676,GO:0005524,GO:0006281,GO:0006310,GO:0008409	
+G1WFG9	Permease		GO:0016021	
+G1WFK9	Amino acid ABC transporter substrate-binding protein			
+G1WFQ3	TetR family transcriptional regulator			
+G1WFX6	Nif3-like dinuclear metal center hexameric protein			
+G1WG51	CxxC_CXXC_SSSS domain-containing protein			
+G1WG93	Glyco_trans_4-like_N domain-containing protein		GO:0016757,GO:0044249,GO:1901576	
+G1WGC6	Phage major tail protein			
+G1WGF9	Ferredoxin			
+G1WGJ2	Transposase			
+G1WGQ3	DhaL domain-containing protein		GO:0004371,GO:0006071	
+G1WGV6	O-acetylhomoserine aminocarboxypropyltransferase/cysteine synthase		GO:0016765,GO:0019346,GO:0030170	
+G1WH91	TPR_REGION domain-containing protein			
+G1WHD9	FeoA domain-containing protein		GO:0046914	
+G1WHH6	DMT family transporter		GO:0016021	
+G1WHL3	Phage protein			
+G1WHP8	Transposase			
+G1WHT3	Phosphonate ABC transporter substrate-binding protein		GO:0016021	
+G1WHX3	HDOD domain-containing protein			
+G1WI60	Deacetylase sirtuin-type domain-containing protein			
+G1WIA1	HTH lacI-type domain-containing protein		GO:0003677,GO:0006355	
+G1WIE4	Ferredoxin		GO:0005506,GO:0009055,GO:0051536	
+G1WII4	YcxB domain-containing protein		GO:0016021	
+G1WIM6	CcoQ/FixQ family Cbb3-type cytochrome c oxidase assembly chaperone		GO:0016021	
+G1WIS9	SBP_bac_5 domain-containing protein		GO:0042597,GO:0043190,GO:0055085	
+G1WJ04	KOW domain-containing protein			
+G1WJ51	Hydroxyacid dehydrogenase		GO:0016616,GO:0051287	
+G1WJ89	HAD family phosphatase		GO:0016791	
+G1WJE3	U32 family peptidase		GO:0071704	
+G1WJI6	Endo-1,4-beta-xylanase A			
+G1WJM7	Metallophos domain-containing protein		GO:0016787	
+G1WJS4			GO:0009236,GO:0030788,GO:0032259	
+G1WJW9	HAD family hydrolase		GO:0016791	
+G1WK11	Radical SAM core domain-containing protein		GO:0003824,GO:0046872,GO:0051536	
+G1WK53	ABC transporter domain-containing protein		GO:0005524	
+G1WK91	Glutamyl-tRNA amidotransferase		GO:0016884	
+G1WKJ0	Tyr recombinase domain-containing protein		GO:0003677,GO:0006310,GO:0015074	
+G1WKP1				
+G1WKT7	DUF1648 domain-containing protein		GO:0016021	
+G1WKZ4	DUF4238 domain-containing protein			
+G1WL41	Electron transport complex subunit RsxB			
+G1WL79	DUF3800 domain-containing protein			
+G1WLB8	DUF554 domain-containing protein		GO:0016021	
+G1WLJ1	Transposase IS116/IS110/IS902 family protein		GO:0003677,GO:0004803,GO:0006313	
+G1WFT2	DNA polymerase IV	dinB	GO:0000287,GO:0003684,GO:0003887,GO:0005737,GO:0006261,GO:0006281,GO:0009432	2.7.7.7
+G1WGL3	Shikimate kinase	aroK	GO:0000287,GO:0004765,GO:0005524,GO:0005737,GO:0008652,GO:0009073,GO:0009423,GO:0016310	2.7.1.71
+G1WHT6	Ribosomal RNA small subunit methyltransferase A	rsmA	GO:0003723,GO:0005737,GO:0052908	2.1.1.182
+G1WJ27	4-diphosphocytidyl-2-C-methyl-D-erythritol kinase	ispE	GO:0005524,GO:0016114,GO:0016310,GO:0019288,GO:0050515	2.7.1.148
+G1WKC0	Glycerol kinase	glpK	GO:0004370,GO:0005524,GO:0006072,GO:0016310,GO:0019563	2.7.1.30
+G1WFC2	Glyceraldehyde-3-phosphate dehydrogenase		GO:0004365,GO:0006006,GO:0050661,GO:0051287	1.2.1.-
+G1WFT5	Ribosome maturation factor RimM	rimM	GO:0005737,GO:0005840,GO:0006364,GO:0042274,GO:0043022	
+G1WG08	Diacylglycerol kinase		GO:0005524,GO:0005886,GO:0008654,GO:0016021,GO:0016301,GO:0016310	
+G1WGP1	Signal recognition particle protein	ffh	GO:0003924,GO:0005525,GO:0006614,GO:0008312,GO:0048500	
+G1WH06	ABC transmembrane type-1 domain-containing protein		GO:0006865,GO:0022857,GO:0043190	
+G1WHL0	PTS system lactose-specific EIICB component		GO:0005886,GO:0008982,GO:0009401,GO:0016021,GO:0016301,GO:0016310	2.7.1.207
+G1WI92	Heme exporter protein C		GO:0015232,GO:0016021,GO:0017004,GO:0020037	
+G1WIR2	DNA helicase		GO:0003677,GO:0003678,GO:0005524,GO:0016787	3.6.4.12
+G1WJC1	50S ribosomal protein L6	rplF	GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WJN4	Beta-N-acetylhexosaminidase		GO:0004563,GO:0005975,GO:0102148	3.2.1.52
+G1WK80	Peptidyl-tRNA hydrolase	pth	GO:0004045,GO:0005737,GO:0006412	3.1.1.29
+G1WKN0	50S ribosomal protein L16	rplP	GO:0000049,GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WKX2	50S ribosomal protein L34	rpmH	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+G1WLH3	GTP pyrophosphokinase		GO:0015970	2.7.6.5
+G1WFD4	ABC transporter domain-containing protein		GO:0005524,GO:0015833	
+G1WFH0	DUF1287 domain-containing protein		GO:0016021	
+G1WFX7	zf-RING_7 domain-containing protein			
+G1WG59	L,D-transpeptidase family protein		GO:0016021,GO:0016740	
+G1WG94	Glyco_trans_2-like domain-containing protein			
+G1WGC7	Phage tail sheath family protein			
+G1WGG0	Restriction alleviation protein, Lar family			
+G1WGJ4	XRE family transcriptional regulator			
+G1WGQ4	Asp23/Gls24 family envelope stress response protein			
+G1WGV7	C_GCAxxG_C_C family protein			
+G1WH17	ABC transporter permease		GO:0016021	
+G1WH52	PTS EIIB type-4 domain-containing protein		GO:0005737,GO:0008982,GO:0009401,GO:0016301,GO:0016310	
+G1WH92	SPOR domain-containing protein		GO:0016021	
+G1WHH7	Phage protein			
+G1WHP9	Branched-chain amino acid ABC transporter permease		GO:0016021	
+G1WHT4	TIGR01620 family protein		GO:0016021	
+G1WHX4	DUF1109 domain-containing protein		GO:0016021	
+G1WI12	VOC domain-containing protein			
+G1WI61	Helix-turn-helix domain-containing protein			
+G1WIA3	HTH cro/C1-type domain-containing protein		GO:0003677,GO:0016021	
+G1WIE7	J domain-containing protein	dnaJ	GO:0006457,GO:0051082	
+G1WII5	VWA domain-containing protein			
+G1WIM8	MurR/RpiR family transcriptional regulator		GO:0003700,GO:0097367,GO:1901135	
+G1WIX3	Tail fiber assembly protein			
+G1WJ05	ANTAR domain-containing protein			
+G1WJ52	HTH cro/C1-type domain-containing protein		GO:0003677,GO:0005506,GO:0016491	
+G1WJ90	TetR_C_8 domain-containing protein			
+G1WJE5			GO:0019700,GO:0050194	
+G1WJI7			GO:0003700,GO:0043565	
+G1WJM8	DUF2130 domain-containing protein			
+G1WJS5	Cobalamin biosynthesis protein CbiG		GO:0009236	
+G1WJX1	SAM-dependent methyltransferase			
+G1WK12	Protein TolA		GO:0016021	
+G1WK92	PpiC domain-containing protein		GO:0003755	
+G1WKE6	ABC transporter ATP-binding protein		GO:0005524,GO:0016021,GO:0140359	
+G1WKJ1	MarR family transcriptional regulator			
+G1WKT8	DUF3108 domain-containing protein			
+G1WKZ5	HTH luxR-type domain-containing protein		GO:0003677,GO:0006355,GO:0016021	
+G1WL43	Hydrogenase		GO:0016020,GO:0016651,GO:0046872,GO:0051539	
+G1WL80	Peptidase S51		GO:0006508,GO:0008236	
+G1WLB9	DUF5753 domain-containing protein			
+G1WLF2	Fe/B12 periplasmic-binding domain-containing protein			
+G1WLJ2	PIPK domain-containing protein			
+G1WFU8	Methylenetetrahydrofolate--tRNA-(uracil-5-)-methyltransferase TrmFO	trmFO	GO:0005737,GO:0030698,GO:0047151,GO:0050660	2.1.1.74
+G1WGL5	Endolytic murein transglycosylase	mltG	GO:0005887,GO:0008932,GO:0009252,GO:0016829,GO:0071555	4.2.2.-
+G1WHT7	Methionine--tRNA ligase	metG	GO:0004825,GO:0005524,GO:0005737,GO:0006431	6.1.1.10
+G1WJ30	Lysine--tRNA ligase	lysS	GO:0000049,GO:0000287,GO:0004824,GO:0004825,GO:0005524,GO:0005737,GO:0006430,GO:0006431	6.1.1.6
+G1WKC2	Release factor glutamine methyltransferase	prmC	GO:0003676,GO:0018364,GO:0036009,GO:0102559	2.1.1.297
+G1WFC3	Phosphoglycerate kinase	pgk	GO:0004618,GO:0005524,GO:0005737,GO:0006096	2.7.2.3
+G1WFT6	tRNA (guanine-N(1)-)-methyltransferase	trmD	GO:0005737,GO:0052906	2.1.1.228
+G1WG09	GTPase Era	era	GO:0003924,GO:0005525,GO:0005737,GO:0005886,GO:0042274,GO:0070181	
+G1WGP5	Acyl carrier protein	acpP	GO:0000036,GO:0005737	
+G1WH07	ABC transmembrane type-1 domain-containing protein		GO:0006865,GO:0022857,GO:0043190	
+G1WIC0	Serine acetyltransferase		GO:0005737,GO:0006535,GO:0009001	2.3.1.30
+G1WIR5	Ribonucleoside-diphosphate reductase		GO:0004748,GO:0005524,GO:0006260	1.17.4.1
+G1WJC2	50S ribosomal protein L18	rplR	GO:0003735,GO:0005737,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WJQ1	Dephospho-CoA kinase	coaE	GO:0004140,GO:0005524,GO:0005737,GO:0015937,GO:0016310	2.7.1.24
+G1WK83	FAD-binding FR-type domain-containing protein		GO:0006221,GO:0016491,GO:0046872,GO:0050660,GO:0051537	
+G1WKN1	30S ribosomal protein S3	rpsC	GO:0003729,GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WKX4	Membrane protein insertase YidC		GO:0015031,GO:0016021,GO:0032977	
+G1WLH8	Translation initiation factor IF-3	infC	GO:0003743,GO:0005737	
+G1WFH1	HdeD family acid-resistance protein		GO:0016021	
+G1WFL2	Small, acid-soluble spore protein, alpha/beta type			
+G1WFQ6	Nucleoid-associated protein		GO:0009295	
+G1WFX9	VanY domain-containing protein		GO:0006508,GO:0008233,GO:0016021	
+G1WG60	YkuD domain-containing protein		GO:0009252,GO:0016740	
+G1WG95	Glyco_trans_2-like domain-containing protein			
+G1WGC8	Phage protein			
+G1WGG1	Nicotinate phosphoribosyltransferase			
+G1WGJ5	DUF4352 domain-containing protein		GO:0016021	
+G1WGQ9	Bifunctional oligoribonuclease/PAP phosphatase NrnA		GO:0003676	
+G1WGV8	YigZ family protein			
+G1WH53			GO:0005886,GO:0016021	
+G1WH94	Aminotransferase		GO:0004069	
+G1WHE1	Aldo/keto reductase		GO:0016491	
+G1WHH8	Aminotransferase		GO:0008483,GO:0009058,GO:0030170	2.6.1.-
+G1WHL7	Glycine radical domain-containing protein		GO:0003824	
+G1WHQ0	FtsX domain-containing protein		GO:0005886,GO:0016021	
+G1WHT5	Hydrolase, TatD family		GO:0016788	
+G1WHX5	M16C_associated domain-containing protein		GO:0006508,GO:0046872	
+G1WI13	PTS_IIB domain-containing protein		GO:0008982,GO:0009401	
+G1WI62	HTH_17 domain-containing protein		GO:0003677	
+G1WIA4	2-dehydro-3-deoxyphosphogluconate aldolase		GO:0016829	
+G1WIE8	HTH merR-type domain-containing protein		GO:0003677,GO:0006355	
+G1WII7	Signal recognition particle-docking protein FtsY			
+G1WIN1	DUF871 domain-containing protein			
+G1WIX4	Tail fiber protein			
+G1WJ06	BZIP domain-containing protein			
+G1WJ91	CoA activase			
+G1WJE6	Aminotran_5 domain-containing protein		GO:0019700,GO:0047304	
+G1WJI8	PDDEXK_1 domain-containing protein			
+G1WJM9	NADH peroxidase		GO:0005506,GO:0016491	
+G1WJS6			GO:0008168,GO:0009236,GO:0032259	
+G1WJX3	Secreted protein		GO:0016021	
+G1WK14	DUF2442 domain-containing protein			
+G1WK55	Fructose-1,6-bisphosphatase		GO:0006094,GO:0042132	
+G1WK95	Transcriptional regulator			
+G1WKJ2	HTH cro/C1-type domain-containing protein		GO:0003677	
+G1WKP7	LPXTG cell wall anchor domain-containing protein		GO:0016021	
+G1WKT9	ABC transporter domain-containing protein		GO:0005524	
+G1WL44	Fibronectin type-III domain-containing protein		GO:0005975,GO:0016798	
+G1WL81	Abi family protein			
+G1WLC0	FAD-binding PCMH-type domain-containing protein		GO:0003824,GO:0071949	
+G1WLF3	Nucleoside-triphosphatase THEP1			
+G1WLJ3				
+G1WFV2	Uridylate kinase	pyrH	GO:0005524,GO:0005737,GO:0016310,GO:0033862,GO:0044210	2.7.4.22
+G1WGL7	Alanine--tRNA ligase	alaS	GO:0000049,GO:0004813,GO:0005524,GO:0005737,GO:0006419,GO:0008270	6.1.1.7
+G1WHV4	Small ribosomal subunit biogenesis GTPase RsgA	rsgA	GO:0003924,GO:0005525,GO:0005737,GO:0019843,GO:0042274,GO:0046872	3.6.1.-
+G1WJ36	Aspartokinase		GO:0004072,GO:0005524,GO:0009088,GO:0009089,GO:0016310,GO:0019877	2.7.2.4
+G1WKD7	Ribosomal RNA large subunit methyltransferase K/L	rlmL	GO:0003723,GO:0005737,GO:0052915,GO:0070043	2.1.1.173,2.1.1.264
+G1WFC6	Protein-export membrane protein SecG		GO:0005886,GO:0009306,GO:0015450,GO:0016021	
+G1WFT7	Signal peptidase I		GO:0004252,GO:0006465,GO:0016021	3.4.21.89
+G1WG10	DNA repair protein RecO	recO	GO:0006281,GO:0006310	
+G1WGP7	50S ribosomal protein L32	rpmF	GO:0003735,GO:0006412,GO:0015934	
+G1WH11	Exodeoxyribonuclease 7 small subunit	xseB	GO:0005737,GO:0006308,GO:0008855,GO:0009318	3.1.11.6
+G1WIC4	ABC transmembrane type-1 domain-containing protein		GO:0006865,GO:0022857,GO:0043190	
+G1WIR6	Branched-chain amino acid transport system carrier protein		GO:0005886,GO:0015658,GO:0016021	
+G1WJC3	30S ribosomal protein S5	rpsE	GO:0003735,GO:0006412,GO:0015935,GO:0019843	
+G1WJQ8	Crossover junction endodeoxyribonuclease RuvC	ruvC	GO:0000287,GO:0003676,GO:0006281,GO:0006310,GO:0008821	3.1.21.10
+G1WK87	ABC transmembrane type-1 domain-containing protein		GO:0006865,GO:0022857,GO:0043190	
+G1WKN2	50S ribosomal protein L22	rplV	GO:0003735,GO:0006412,GO:0015934,GO:0019843	
+G1WKX6	Ribosomal RNA small subunit methyltransferase G	rsmG	GO:0005737,GO:0070043	2.1.1.-
+G1WLI0	50S ribosomal protein L20	rplT	GO:0000027,GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WFD6	PPM-type phosphatase domain-containing protein		GO:0004722	
+G1WFL3	DEDD_Tnp_IS110 domain-containing protein			
+G1WFQ7			GO:0003697,GO:0006508,GO:0006974,GO:0008233,GO:0018142	
+G1WG61	Histidine kinase domain-containing protein		GO:0000155,GO:0016021	
+G1WG96	ABC transporter domain-containing protein		GO:0005524,GO:0016020,GO:0140359	
+G1WGC9	Sugar transporter			
+G1WGG2	Zinc ribbon domain-containing protein			
+G1WGJ6	3-deoxy-7-phosphoheptulonate synthase		GO:0009073,GO:0016832	
+G1WGR3	Ribosome maturation factor RimP	rimP	GO:0005737,GO:0042274	
+G1WGV9	Inorganic phosphate transporter		GO:0005315,GO:0006817,GO:0016021	
+G1WH19	Energy-coupling factor transporter transmembrane protein EcfT		GO:0005886,GO:0016021	
+G1WH95	DUF47 family protein			
+G1WHH9	Class II fructose-bisphosphate aldolase		GO:0008270	
+G1WHL9	ABC transporter domain-containing protein		GO:0005524	
+G1WHT9	Cellulase domain-containing protein		GO:0004553,GO:0071704	
+G1WHX6	UDG domain-containing protein			
+G1WI14	PTS EIIA type-2 domain-containing protein			
+G1WI63	Site-specific integrase		GO:0003677,GO:0006310,GO:0015074	
+G1WIA5	PTS EIIA type-2 domain-containing protein			
+G1WIN2	Membrane dipeptidase		GO:0006508,GO:0070573	
+G1WIT4	PNPLA domain-containing protein		GO:0016042,GO:0016787	
+G1WIX5	Mtd_N domain-containing protein			
+G1WJ07	Ribosome biogenesis protein Nop10			
+G1WJ54	HisKA domain-containing protein		GO:0000155,GO:0016021	
+G1WJ92	VanZ domain-containing protein		GO:0016021	
+G1WJE7	ABC transporter domain-containing protein		GO:0005524	
+G1WJJ0	DNA-directed DNA polymerase		GO:0003887,GO:0006260,GO:0008408	2.7.7.7
+G1WJN2	DNA-binding protein			
+G1WJS7	TP_methylase domain-containing protein		GO:0008276,GO:0009236	
+G1WJX4	DUF2795 domain-containing protein			
+G1WK16	AB hydrolase-1 domain-containing protein		GO:0006508,GO:0008233	
+G1WK97	Hydratase		GO:0046872,GO:0051536	
+G1WKE8	AlbA_2 domain-containing protein			
+G1WKJ5	Rhodanese domain-containing protein			
+G1WKQ0				
+G1WKU0	ABC transporter permease		GO:0005886,GO:0016021,GO:0022857	
+G1WKZ7	4Fe-4S dicluster domain-containing protein		GO:0046872,GO:0051536	
+G1WL45	DUF362 domain-containing protein			
+G1WL82	ATP-binding protein			
+G1WLC1	ETF domain-containing protein		GO:0009055	
+G1WLF4	D-alanine--poly(Phosphoribitol) ligase subunit DltA			
+G1WLJ4				
+G1WFV6	1-deoxy-D-xylulose 5-phosphate reductoisomerase	dxr	GO:0016114,GO:0016853,GO:0019288,GO:0030604,GO:0046872,GO:0070402	1.1.1.267
+G1WGM8	Lipoprotein signal peptidase	lspA	GO:0004190,GO:0005886,GO:0006508,GO:0016021	3.4.23.36
+G1WHY2	Homoserine O-acetyltransferase	metAA	GO:0004414,GO:0005737,GO:0008899,GO:0019281	2.3.1.31
+G1WJA5	dCTP deaminase, dUMP-forming	dcd	GO:0000166,GO:0006226,GO:0006229,GO:0008829,GO:0033973	3.5.4.30
+G1WKF2	tRNA-specific adenosine deaminase	tadA	GO:0002100,GO:0008270,GO:0008887,GO:0031388,GO:0052717	3.5.4.33
+G1WFC7	PTS system mannose-specific EIIAB component		GO:0005737,GO:0005886,GO:0008982,GO:0009401,GO:0016021,GO:0016301,GO:0016310	2.7.1.191
+G1WFT8	Glycine--tRNA ligase alpha subunit	glyQ	GO:0004820,GO:0005524,GO:0005737,GO:0006426	6.1.1.14
+G1WG11	30S ribosomal protein S15	rpsO	GO:0003735,GO:0005737,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WGQ5	RNA polymerase sigma factor SigA	sigA	GO:0003677,GO:0005737,GO:0006352,GO:0016987	
+G1WH12	Exodeoxyribonuclease 7 large subunit	xseA	GO:0003676,GO:0005737,GO:0006308,GO:0008855,GO:0009318	3.1.11.6
+G1WHL8	Formate acetyltransferase		GO:0005737,GO:0006006,GO:0008861	2.3.1.54
+G1WIC6	Orotate phosphoribosyltransferase	pyrE	GO:0000287,GO:0004588,GO:0044205	2.4.2.10
+G1WIR7	Mannose-6-phosphate isomerase		GO:0004476,GO:0005975,GO:0008270	5.3.1.8
+G1WJC4	50S ribosomal protein L30	rpmD	GO:0003735,GO:0006412,GO:0015934	
+G1WJQ9	Holliday junction ATP-dependent DNA helicase RuvA	ruvA	GO:0003677,GO:0005524,GO:0006281,GO:0006310,GO:0009378,GO:0009379,GO:0009432,GO:0016887	3.6.4.12
+G1WKN3	30S ribosomal protein S19	rpsS	GO:0003735,GO:0005737,GO:0006412,GO:0015935,GO:0019843	
+G1WKZ2	Adenylosuccinate lyase		GO:0004018,GO:0006189,GO:0044208,GO:0070626	4.3.2.2
+G1WF88	Transposase			
+G1WFD7	Anti-sigma factor antagonist		GO:0043856	
+G1WFH3	DUF1015 domain-containing protein			
+G1WFL9	ABC transporter domain-containing protein		GO:0005524	
+G1WFQ8	DEDD_Tnp_IS110 domain-containing protein			
+G1WFY1	Histidine kinase domain-containing protein		GO:0000155	
+G1WGD0	Rho_N domain-containing protein		GO:0006353	
+G1WGG3	DUF2213 domain-containing protein			
+G1WGJ7			GO:0004665,GO:0006571,GO:0008977	
+G1WGR6	MR_MLE domain-containing protein		GO:0000287,GO:0009063	
+G1WGW0	DUF47 domain-containing protein		GO:0006817	
+G1WH21	Transmembrane protein		GO:0016021	
+G1WH55	Tyr recombinase domain-containing protein		GO:0003677,GO:0006310,GO:0015074	
+G1WH96	Magnesium/cobalt efflux protein			
+G1WHE3	NERD domain-containing protein			
+G1WHM0	PHB domain-containing protein		GO:0016021	
+G1WHQ2	Pilin		GO:0016021	
+G1WHU0	Secreted protein		GO:0016021	
+G1WHX7	HipA_C domain-containing protein		GO:0016740	
+G1WI15	Ppx-GppA domain-containing protein			
+G1WI64	Nitroreductase domain-containing protein		GO:0016491	
+G1WIA6	PTS EIIB type-2 domain-containing protein		GO:0008982,GO:0009401	
+G1WIF0	DUF4083 domain-containing protein		GO:0016021	
+G1WIJ3	Haloacid dehalogenase-like hydrolase			
+G1WIN3	HTH tetR-type domain-containing protein		GO:0003677,GO:0010468	
+G1WIT6	30S ribosomal protein S9	rpsI	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+G1WIX6	Collagen-like protein			
+G1WJ08	DUF4373 domain-containing protein			
+G1WJ55	MFS domain-containing protein		GO:0016021,GO:0022857	
+G1WJ93	Transmembrane protein		GO:0016021	
+G1WJE8	HAD family phosphatase		GO:0016791	
+G1WJJ1	DUF559 domain-containing protein			
+G1WJN3				
+G1WJS8			GO:0006541,GO:0042242	
+G1WJX5	PASTA domain-containing protein			
+G1WK18	Alpha-mannosidase			
+G1WK57	NGN domain-containing protein		GO:0006355	
+G1WK98	Molybdopterin biosynthesis protein		GO:0006777	
+G1WKE9	ABC transporter permease		GO:0016021	
+G1WKJ6	DUF1648 domain-containing protein		GO:0016021	
+G1WKQ2	Isopentenyl-diphosphate delta-isomerase			
+G1WKU1	ABC transporter substrate-binding protein			
+G1WKZ8	AFOR_N domain-containing protein		GO:0009055,GO:0016625,GO:0046872,GO:0051539	
+G1WL46	HTH cro/C1-type domain-containing protein		GO:0003677	
+G1WL83	HIRAN domain-containing protein			
+G1WLC3	CMP/dCMP-type deaminase domain-containing protein		GO:0003824	
+G1WFW9	4-hydroxy-3-methylbut-2-enyl diphosphate reductase	ispH	GO:0016114,GO:0019288,GO:0046872,GO:0050992,GO:0051539,GO:0051745	1.17.7.4
+G1WGM9	Isoleucine--tRNA ligase	ileS	GO:0000049,GO:0002161,GO:0004822,GO:0005524,GO:0005737,GO:0006428,GO:0008270	6.1.1.5
+G1WHZ1	L-fucose isomerase	fucI	GO:0005737,GO:0008736,GO:0030145,GO:0042355	5.3.1.25
+G1WJC7	Adenylate kinase	adk	GO:0004017,GO:0005524,GO:0005737,GO:0008270,GO:0016310,GO:0044209	2.7.4.3
+G1WKF9	Carbamoyl-phosphate synthase large chain	carB	GO:0004088,GO:0005524,GO:0006526,GO:0044205,GO:0046872	6.3.5.5
+G1WFT9	Glycine--tRNA ligase beta subunit	glyS	GO:0004814,GO:0004820,GO:0005524,GO:0005737,GO:0006420,GO:0006426	6.1.1.14
+G1WG13	Ribonuclease J	rnj	GO:0003723,GO:0004521,GO:0004534,GO:0005737,GO:0006364,GO:0008270	3.1.-.-
+G1WGQ8	tRNA pseudouridine synthase B	truB	GO:0003723,GO:0031119,GO:0106029	5.4.99.25
+G1WH14	Ribonuclease D	rnd	GO:0000166,GO:0003676,GO:0005737,GO:0008408,GO:0033890,GO:0042780	3.1.13.5
+G1WHQ9	5-formyltetrahydrofolate cyclo-ligase		GO:0005524,GO:0030272,GO:0046872	6.3.3.2
+G1WID5	Carbamoyltransferase		GO:0003725,GO:0003998,GO:0008270,GO:0016743,GO:0016874,GO:0046944	3.6.1.7,6.2.-.-
+G1WIS3	S-ribosylhomocysteine lyase	luxS	GO:0005506,GO:0009372,GO:0043768	4.4.1.21
+G1WJC5	50S ribosomal protein L15	rplO	GO:0003735,GO:0006412,GO:0015934,GO:0019843	
+G1WJR1	Formate--tetrahydrofolate ligase	fhs	GO:0004329,GO:0005524,GO:0035999	6.3.4.3
+G1WK94	Phosphoribosylformylglycinamidine cyclo-ligase	purM	GO:0004641,GO:0005524,GO:0005737,GO:0006189	6.3.3.1
+G1WKN4	50S ribosomal protein L2	rplB	GO:0003735,GO:0006412,GO:0015934,GO:0016740,GO:0019843	
+G1WL04	Histidine kinase		GO:0000155,GO:0016021	2.7.13.3
+G1WF89	DUF998 domain-containing protein		GO:0016021	
+G1WFD8	ABC-transporter type IV		GO:0016021	
+G1WFH4	M20/M25/M40 family metallo-hydrolase		GO:0016787	
+G1WFM1				
+G1WFQ9			GO:0009089,GO:0019877,GO:0047200	
+G1WG63	HTH tetR-type domain-containing protein		GO:0003677,GO:0010468	
+G1WG99	GtrA domain-containing protein		GO:0000271,GO:0016021	
+G1WGD1	Minor capsid protein E			
+G1WGG4	Phage protein			
+G1WGK6	S4 domain-containing protein		GO:0003723,GO:0008168,GO:0032259	
+G1WGR7	MurR/RpiR family transcriptional regulator		GO:0003700,GO:0097367,GO:1901135	
+G1WGW1	Nitroreductase domain-containing protein		GO:0016491	
+G1WH22	Dioxygenase			
+G1WH56	Oxo-acid lyase			
+G1WHA0	MFS domain-containing protein		GO:0016021,GO:0022857	
+G1WHE4	Transmembrane protein		GO:0016021	
+G1WHI1	Fe-ADH domain-containing protein		GO:0016616,GO:0046872	
+G1WHM1	Arc family DNA binding domain-containing protein		GO:0006355	
+G1WHQ3	Nudix hydrolase domain-containing protein		GO:0004519,GO:0006298	
+G1WHU1	Methyltransf_25 domain-containing protein			
+G1WHX8			GO:0016746	
+G1WI16	Septum formation initiator		GO:0016021	
+G1WI65	Carbon starvation protein A		GO:0005886,GO:0009267,GO:0016021	
+G1WIA7	PTS EIIC type-2 domain-containing protein		GO:0005886,GO:0009401,GO:0015577,GO:0016021	
+G1WIF1	AAA-ATPase_like domain-containing protein			
+G1WIJ4	Microcystin degradation protein MlrC			
+G1WIN4	Transmembrane protein		GO:0016021	
+G1WIT7	PTS EIIA type-1 domain-containing protein		GO:0009401,GO:0016740	
+G1WIX7	RNA polymerase-binding protein DksA			
+G1WJ09	Site-specific integrase		GO:0003677,GO:0006310,GO:0015074	
+G1WJ56	HTH merR-type domain-containing protein		GO:0003677,GO:0006355	
+G1WJJ2	Zinc ribbon domain-containing protein		GO:0016021	
+G1WJN5	Na_H_antiporter domain-containing protein		GO:0005886,GO:0016021	
+G1WJT3	Histidine phosphatase family protein			
+G1WJX7	UPF0597 protein HMPREF9452_01640			
+G1WK19	HD family phosphohydrolase			
+G1WK58	Bac_transf domain-containing protein		GO:0016021	
+G1WK99	Sortase family protein		GO:0016021,GO:0016787	
+G1WKF0	MFS domain-containing protein		GO:0016021,GO:0022857	
+G1WKQ4	GRAM_POS_ANCHORING domain-containing protein		GO:0005975,GO:0016021	
+G1WKU2	Mechanosensitive ion channel family protein		GO:0008381,GO:0016021	
+G1WKZ9	Cytochrom_c3_2 domain-containing protein		GO:0016021,GO:0046872	
+G1WL47	Antitoxin			
+G1WL87	Bifunctional metallophosphatase/5'-nucleotidase		GO:0009166,GO:0016787	
+G1WLC4	Uracil permease		GO:0005886,GO:0015205,GO:0016021	
+G1WLF8	ABC transporter permease		GO:0016021	
+G1WLJ6	IS110 family transposase		GO:0003677,GO:0004803,GO:0006313	
+G1WFX2	Glycerol-3-phosphate acyltransferase	plsY	GO:0005886,GO:0008654,GO:0016021,GO:0043772	2.3.1.275
+G1WGN3	ATP-dependent zinc metalloprotease FtsH	ftsH	GO:0004176,GO:0004222,GO:0005524,GO:0005886,GO:0006508,GO:0008270,GO:0016021,GO:0016887,GO:0030163	3.4.24.-
+G1WI10	Serine hydroxymethyltransferase	glyA	GO:0004372,GO:0005737,GO:0008168,GO:0019264,GO:0030170,GO:0032259,GO:0035999	2.1.2.1
+G1WJC8	Methionine aminopeptidase	map	GO:0006508,GO:0046914,GO:0070006,GO:0070084	3.4.11.18
+G1WKG0	Carbamoyl-phosphate synthase small chain	carA	GO:0004088,GO:0005524,GO:0006207,GO:0006526,GO:0006541,GO:0044205	6.3.5.5
+G1WFE0	Anaerobic ribonucleoside-triphosphate reductase-activating protein		GO:0043365,GO:0046872,GO:0051539	1.97.1.-
+G1WFU1	Pyruvate, phosphate dikinase		GO:0005524,GO:0006090,GO:0016301,GO:0016310,GO:0046872,GO:0050242	2.7.9.1
+G1WG14	FtsK domain-containing protein		GO:0003677,GO:0005524,GO:0005886,GO:0016021	
+G1WGR0	Ribosome-binding factor A	rbfA	GO:0005737,GO:0030490	
+G1WH20	SAM_MT_RSMB_NOP domain-containing protein		GO:0001510,GO:0003723,GO:0008168	
+G1WHR0	Chaperone protein HtpG	htpG	GO:0005524,GO:0005737,GO:0016887,GO:0051082,GO:0140662	
+G1WID6	Putative nickel-responsive regulator		GO:0003677,GO:0003700,GO:0010045,GO:0016151	
+G1WIS6	Glutamyl-tRNA(Gln) amidotransferase subunit A	gatA	GO:0005524,GO:0006412,GO:0030956,GO:0050567	6.3.5.7
+G1WJC6	Protein translocase subunit SecY	secY	GO:0005886,GO:0006605,GO:0016021,GO:0043952,GO:0065002	
+G1WJR4	Dipeptidase		GO:0006508,GO:0016805,GO:0070004	3.4.-.-,3.4.13.19
+G1WKA0	N5-carboxyaminoimidazole ribonucleotide mutase	purE	GO:0006189,GO:0034023	5.4.99.18
+G1WKN5	50S ribosomal protein L23	rplW	GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WL05	Phosphoribosylaminoimidazole-succinocarboxamide synthase	purC	GO:0004639,GO:0005524,GO:0006189	6.3.2.6
+G1WF90	Histidine phosphatase family protein			
+G1WFD9			GO:0005524,GO:0006260,GO:0008998	
+G1WFH5	M20_dimer domain-containing protein		GO:0016787	
+G1WFM2	Fe-ADH domain-containing protein		GO:0046872,GO:1990362	
+G1WFR2	Diaminopimelate decarboxylase		GO:0008836,GO:0009089	
+G1WFY4	50S ribosomal protein L28	rpmB	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+G1WG64	Radical SAM core domain-containing protein		GO:0003824,GO:0046872,GO:0051536	
+G1WGA0	N-terminal domain of peptidoglycan hydrolase CwlO-containing protein			
+G1WGD2	Head decoration protein			
+G1WGG5	Rieske domain-containing protein			
+G1WGK7	Exodeoxyribonuclease VII small subunit		GO:0006308,GO:0008855,GO:0009318	
+G1WGR8			GO:0003938,GO:0006177,GO:0046872	
+G1WGW2	DUF1097 domain-containing protein		GO:0016021	
+G1WH23	DegV family protein		GO:0008289	
+G1WH57	SelA-like pyridoxal phosphate-dependent enzyme		GO:0003824	
+G1WHA3	MarR family transcriptional regulator			
+G1WHE5	PfkB domain-containing protein			
+G1WHI2	HTH merR-type domain-containing protein		GO:0003677,GO:0006355	
+G1WHM2	HTH cro/C1-type domain-containing protein		GO:0003677,GO:0016021	
+G1WHQ4				
+G1WHU2	DUF192 domain-containing protein			
+G1WHX9	DUF4375 domain-containing protein		GO:0016021	
+G1WI17	HTH tetR-type domain-containing protein		GO:0003677,GO:0010468	
+G1WI67	tRNA threonylcarbamoyladenosine biosynthesis protein TsaE		GO:0002949,GO:0005737	
+G1WIA8	Dihydroxy-acid dehydratase	ilvD		
+G1WIF3	ATP-binding protein			
+G1WIJ5	GATase_3 domain-containing protein		GO:0003824	
+G1WIN5	BcrAD_BadFG domain-containing protein			
+G1WIT9	BTAD domain-containing protein			
+G1WIX8	Tail fiber protein			
+G1WJ10	ParB domain-containing protein			
+G1WJ57	Metallophos domain-containing protein		GO:0016787	
+G1WJ95	DUF2798 domain-containing protein		GO:0016021	
+G1WJF0	RNA polymerase sigma factor		GO:0003677,GO:0006352,GO:0016987,GO:0050896	
+G1WJJ3	Transcriptional regulator		GO:0003677,GO:0045892,GO:0046872	
+G1WJN6	C4-dicarboxylate ABC transporter		GO:0016021	
+G1WJT5	Aminotran_1_2 domain-containing protein		GO:0003824,GO:0009058,GO:0030170	
+G1WJX8	HAD family hydrolase			
+G1WK20	Peptidase_M14 domain-containing protein		GO:0004181,GO:0006508,GO:0008270	
+G1WK59	AAA family ATPase			
+G1WKA1	ABC transporter permease		GO:0016021	
+G1WKK0	4Fe-4S dicluster domain-containing protein		GO:0046872,GO:0051536	
+G1WKQ5	Sortase family protein		GO:0016021,GO:0016787	
+G1WKU3	Nitroreductase domain-containing protein		GO:0016491	
+G1WL00	TSCPD domain-containing protein			
+G1WL49	HlyC/CorC family transporter		GO:0016021,GO:0050660	
+G1WL88	YfhO family protein		GO:0016021	
+G1WLC5	HTH gntR-type domain-containing protein		GO:0003677,GO:0003700	
+G1WLF9	D-alanyl-lipoteichoic acid biosynthesis protein DltD			
+G1WLJ7	DNA polymerase III subunit gamma/tau			
+G1WFX3	Glycerol-3-phosphate dehydrogenase [NAD(P)+]	gpsA	GO:0004367,GO:0005975,GO:0006650,GO:0008654,GO:0009331,GO:0046167,GO:0046168,GO:0051287	1.1.1.94
+G1WGP0	Thymidylate synthase	thyA	GO:0004799,GO:0005737,GO:0006231,GO:0006235,GO:0032259	2.1.1.45
+G1WI20	Enolase	eno	GO:0000015,GO:0000287,GO:0004634,GO:0005576,GO:0006096,GO:0009986	4.2.1.11
+G1WJD4	DNA-directed RNA polymerase subunit alpha	rpoA	GO:0000428,GO:0003677,GO:0003899,GO:0005737,GO:0006351,GO:0046983	2.7.7.6
+G1WKG6	Adenylosuccinate synthetase	purA	GO:0000287,GO:0004019,GO:0005525,GO:0005737,GO:0044208	6.3.4.4
+G1WFE3	7,8-dihydroneopterin aldolase		GO:0004150,GO:0046654,GO:0046656	4.1.2.25
+G1WFU3	50S ribosomal protein L19	rplS	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+G1WG18			GO:0008444,GO:0008654,GO:0016021	
+G1WGR1	Translation initiation factor IF-2	infB	GO:0003743,GO:0003924,GO:0005525,GO:0005737	
+G1WH24	Phosphoglucosamine mutase	glmM	GO:0000287,GO:0005975,GO:0008966	5.4.2.10
+G1WHS1	Peptidase_S11 domain-containing protein		GO:0006508,GO:0008360,GO:0009002,GO:0009252,GO:0071555	
+G1WIE0	Quinolinate synthase		GO:0008987,GO:0009435,GO:0046872,GO:0051539	2.5.1.72
+G1WIS7	Aspartyl/glutamyl-tRNA(Asn/Gln) amidotransferase subunit B	gatB	GO:0005524,GO:0006412,GO:0050566,GO:0050567	6.3.5.-
+G1WJC9	Translation initiation factor IF-1	infA	GO:0003743,GO:0005737,GO:0019843,GO:0043022	
+G1WJR8	Iron ABC transporter permease		GO:0005886,GO:0016021,GO:0022857	
+G1WKA6			GO:0006508,GO:0006518,GO:0008237,GO:0008270,GO:0045148	
+G1WKN6	50S ribosomal protein L4	rplD	GO:0003735,GO:0005737,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WL07	Aminopeptidase		GO:0004177,GO:0006508,GO:0008237,GO:0046872	
+G1WFE2	HDc domain-containing protein			
+G1WFH8	Metallophos domain-containing protein		GO:0016787	
+G1WFM3	Flavodoxin		GO:0009055,GO:0010181	
+G1WFR3	Amidohydrolase		GO:0016787	
+G1WFZ1	Integration host factor			
+G1WGA1	SLH domain-containing protein			
+G1WGD4			GO:0005198,GO:0019068	
+G1WGG6	4Fe-4S ferredoxin-type domain-containing protein			
+G1WGK9	Asp23/Gls24 family envelope stress response protein			
+G1WGR9	HTH lysR-type domain-containing protein		GO:0003700	
+G1WGW4	YggT family protein		GO:0016021	
+G1WH25	Mobile element protein			
+G1WHE6	DUF4134 domain-containing protein		GO:0016021	
+G1WHI3	TENA_THI-4 domain-containing protein			
+G1WHM3	HTH cro/C1-type domain-containing protein		GO:0003677,GO:0016021	
+G1WHU3	Peptidase_S49 domain-containing protein		GO:0016021	
+G1WHY0	Reverse transcriptase			
+G1WI18	NERD domain-containing protein			
+G1WI71	FctA domain-containing protein			
+G1WIA9	HAD family phosphatase		GO:0016791	
+G1WIF4	Secreted protein		GO:0016021	
+G1WIJ7	Carbamate kinase		GO:0006525,GO:0008804,GO:0016310	
+G1WIN6	FAD_binding_3 domain-containing protein		GO:0071949	
+G1WIU0	CRM domain-containing protein		GO:0003723	
+G1WIX9	Phage-tail_3 domain-containing protein			
+G1WJ11	DUF4148 domain-containing protein			
+G1WJ58	Nitro_FeMo-Co domain-containing protein			
+G1WJ96	tRNA_edit domain-containing protein		GO:0002161	
+G1WJJ4	HMA domain-containing protein		GO:0046872	
+G1WJN7	DUF3516 domain-containing protein		GO:0003676,GO:0005524	
+G1WJT7	CbiC domain-containing protein		GO:0009236,GO:0016993	
+G1WJX9	30S ribosomal protein S1		GO:0003676	
+G1WK21	CarD_TRCF domain-containing protein			
+G1WK60	Carbohydrate-binding protein			
+G1WKF3	HTH tetR-type domain-containing protein		GO:0003677,GO:0010468	
+G1WKK1	Lipoprotein			
+G1WKQ6	Isopeptide-forming domain-containing fimbrial protein		GO:0005975,GO:0016021	
+G1WL01	Tat pathway signal sequence domain protein			
+G1WL50	Cyanophycin_syn domain-containing protein			
+G1WL89	Glyco_trans_2-like domain-containing protein		GO:0016021	
+G1WLC6	HDc domain-containing protein			
+G1WLG1	Peripla_BP_6 domain-containing protein			
+G1WLJ8	USHBP1			
+G1WFX4	Ribulose-phosphate 3-epimerase	rpe	GO:0004750,GO:0006098,GO:0019323,GO:0046872	5.1.3.1
+G1WGP3	Chromosome partition protein Smc	smc	GO:0003677,GO:0005524,GO:0005694,GO:0005737,GO:0006260,GO:0007062,GO:0016887,GO:0030261	
+G1WI37	Phosphoribosyl-AMP cyclohydrolase	hisI	GO:0000105,GO:0000287,GO:0004635,GO:0005737,GO:0008270	3.5.4.19
+G1WJD8	tRNA pseudouridine synthase A	truA	GO:0003723,GO:0031119,GO:0106029	5.4.99.12
+G1WKH7	50S ribosomal subunit assembly factor BipA	bipA	GO:0000027,GO:0000049,GO:0003924,GO:0005525,GO:0005737,GO:0019843,GO:0043022	3.6.5.-
+G1WFE9			GO:0005524,GO:0005886,GO:0016021,GO:0016887,GO:0019829,GO:0046872	
+G1WFU4	Ribonuclease HII	rnhB	GO:0003723,GO:0004523,GO:0005737,GO:0006401,GO:0030145	3.1.26.4
+G1WG20	Protein RecA	recA	GO:0003684,GO:0003697,GO:0005524,GO:0005737,GO:0006281,GO:0006310,GO:0009432,GO:0140664	
+G1WGR2	Transcription termination/antitermination protein NusA	nusA	GO:0003700,GO:0003723,GO:0005737,GO:0006353,GO:0031564	
+G1WH29	UTP--glucose-1-phosphate uridylyltransferase		GO:0003983,GO:0006011,GO:0009058	2.7.7.9
+G1WHT8	Ribosomal RNA small subunit methyltransferase I	rsmI	GO:0000453,GO:0005737,GO:0070677	2.1.1.198
+G1WIE1	L-aspartate oxidase		GO:0000166,GO:0008202,GO:0008734,GO:0009435,GO:0033765,GO:0044318	1.4.3.16
+G1WJD1	30S ribosomal protein S13	rpsM	GO:0000049,GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WJS1	Sirohydrochlorin cobaltochelatase		GO:0016852,GO:0019251,GO:0046872	
+G1WKA9	ATP synthase epsilon chain	atpC	GO:0005524,GO:0005886,GO:0045261,GO:0046933	
+G1WKN7	50S ribosomal protein L3	rplC	GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WF92	ABC transporter permease		GO:0016021	
+G1WFE4	DUF45 domain-containing protein			
+G1WFH9	DUF4190 domain-containing protein		GO:0016021	
+G1WFM4	DUF3793 family protein			
+G1WFR5	DZANK-type domain-containing protein		GO:0016021,GO:0046872	
+G1WFZ6			GO:0005886,GO:0016021,GO:0030420	
+G1WG66	ABC transporter permease		GO:0005886,GO:0016021	
+G1WGA2	30S ribosomal protein S1			
+G1WGD5	DUF5082 domain-containing protein			
+G1WGG7	SF4 helicase domain-containing protein		GO:0003678,GO:0005524,GO:0006260	
+G1WGS1	Cys/Met metabolism PLP-dependent enzyme		GO:0003824,GO:0019346,GO:0030170	
+G1WGW5	Cell division protein SepF		GO:0000917,GO:0005737	
+G1WH26	NAD(P)-bd_dom domain-containing protein			
+G1WH59	PTS sugar transporter subunit IIC		GO:0005886,GO:0009401,GO:0016021	
+G1WHA6	CitMHS domain-containing protein		GO:0016021,GO:0055085	
+G1WHI4	DUF4037 domain-containing protein			
+G1WHQ6	YhgE/Pip domain-containing protein		GO:0016021	
+G1WHU4	Tad domain-containing protein		GO:0016021	
+G1WHY1	Peptidase_M75 domain-containing protein			
+G1WI19	TIGR03987 family protein		GO:0016021	
+G1WI73	FAD-dependent oxidoreductase			
+G1WIB0	Hydroxyacid dehydrogenase		GO:0016616,GO:0051287	
+G1WIJ8	Sodium:proton exchanger		GO:0006813,GO:0015299,GO:0016021	
+G1WIN7	Usp domain-containing protein			
+G1WIU2	Methyltransf_25 domain-containing protein			
+G1WIY0	Fibronectin type-III domain-containing protein			
+G1WJ12	Secreted protein		GO:0016021	
+G1WJ59	TMhelix containing protein		GO:0016021	
+G1WJ97	Preprotein translocase subunit Sec61beta		GO:0016021	
+G1WJF3	UPF0237 protein HMPREF9452_01466			
+G1WJJ7	RelB antitoxin		GO:0006355	
+G1WJN8	3-hydroxybutyryl-CoA dehydrogenase		GO:0006631,GO:0016616,GO:0070403	
+G1WJT8			GO:0009236,GO:0016994	
+G1WJY0	HAD family hydrolase			
+G1WK23	Fructose-6-phosphate aldolase		GO:0005737,GO:0005975,GO:0016832	
+G1WK61	Hepar_II_III_N domain-containing protein		GO:0016829	
+G1WKA3	Phosphoglucomutase/phosphomannomutase family protein		GO:0005975,GO:0016868,GO:0046872	
+G1WKF4	LemA family protein		GO:0016021	
+G1WKK2	Dehydrogenase		GO:0016616,GO:0046168,GO:0051287	
+G1WKQ7	CNA-B domain-containing protein		GO:0016021	
+G1WKV5	NYN domain-containing protein			
+G1WL02	N-acetyltransferase domain-containing protein		GO:0016407	
+G1WL51	YtxH domain-containing protein		GO:0016021	
+G1WL91	TsaA-like domain-containing protein			
+G1WLC7	Kynurenine formamidase		GO:0004061,GO:0019441	
+G1WLG2	Branched-chain amino acid ABC transporter permease		GO:0005886,GO:0016021,GO:0022857	
+G1WLJ9	IS110 family transposase			
+G1WFY9	Dihydroorotate dehydrogenase	pyrD	GO:0004152,GO:0005737,GO:0044205	1.3.-.-
+G1WGP4	Ribonuclease 3	rnc	GO:0004525,GO:0005737,GO:0006364,GO:0006397,GO:0008033,GO:0019843,GO:0046872	3.1.26.3
+G1WI38	Imidazole glycerol phosphate synthase subunit HisF	hisF	GO:0000105,GO:0000107,GO:0005737,GO:0016829	4.3.2.10
+G1WJE4	Tyrosine--tRNA ligase	tyrS	GO:0003723,GO:0004831,GO:0005524,GO:0005737,GO:0006437	6.1.1.1
+G1WKJ3	GMP synthase [glutamine-hydrolyzing]	guaA	GO:0003922,GO:0005524,GO:0006541,GO:0016462	6.3.5.2
+G1WFH6	D-3-phosphoglycerate dehydrogenase		GO:0004617,GO:0006564,GO:0051287	1.1.1.399,1.1.1.95
+G1WFU9	Tyrosine recombinase XerC	xerC	GO:0003677	
+G1WG22	Ribonuclease Y	rny	GO:0003723,GO:0004521,GO:0005886,GO:0006402	3.1.-.-
+G1WGR4	Leucine--tRNA ligase	leuS	GO:0002161,GO:0004823,GO:0005524,GO:0005737,GO:0006429	6.1.1.4
+G1WH65	PTS lactose/cellobiose transporter subunit IIA		GO:0009401,GO:0016740,GO:0046872	
+G1WHV5	Cation_ATPase_N domain-containing protein		GO:0005524,GO:0005886,GO:0016021,GO:0016887	
+G1WIE2	Nicotinate-nucleotide diphosphorylase (carboxylating)		GO:0004514,GO:0009435	2.4.2.19
+G1WJD2	30S ribosomal protein S11	rpsK	GO:0003735,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+G1WJS3	Cobalt-precorrin-5B C(1)-methyltransferase	cbiD	GO:0009236,GO:0032259,GO:0043780,GO:0046140	2.1.1.195
+G1WKB0	ATP synthase subunit beta	atpD	GO:0005524,GO:0005886,GO:0045261,GO:0046933,GO:0046961	7.1.2.2
+G1WKP3	30S ribosomal protein S10	rpsJ	GO:0000049,GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+G1WL13	tRNA(Ile)-lysidine synthase	tilS	GO:0005524,GO:0005737,GO:0006400,GO:0016879	6.3.4.19
+G1WF93	ABC transporter permease		GO:0016021	
+G1WFE5	AAA domain-containing protein		GO:0005524,GO:0016887,GO:0140664	
+G1WFI0	Polysaccharide biosynthesis protein		GO:0016021	
+G1WFM5	YolD-like family protein			
+G1WFR7	Tetratricopeptide repeat protein		GO:0016021	
+G1WFZ7			GO:0003677,GO:0003887,GO:0006260,GO:0009360	
+G1WG68	ABC transporter domain-containing protein		GO:0005524	
+G1WGA3	Pecanex-like protein		GO:0016021	
+G1WGD6			GO:0004519,GO:0005524,GO:0016887	
+G1WGG8	Helix-turn-helix domain-containing protein			
+G1WGL2	DHQ_synthase domain-containing protein		GO:0016829	
+G1WGS3	DZANK-type domain-containing protein		GO:0016021,GO:0046872	
+G1WGW6	Pyridoxal phosphate homeostasis protein		GO:0030170	
+G1WH27	NACHT domain-containing protein			
+G1WHA9	HTH cro/C1-type domain-containing protein		GO:0003677	
+G1WHI5	TPR_REGION domain-containing protein		GO:0042802	
+G1WHU5	Pilus assembly protein		GO:0016021	
+G1WI22	AIRC domain-containing protein		GO:0006189,GO:0016787	
+G1WI74	MarR family transcriptional regulator			
+G1WIB1	HTH lysR-type domain-containing protein		GO:0003700	
+G1WIF6	HTH tetR-type domain-containing protein		GO:0003677,GO:0010468	
+G1WIJ9	ATP-binding protein			
+G1WIN8	TPR_REGION domain-containing protein			
+G1WIY1	TMP_3 domain-containing protein		GO:0016021	
+G1WJ13	DNA-binding protein			
+G1WJ60	VanZ family protein		GO:0016021	
+G1WJ98	DUF1837 domain-containing protein			
+G1WJF5	Pyridoxamine 5'-phosphate oxidase family protein			
+G1WJJ8	CPBP family intramembrane metalloprotease		GO:0004222,GO:0016021,GO:0071586	
+G1WJN9	Methyltransferase domain-containing protein		GO:0008176	
+G1WJT9	Histidine phosphatase family protein		GO:0003824	
+G1WJY1	Dipeptidase		GO:0008270,GO:0016805	
+G1WK25	SDR family NAD(P)-dependent oxidoreductase			
+G1WKA4	Hcy-binding domain-containing protein		GO:0008168,GO:0008270,GO:0009086,GO:0032259	
+G1WKF5	Acyl_transf_3 domain-containing protein		GO:0016021,GO:0016747	
+G1WKK3	Lipoprotein		GO:0016021	
+G1WKQ8	Secreted protein			
+G1WKV6	SpoU_sub_bind domain-containing protein		GO:0003723,GO:0005737,GO:0006396,GO:0008173	
+G1WL03	DNA-binding response regulator		GO:0000160,GO:0003677,GO:0006355	
+G1WL52	PRC-barrel domain protein			
+G1WL92	SGNH/GDSL hydrolase family protein			
+G1WLC8	SERPIN domain-containing protein		GO:0004867,GO:0005615	
+G1WLG3	Branched-chain amino acid ABC transporter permease		GO:0005886,GO:0015658,GO:0016021	
+G1WFZ0	Orotidine 5'-phosphate decarboxylase	pyrF	GO:0004590,GO:0006207,GO:0044205	4.1.1.23
+G1WGP6	Phosphate acyltransferase	plsX	GO:0005737,GO:0006633,GO:0008654,GO:0043811	2.3.1.274
+G1WI40	Imidazole glycerol phosphate synthase subunit HisH	hisH	GO:0000105,GO:0000107,GO:0004359,GO:0005737,GO:0006541,GO:0016829	3.5.1.2,4.3.2.10
+G1WJF7	Protein translocase subunit SecA	secA	GO:0005524,GO:0005737,GO:0005886,GO:0006605,GO:0017038,GO:0046872,GO:0065002	7.4.2.8
+G1WKK7	Chaperonin GroEL	groEL	GO:0005524,GO:0005737,GO:0009986,GO:0016853,GO:0042026,GO:0042603,GO:0051082,GO:0140662	5.6.1.7
+G1WFI1	L-lactate permease		GO:0005887,GO:0015129	
+G1WFV1	Elongation factor Ts	tsf	GO:0003746,GO:0005737	
+G1WG27	GTPase HflX	hflX	GO:0003924,GO:0005525,GO:0005737,GO:0046872	
+G1WH66	Permease IIC component		GO:0005886,GO:0008982,GO:0009401,GO:0016021	
+G1WHV6	Pyruvate kinase		GO:0000287,GO:0004743,GO:0005524,GO:0016301,GO:0030955	2.7.1.40
+G1WIE5	Chaperone protein DnaK	dnaK	GO:0005524,GO:0051082,GO:0140662	
+G1WIT5	50S ribosomal protein L13	rplM	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+G1WJD3	30S ribosomal protein S4	rpsD	GO:0003735,GO:0006412,GO:0015935,GO:0019843	
+G1WJS9	Nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase		GO:0008939,GO:0009236	2.4.2.21
+G1WKB1	ATP synthase gamma chain	atpG	GO:0005524,GO:0005886,GO:0042777,GO:0045261,GO:0046933	
+G1WKP4	Elongation factor G	fusA	GO:0003924,GO:0005525	
+G1WL14	Hypoxanthine phosphoribosyltransferase		GO:0000166,GO:0004422,GO:0005737,GO:0006166,GO:0032264,GO:0046872,GO:0052657	2.4.2.8
+G1WF94	Pyr_redox_2 domain-containing protein		GO:0016491	
+G1WFE6	Peptidyl-prolyl cis-trans isomerase		GO:0003755	5.2.1.8
+G1WFI2	HTH marR-type domain-containing protein		GO:0003700	
+G1WFM6	UmuC domain-containing protein		GO:0003684,GO:0006281,GO:0009432	
+G1WFS0			GO:0005886,GO:0008360,GO:0016021	
+G1WFZ8	ORF055			
+G1WG69	Macrolide export ATP-binding/permease protein MacB		GO:0005886,GO:0016021	
+G1WGA4	Phage minor structural protein			
+G1WGD7	Phage DNA packaging protein, Nu1 subunit of terminase			
+G1WGG9	ERCC4 domain-containing protein			
+G1WGL4			GO:0008962	
+G1WGS4	FAD/NAD(P)-binding oxidoreductase		GO:0016491	
+G1WGW7	Phosphate uptake regulator PhoU		GO:0006817,GO:0030643,GO:0045936	
+G1WH28	VanZ domain-containing protein		GO:0016021	
+G1WH61	PTS EIIA type-4 domain-containing protein		GO:0009401,GO:0016021	
+G1WHB0	Couple_hipA domain-containing protein			
+G1WHM6	HTH cro/C1-type domain-containing protein		GO:0003677,GO:0016021	
+G1WHQ8	N-acetyltransferase domain-containing protein		GO:0016407	
+G1WHU6	Sensor histidine kinase		GO:0016021	
+G1WHY4	LacI family transcriptional regulator		GO:0003677,GO:0006355	
+G1WI23	HTH crp-type domain-containing protein		GO:0003677	
+G1WI75	C4-dicarboxylate ABC transporter		GO:0016021	
+G1WIB2	YeiH family protein		GO:0005886,GO:0016021	
+G1WIF7	Pyridine nucleotide-disulfide oxidoreductase		GO:0016491,GO:0046872,GO:0051536	
+G1WIK0	Amino acid permease		GO:0016021,GO:0022857	
+G1WIP1	DUF2207 domain-containing protein		GO:0016021	
+G1WIY2	Phage protein			
+G1WJ14	PrgI family protein		GO:0016021	
+G1WJ62	Integrase		GO:0003677,GO:0006310,GO:0015074	
+G1WJ99	DUF3307 domain-containing protein		GO:0016021	
+G1WJF6	Transglycosylase		GO:0016021	
+G1WJJ9	Radical SAM core domain-containing protein		GO:0003824,GO:0046872,GO:0051539	
+G1WJP0	AcnX domain-containing protein			
+G1WJU0	Methyltransf_11 domain-containing protein		GO:0008168,GO:0046872	
+G1WJY2	PBP_domain domain-containing protein		GO:0042301	
+G1WK26	Transmembrane protein		GO:0016021	
+G1WK63	PTS sugar transporter subunit IIC		GO:0005886,GO:0009401,GO:0016021	
+G1WKK4			GO:0004553,GO:0005975,GO:0016616,GO:0046872	
+G1WKQ9	SHOCT domain-containing protein		GO:0016021	
+G1WKW0	DAC domain-containing protein		GO:0005524,GO:0106408	2.7.7.85
+G1WL06	DUF3043 domain-containing protein		GO:0016021	
+G1WL54	NodB homology domain-containing protein		GO:0005975,GO:0016021,GO:0016810	
+G1WL93	HTH cro/C1-type domain-containing protein		GO:0003677,GO:0016021	
+G1WLC9	DMT family transporter		GO:0016021	
+G1WLG4	ABC transporter domain-containing protein		GO:0005524	
+G1WFZ4	Probable tRNA sulfurtransferase	thiI	GO:0000049,GO:0004810,GO:0005524,GO:0005737,GO:0009228,GO:0009229,GO:0034227,GO:0140741	2.8.1.4
+G1WGQ0	Phosphopantetheine adenylyltransferase	coaD	GO:0004595,GO:0005524,GO:0005737,GO:0015937	2.7.7.3
+G1WJK5	tRNA-specific 2-thiouridylase MnmA	mnmA	GO:0000049,GO:0005524,GO:0005737,GO:0006400,GO:0016783	2.8.1.13
+G1WKP8	DNA-directed RNA polymerase subunit beta'	rpoC	GO:0000287,GO:0000428,GO:0003677,GO:0003899,GO:0006351,GO:0008270	2.7.7.6
+G1WFI9	Alkyl hydroperoxide reductase C		GO:0005737,GO:0006979,GO:0102039	1.11.1.26
+G1WFV3	Ribosome-recycling factor	frr	GO:0005737,GO:0006415	
+G1WG31	Transcriptional repressor NrdR	nrdR	GO:0003677,GO:0005524,GO:0008270,GO:0045892	
+G1WGS0	Putative manganese efflux pump MntP	mntP	GO:0005384,GO:0005886,GO:0016021	
+G1WH69	Purine nucleoside phosphorylase		GO:0004731,GO:0009116	2.4.2.1
+G1WHW0	Phenylalanine--tRNA ligase beta subunit	pheT	GO:0000049,GO:0000287,GO:0004826,GO:0005524,GO:0005737,GO:0006432	6.1.1.20
+G1WIE6	Protein GrpE	grpE	GO:0000774,GO:0005737,GO:0006457,GO:0042803,GO:0051087	
+G1WIU1	Vitamin B12-dependent ribonucleotide reductase		GO:0000166,GO:0004748,GO:0006260,GO:0031419,GO:0050897,GO:0071897	1.17.4.1
+G1WJD5	50S ribosomal protein L17		GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+G1WJT4	Cobalamin biosynthesis protein CobD	cobD	GO:0005886,GO:0009236,GO:0015420,GO:0016021,GO:0048472	
+G1WKB3	ATP synthase subunit delta	atpH	GO:0005886,GO:0045261,GO:0046933	
+G1WKP5	30S ribosomal protein S7	rpsG	GO:0000049,GO:0003735,GO:0006412,GO:0015935,GO:0019843	
+G1WL22	Acyl carrier protein	acpP	GO:0000036,GO:0005737,GO:0031177	
+G1WF95	Aminoacetone oxidase family FAD-binding enzyme			
+G1WFE7	HTH dtxR-type domain-containing protein		GO:0003677,GO:0003700,GO:0046914,GO:0046983	
+G1WFI3	DegV family protein		GO:0008289	
+G1WFM7	acidPPc domain-containing protein		GO:0016021	
+G1WFS1			GO:0008658,GO:0009002,GO:0009252,GO:0016021	
+G1WG05	MiaB/RimO family radical SAM methylthiotransferase		GO:0006400,GO:0035596,GO:0046872,GO:0051539	
+G1WG70	UPF0104 family protein		GO:0005886,GO:0016021	
+G1WGA5	Sugar phosphate isomerase/epimerase			
+G1WGD8	Prophage minor tail protein Z (GPZ)			
+G1WGH0	DUF669 domain-containing protein			
+G1WGL8	AI-2E family transporter		GO:0016021	
+G1WGS5	Pyr_redox_2 domain-containing protein		GO:0016491	
+G1WGW8			GO:0005315,GO:0005524,GO:0015415,GO:0016020	
+G1WH30	Acyl_transf_3 domain-containing protein		GO:0016021,GO:0016747	
+G1WH62	HTH rpiR-type domain-containing protein		GO:0003700,GO:0097367,GO:1901135	
+G1WHB1	MFS transporter		GO:0016021	
+G1WHF1	PTS EIIB type-2 domain-containing protein		GO:0009401,GO:0022877	
+G1WHI7			GO:0016620	
+G1WHM7	HTH cro/C1-type domain-containing protein		GO:0003677	
+G1WHR1	N-acetyltransferase domain-containing protein		GO:0004343,GO:0006048	
+G1WHU7	Secreted protein		GO:0016021	
+G1WHY5	Tat pathway signal sequence domain protein		GO:0005975	
+G1WI24	Transposase			
+G1WI76	Hydantoinase/oxoprolinase family protein		GO:0016787	
+G1WIB3	DedA family protein		GO:0016021	
+G1WIF9	PH domain-containing protein		GO:0016021	
+G1WIK1	Amidohydro-rel domain-containing protein		GO:0016810	
+G1WIP2	N-acetyltransferase domain-containing protein		GO:0016407	
+G1WIU5	UPF0210 protein HMPREF9452_01258			
+G1WIY3	Phage protein			
+G1WJ63	Peptidase A26			
+G1WJA0	Transposase			
+G1WJF9	DUF2179 domain-containing protein		GO:0005886,GO:0016021	
+G1WJK0	HAD family phosphatase			
+G1WJP1	Methyltransf_11 domain-containing protein		GO:0008168	
+G1WJU1	N-acetyltransferase domain-containing protein		GO:0016407	
+G1WK27	VanZ domain-containing protein		GO:0016021	
+G1WKA7	LytR_cpsA_psr domain-containing protein			
+G1WKK6	HTH gntR-type domain-containing protein		GO:0003677,GO:0003700	
+G1WKR3	Aminotransferase		GO:0008483,GO:0009058,GO:0030170	2.6.1.-
+G1WL08	Phospho-sugar mutase		GO:0000287,GO:0005975,GO:0016868	
+G1WL55	Transposase			
+G1WL94	GRAM_POS_ANCHORING domain-containing protein		GO:0016021	
+G1WLD0	Bax inhibitor-1/YccA family protein		GO:0016021	
+G1WLG5	ABC transporter domain-containing protein		GO:0005524,GO:0015658	
+G1WGQ6	DNA primase	dnaG	GO:0000428,GO:0003677,GO:0003896,GO:0008270,GO:1990077	2.7.7.101
+G1WI66	tRNA N6-adenosine threonylcarbamoyltransferase	tsaD	GO:0002949,GO:0005506,GO:0005737,GO:0006474,GO:0008080,GO:0061711	2.3.1.234
+G1WJQ3	UvrABC system protein B	uvrB	GO:0003677,GO:0005524,GO:0005737,GO:0006289,GO:0009380,GO:0009381,GO:0009432,GO:0016887	
+G1WFJ1	Acylphosphatase		GO:0003998	3.6.1.7
+G1WFV4	Isoprenyl transferase		GO:0000287,GO:0004659	2.5.1.-
+G1WG37	Adenine phosphoribosyltransferase	apt	GO:0003999,GO:0005737,GO:0006166,GO:0006168,GO:0044209	2.4.2.7
+G1WGT8	ATP-dependent Clp protease ATP-binding subunit ClpX	clpX	GO:0005524,GO:0006508,GO:0008233,GO:0008270,GO:0016887,GO:0046983,GO:0051082,GO:0140662	
+G1WH77	Ribosome hibernation promoting factor	hpf	GO:0005737,GO:0006417,GO:0044238	
+G1WHW1	Phenylalanine--tRNA ligase alpha subunit	pheS	GO:0000049,GO:0000287,GO:0004826,GO:0005524,GO:0005737,GO:0006432	6.1.1.20
+G1WIF2	Chaperone protein ClpB	clpB	GO:0005524,GO:0016887	
+G1WIU8	Methylenetetrahydrofolate reductase		GO:0006555,GO:0035999,GO:0106312,GO:0106313	1.5.1.20
+G1WJE0	Arginine repressor	argR	GO:0003677,GO:0003700,GO:0005737,GO:0006526,GO:0034618,GO:0051259	
+G1WJT6	Cobyric acid synthase	cobQ	GO:0003824,GO:0006541,GO:0009236,GO:0015420	
+G1WKB6	ATP synthase subunit a	atpB	GO:0005886,GO:0016021,GO:0045263,GO:0046933	
+G1WKP6	30S ribosomal protein S12	rpsL	GO:0000049,GO:0003735,GO:0006412,GO:0015935,GO:0019843	
+G1WL24	Biotin carboxylase		GO:0003989,GO:0004075,GO:0005524,GO:0006633,GO:0046872,GO:2001295	6.3.4.14
+G1WF98	Serine/threonine protein kinase			
+G1WFE8	UreE_N domain-containing protein			
+G1WFI4	Cof-type HAD-IIB family hydrolase		GO:0016787	
+G1WFS2	Rod shape-determining protein RodA		GO:0008360,GO:0016021,GO:0051301	
+G1WG06	PhoH domain-containing protein		GO:0005524	
+G1WGA6	DUF2997 domain-containing protein			
+G1WGD9	Repressor			
+G1WGH1	ATP-binding protein			
+G1WGL9	HTH cro/C1-type domain-containing protein		GO:0003677,GO:0006352,GO:0016987,GO:0030435	
+G1WGS6	DUF1667 domain-containing protein			
+G1WGX1	Phosphate-binding protein		GO:0006817,GO:0042301	
+G1WH31	Polysacc_synt_C domain-containing protein		GO:0005886,GO:0016021	
+G1WH63	Secreted protein			
+G1WHB2			GO:0003824,GO:0009116	
+G1WHF2	PTS EIIA type-2 domain-containing protein		GO:0008982,GO:0009401,GO:0016021	
+G1WHI8	BMC domain-containing protein		GO:0031469	
+G1WHM8	MFS domain-containing protein		GO:0016021,GO:0022857	
+G1WHR2	Protein-tyrosine-phosphatase		GO:0004725,GO:0030145	3.1.3.48
+G1WHU8	Class III signal peptide-containing protein		GO:0016021	
+G1WHY6	Glyco_hyd_65N_2 domain-containing protein		GO:0004560,GO:0005975	
+G1WI25	Nucleoside triphosphate pyrophosphohydrolase			
+G1WI77	Tox-GHH domain-containing protein			
+G1WIB4	CDP-alcohol phosphatidyltransferase			
+G1WIG0	Preprotein translocase subunit YajC			
+G1WIK2	Zn_dep_PLPC domain-containing protein			
+G1WIP4	Thioredoxin			
+G1WIU7	AdoMet activation domain-containing protein		GO:0008705	
+G1WIY4	Phage tail protein			
+G1WJ16	HTH cro/C1-type domain-containing protein		GO:0003677	
+G1WJ64	MBG_2 domain-containing protein			
+G1WJA1	DUF2116 family Zn-ribbon domain-containing protein		GO:0016021	
+G1WJG0	HTH araC/xylS-type domain-containing protein		GO:0003700,GO:0043565	
+G1WJK1	TLDc domain-containing protein			
+G1WJP2	N-acetyltransferase domain-containing protein		GO:0016407,GO:0046872,GO:0051539	
+G1WJU2	Methionine--tRNA ligase		GO:0004825,GO:0005524,GO:0006431	6.1.1.10
+G1WJY6	ABC transporter ATP-binding protein		GO:0005524	
+G1WK29			GO:0005886,GO:0016021	
+G1WK65	Glucuronyl hydrolase		GO:0005975	
+G1WKB7	CASP-like protein		GO:0016021	
+G1WKG1	Pyridoxal kinase		GO:0008478,GO:0009443	2.7.1.35
+G1WKK9	HTH cro/C1-type domain-containing protein		GO:0003677	
+G1WKR4	TYR_PHOSPHATASE_2 domain-containing protein		GO:0016021	
+G1WKW2	Aminoglycoside phosphotransferase			
+G1WL10			GO:0016021	
+G1WL56	Magnesium transporter MgtE		GO:0015095,GO:0016021	
+G1WL95	Nudix hydrolase domain-containing protein			
+G1WLD1				
+G1WLG6			GO:0005524,GO:0016021,GO:0034775,GO:0045454,GO:0140359	
