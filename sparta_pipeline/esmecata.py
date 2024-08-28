@@ -499,7 +499,7 @@ def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no 
     formatting_time = date_time_format - now_begin
     formatting_time_seconds = formatting_time.total_seconds()
 
-    stopwatch_file = os.path.join(output_folder, 'stopwatch_.txt')
+    stopwatch_file = os.path.join(output_folder, 'stopwatch.txt')
     f = open(stopwatch_file, "w")
     f.write("Formatting step length (s): "+str(formatting_time_seconds)+"\n")
     f.close()
