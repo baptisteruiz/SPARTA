@@ -242,14 +242,14 @@ def get_info_annots(score_db, output_folder, organism_abundance_filepath, esmeca
     list_of_annots = list(score_db.index)
     annots_with_names = add_reaction_names(list_of_annots, output_folder)
 
-    if organism_abundance_filepath is not None and functional_occurrence_filepath is not None:
+    if organism_abundance_filepath is not None and functional_occurrence_filepath is not None and esmecata_input is not None:
         annots_with_names_and_associated_otus = find_relevant_otus(annots_with_names, functional_occurrence_filepath, esmecata_input)
     else:
         annots_with_names_and_associated_otus = annots_with_names
         annots_with_names['Linked_OTUs'] = None
         annots_with_names['Named_linked_OTUs'] = None
 
-    return(annots_with_names_and_associated_otus)
+    return (annots_with_names_and_associated_otus)
 
 
 def average_per_group(score_dataframe, label_refs, label_value = None):
