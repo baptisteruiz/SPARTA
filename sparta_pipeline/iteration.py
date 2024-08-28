@@ -417,7 +417,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
         if preselected_organisms_filepath is not None:
             preselected_organisms = pd.read_csv(preselected_organisms_filepath)
             preselected_organisms_run = preselected_organisms['Run_'+str(run_nb)].dropna()
-            deepmicro_otu_iteration = deepmicro_otu_iteration0.loc[preselected_organisms_run.values].transpose()
+            deepmicro_otu_iteration = deepmicro_otu_iteration0[preselected_organisms_run.values]
   
     if preselected_annots_filepath is not None:
         preselected_annots = pd.read_csv(preselected_annots_filepath)
@@ -525,7 +525,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
                     signif_links_named = []
                     if link_otu_list is not None:
                         
-                        for otu in tqdm(link_otu_list, desc="link_otu_list: "+str(link_otu_list)+", type: "+str(type(link_otu_list))):
+                        for otu in tqdm(link_otu_list, desc="link_otu_list:"):
                             if otu in retained_otus:
                                 signif_links.append(otu)
                                 otu_name_translated = esmecata_input[esmecata_input['observation_name'] == otu]['taxonomic_affiliation'].values[0]
