@@ -94,7 +94,7 @@ def main():
     parent_parser_v = argparse.ArgumentParser(add_help=False)
     parent_parser_v.add_argument("-v", "--variable_ranking", default="gini", help="Method for Random Forest variable importance ranking (default: gini. Can be: shap)")
     parent_parser_seed = argparse.ArgumentParser(add_help=False)
-    parent_parser_seed.add_argument("--seed", default=0, type=int, help="Master seed that will define the randomness of the training/validation/test sets (used for reproducibility).")
+    parent_parser_seed.add_argument("--seed", default=42, type=int, help="Master seed that will define the randomness of the training/validation/test sets (used for reproducibility).")
     parent_parser_preselected_organisms = argparse.ArgumentParser(add_help=False)
     parent_parser_preselected_organisms.add_argument("--preselected-organisms", default=None, help="Path to csv file indicating for each run preselected organisms.")
     parent_parser_preselected_annotations = argparse.ArgumentParser(add_help=False)
