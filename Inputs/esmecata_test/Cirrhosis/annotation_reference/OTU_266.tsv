@@ -1,0 +1,484 @@
+protein	protein_name	gene_name	GO	EC
+A0A1I0KX28	50S ribosomal protein L14	rplN	GO:0003735,GO:0006412	
+A0A2U3D6A0	DNA replication and repair protein RecF	recF	GO:0003697,GO:0005524,GO:0005737,GO:0006260,GO:0009432	
+A0A2T4U2R3	Ribosomal RNA small subunit methyltransferase G	rsmG	GO:0070043	2.1.1.-
+A0A5R9GBD5	Acetolactate synthase	ilvB	GO:0000287,GO:0030976	
+P21469	30S ribosomal protein S7	rpsG	GO:0003735,GO:0006412,GO:0019843	
+A0A1M4SKN5	Succinate--CoA ligase [ADP-forming] subunit alpha	sucD		
+A0A7T5ESM8	6,7-dimethyl-8-ribityllumazine synthase	ribH	GO:0000906,GO:0009231,GO:0009349	2.5.1.78
+A0A7T5EVW2	Aconitate hydratase	acnA	GO:0006099,GO:0046872,GO:0051539	4.2.1.3
+A0A7T5JVJ4	Serine-type D-Ala-D-Ala carboxypeptidase	spoVD	GO:0008658	
+A0A495A2Q7	Translation initiation factor IF-1	infA	GO:0003743,GO:0019843,GO:0043022	
+A0A1M7GKE4	Lactamase_B domain-containing protein	yycJ		
+A0A1G8GI39	Polyribonucleotide nucleotidyltransferase	pnp	GO:0000287,GO:0003723,GO:0004654,GO:0006396,GO:0006402	2.7.7.8
+H3SJP4	33 kDa chaperonin	hslO	GO:0005737,GO:0051082	
+A0A1V2S9X1	Nucleoside diphosphate kinase	ndk	GO:0004550,GO:0005524,GO:0006165,GO:0006183,GO:0006228,GO:0006241	2.7.4.6
+A0A428N432	Ribonuclease J	rnj	GO:0003723,GO:0004521,GO:0004534,GO:0005737,GO:0006364,GO:0008270	3.1.-.-
+D3FYC2	HPr kinase/phosphorylase	hprK	GO:0000155,GO:0004674,GO:0005524,GO:0005975,GO:0006109	
+A0A1I3P498	Glutamate-1-semialdehyde 2,1-aminomutase	hemL	GO:0008483,GO:0030170	
+A0A1I3U261	Dihydroorotase	pyrC		
+A0A2U3D9T3	Formamidopyrimidine-DNA glycosylase	mutM	GO:0003684,GO:0006284,GO:0008270	4.2.99.18
+A0A2U3DBF5	30S ribosomal protein S19	rpsS	GO:0003735,GO:0006412,GO:0019843	
+A0A1M4WAL9	Porphobilinogen deaminase	hemC	GO:0004418	2.5.1.61
+D5WRS6	30S ribosomal protein S3	rpsC	GO:0003729,GO:0003735,GO:0006412,GO:0019843	
+A0A511ZB30	Bis(5'-nucleosyl)-tetraphosphatase (symmetrical)	yqeK		3.6.1.41
+A0A2W1LFX1	30S ribosomal protein S13	rpsM	GO:0000049,GO:0003735,GO:0006412,GO:0019843	
+A0A0A3I4D9	7,8-dihydroneopterin aldolase	folB	GO:0004150,GO:0046654,GO:0046656	4.1.2.25
+H3SCR3	RNA-binding protein Hfq	hfq	GO:0003723,GO:0006355	
+A0A1S2R9M5	Quinol oxidase subunit 3	qoxC	GO:0004129,GO:0019646	
+A0A1U9KB52	Tagatose-bisphosphate aldolase	fba	GO:0008270	
+A0A1I3R7B4	S-adenosylmethionine:tRNA ribosyltransferase-isomerase	queA	GO:0005737,GO:0008616	
+Q2FXV9	Alanine--tRNA ligase	alaS	GO:0000049,GO:0004813,GO:0005524,GO:0006419,GO:0008270	6.1.1.7
+Q2G1S1	Ribosomal RNA small subunit methyltransferase I	rsmI	GO:0005737	
+A0A1I0G6B5	Ribosomal protein L11 methyltransferase	prmA	GO:0005737,GO:0008276	2.1.1.-
+A0A6I4VQV8	Protein RecA	recA	GO:0003684,GO:0003697,GO:0005524,GO:0005737,GO:0006281,GO:0006310,GO:0009432,GO:0140664	
+A0A3N5C1C6	Transcription termination/antitermination protein NusG	nusG	GO:0006353,GO:0006354,GO:0031564,GO:0032784	
+A0A7T5ESP3	DNA polymerase I	polA	GO:0003677,GO:0003887,GO:0006261	2.7.7.7
+D5WRM7	Lysine--tRNA ligase	lysS	GO:0000287,GO:0004824,GO:0005524,GO:0006430	6.1.1.6
+A0A098EXW6	S4 domain-containing protein	ylmH	GO:0003723	
+A0A0A3HTE9	2,3-bisphosphoglycerate-independent phosphoglycerate mutase	gpmI	GO:0006007,GO:0006096,GO:0030145,GO:0046537	5.4.2.12
+A0A248TMH6	Indole-3-glycerol phosphate synthase	trpC	GO:0000162,GO:0004425	4.1.1.48
+A0A081P5I6	DNA-binding response regulator	phoP		
+A0A4Y8PSS2	Ribosome hibernation promoting factor	hpf	GO:0044238	
+A0A2W1P472	16S rRNA (cytosine(967)-C(5))-methyltransferase	rsmB	GO:0003723,GO:0006355	2.1.1.176
+A0A1M7G339	TrkH family potassium uptake protein	ktrD	GO:0016021	
+A0A437KBA6	ABC transporter domain-containing protein	dppD	GO:0005524	
+A0A024P1W0	Aspartate carbamoyltransferase	pyrB	GO:0004070,GO:0006207,GO:0006520,GO:0016597,GO:0044205	2.1.3.2
+A0A1V2SEK0	S4 domain-containing protein	yabO	GO:0003723	
+Q2G0V4	Cysteine synthase	cysK		
+A0A7G5BX93	Elongation factor Tu	tuf	GO:0003746,GO:0003924,GO:0005525	
+A0A178A6H6	tRNA pseudouridine synthase A	truA	GO:0003723,GO:0031119	5.4.99.12
+A0A7T5JRQ2	SpoU_sub_bind domain-containing protein	spoU	GO:0003723,GO:0006396,GO:0008173	
+D5WSY2	Dihydrolipoyl dehydrogenase	lpdA	GO:0045454,GO:0050660	
+A0A098F737	DNA gyrase subunit B	gyrB	GO:0003677,GO:0003918,GO:0005524,GO:0006265	5.6.2.2
+A0A5C8P3C9	30S ribosomal protein S20	rpsT	GO:0003735,GO:0006412	
+A0A4Z0GYQ0	Probable CtpA-like serine protease	ctpB	GO:0006508	
+A0A1M7GGR2	Ribonuclease P protein component	rnpA	GO:0000049,GO:0001682,GO:0004526	3.1.26.5
+A0A292YCK0	YqeG family HAD IIIA-type phosphatase	yqeG	GO:0008962	
+A0A2P8H505	TRAM domain-containing protein	yacL		
+A0A3R9P222	Recombination protein RecR	recR	GO:0003677,GO:0006281,GO:0006310,GO:0046872	
+V6M1D6	Metal ABC transporter permease	zurM	GO:0005887,GO:0043190,GO:0055085	
+Q8Y6Z5	Probable transcriptional regulatory protein lmo1535	yeeI	GO:0003677,GO:0006355	
+A0A2T4UAD6	MazG domain-containing protein	ypjD		
+A0A1M4WBP9	GTP pyrophosphokinase	relA	GO:0005525,GO:0015970	2.7.6.5
+A0A098EZ66	30S ribosomal protein S1	rpsA		
+A0A1H9Q816	Zinc metalloprotease	rseP	GO:0004222,GO:0006508,GO:0016021,GO:0046872	3.4.24.-
+A0A1R1CZE4	Glutamyl-tRNA(Gln) amidotransferase subunit A	gatA		
+A0A2W1N686	50S ribosomal protein L3	rplC	GO:0003735,GO:0006412,GO:0019843	
+A0A1M7H9B8	Prephenate dehydratase	pheA	GO:0004664,GO:0009094	4.2.1.51
+A0A150L7I9	Ribosome maturation factor RimM	rimM	GO:0005737,GO:0005840,GO:0006364,GO:0042274,GO:0043022	
+A0A150L8B9	tRNA (guanine-N(1)-)-methyltransferase	trmD	GO:0052906	2.1.1.228
+I8AN37	Arsenate reductase	yusI		
+A0A3S0BSR2	4-hydroxy-tetrahydrodipicolinate synthase	dapA		
+Q2FYF5	Cytidylate kinase	cmk	GO:0005524,GO:0016310	2.7.4.25
+A0A1I0KRS7	Acetylornithine aminotransferase	argD	GO:0030170	
+A0A6I4VUW7	Lactamase_B domain-containing protein	gloB		
+D5WPU4	LexA repressor	lexA	GO:0003677	
+A0A098EX23	Cell division protein FtsZ	ftsZ	GO:0000917,GO:0003924,GO:0005525,GO:0005737,GO:0032153,GO:0043093,GO:0051258	
+A0A1R1CRL3	Transcription-repair-coupling factor	mfd	GO:0000716,GO:0003684,GO:0004386,GO:0005524,GO:0005737,GO:0006355	3.6.4.-
+A0A4R3MZI6	N5-carboxyaminoimidazole ribonucleotide synthase	purK	GO:0005524,GO:0006189	
+A0A1Y0IPN6	N-acetyldiaminopimelate deacetylase	yhaA		
+A0A6C0G3R0	Holliday junction ATP-dependent DNA helicase RuvB	ruvB	GO:0003677,GO:0005524,GO:0006281,GO:0006310,GO:0009378,GO:0009432	3.6.4.12
+D3G1M2	DNA_pol3_delta domain-containing protein	holA	GO:0003677,GO:0003887,GO:0009360	
+A0A1E5L4U0	Citrate synthase	citZ		2.3.3.16
+A0A5C8P3F9	4-hydroxy-tetrahydrodipicolinate reductase	dapB	GO:0008839,GO:0009089,GO:0019877	
+A0A419V793	Probable tRNA sulfurtransferase	thiI	GO:0000049,GO:0004810,GO:0005524,GO:0009228,GO:0009229	2.8.1.4
+A0A1I2P0L9	SufBD_N domain-containing protein	sufD	GO:0016226	
+A0A1M7I1T1	DNA-directed RNA polymerase subunit beta'	rpoC	GO:0000287,GO:0000428,GO:0003677,GO:0003899,GO:0006351,GO:0008270	2.7.7.6
+A0A292YIT5	4-diphosphocytidyl-2-C-methyl-D-erythritol kinase	ispE	GO:0005524,GO:0016114,GO:0016310,GO:0050515	2.7.1.148
+A0A292YSV0	DNA primase	dnaG	GO:0000428,GO:0003677,GO:0003896,GO:0008270,GO:1990077	2.7.7.101
+A0A2P8HYB0	Transcription termination/antitermination protein NusA	nusA	GO:0003700,GO:0003723,GO:0006353,GO:0031564	
+A0A4Q2LGS6	Insulinase family protein	ymfH	GO:0046872	
+A0A074LQ09	Hydrolase TatD	tatD		
+M8DAE3	30S ribosomal protein S12	rpsL	GO:0000049,GO:0003735,GO:0006412,GO:0015935,GO:0019843	
+A0A1I3PMK7	Ribosome-recycling factor	frr	GO:0005737	
+Q2FW39	30S ribosomal protein S9	rpsI	GO:0003735,GO:0006412	
+A0A418LXS8	GP-PDE domain-containing protein	glpQ	GO:0006629	
+A0A418MFV7	Heptaprenyl diphosphate synthase component 2	hepT	GO:0008299	
+A0A6I4VR23	Dephospho-CoA kinase	coaE	GO:0004140,GO:0005524,GO:0005737,GO:0015937,GO:0016310	2.7.1.24
+A0A0B4RC31	3-dehydroquinate synthase	aroB	GO:0009073,GO:0046872	
+D5WPY5	Aspartate 1-decarboxylase	panD	GO:0004068,GO:0006523,GO:0015940	4.1.1.11
+D5WQZ4	S4 domain-containing protein YaaA	yaaA	GO:0003723	
+D3EIG6	Probable dual-specificity RNA methyltransferase RlmN	rlmN	GO:0005737,GO:0046872,GO:0051539,GO:0070475	
+A0A4R3MXP4	50S ribosomal protein L17	rplQ	GO:0003735,GO:0006412	
+A0A1M7C596	Ribosome maturation factor RimP	rimP		
+A0A292YIX1	Inosine-5'-monophosphate dehydrogenase	guaB	GO:0003938	
+A0A4Q2LV04	NADPH dehydrogenase	namA	GO:0010181	
+A0A7W1WTI9	50S ribosomal subunit assembly factor BipA	bipA	GO:0000027,GO:0000049,GO:0003924,GO:0005525,GO:0005737,GO:0019843,GO:0043022	3.6.5.-
+I8J0L8	AAA domain-containing protein	rarA	GO:0003677,GO:0005524	
+M8EFQ7	Phosphate acyltransferase	plsX	GO:0005737,GO:0006633,GO:0008654,GO:0043811	2.3.1.274
+A0A0F5R3Y1	UDP-N-acetylenolpyruvoylglucosamine reductase	murB	GO:0007049,GO:0008360,GO:0008762,GO:0009252,GO:0051301,GO:0071555,GO:0071949	1.3.1.98
+A0A418MD61	50S ribosomal protein L4	rplD	GO:0003735,GO:0005737,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+A0A2T4U1S2	50S ribosomal protein L9	rplI	GO:0003735,GO:0006412,GO:0019843	
+A0A1M4UV68	50S ribosomal protein L28	rpmB	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+D5WXY9	Phosphopentomutase	deoB	GO:0000287,GO:0006015,GO:0008973,GO:0009264,GO:0030145,GO:0043094	5.4.2.7
+A0A135WQN3	Glyceraldehyde-3-phosphate dehydrogenase	gap	GO:0051287	
+A0A081P3Y7	3-oxoacyl-[acyl-carrier-protein] synthase 2	fabF		
+A0A1M7KG15	DEAD-box ATP-dependent RNA helicase CshA	cshA	GO:0003724,GO:0005524	
+A0A1H0KDX3	Transcription termination factor Rho	rho	GO:0003723,GO:0004386,GO:0005524,GO:0006353,GO:0008186,GO:0016787	3.6.4.-
+I8IX20	Iron-sulfur cluster carrier protein	mrp	GO:0005524,GO:0016226,GO:0016887,GO:0046872,GO:0140663	
+A0A024P6I0	PhoH domain-containing protein	phoH	GO:0005524	
+V6MA41	Acetyl-coenzyme A carboxylase carboxyl transferase subunit beta	accD	GO:0003989,GO:0005524,GO:0006633,GO:0008270,GO:0009317,GO:0016743,GO:2001295	2.1.3.15
+V6MDI4	Valine--tRNA ligase	valS	GO:0002161,GO:0004832,GO:0005524,GO:0006438	6.1.1.9
+D3FXG5	Aldo_ket_red domain-containing protein	yvgN		
+A0A264W0V5	Lactamase_B domain-containing protein	ytkL		
+A0A6I4VS11	Bifunctional protein GlmU	glmU	GO:0000287,GO:0000902,GO:0003977,GO:0005737,GO:0006048,GO:0008360,GO:0009245,GO:0009252,GO:0019134,GO:0071555	2.3.1.157,2.7.7.23
+Q8Y8G9	Putative tRNA (cytidine(34)-2'-O)-methyltransferase	trmL	GO:0003723,GO:0005737,GO:0008175,GO:0008757	2.1.1.207
+A0A1E5L6G5	Methionyl-tRNA formyltransferase	fmt	GO:0004479	2.1.2.9
+A0A1E5L721	DhaL domain-containing protein	yloV	GO:0004371,GO:0006071	
+A0A2N5G6U1	S4 domain-containing protein	yqxC	GO:0003723,GO:0008168,GO:0032259	
+A0A2W1LW37	Co-chaperonin GroES	groES	GO:0005524,GO:0005737,GO:0140662	
+A0A1R1D465	Delta-aminolevulinic acid dehydratase	hemB	GO:0004655,GO:0006782	4.2.1.24
+A0A2W1N519	Putative pre-16S rRNA nuclease	ruvX	GO:0000967,GO:0004518,GO:0005737	3.1.-.-
+A0A1I2K937	Ribosomal silencing factor RsfS	rsfS	GO:0005737,GO:0017148,GO:0042256,GO:0090071	
+A0A2P8HY48	Ribosome biogenesis GTPase A	ylqF	GO:0005525,GO:0005737	
+A0A7W2A7T5	DUF2179 domain-containing protein	ypjC	GO:0005886,GO:0016021	
+I8J4C0	Bifunctional ligase/repressor BirA	birA	GO:0004077,GO:0009249,GO:0016740	6.3.4.15
+A0A074LPK3	Cold shock protein CspA	cspA		
+V6M461	30S ribosomal protein S4	rpsD	GO:0003735,GO:0006412,GO:0015935,GO:0019843	
+V6MBE2	Glutamine synthetase	glnA	GO:0004356	
+A0A1I0KH60	Copper-exporting P-type ATPase	cadA	GO:0005524,GO:0016021,GO:0016887	
+A0A2U3DA69	ATP-dependent protease subunit HslV	hslV	GO:0004298,GO:0005839,GO:0009376,GO:0046872,GO:0051603	
+A0A2T4U5N3	Succinate dehydrogenase flavoprotein subunit	sdhA	GO:0005886	
+A0A3N5BY67	Oligoendopeptidase F	pepF	GO:0004222,GO:0006508	
+A0A5R9G6J8	Tyrosine recombinase XerC	xerC	GO:0003677	
+A0A1G7IPX9	Globin	yjbI	GO:0019825,GO:0020037	
+A0A1E5L5U6	LMWPc domain-containing protein	ptpA		
+H6NGD7	L-methionine gamma-lyase	megL	GO:0019346,GO:0030170	
+A0A4Z0H3J1	Pyrimidine-nucleoside phosphorylase	deoA	GO:0004645,GO:0006206,GO:0006213,GO:0016154	2.4.2.2
+A0A1H9WPN2	Response regulatory domain-containing protein	cheY	GO:0000160	
+A0A087N225	Exodeoxyribonuclease 7 large subunit	xseA	GO:0003676,GO:0005737,GO:0006308,GO:0008855,GO:0009318	3.1.11.6
+A0A1J6VX03	Adenine DNA glycosylase	mutY	GO:0006284,GO:0051539	3.2.2.31
+A0A1I2Q7B4	50S ribosomal protein L5	rplE	GO:0000049,GO:0003735,GO:0006412,GO:0019843	
+A0A1Y0IPK6	FtsK domain-containing protein	spoIIIE	GO:0003677,GO:0005524,GO:0007059	
+A0A7W1WUB1	Sugar-bind domain-containing protein	cggR	GO:0030246	
+I8J686	Transcription antitermination protein NusB	nusB	GO:0003723,GO:0006353,GO:0006355,GO:0031564	
+A0A074MHR0	Methionine aminopeptidase	map	GO:0006508,GO:0046914,GO:0070006	3.4.11.18
+A0A059NZ24	[Ribosomal protein S18]-alanine N-acetyltransferase	rimI	GO:0006474	
+A0A6C0G421	Glutamyl-tRNA reductase	hemA	GO:0006782,GO:0008883,GO:0050661	1.2.1.70
+A0A6C0FT52	Histidine kinase	walK	GO:0000155,GO:0005524,GO:0016021	2.7.13.3
+A0A264W5C5	SsrA-binding protein	smpB	GO:0003723,GO:0070929	
+A0A2U3DBC5	Protoheme IX farnesyltransferase	ctaB	GO:0005886,GO:0008495,GO:0016021,GO:0048034	2.5.1.141
+A0A2U3D7T0	Bifunctional protein PyrR	pyrR	GO:0003723,GO:0004845,GO:0006353	2.4.2.9
+A0A2U3D9P7	Probable DNA-directed RNA polymerase subunit delta	rpoE	GO:0000428,GO:0006351,GO:0006355	
+A0A371RYS1	Nucleoid occlusion protein	noc	GO:0003677	
+A0A2T4U504	NYN domain-containing protein	yacP		
+A0A5R9GNW9	3-isopropylmalate dehydrogenase	leuB	GO:0051287	
+A0A1E5L3D5	Adenine phosphoribosyltransferase	apt	GO:0003999,GO:0005737,GO:0006166,GO:0006168,GO:0044209	2.4.2.7
+A0A1M4YUV0	50S ribosomal protein L7/L12	rplL	GO:0003735,GO:0006412	
+A0A7T5JU56	tRNA-specific 2-thiouridylase MnmA	mnmA	GO:0000049,GO:0005524,GO:0005737,GO:0016783	2.8.1.13
+D5WP94	Transcription factor FapR	fapR		
+A0A235FBC4	Bifunctional folylpolyglutamate synthase/dihydrofolate synthase	folC	GO:0004326,GO:0005524,GO:0046872	
+A0A098F0F2	RNA polymerase sigma factor SigA	sigA	GO:0003677,GO:0006352,GO:0016987	
+A0A511Z795	Pyr_redox_2 domain-containing protein	yumB		
+A0A6I1F6B9	UDP-N-acetylglucosamine--N-acetylmuramyl-(pentapeptide) pyrophosphoryl-undecaprenol N-acetylglucosamine transferase	murG	GO:0005886,GO:0005975,GO:0007049,GO:0008360,GO:0009252,GO:0030259,GO:0050511,GO:0051301,GO:0071555	2.4.1.227
+A0A6I1FGT0	Ribonuclease Y	rny	GO:0003723,GO:0004521,GO:0005886,GO:0006402,GO:0016021	3.1.-.-
+A0A2N0Z4J6	Cysteine desulfurase	iscS		
+A0A5C4TEV0	50S ribosomal protein L27	rpmA	GO:0003735,GO:0006412	
+A0A2W1NU42	Superoxide dismutase	sodA	GO:0004784,GO:0046872	1.15.1.1
+A0A4Y9ADZ0	Phosphate transport system permease protein PstA	pstA	GO:0005315	
+A0A4Q2LQH2	UvrABC system protein A	uvrA	GO:0005524	
+A0A7W1WTQ0	DNA-directed RNA polymerase subunit beta	rpoB	GO:0000428,GO:0003677,GO:0003899,GO:0006351,GO:0032549	2.7.7.6
+M8E2P2	Redox-sensing transcriptional repressor Rex	rex	GO:0003677,GO:0003700,GO:0005737,GO:0045892,GO:0051775	
+Q2FXM7	Acetyl-coenzyme A carboxylase carboxyl transferase subunit alpha	accA	GO:0003989,GO:0005524,GO:0006633,GO:0009317,GO:0016743,GO:2001295	2.1.3.15
+A0A418MLW2	dITP/XTP pyrophosphatase	rdgB		
+A0A7G5BXC8	DNA ligase	ligA	GO:0003911,GO:0006260,GO:0046872	6.5.1.2
+A0A6I4VR21	ABC transporter domain-containing protein	pstB	GO:0005524	
+Q8Y5M6	Pyridoxal phosphate homeostasis protein	ylmE	GO:0030170	
+A0A1G8G7E2	Ribosomal RNA large subunit methyltransferase H	rlmH	GO:0005737,GO:0070038	2.1.1.177
+H6NEP8	ABC transporter domain-containing protein	sufC	GO:0005524	
+A0A1H9V9H2	Triosephosphate isomerase	tpiA	GO:0004807,GO:0006094,GO:0006096	5.3.1.1
+A0A366EH73	tRNA-2-methylthio-N(6)-dimethylallyladenosine synthase	miaB	GO:0046872,GO:0051539	
+D5WY01	Carbamoyl-phosphate synthase large chain	carB	GO:0004088,GO:0005524,GO:0046872	6.3.5.5
+A0A372LTF7	3-isopropylmalate dehydratase large subunit	leuC	GO:0003861,GO:0009098,GO:0046872,GO:0051539	4.2.1.33
+A0A6I1F4J5	Transketolase	tkt	GO:0004802,GO:0046872	2.2.1.1
+A0A419V0K0	tRNA threonylcarbamoyladenosine biosynthesis protein TsaE	tsaE	GO:0002949,GO:0005737	
+A0A1M7BK60	GTP cyclohydrolase 1 type 2 homolog	yqfO	GO:0046872	
+A0A1M7GRA4	DsbD domain-containing protein	ccdA	GO:0016021,GO:0017004	
+A0A4Y9AHM7	Orotidine 5'-phosphate decarboxylase	pyrF	GO:0004590,GO:0006207,GO:0044205	4.1.1.23
+A0A1Y0IM97	Histidine--tRNA ligase	hisS	GO:0004821,GO:0005524,GO:0005737,GO:0006427	6.1.1.21
+A0A4Q2LEW5	UDP-N-acetylmuramoyl-L-alanyl-D-glutamate--2,6-diaminopimelate ligase	murE	GO:0005524	
+M8D9J4	Phenylalanine--tRNA ligase alpha subunit	pheS	GO:0000049,GO:0000287,GO:0004826,GO:0005524,GO:0005737,GO:0006432	6.1.1.20
+A0A3R9PZ31	Dihydroxy-acid dehydratase	ilvD	GO:0051537	
+A0A3S0CRY1	Chorismate synthase	aroC	GO:0004107,GO:0008652,GO:0009073,GO:0009423	4.2.3.5
+V6MG33	Alanine dehydrogenase	ald	GO:0000286,GO:0042853	1.4.1.1
+A0A1U9K796	Thiol peroxidase	tpx		
+A0A418MLV4	Elongation factor P	efp	GO:0003746,GO:0005737	
+A0A6I4VR72	ATP synthase epsilon chain	atpC	GO:0005524,GO:0005886,GO:0045261,GO:0046933	
+A0A1G7F5U8	16S rRNA (Guanine(966)-N(2))-methyltransferase RsmD	rsmD		
+H6NT85	Protein translocase subunit SecA	secA	GO:0005524,GO:0006605,GO:0017038,GO:0065002	7.4.2.8
+A0A7T5EY05	ATP-dependent protease ATPase subunit HslU	hslU	GO:0005524,GO:0008233,GO:0009376,GO:0016887,GO:0036402,GO:0043335	
+A0A4Y8Q5E5	S1 motif domain-containing protein	ydcI	GO:0006139	
+A0A1M7E702	Protein AroA(G)	aroF	GO:0009073,GO:0016832	
+A0A292YLC9	30S ribosomal protein S11	rpsK	GO:0003735,GO:0006412	
+A0A1I4MG10	Malate dehydrogenase	mdh		
+A0A179T1S8	NCS2 family permease	pbuG	GO:0016021	
+A0A2W0H209	UvrABC system protein B	uvrB	GO:0003677,GO:0005524,GO:0005737,GO:0006289,GO:0009380,GO:0009381,GO:0009432,GO:0016887	
+A0A2W0HER9	Nucleotide-binding protein CR205_15565	rapZ	GO:0005524,GO:0005525	
+A0A1U9K2Z1	Serine--tRNA ligase	serS	GO:0004828,GO:0005524,GO:0006434	6.1.1.11
+A0A6I4VSP3	Acyl carrier protein	acpP	GO:0000036	
+A0A371S7H1	Cytochrome c oxidase subunit 1	ctaD	GO:0004129,GO:0016021,GO:0020037	
+A0A1G7TEG9	Pyruvate kinase	pyk	GO:0000287,GO:0004743,GO:0005524,GO:0016301,GO:0030955	2.7.1.40
+D5WRP8	Cysteine--tRNA ligase	cysS	GO:0004817,GO:0005524,GO:0005737,GO:0006423,GO:0008270	6.1.1.16
+A0A235F8S9	Pseudouridine synthase	rluF	GO:0003723	
+A0A5C8NWU9	Phosphoribosylformylglycinamidine cyclo-ligase	purM	GO:0004641,GO:0005524,GO:0006189	6.3.3.1
+A0A4Z0GWY1	N5-carboxyaminoimidazole ribonucleotide mutase	purE	GO:0006189,GO:0034023	5.4.99.18
+A0A087N030	S-adenosylmethionine synthase	metK	GO:0000287,GO:0004478,GO:0005524,GO:0006556,GO:0006730	2.5.1.6
+A0A1I2LT95	YigZ family protein	pepQ		
+A0A7W1WTP7	50S ribosomal protein L2	rplB	GO:0003735,GO:0016740,GO:0019843	
+A0A0M4G7J5	Thymidylate kinase	tmk	GO:0004798,GO:0005524,GO:0006233,GO:0006235,GO:0016310	2.7.4.9
+A0A6C0G5E8	Transcription elongation factor GreA	greA	GO:0003677,GO:0032784,GO:0070063	
+A0A2U3D6E2	Chromosomal replication initiator protein DnaA	dnaA	GO:0003688,GO:0005524,GO:0005737,GO:0006270,GO:0006275	
+A0A2U3D7U4	ATP-dependent DNA helicase RecG	recG	GO:0003678,GO:0005524	3.6.4.12
+Q8Y7N9	Aspartokinase	dapG	GO:0004072,GO:0005524,GO:0009088,GO:0009089,GO:0016310	2.7.2.4
+A0A1E5L2U2	Threonine--tRNA ligase	thrS	GO:0000049,GO:0004829,GO:0005524,GO:0006435,GO:0046872	6.1.1.3
+O34825	Malonyl CoA-acyl carrier protein transacylase	fabD	GO:0004314	
+A0A1M4XBH9	DNA polymerase III subunit gamma/tau	dnaX	GO:0003677,GO:0003887,GO:0005524,GO:0009360	2.7.7.7
+D5WV30	Phosphoglycerate kinase	pgk	GO:0004618,GO:0005524,GO:0006096	2.7.2.3
+D5WTR0	Ferredoxin	fer		
+A0A235FEL8	Polyprenyl synthetase family protein	ispA	GO:0008299	
+A0A495A4C0	Threonylcarbamoyl-AMP synthase	ywlC	GO:0003725	
+D3E5T9	Ribulose-phosphate 3-epimerase	rpe		
+A0A4U0FED2	3-oxoacyl-[acyl-carrier-protein] synthase 3	fabH	GO:0004315,GO:0006633	
+A0A4R3MSP6	Tryptophan--tRNA ligase	trpS	GO:0004830,GO:0005524,GO:0006436	6.1.1.2
+A0A1M7AQ98	Translation initiation factor IF-3	infC	GO:0003743	
+A0A1M7BZM0	Methionine gamma-lyase family protein	ynbB		
+A0A1Y0IV56	50S ribosomal protein L21	rplU	GO:0003735,GO:0005737,GO:0005840,GO:0006412,GO:0019843,GO:1990904	
+A0A7W1XQ50	Cytidine deaminase	cdd	GO:0004126,GO:0008270	3.5.4.5
+A0A2P8HHW5	Release factor glutamine methyltransferase	prmC		2.1.1.297
+A0A3M8H7G2	Tryptophan synthase alpha chain	trpA	GO:0004834	4.2.1.20
+A0A7G5C3N5	GTPase Obg	obg	GO:0000287,GO:0003924,GO:0005525,GO:0005737,GO:0042254	3.6.5.-
+A0A2U3DAC8	Uridylate kinase	pyrH	GO:0005524,GO:0016310,GO:0033862,GO:0044210	2.7.4.22
+A0A2T4U961	Bifunctional oligoribonuclease/PAP phosphatase NrnA	nrnA	GO:0003676	
+A0A1M4XUR7	Serine hydroxymethyltransferase	glyA	GO:0004372,GO:0019264,GO:0030170,GO:0035999	
+D5WV88	Bifunctional protein FolD	folD	GO:0000105,GO:0004477,GO:0004488,GO:0006164,GO:0009086,GO:0035999	1.5.1.5,3.5.4.9
+A0A511Z9W4	M20_dimer domain-containing protein	yqjE		
+A0A372LL19	Aminopeptidase P family protein	pepQ		
+A0A4U0F2Z7	DNA repair protein RadA	radA	GO:0000725,GO:0003684,GO:0005524,GO:0046872,GO:0140664	
+A0A292YJI5	50S ribosomal protein L22	rplV	GO:0003735,GO:0006412,GO:0015934,GO:0019843	
+A0A2P8H507	Glutamate--tRNA ligase	gltX	GO:0000049,GO:0004818,GO:0005524,GO:0006424	6.1.1.17
+A0A3S2TTK7	50S ribosomal protein L31	rpmE	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+A0A437K3R3	30S ribosomal protein S5	rpsE	GO:0003735,GO:0006412,GO:0019843	
+A0A1S2QZL1	Pseudouridine synthase	rluD_2	GO:0003723	
+A0A2U3DC85	Probable GTP-binding protein EngB	engB	GO:0000917,GO:0005525,GO:0046872	
+A0A5R9GCD1	PgpA domain-containing protein	pgpA	GO:0006629,GO:0008962	
+A0A7T5ERE2	Shikimate dehydrogenase (NADP(+))	aroE	GO:0004764,GO:0008652,GO:0009073,GO:0009423	1.1.1.25
+A0A0A3HVW6	Protein-arginine kinase	mcsB	GO:0004111,GO:0005524,GO:0016310,GO:0046314	
+A0A1R1DD44	PPM-type phosphatase domain-containing protein	prpC	GO:0006470	
+A0A1I2LBZ9	Riboflavin synthase	ribE		
+A0A179SVI0	Methionine--tRNA ligase	metG	GO:0000049,GO:0004825,GO:0005524,GO:0005737,GO:0006431	6.1.1.10
+A0A2W0H2X1	DUF423 domain-containing protein	ywdK	GO:0016021	
+G2TKY4	DNA polymerase IV	dinB	GO:0003684,GO:0009432	
+A0A4Q2LJ76	Heme chaperone HemW	hemN	GO:0046872	
+A0A1H0KEI4	UPF0340 protein SAMN04488053_11738	ywlG		
+A0A385YWC5	50S ribosomal protein L20	rplT	GO:0003735,GO:0006412,GO:0019843	
+M8DB90	ABC transporter domain-containing protein	yhcH	GO:0005524	
+V6M1F3	tRNA dimethylallyltransferase	miaA	GO:0005524,GO:0052381	2.5.1.75
+V6MBB5	Dihydrolipoamide acetyltransferase component of pyruvate dehydrogenase complex	odhB		
+Q2G2Q4	Ribosome-binding factor A	rbfA	GO:0030490	
+Q8YAM8	ATP synthase subunit alpha	atpA	GO:0005524,GO:0005886,GO:0045261,GO:0046933	7.1.2.2
+A0A177ZPX0	Histidinol-phosphate aminotransferase	hisC	GO:0030170	
+A0A5R9GHC6	Endolytic murein transglycosylase	mltG	GO:0005887,GO:0008932,GO:0009252,GO:0016829,GO:0071555	4.2.2.-
+D5WXD2	Ribosome-binding ATPase YchF	ychF	GO:0005524,GO:0005525,GO:0016887,GO:0043022,GO:0043023	
+A0A511Z7U5	UVR domain-containing protein	mcsA		
+A0A4Y8Q775	DNA mismatch repair protein MutL	mutL	GO:0005524,GO:0006298,GO:0016887,GO:0030983,GO:0032300,GO:0140664	
+A0A1I2NM31	50S ribosomal protein L11	rplK	GO:0003735,GO:0006412,GO:0070180	
+A0A4Y9AB27	Pur operon repressor	purR	GO:0003677,GO:0045892,GO:0045982	
+A0A2P8H8J8	50S ribosomal protein L6	rplF	GO:0003735,GO:0019843	
+A0A2P8H998	ATP phosphoribosyltransferase	hisG	GO:0000105,GO:0003879,GO:0005737	2.4.2.17
+A0A4Q2LFG9	Ferredoxin--NADP reductase	trxB		
+A0A2U3DBI3	Adenylate kinase	adk	GO:0004017,GO:0005524,GO:0005737,GO:0016310,GO:0044209	2.7.4.3
+A0A371SKI3	ABC transmembrane type-1 domain-containing protein	nikC	GO:0005886,GO:0016021	
+A0A3N5C7K2	ATP-dependent Clp protease ATP-binding subunit ClpX	clpX	GO:0005524,GO:0008270,GO:0016887,GO:0046983,GO:0051082,GO:0140662	
+A0A5R9G2T6	Protein-export membrane protein SecG	secG	GO:0005886,GO:0009306,GO:0015450,GO:0016021	
+A0A5R9GHH6	Glutamate racemase	murI	GO:0008360,GO:0008881,GO:0009252,GO:0071555	5.1.1.3
+A0A0A3IM11	Alanine racemase	alr	GO:0008784	
+A0A419V3C7	SAM-dependent methyltransferase	trmK	GO:0016429	
+A0A7W1XTY2	Imidazoleglycerol-phosphate dehydratase	hisB	GO:0000105,GO:0004424,GO:0005737	4.2.1.19
+A0A7W2ARH3	FeS cluster assembly protein SufB	sufB	GO:0016226	
+A0A3S3SKT8	Glycerol kinase	glpK	GO:0016310	
+A0A1I3LBZ5	Isocitrate dehydrogenase [NADP]	icd	GO:0004450,GO:0006099	1.1.1.42
+Q2FW14	50S ribosomal protein L29	rpmC	GO:0003735,GO:0006412	
+Q2FZ13	ACT domain-containing protein	ymfK		
+A0A1I0KA64	Aldo_ket_red domain-containing protein	mgrA		
+Q8Y421	Elongation factor G	fusA	GO:0003746,GO:0003924,GO:0005525	
+A0A3N5AYI6	50S ribosomal protein L16	rplP	GO:0000049,GO:0003735,GO:0006412,GO:0019843	
+A0A1E5L629	ATP synthase subunit b	atpF	GO:0005886,GO:0016021,GO:0045263,GO:0046933	
+A0A2N5G618	Arginine repressor	argR	GO:0003677,GO:0003700,GO:0005737,GO:0006526,GO:0034618,GO:0051259	
+A0A1G8PF41	50S ribosomal protein L10	rplJ	GO:0006412,GO:0070180	
+A0A0D3VGT2	Transcriptional repressor	perR	GO:0003700	
+A0A4Q2LJI9	Ribonuclease 3	rnc	GO:0004525,GO:0005737,GO:0006364,GO:0006397,GO:0008033,GO:0046872	3.1.26.3
+I8UJI1	Probable cell division protein WhiA	whiA	GO:0003677,GO:0007049,GO:0043937,GO:0051301	
+Q2FWL5	ABC transporter ATP-binding protein	abc-f	GO:0005524	
+A0A2U3D7R8	Primosomal protein N'	priA	GO:0003677,GO:0005524,GO:0006268,GO:0006269,GO:0008270,GO:0016787,GO:1990077	3.6.4.-
+A0A1E5L3J4	Leucine--tRNA ligase	leuS	GO:0002161,GO:0004823,GO:0005524,GO:0006429	6.1.1.4
+A0A0H4P5J4	2-oxoisovalerate dehydrogenase subunit alpha	bfmBAA		
+A0A4Z0H523	Methylglyoxal synthase	mgsA	GO:0008929,GO:0019242	4.2.3.3
+A0A089KS04	Phosphoribosylglycinamide formyltransferase	purN	GO:0004644,GO:0006189	2.1.2.2
+D3E9M2	Pyruvate dehydrogenase E1 component subunit alpha	pdhA	GO:0004739	1.2.4.1
+A0A292YI80	TsaD domain-containing protein	tsaB	GO:0002949	
+A0A1Y0IIM9	IreB family regulatory phosphoprotein	yrzL		
+A0A1G8PF72	50S ribosomal protein L1	rplA	GO:0000049,GO:0003735,GO:0006412,GO:0006417,GO:0019843	
+A0A3M8HH50	Ribosomal_L7Ae domain-containing protein	rplGA		
+A0A1V2SJS2	CTP synthase	pyrG	GO:0003883,GO:0005524,GO:0006541,GO:0044210,GO:0046872	6.3.4.2
+A0A1U9KAH7	Enolase	eno	GO:0000015,GO:0000287,GO:0004634,GO:0005576,GO:0006096,GO:0009986	4.2.1.11
+A0A264W0X8	CBS domain-containing protein	ytoI		
+Q2FZJ0	Phosphoribosylformylglycinamidine synthase subunit PurL	purL	GO:0000287,GO:0004642,GO:0005524,GO:0005737,GO:0006189	6.3.5.3
+A0A0F5I9T9	30S ribosomal protein S2	rpsB	GO:0003735,GO:0006412	
+H6N9B1	Aspartyl/glutamyl-tRNA(Asn/Gln) amidotransferase subunit B	gatB	GO:0005524,GO:0006412,GO:0050567	6.3.5.-
+A0A0H4NZB6	30S ribosomal protein S10	rpsJ	GO:0000049,GO:0003735,GO:0006412	
+A0A235FB01	Demethylmenaquinone methyltransferase	menG	GO:0032259	
+A0A1H8EN44	2-succinylbenzoate--CoA ligase	menE		
+A0A372LMM2	50S ribosomal protein L18	rplR	GO:0003735,GO:0006412	
+D3E577	Cell division protein FtsA	ftsA		
+A0A6I1F6S4	Phosphatidate cytidylyltransferase	cdsA	GO:0016021	
+A0A419V3I7	Ribosomal RNA small subunit methyltransferase E	rsmE	GO:0005737	2.1.1.193
+A0A4V6WED9	Spermidine/putrescine import ATP-binding protein PotA	ugpC	GO:0005524	
+A0A1M7EEG5	DNA-directed RNA polymerase subunit alpha	rpoA	GO:0000428,GO:0003677,GO:0003899,GO:0005737,GO:0006351,GO:0046983	2.7.7.6
+A0A385NME5	Rqc2 homolog RqcH	rqcH	GO:0000049,GO:0043023,GO:0072344	
+A0A3R9P2Q6	DNA gyrase subunit A	gyrA	GO:0003677,GO:0005524,GO:0006265	5.6.2.2
+A0A3R9PHE4	Phosphoribosylformylglycinamidine synthase subunit PurQ	purQ	GO:0004642,GO:0005524,GO:0005737,GO:0006189,GO:0006541	3.5.1.2,6.3.5.3
+A0A264W4U8	Purine nucleoside phosphorylase	pgeF		2.4.2.1,2.4.2.28,3.5.4.4
+A0A1I3UBE0	Chromosome partition protein Smc	smc	GO:0003677,GO:0005524,GO:0005694,GO:0005737,GO:0006260,GO:0007062,GO:0016887,GO:0030261	
+Q2FZ16	Peptidase_M16_C domain-containing protein	ymfF	GO:0046872	
+A0A6I4VPG1	CP-type G domain-containing protein	yqeH	GO:0005525	
+A0A0F5HND4	50S ribosomal protein L13	rplM	GO:0003735,GO:0005840,GO:0006412	
+D5WW88	Holliday junction ATP-dependent DNA helicase RuvA	ruvA	GO:0003677,GO:0005524,GO:0006281,GO:0006310,GO:0009378,GO:0009379,GO:0009432	3.6.4.12
+A0A5C4TI64	NifU_N domain-containing protein	sufU	GO:0016226	
+A0A4U0FB41	CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase	pgsA	GO:0006655,GO:0008444,GO:0016021	2.7.8.5
+A0A4R3MQR1	Ribonuclease M5	rnmV	GO:0005737,GO:0006364,GO:0019843,GO:0043822	3.1.26.8
+A0A1I2R925	Small ribosomal subunit biogenesis GTPase RsgA	rsgA	GO:0003924,GO:0005525,GO:0005737,GO:0019843,GO:0042274,GO:0046872	3.6.1.-
+A0A1Y0IU60	Trigger factor	tig	GO:0003755,GO:0005737,GO:0007049,GO:0015031,GO:0051301	5.2.1.8
+G2TL92	Histidinol dehydrogenase	hisD	GO:0000105,GO:0004399,GO:0051287	
+A0A3S2TT03	tRNA-specific adenosine deaminase	tadA		
+A0A385NKV2	Corrinoid adenosyltransferase	yvqK	GO:0005524,GO:0008817,GO:0009236	2.5.1.17
+M8E9Y8	ATP synthase gamma chain	atpG	GO:0005524,GO:0005886,GO:0042777,GO:0045261,GO:0046933	
+A0A3R9QF18	Hypoxanthine phosphoribosyltransferase	hpt	GO:0000166,GO:0004422,GO:0006166,GO:0032264	2.4.2.8
+Q2G2W8	Initiation-control protein YabA	yabA	GO:0006260	
+A0A418LYC0	RNA polymerase sigma factor SigS	sigH	GO:0003677,GO:0006352,GO:0016987	
+A0A1M5ALT2	2-oxoisovalerate dehydrogenase subunit beta	pdhB		
+A0A1H9X167	30S ribosomal protein S17	rpsQ	GO:0003735,GO:0006412,GO:0019843	
+A0A7T5ETI9	30S ribosomal protein S8	rpsH	GO:0003735,GO:0006412	
+A0A235F5G7	Carbamoyl-phosphate synthase small chain	carA		
+A0A235FER4	TrkA family potassium uptake protein	ktrC	GO:0006813,GO:0008324	
+A0A2W1LY46	30S ribosomal protein S6	rpsF	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+A0A4Z0H4D9	DNA-binding response regulator	vraR	GO:0000160,GO:0003677	
+A0A1H9SVC0	Succinate dehydrogenase iron-sulfur subunit	sdhB	GO:0006099,GO:0009055,GO:0046872,GO:0051538	
+A0A248TLT1	Adapter protein MecA	mecA		
+A0A1M7BSQ4	Queuine tRNA-ribosyltransferase	tgt	GO:0008479,GO:0008616,GO:0046872,GO:0101030	2.4.2.29
+A0A1M7EEZ7	50S ribosomal protein L15	rplO	GO:0003735,GO:0006412,GO:0019843	
+A0A1M7GZE1	tRNA N6-adenosine threonylcarbamoyltransferase	tsaD	GO:0002949,GO:0005506,GO:0005737	2.3.1.234
+A0A1I4Q0B1	Chaperonin GroEL	groEL	GO:0005524,GO:0016853,GO:0042026,GO:0140662	
+A0A1I4QSN8	Aminotransferase class I/II-fold pyridoxal phosphate-dependent enzyme	speA		
+A0A0A8X4J7	Glycerol-3-phosphate acyltransferase	plsY	GO:0005886,GO:0008654,GO:0016021,GO:0043772	
+A0A2P8HI94	Pyridoxal 5'-phosphate synthase subunit PdxS	pdxS	GO:0042823	
+A0A3M8HAM4	Trp operon repressor family	yerC	GO:0003700,GO:0043565	
+A0A418LW24	Amidophosphoribosyltransferase	purF	GO:0000287,GO:0004044,GO:0006189,GO:0006541,GO:0009113	2.4.2.14
+A0A6L8PC24	Riboflavin biosynthesis protein	ribF	GO:0003919,GO:0005524,GO:0006747,GO:0008531,GO:0009231,GO:0009398,GO:0016310	2.7.1.26,2.7.7.2
+A0A2T4U1P6	Uracil phosphoribosyltransferase	upp	GO:0000287,GO:0004845,GO:0005525,GO:0006223,GO:0044206	2.4.2.9
+P54552	Pyrroline-5-carboxylate reductase	proC	GO:0004735,GO:0005737,GO:0055129	1.5.1.2
+H6NB33	ABC transporter ATP-binding protein	yfiC	GO:0005524,GO:0140359	
+A0A1H9WJZ7	Diaminopimelate decarboxylase	lysA	GO:0008836,GO:0009089,GO:0030170	4.1.1.20
+A0A1H9RB27	Cell division ATP-binding protein FtsE	ftsE	GO:0005524	
+A0A1R1DDC8	DegV family protein	degV	GO:0008289	
+A0A1M7BFH9	DNA repair protein RecN	recN	GO:0005524	
+A0A1M7BMY3	Heat-inducible transcription repressor HrcA	hrcA	GO:0003677,GO:0045892	
+A0A4Y9AGK0	Phosphopantetheine adenylyltransferase	coaD	GO:0004595,GO:0005524,GO:0005737,GO:0015937	2.7.7.3
+A0A7W2ATG8	Ornithine carbamoyltransferase	argF	GO:0004585,GO:0016597	
+A0A7W2A9X0	Segregation and condensation protein A	scpA	GO:0005737,GO:0006260,GO:0007049,GO:0007059,GO:0051301	
+H3SCW3	UDP-N-acetylmuramate--L-alanine ligase	murC	GO:0005524,GO:0005737,GO:0007049,GO:0008360,GO:0008763,GO:0009252,GO:0051301,GO:0071555	6.3.2.8
+A0A428N584	GTPase Der	der	GO:0005525	
+Q2FZ45	30S ribosomal protein S16	rpsP	GO:0003735,GO:0005737,GO:0006412	
+A0A418MG74	Cysteine desulfurase	sufS		
+A0A6I4VTP3	50S ribosomal protein L19	rplS	GO:0003735,GO:0006412	
+Q8Y5M1	UDP-N-acetylmuramoylalanine--D-glutamate ligase	murD	GO:0005524,GO:0005737,GO:0007049,GO:0008360,GO:0008764,GO:0009252,GO:0051301,GO:0071555	6.3.2.9
+A0A268E170	Holo-[acyl-carrier-protein] synthase	acpS	GO:0000287,GO:0005737,GO:0006633,GO:0008897	2.7.8.7
+A0A0F5HR76	Transcriptional regulator CtsR	ctsR	GO:0003677,GO:0006355	
+A0A1E5L4I6	Diadenylate cyclase	dacA	GO:0004016,GO:0005524,GO:0006171,GO:0019932	2.7.7.85
+A0A1E5L7Z0	Elongation factor 4	lepA	GO:0003746,GO:0003924,GO:0005525,GO:0005886,GO:0043022,GO:0045727	3.6.5.n1
+A0A1M5A671	ATP-dependent Clp protease proteolytic subunit	clpP	GO:0004176,GO:0004252	3.4.21.92
+A0A1M5APY5	tRNA pseudouridine synthase B	truB	GO:0003723,GO:0031119	5.4.99.25
+A0A366EDT0	ATP synthase subunit a	atpB	GO:0045263,GO:0046933	
+A0A0H4PLD2	ATP synthase subunit beta	atpD	GO:0005524,GO:0005886,GO:0045261,GO:0046933	7.1.2.2
+A0A172ZGG2	ATP-dependent 6-phosphofructokinase	pfkA	GO:0003872,GO:0005524,GO:0006002,GO:0046872	
+A0A5C8NQL9	tRNA uridine 5-carboxymethylaminomethyl modification enzyme MnmG	mnmG	GO:0002098,GO:0050660	
+A0A419V3D7	Nudix hydrolase domain-containing protein	nudF		
+A0A5C4SWW8	Isoprenyl transferase	uppS	GO:0000287	2.5.1.-
+A0A1I4JJ47	30S ribosomal protein S21	rpsU	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+G2TNU8	Putative competence-damage inducible protein	cinA		
+A0A2P8HI87	DUF951 domain-containing protein	yyzM		
+A0A1H0FAU8	50S ribosomal protein L24	rplX	GO:0003735,GO:0006412,GO:0019843	
+M8DLU9	Phosphoglucosamine mutase	glmM	GO:0000287,GO:0005975	
+V6M3F6	ABC transmembrane type-1 domain-containing protein	nikB	GO:0005886,GO:0016021	
+A0A1U9K5N8	GTPase Era	era	GO:0003924,GO:0005525,GO:0005886,GO:0070181	
+A0A1I3QNY8	Ribosomal RNA small subunit methyltransferase A	rsmA	GO:0003723	2.1.1.182
+O08387	Protein translocase subunit SecY	secY	GO:0043952	
+A0A371SL71	Phosphocarrier protein HPr	ptsH		
+A0A5R9GB93	Ribosomal RNA small subunit methyltransferase H	rsmH	GO:0005737,GO:0070475,GO:0071424	2.1.1.199
+A0A1E5L9L9	Endonuclease III	nth	GO:0046872,GO:0051539	
+A0A366DYR9	Pyridoxine kinase	thiD	GO:0008972,GO:0009228	
+A0A0W7YMC9	ABC transporter domain-containing protein	ssuB	GO:0005524	
+A0A2N0YW81	Aminotransferase	aspB	GO:0030170	
+A0A081PAV7	Isoleucine--tRNA ligase	ileS	GO:0000049,GO:0002161,GO:0004822,GO:0005524,GO:0006428	6.1.1.5
+A0A2W1NFX3	Glycerol-3-phosphate dehydrogenase [NAD(P)+]	gpsA	GO:0004367,GO:0005975,GO:0006650,GO:0008654,GO:0009331,GO:0046167,GO:0046168,GO:0051287	1.1.1.94
+A0A1I2M893	Endonuclease MutS2	mutS2	GO:0004519,GO:0005524,GO:0006298,GO:0016887,GO:0030983,GO:0045910,GO:0140664	3.1.-.-
+A0A292YMI6	Succinate dehydrogenase cytochrome b558 subunit	sdhC	GO:0016627	
+A0A7W2ASQ1	Septum site-determining protein MinD	minD	GO:0005524,GO:0016887	
+G2TLD5	Inositol-1-monophosphatase	suhB	GO:0046855	
+A0A7W1WR46	Phenylalanine--tRNA ligase beta subunit	pheT	GO:0000049,GO:0000287,GO:0004826,GO:0005524,GO:0006432	6.1.1.20
+A0A7W1WU57	Nucleoid-associated protein H1191_17805	yaaK	GO:0003677,GO:0043590	
+A0A150LFU4	D-aminoacyl-tRNA deacylase	dtd	GO:0000049,GO:0005737,GO:0019478,GO:0043908,GO:0106026	
+A0A3S0I9H3	ABC transporter permease	veg	GO:0006355	
+Q2FY77	Segregation and condensation protein B	scpB	GO:0051301,GO:0051304	
+A0A418M7G1	Chaperone protein ClpB	clpB	GO:0005524,GO:0016887	
+A0A6I4VVQ8	S1 motif domain-containing protein	yabR		
+A0A2U3D8T6	GMP synthase [glutamine-hydrolyzing]	guaA	GO:0005524,GO:0006541,GO:0016462	6.3.5.2
+D5WP97	3-oxoacyl-[acyl-carrier-protein] reductase	fabG		
+D5WXW6	1-acyl-sn-glycerol-3-phosphate acyltransferase	plsC		
+A0A1H7WNE8	Ribose-phosphate pyrophosphokinase	prs	GO:0000287,GO:0004749,GO:0016301,GO:0016310	
+A0A419V5Q4	GTPase HflX	hflX	GO:0003924,GO:0005525,GO:0005737,GO:0046872	
+C6J5W5	Glutamine--fructose-6-phosphate aminotransferase [isomerizing]	glmS	GO:0004360,GO:0005975,GO:0006541,GO:0097367	2.6.1.16
+A0A1M7C286	Metallophosphoesterase	ymdB		
+A0A1I4PGA2	Signal recognition particle protein	ffh	GO:0003924,GO:0005525,GO:0006614,GO:0008312,GO:0048500	
+A0A4Y9AFX1	30S ribosomal protein S15	rpsO	GO:0003735,GO:0006412,GO:0019843	
+A0A3R9RBN9	TRAM domain-containing protein	rlmD		
+A0A1I3N913	UPF0637 protein	yktB		
+A0A1I0KFH2	Probable heme-iron transport system permease protein IsdF	btuC	GO:0022857	
+A0A366EDW1	Sporulation initiation inhibitor protein Soj	soj		
+A0A0H4P7E1	Signal peptidase I	lepB	GO:0004252,GO:0006465	3.4.21.89
+A0A1H9P445	HU family DNA-binding protein	hupA	GO:0003677,GO:0030261,GO:0030527	
+A0A0W7Y8W7	DNA mismatch repair protein MutS	mutS	GO:0003684,GO:0005524,GO:0006298,GO:0030983,GO:0140664	
+A0A1R1CZ83	RidA family protein	yabJ		
+A0A1M7CQI6	Phosphoribosylamine--glycine ligase	purD	GO:0004637,GO:0005524,GO:0006189,GO:0009113,GO:0046872	6.3.4.13
+A0A7W2A6I3	Malonate-semialdehyde dehydrogenase	iolA		
+A0A074LIN8	4HBT domain-containing protein	ybgC		
+A0A1U9KC38	Biotin carboxyl carrier protein of acetyl-CoA carboxylase	accB		
+A0A418M367	tRNA modification GTPase MnmE	mnmE	GO:0003924,GO:0005525,GO:0005737,GO:0046872	3.6.-.-
+A0A6I4VXF4	Transcriptional regulator MraZ	mraZ	GO:0003700,GO:0005737,GO:0009295	
+A0A2U3CSP1	AI-2E family transporter	yubA	GO:0016021	
+A0A0B4RAM1	Chaperone protein DnaJ	dnaJ	GO:0005524,GO:0005737,GO:0006260,GO:0009408,GO:0051082	
+A0A1E5L830	MTS domain-containing protein	ybxB		
+D5WRI9	Peptidyl-tRNA hydrolase	pth	GO:0004045,GO:0005737,GO:0006412	3.1.1.29
+A0A235F703	50S ribosomal protein L23	rplW	GO:0003735,GO:0006412,GO:0019843	
+A0A235FDG7	Biotin carboxylase	accC	GO:0005524,GO:0046872	
+A0A2N0Z069	Chaperone protein DnaK	dnaK	GO:0005524,GO:0140662	
+A0A081P4D8	Replicative DNA helicase	dnaB	GO:0003678,GO:0005524	
+A0A4Y8Q686	Coproheme decarboxylase	chdC	GO:0004601,GO:0020037,GO:0046872	
+A0A1I2S608	Thioredoxin	trxA		
+A0A1I2SXD5	Catabolite control protein A	ccpA	GO:0006355	
+A0A1M7BNV0	Probable nicotinate-nucleotide adenylyltransferase	nadD	GO:0004515,GO:0005524,GO:0009435	2.7.7.18
+A0A1G8LY10	Cell division protein FtsW	spoVE	GO:0008360,GO:0051301	
+A0A7W1WT00	Rrf2 family transcriptional regulator	cymR		
+A0A1H0CGX6	UvrABC system protein C	uvrC	GO:0003677,GO:0005737,GO:0006289,GO:0009380,GO:0009381,GO:0009432	
+A0A074LMV1	UDP-N-acetylglucosamine 1-carboxyvinyltransferase	murA		
+A0A1V2SCG0	Argininosuccinate lyase	argH	GO:0004056,GO:0042450	4.3.2.1
+A0A7G5C3R2	Aspartate--tRNA ligase	aspS	GO:0003676,GO:0004815,GO:0005524,GO:0005737,GO:0006422	
+A0A2U3D8J5	Guanylate kinase	gmk	GO:0004385,GO:0005524,GO:0016310	2.7.4.8
+A0A2T4UAC4	Pantothenate synthetase	panC	GO:0004592,GO:0005524,GO:0015940	6.3.2.1
+A0A0B4RAQ1	Imidazole glycerol phosphate synthase subunit HisF	hisF	GO:0000105,GO:0000107	4.3.2.10
+A0A1E5L400	D-alanine--D-alanine ligase	ddl	GO:0005524,GO:0008716,GO:0046872,GO:0071555	
+A0A6I1F9S4	Lipoprotein signal peptidase	lspA	GO:0004190,GO:0005886,GO:0006508,GO:0016021	3.4.23.36
+A0A1Y0INZ7	50S ribosomal protein L30	rpmD	GO:0003735,GO:0006412	
+A0A0D3VFH2	ATP synthase subunit c	atpE	GO:0005886,GO:0008289,GO:0016021,GO:0045263,GO:0046933	
+A0A4Q2LLI0	ATP-dependent DNA helicase	pcrA	GO:0003677,GO:0005524	3.6.4.12
+A0A1S2QRA0	Beta sliding clamp	dnaN	GO:0003677,GO:0003887,GO:0005737,GO:0008408,GO:0009360	

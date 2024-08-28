@@ -1,0 +1,1172 @@
+protein	protein_name	gene_name	GO	EC
+Q58628	Pyruvate carboxylase subunit B	pycB	GO:0004736,GO:0005737,GO:0006814,GO:0008948	
+Q57649	DNA-directed RNA polymerase subunit Rpo10	rpo10	GO:0000428,GO:0003677,GO:0003899,GO:0005737,GO:0006351,GO:0008270	2.7.7.6
+Q57854	Imidazole glycerol phosphate synthase subunit HisF	hisF	GO:0000105,GO:0000107,GO:0005737,GO:0016829	4.3.2.10
+Q58483	Iron-sulfur flavoprotein MJ1083		GO:0016491	
+Q58647	Geranylgeranylglyceryl phosphate synthase		GO:0000287,GO:0005737,GO:0046474,GO:0047294	2.5.1.41
+Q58871	tRNA (cytidine-2'-O-)-methyltransferase TrmJ	trmJ	GO:0003723	
+Q57581	Translation initiation factor 2 subunit alpha	eif2a	GO:0003723,GO:0003743	
+Q58050	Leucine--tRNA ligase	leuS	GO:0002161,GO:0004823,GO:0005524,GO:0005737,GO:0006429	6.1.1.4
+Q59020	Archaeal Rqc2 homolog aRqcH	rqcH	GO:0000049,GO:0043023,GO:0072344	
+Q57659	Uncharacterized protein MJ0206			
+Q57912	Uncharacterized protein MJ0488			
+Q58494	Uncharacterized protein MJ1094			
+Q58564	Putative HTH-type transcriptional regulatory protein MJ1164		GO:0003677,GO:0003700	
+Q58876	Uncharacterized protein MJ1481			
+F6BCM5	CTP synthase	pyrG	GO:0003883,GO:0005524,GO:0006541,GO:0044210,GO:0046872	6.3.4.2
+F6BB62	Chorismate synthase	aroC	GO:0004107,GO:0008652,GO:0009073,GO:0009423	4.2.3.5
+F6BDJ2	Inosine-5'-monophosphate dehydrogenase	guaB	GO:0000166,GO:0003938,GO:0006177,GO:0046872	1.1.1.205
+F6BBB0	Putative asparagine synthetase [glutamine-hydrolyzing]		GO:0004066,GO:0005524,GO:0006529,GO:0006541	6.3.5.4
+F6BCE9	2,5-diamino-6-ribosylamino-4(3H)-pyrimidinone 5'-phosphate reductase	arfC	GO:0009231,GO:0050661	1.1.1.302
+F6BCV2	L-cysteine desulfidase		GO:0051539	4.4.1.28
+F6BDH3	DNA polymerase sliding clamp	pcn	GO:0003677,GO:0006275,GO:0030337	
+F6BDY9	DNA primase small subunit PriS	priS	GO:0000428,GO:0003896,GO:0046872,GO:1990077	2.7.7.-
+F6BA91	Uncharacterized polyferredoxin-like protein MJ1302		GO:0016491	
+F6BB03	Uncharacterized protease MJ0090			
+F6BBI1	Uncharacterized protein MJ0732	fprA	GO:0009055,GO:0010181,GO:0046872	
+F6BBL8	Protein FwdD	fwdD	GO:0016491,GO:0043546	
+F6BBQ7	Na(+)/H(+) antiporter 1		GO:0015299,GO:0016021	
+F6BCI5	Zinc ribbon domain-containing protein			
+F6BE14	Uncharacterized ferredoxin MJ0624		GO:0016491	
+F6BE54	Uncharacterized protein MJ1123		GO:0008168	
+F6BF24	Phosphoesterase		GO:0016787,GO:0110165	3.1.4.-
+Q58653	2-phospho-L-lactate transferase	cofD	GO:0000287,GO:0043743,GO:0052645	2.7.8.28
+Q60175	Protein translocase subunit SecY	secY	GO:0005886,GO:0016021	
+Q57650	DNA-directed RNA polymerase subunit Rpo6	rpo6	GO:0000428,GO:0003677,GO:0003899,GO:0005737,GO:0006351	2.7.7.6
+Q58484	Shikimate dehydrogenase (NADP(+))	aroE	GO:0004764,GO:0008652,GO:0009073,GO:0009423,GO:0019632,GO:0050661	1.1.1.25
+Q58656	Uridylate kinase	pyrH	GO:0005524,GO:0005737,GO:0016310,GO:0033862,GO:0044210	2.7.4.22
+Q57674	Probable ATPase proteolipid chain		GO:0016021	
+Q58379	Pantoate kinase		GO:0005524,GO:0015937,GO:0016301,GO:0016310	2.7.1.169
+Q58520	Uncharacterized HTH-type transcriptional regulator MJ1120		GO:0003700	
+Q57578	Uncharacterized protein MJ0114			
+Q58103	DNA-binding protein MJ0691		GO:0003677	
+Q58222	Uncharacterized protein MJ0812		GO:0005524	
+Q58429	Uncharacterized ABC transporter ATP-binding protein MJ1023		GO:0005524	
+Q58640	UPF0251 protein MJ1243			
+Q58766	Uncharacterized methyltransferase MJ1371		GO:0008168,GO:0032259	
+Q59075	Uncharacterized protein MJ1681			
+F6BDD1	Bifunctional NAD(P)H-hydrate repair enzyme	nnrE	GO:0005524,GO:0046496,GO:0046872,GO:0052855,GO:0052856,GO:0052857	4.2.1.136,5.1.99.6
+F6BB66	Fructose-1,6-bisphosphate aldolase/phosphatase	fbp	GO:0000287,GO:0004332,GO:0006094,GO:0042132	3.1.3.11,4.1.2.13
+F6BDJ7	Digeranylgeranylglyceryl phosphate synthase		GO:0000287,GO:0005886,GO:0006650,GO:0008654,GO:0016021,GO:0047295	2.5.1.42
+F6BAT4	Phosphoribosylaminoimidazole-succinocarboxamide synthase	purC	GO:0004639,GO:0005524,GO:0006189,GO:0009236	6.3.2.6
+F6BCG2	V-type ATP synthase subunit I	atpI	GO:0016021,GO:0033179,GO:0046961	
+F6BCV6	Tryptophan--tRNA ligase	trpS	GO:0004830,GO:0005524,GO:0005737,GO:0006436	6.1.1.2
+F6BE01	Diphthine synthase	dphB	GO:0004164,GO:0017183,GO:0032259	2.1.1.98
+F6BAR5	Putative molybdopterin biosynthesis protein MJ0666		GO:0006777,GO:0032324	
+F6BC34	Uncharacterized membrane protein MJ0091			
+F6BC80	S-layer protein	sla		
+F6BCI7	Uncharacterized protein MJ0966		GO:0003824	
+F6BCN1	Uncharacterized protein MJ1537			
+F6BCS9	UPF0216 protein Metig_0742			
+F6BD83	50S ribosomal protein L32e	rpl32e	GO:0003735,GO:0006412	
+F6BE55	Uncharacterized protein MJ0107		GO:0004150,GO:0006760,GO:0016740	
+F6BEB0	CRISPR system Cms protein Csm4	csm4	GO:0003723,GO:0051607	
+F6BEF4	Cell division protein SepF			
+F6BEU4	DUF63 family protein		GO:0016021	
+F6BF26	Uncharacterized HTH-type transcriptional regulator MJ0621		GO:0003677	
+F6BF66	Uncharacterized protein MJ1515		GO:0006541	
+Q57580	2-amino-5-formylamino-6-ribosylaminopyrimidin-4(3H)-one 5'-monophosphate deformylase	arfB	GO:0008198,GO:0009231,GO:0043729,GO:0052645	3.5.1.102
+Q57851	Dihydroneopterin aldolase	mptD	GO:0004150,GO:2001118	4.1.2.25
+Q58635	Proline--tRNA ligase	proS	GO:0004827,GO:0005524,GO:0005737,GO:0006433	6.1.1.15
+Q60177	Proteasome subunit alpha	psmA	GO:0004298,GO:0005737,GO:0006511,GO:0010498,GO:0019773	
+Q57871	UDP-N-acetyl-D-mannosamine dehydrogenase	wecC	GO:0000271,GO:0016628,GO:0051287,GO:0089714	1.1.1.336
+Q58289	Nitrogenase iron protein	nifH	GO:0005524,GO:0009399,GO:0016163,GO:0018697,GO:0046872,GO:0051539	1.18.6.1
+Q58659	Methionine--tRNA ligase	metG	GO:0000049,GO:0004825,GO:0005524,GO:0006431,GO:0046872	6.1.1.10
+Q58885	Dihydroorotase	pyrC	GO:0004151,GO:0008270,GO:0044205	3.5.2.3
+Q60297	Type I restriction enzyme MjaIX methylase subunit		GO:0003677,GO:0008170	2.1.1.72
+P54026	30S ribosomal protein S17e	rps17e	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+Q57678	Endonuclease NucS	nucS	GO:0000014,GO:0003677,GO:0005737	3.1.-.-
+Q58061	Uncharacterized protein MJ0645		GO:0005384,GO:0016021,GO:0030026	
+Q58381	Uncharacterized protein MJ0971		GO:0004222,GO:0016021	
+Q57666	Uncharacterized protein MJ0213			
+Q57795	Uncharacterized protein MJ0349			
+Q58174	Uncharacterized protein MJ0764			
+Q58226	Uncharacterized protein MJ0816			
+Q58569	Protein FwdA	fwdA	GO:0016810	
+F6BB77	Ribonuclease P protein component 4	rnp4	GO:0001682,GO:0004526,GO:0005737,GO:0008270,GO:0030677	3.1.26.5
+F6BCM2	Ribulose-phosphate 3-epimerase	rpe	GO:0004750,GO:0019323,GO:0046872	5.1.3.1
+F6BDK0	Glyceraldehyde-3-phosphate dehydrogenase	gap	GO:0004365,GO:0005737,GO:0006096,GO:0008839,GO:0009089,GO:0047100,GO:0050661,GO:0051287	1.2.1.59
+F6BBB5	RNA 2',3'-cyclic phosphodiesterase		GO:0004113,GO:0008664	3.1.4.58
+F6BCG4	V-type proton ATPase subunit E	atpE	GO:0005524,GO:0033178,GO:0042777,GO:0046933,GO:0046961	
+F6BAH6	Putative rubrerythrin		GO:0005506,GO:0016491	
+F6BB05	ABC transporter permease		GO:0005886,GO:0016021	
+F6BB54	Probable branched-chain amino acid transport permease protein LivH	livH	GO:0005886,GO:0016021,GO:0022857	
+F6BBA1	Rubredoxin-like domain-containing protein		GO:0005506	
+F6BBE0	Uncharacterized protein MJ0524		GO:0016021	
+F6BBZ4	Uncharacterized HTH-type transcriptional regulator MJ0361			
+F6BD24	DUF892 domain-containing protein			
+F6BD93	Protein translation factor SUI1 homolog		GO:0003743	
+F6BDE7	Lipoprotein			
+F6BE17	Uncharacterized metal-dependent hydrolase MJ1582		GO:0004536	
+F6BEB1	CRISPR system Cms protein Csm5	csm5	GO:0003723,GO:0051607	
+F6BEK1	CGGC domain-containing protein			
+F6BEP8	Uncharacterized protein MJ1053			
+F6BEY6	Uncharacterized protein MJ0664		GO:0003677,GO:0003916,GO:0005694,GO:0006265	
+F6BF67	Putative gamma-glutamylcyclotransferase MJ1514		GO:0061929	
+Q57880	tRNA (guanine(6)-N2)-methyltransferase	trm14	GO:0003723	
+Q58081	AMP phosphorylase		GO:0004645,GO:0006196,GO:0006206,GO:0016208,GO:0016763,GO:0046125	2.4.2.57
+Q58660	Phosphoribosylformylglycinamidine synthase subunit PurL	purL	GO:0000287,GO:0004642,GO:0005524,GO:0005737,GO:0006189	6.3.5.3
+Q57959	Lysine--tRNA ligase	lysS	GO:0000049,GO:0004824,GO:0005524,GO:0005737,GO:0006430	6.1.1.6
+Q58526	GTPase HflX	hflX	GO:0003924,GO:0005525,GO:0005737,GO:0046872	
+Q58763	Molybdate/tungstate transport system permease protein WtpB	wtpB	GO:0005886,GO:0016021	
+Q59030	Methenyltetrahydromethanopterin cyclohydrolase	mch	GO:0005737,GO:0006730,GO:0018759,GO:0019386	3.5.4.27
+Q60390	Methyl-coenzyme M reductase subunit beta	mrtB	GO:0015948,GO:0050524	2.8.4.1
+Q58769	Uncharacterized protein MJ1374			
+Q58830	Uncharacterized protein MJ1435		GO:0003723,GO:0006355	
+Q58883	Uncharacterized protein MJ1488			
+F6BA64	CCA-adding enzyme	cca	GO:0000049,GO:0000287,GO:0001680,GO:0005524,GO:0016437,GO:0042245,GO:0052927,GO:0052928,GO:0052929	2.7.7.72
+F6BBD5	Probable [NiFe]-hydrogenase-type-3 Eha complex membrane subunit A	ehaA	GO:0005886,GO:0016021	
+F6BC01	Nicotinate-nucleotide pyrophosphorylase [carboxylating]	nadC	GO:0004514,GO:0009435	2.4.2.19
+F6BDI9	2-phospho-L-lactate guanylyltransferase	cofC	GO:0005525,GO:0043814,GO:0052645	2.7.7.68
+F6BE22	CoB--CoM heterodisulfide reductase iron-sulfur subunit A	hdrA	GO:0016491,GO:0046872,GO:0051539	
+F6BEH3	Probable ribosomal RNA small subunit methyltransferase A	rsmA	GO:0000179,GO:0003723,GO:0005737	2.1.1.-
+F6BAI0	Putative HTH-type transcriptional regulator MJ1563		GO:0003700	
+F6BB06	Uncharacterized protein MJ0014		GO:0000150,GO:0003677	
+F6BB56	DUF5518 domain-containing protein		GO:0016021	
+F6BBA3	Rubredoxin		GO:0005506	
+F6BBE1	EhaG family protein		GO:0016021	
+F6BCI9	Uncharacterized protein MJ1620		GO:0003824,GO:0046872,GO:0051539	
+F6BE18	Formate dehydrogenase subunit beta	fdhB		
+F6BEF7	Uncharacterized protein MJ0640			
+F6BEP9	UPF0273 protein Metig_1309		GO:0005524	
+F6BF28	DUF115 domain-containing protein			
+Q57645	Glutamate N-acetyltransferase	argJ	GO:0004042,GO:0004358,GO:0005737,GO:0006526	2.3.1.35
+Q57663	Succinate--CoA ligase [ADP-forming] subunit beta	sucC	GO:0000287,GO:0004775,GO:0005524,GO:0006099	6.2.1.5
+Q57884	Probable hydrogenase maturation factor HypB	hypB	GO:0003924,GO:0016151,GO:0051604	
+Q58083	Probable ATP-dependent RNA helicase MJ0669		GO:0003724,GO:0005524	
+Q58496	N-acetyl-gamma-glutamyl-phosphate reductase	argC	GO:0003942,GO:0005737,GO:0006526,GO:0046983,GO:0051287	1.2.1.38
+Q57822	CRISPR-associated exonuclease Cas4	cas4	GO:0051607	3.1.12.1
+Q58543	Large-conductance mechanosensitive channel MscMJLR		GO:0005886,GO:0016021,GO:0055085	
+Q58772	Glutamate--tRNA ligase	gltX	GO:0004818,GO:0005524,GO:0006424	6.1.1.17
+Q58925	Uncharacterized N-acetyltransferase MJ1530		GO:0004596,GO:0006474,GO:0031415	
+Q59041	DNA-binding protein HmvA	hmvA	GO:0005694,GO:0005737,GO:0046982	
+Q60392	Uncharacterized ATP-binding protein MJ0084			
+P81312	Uncharacterized protein MJ0782.1			
+Q57758	Uncharacterized protein MJ0310		GO:0005085,GO:0032008,GO:0060090	
+Q58177	Putative nickel-responsive regulator		GO:0003677	
+Q58709	Uncharacterized protein MJ1313			
+Q59017	Uncharacterized protein MJ1623			
+F6BEM0	Ribulose bisphosphate carboxylase	rbcL	GO:0000287,GO:0006196,GO:0015977,GO:0016491,GO:0016984	4.1.1.39
+F6BAE6	Aspartate carbamoyltransferase	pyrB	GO:0016597	
+F6BAY4	Tryptophan synthase beta chain	trpB	GO:0004834	4.2.1.20
+F6BC02	Ribonuclease P protein component 2	rnp2	GO:0001682,GO:0004526,GO:0005737,GO:0030677	3.1.26.5
+F6BD82	50S ribosomal protein L19e	rpl19e	GO:0003735,GO:0006412,GO:0022625,GO:0070180	
+F6BDJ8	Nascent polypeptide-associated complex protein	nac	GO:0003723,GO:0015031	
+F6BE28	DNA repair and recombination protein RadA	radA	GO:0003684,GO:0005524,GO:0006281,GO:0006310,GO:0140664	
+F6BEH4	Type 2 DNA topoisomerase 6 subunit B	top6B	GO:0003677,GO:0003918,GO:0005524,GO:0006265,GO:0006268	5.6.2.2
+F6BF14	RNA 3'-terminal phosphate cyclase	rtcA	GO:0003963,GO:0005524,GO:0005737,GO:0006396	6.5.1.4
+F6BAD3	CoB--CoM heterodisulfide reductase iron-sulfur subunit C 2	hdrC2	GO:0015948,GO:0051539,GO:0051912	
+F6BAI1	SSD domain-containing protein		GO:0005886,GO:0016021	
+F6BB57	DUF2085 domain-containing protein		GO:0016021	
+F6BBM4	Phosphomannomutase	manB	GO:0000287,GO:0005975	
+F6BC39	Putative arsenical pump-driving ATPase		GO:0005524,GO:0016887	
+F6BCJ1	DUF655 domain-containing protein			
+F6BCN5	Homocitrate synthase AksA	aksA		
+F6BCT2	Uncharacterized protein MJ1222			
+F6BD98	HVO_2753_ZBP domain-containing protein			
+F6BDE9	Exosortase/archaeosortase family protein	artD	GO:0005886,GO:0006508,GO:0008233,GO:0016021	
+F6BDJ3	TIGR00304 family protein		GO:0016021	
+F6BDX8	(4-{4-[2-(gamma-L-glutamylamino)ethyl]phenoxymethyl}furan-2-yl)methanamine synthase	mfnF	GO:0016787	
+F6BEF8	Ribonuclease VapC4	vapC4		
+F6BEY9	MEMO1 family protein Metig_0168			
+F6BF69	AbiJ_NTD3 domain-containing protein			
+Q58761	Ribose-phosphate pyrophosphokinase	prs	GO:0000287,GO:0004749,GO:0005524,GO:0005737,GO:0006015,GO:0009156,GO:0016301,GO:0016310	2.7.6.1
+Q57670	V-type ATP synthase alpha chain	atpA	GO:0005524,GO:0033178,GO:0042777,GO:0046933,GO:0046961	7.1.2.2
+Q58325	L-aspartate dehydrogenase	nadX	GO:0009435,GO:0016639,GO:0033735,GO:0050661,GO:0051287	1.4.1.21
+Q58500	Phosphoglucosamine mutase	glmM	GO:0000287,GO:0005975,GO:0008966	5.4.2.10
+Q58900	Putative ATP-dependent RNA helicase MJ1505		GO:0003677,GO:0004518,GO:0005524,GO:0006281,GO:0043138	
+P54065	30S ribosomal protein S28e	rps28e	GO:0003735,GO:0006412	
+Q57692	Putative adenylate cyclase MJ0240			
+Q58077	Uncharacterized protein MJ0663		GO:0000287,GO:0003984,GO:0030976,GO:0044272	
+Q58544	Probable cobalt-precorrin-5A hydrolase	cbiG	GO:0009236	
+Q58655	Probable archaeal histone 3		GO:0005694,GO:0005737,GO:0046982	
+Q59043	Putative ribosomal RNA large subunit methyltransferase MJ1649		GO:0003723,GO:0008168,GO:0032259	
+Q57584	Uncharacterized protein MJ0120		GO:0003924,GO:0016151,GO:0051604	
+Q58451	Uncharacterized protein MJ1051		GO:0009058,GO:0016740	
+Q58712	UPF0248 protein MJ1316			
+Q58777	UPF0310 protein MJ1382			
+Q60260	Uncharacterized protein MJECL04		GO:0005524	
+F6BAC0	Probable phosphoheptose isomerase	gmhA	GO:0005737,GO:0005975,GO:0008270,GO:0008968,GO:0097367,GO:2001061	5.3.1.28
+F6BCQ0	Biotin synthase	bioB	GO:0004076,GO:0005506,GO:0009102,GO:0051537,GO:0051539	2.8.1.6
+F6BDP0	Formate-dependent phosphoribosylglycinamide formyltransferase	purT	GO:0000287,GO:0004644,GO:0005524,GO:0006189,GO:0016874,GO:0043815	6.3.1.21
+F6BEM5	Probable L-tyrosine/L-aspartate decarboxylase	mfnA	GO:0004068,GO:0004837,GO:0015937,GO:0019752,GO:0030170,GO:2001120	4.1.1.11,4.1.1.25
+F6BBG0	Delta-aminolevulinic acid dehydratase	hemB	GO:0004655,GO:0006782	4.2.1.24
+F6BC03	Ribonuclease Z	rnz	GO:0008270,GO:0042781	3.1.26.11
+F6BCY3	2-phosphoglycerate kinase	pgk2	GO:0005524,GO:0016301,GO:0016310,GO:0016774	2.7.2.16
+F6BDK5	Probable cobalt-precorrin-6B C(15)-methyltransferase (decarboxylating)	cbiT	GO:0008276,GO:0009236,GO:0043776,GO:0046140	2.1.1.196
+F6BEH8	Putative fluoride ion transporter CrcB	crcB	GO:0005887,GO:1903425	
+F6BF16	tRNA (cytosine(48)-C(5))-methyltransferase	trm4	GO:0001510,GO:0003723	
+F6BAD4	Putative methylthiotransferase MJ0865		GO:0031419,GO:0046872,GO:0051539	
+F6BAI2	CARDB domain-containing protein		GO:0016021	
+F6BB08	CARDB domain-containing protein		GO:0016021	
+F6BBM7	Putative Fe(2+) transport protein A		GO:0046914	
+F6BBZ8	DUF4258 domain-containing protein		GO:0006355	
+F6BC89	Putative nitroreductase MJ1384		GO:0016491	
+F6BCD8	Uncharacterized protein MJ0690			
+F6BCN7	UPF0215 protein Metig_0698			
+F6BD36	Uncharacterized protein MJ0119		GO:0046872,GO:0051539	
+F6BD99	[5-(aminomethyl)furan-3-yl]methyl phosphate kinase	mfnE	GO:0016301,GO:0016310	
+F6BDU1	Probable tRNA pseudouridine synthase D 2	truD2	GO:0001522,GO:0003723,GO:0009982	
+F6BEF9	FeS_assembly_P domain-containing protein			
+F6BEQ1	Uncharacterized methyltransferase MJ1487		GO:0031419,GO:0046872	
+F6BEZ0	DUF5320 domain-containing protein			
+F6BF31	Radical SAM core domain-containing protein		GO:0003824,GO:0046872,GO:0051539	
+F6BF70	NERD domain-containing protein			
+Q57679	dITP/XTP pyrophosphatase		GO:0000166,GO:0009117,GO:0009146,GO:0017111,GO:0035870,GO:0036220,GO:0036222,GO:0046872	3.6.1.66
+Q58813	L-fuculose phosphate aldolase	fucA	GO:0008738	4.1.2.17
+Q58694	Putative 8-amino-7-oxononanoate synthase	bioF	GO:0008710,GO:0009102,GO:0030170	2.3.1.47
+Q58171	Uncharacterized metal-dependent hydrolase MJ0761		GO:0016788	
+Q57800	Uncharacterized protein MJ0354			
+Q58182	Uncharacterized protein MJ0772			
+Q58649	UPF0254 protein MJ1251			
+Q58721	Uncharacterized HTH-type transcriptional regulator MJ1325		GO:0003700	
+Q58888	Uncharacterized protein MJ1493		GO:0008270	
+F6BAC8	Dihydroorotate dehydrogenase	pyrD	GO:0004152,GO:0005737,GO:0006207,GO:0044205	
+F6BDQ9	DNA polymerase II small subunit	polB	GO:0000738,GO:0003677,GO:0003887,GO:0008408,GO:0008852	2.7.7.7,3.1.11.1
+F6BEM6	Branched-chain-amino-acid aminotransferase	ilvE	GO:0009097,GO:0009098,GO:0009099,GO:0050048,GO:0052654,GO:0052655,GO:0052656	2.6.1.42
+F6BAY6	DNA-directed RNA polymerase subunit Rpo5	rpo5	GO:0000428,GO:0003677,GO:0003899,GO:0005737,GO:0006351	2.7.7.6
+F6BDK6	Zinc metalloprotease		GO:0004222,GO:0005886,GO:0006508,GO:0016021,GO:0046872	
+F6BAD8	Uncharacterized protein MJ1458			
+F6BAI3	Uncharacterized MFS-type transporter MJ1560		GO:0016021,GO:0022857	
+F6BB10	Uncharacterized protein MJ1155.1		GO:0016021	
+F6BBE4	Group-specific protein		GO:0016021	
+F6BBI7	Uroporphyrinogen-III C-methyltransferase	cobA	GO:0019354,GO:0032259	
+F6BBM8	P-II family nitrogen regulator			
+F6BBV7	Putative metal transport protein MJ1569		GO:0000041,GO:0005886,GO:0016021	
+F6BBZ9	Probable integrase/recombinase protein MJ0367		GO:0003677,GO:0006310,GO:0015074	
+F6BCN8	Probable branched-chain amino acid transport permease protein LivM	livM	GO:0005886,GO:0015658,GO:0016021	
+F6BDJ5	UPF0179 protein Metig_1014			
+F6BDU2	Uncharacterized protein MJ0693		GO:0008641	
+F6BE21	Tungsten-containing formylmethanofuran dehydrogenase 2 subunit B	fwdB	GO:0018493	
+F6BEK5	Putative zinc metalloprotease MJ0611		GO:0016021	
+F6BEZ1	Rubredoxin-like domain-containing protein			
+Q57688	Bifunctional thiamine biosynthesis protein ThiDN	thiDN	GO:0004789,GO:0008972,GO:0009228,GO:0016310	
+Q58504	Homoserine kinase	thrB	GO:0004413,GO:0005524,GO:0005737,GO:0009088,GO:0016310	2.7.1.39
+P54109	30S ribosomal protein S2	rps2	GO:0003735,GO:0006412	
+Q58086	Uncharacterized transporter MJ0672		GO:0016021,GO:0022857	
+Q58394	Prefoldin subunit beta	pfdB	GO:0005737,GO:0006457,GO:0016272,GO:0051082	
+Q58555	UPF0313 protein MJ1155		GO:0003824,GO:0005506,GO:0051539	
+Q58928	Uncharacterized KH and PIN-domain containing protein MJ1533		GO:0003723	
+Q57682	Uncharacterized HTH-type transcriptional regulator MJ0229		GO:0003700	
+Q58374	Uncharacterized protein MJ0964		GO:0017168	
+Q58726	Uncharacterized protein MJ1330		GO:0006629,GO:0008962	
+Q58890	Uncharacterized protein MJ1495		GO:0016021	
+Q59022	Uncharacterized protein MJ1628			
+F6BEM8	Acetylglutamate kinase	argB	GO:0003991,GO:0005524,GO:0005737,GO:0016310,GO:0042450	2.7.2.8
+F6BD00	Putative cobalt transport protein CbiM	cbiM	GO:0009236,GO:0015087,GO:0043190	
+F6BDK7	30S ribosomal protein S27ae	rps27ae	GO:0003735,GO:0005840,GO:0006412,GO:0008270,GO:1990904	
+F6BE67	Fibrillarin-like rRNA/tRNA 2'-O-methyltransferase	flpA	GO:0003723,GO:0008033	2.1.1.-
+F6BBE5	Putative NADH-ubiquinone oxidoreductase MJ0520		GO:0016021	
+F6BBW2	DUF373 family protein		GO:0016021	
+F6BC92	Translation initiation factor 1A	eif1a	GO:0003723,GO:0003743	
+F6BCJ7	Uncharacterized glycosyltransferase MJ1178		GO:0016757	
+F6BCP0	AI-2E family transporter		GO:0016021	
+F6BCT5	Putative type I restriction enzyme MjaX specificity subunit		GO:0003677,GO:0009307	
+F6BCY0	Uncharacterized protein MJ0951			
+F6BD38	Uncharacterized ABC transporter ATP-binding protein MJ0121		GO:0005524	
+F6BDJ6	Uncharacterized protein MJ0133		GO:0003677,GO:0008270	
+F6BDY2	Uncharacterized protein MJ1137		GO:0016021	
+F6BEB6	Uncharacterized protein MJ0037			
+F6BEG3	Carbamoyl-phosphate synthase large chain, N-terminal section	carB1	GO:0005524,GO:0006526,GO:0046872	
+F6BEQ3	Uncharacterized protein MJ1233		GO:0008168	
+Q58936	5'-deoxyadenosine deaminase	dadD	GO:0004000,GO:0006556,GO:0046872,GO:0050270,GO:0090613,GO:0090614	3.5.4.28,3.5.4.31,3.5.4.4,3.5.4.41
+Q58027	O-phosphoseryl-tRNA(Sec) selenium transferase	spcS	GO:0000049,GO:0097056,GO:0098621	2.9.1.2
+P54049	50S ribosomal protein L10	rpl10	GO:0070180	
+Q57911	Phenylalanine--tRNA ligase alpha subunit	pheS	GO:0000049,GO:0000287,GO:0004826,GO:0005524,GO:0005737,GO:0006432	6.1.1.20
+Q58340	Cobalt-precorrin-8 methylmutase	cbiC	GO:0009236,GO:0016993	
+Q58933	L-seryl-tRNA(Sec) kinase	pstK	GO:0005524,GO:0016310,GO:0097056	
+P54110	30S ribosomal protein S14 type Z	rps14	GO:0003735,GO:0006412,GO:0008270,GO:0019843	
+Q58087	Uncharacterized protein MJ0674		GO:0003824,GO:0046872	
+Q58400	Putative hydrogenase expression/formation protein MJ0993			
+Q58931	Putative thioredoxin reductase		GO:0004791,GO:0005737,GO:0019430	
+Q57765	Uncharacterized protein MJ0317			
+Q57862	Uncharacterized protein MJ0419		GO:0016021	
+Q58662	Uncharacterized protein MJ1266			
+Q58727	Acylphosphatase			
+Q58891	UPF0127 protein MJ1496			
+Q60361	Uncharacterized protein MJ0054			
+F6BAH3	Phosphoribosyl-AMP cyclohydrolase	hisI	GO:0000105,GO:0000287,GO:0004635,GO:0005737,GO:0008270	3.5.4.19
+F6BAF6	Histidinol-phosphate aminotransferase	hisC	GO:0000105,GO:0004400,GO:0030170	2.6.1.9
+F6BC26	5-formaminoimidazole-4-carboxamide-1-(beta)-D-ribofuranosyl 5'-monophosphate synthetase	purP	GO:0000287,GO:0005524,GO:0006189,GO:0016879	6.3.4.23
+F6BD87	50S ribosomal protein L5	rpl5	GO:0000049,GO:0003735,GO:0006412,GO:0019843	
+F6BDK9	GTP-dependent dephospho-CoA kinase		GO:0015937,GO:0016301,GO:0016310	2.7.1.-
+F6BEL1	Bacteriohemerythrin		GO:0005344,GO:0005506	
+F6BF37	Glutamine synthetase	glnA	GO:0004356,GO:0005524,GO:0005737,GO:0006542	6.3.1.2
+F6BAE0	PK_C domain-containing protein			
+F6BAS3	Replication factor A	rpa		
+F6BBA9	Uncharacterized protein MJ1188			
+F6BBJ0	Methyl-coenzyme M reductase II operon protein D	mrtD	GO:0015948	
+F6BBW3	Oligosaccharide repeat unit polymerase		GO:0016021	
+F6BC04	Uncharacterized protein MJ1503			
+F6BCY2	Uncharacterized protein MJ0953		GO:0005886,GO:0008324,GO:0016021	
+F6BDA2	DUF1847 domain-containing protein			
+F6BDF3	UPF0333 protein MJ0832.1		GO:0016021	
+F6BDJ9	Uncharacterized protein MJ1416		GO:0009030,GO:0009228	
+F6BE24	F420-non-reducing hydrogenase vhu subunit A	vhuA	GO:0008901,GO:0016151	
+F6BEK7	Probable arogenate/prephenate dehydrogenase		GO:0004665,GO:0006571,GO:0008977	
+F6BEV5	Uncharacterized protein MJ1638			
+Q58783	S-inosyl-L-homocysteine hydrolase		GO:0006556,GO:0006730	3.13.1.9
+Q57695	4-hydroxy-tetrahydrodipicolinate synthase	dapA	GO:0005737,GO:0008675,GO:0008840,GO:0009089,GO:0019877	4.3.3.7
+P54033	50S ribosomal protein L22	rpl22	GO:0003735,GO:0019843	
+Q57602	Putative glutamine amidotransferase-like protein MJ0138		GO:0006541	
+Q57972	Cobalt-precorrin-6A reductase	cbiJ	GO:0009236,GO:0016994	
+Q58401	Putative uroporphyrinogen-III synthase	hemD	GO:0004852,GO:0006780	
+Q58942	Putative protein adenylyltransferase MJ1547			
+Q58055	Uncharacterized protein MJ0638		GO:0008168	
+Q58121	Uncharacterized protein MJ0711			
+F6BAH7	Nucleoside diphosphate kinase	ndk	GO:0004550,GO:0005524,GO:0005737,GO:0006165,GO:0006183,GO:0006228,GO:0006241,GO:0046872	2.7.4.6
+F6BCW4	Succinate--CoA ligase [ADP-forming] subunit alpha	sucD	GO:0000166,GO:0004775,GO:0006099	6.2.1.5
+F6BAZ3	30S ribosomal protein S12	rps12	GO:0003735,GO:0006412,GO:0019843	
+F6BC36	Phosphoribosylformylglycinamidine cyclo-ligase	purM	GO:0004641,GO:0005524,GO:0006189	6.3.3.1
+F6BCH4	D-3-phosphoglycerate dehydrogenase	serA	GO:0004617,GO:0006564,GO:0051287	1.1.1.95
+F6BDL0	Transcription elongation factor Spt4	spt4	GO:0006355,GO:0008270	
+F6BEM9	50S ribosomal protein L31e	rpl31e	GO:0003735	
+F6BAE1	Uncharacterized protein MJ0305		GO:0005247	
+F6BAS6	Putative hydrogenase maturation protease MJ0253	frhD	GO:0008047,GO:0036211	
+F6BBE7	DUF1646 domain-containing protein		GO:0016021	
+F6BBN1	Uncharacterized ABC transporter ATP-binding protein MJ1242		GO:0005524	
+F6BBS0	UPF0237 protein Metig_1668			
+F6BC05	ATP-dependent DNA ligase			
+F6BCE2	Magnesium-chelatase subunit ChlI homolog		GO:0005524	
+F6BCP5	Thiamine_BP domain-containing protein			
+F6BCT7	CRISPR type III A-associated protein Csm2			
+F6BCY4	Uncharacterized cation transporter MJ1485		GO:0006813,GO:0008324,GO:0016021	
+F6BD40	Putative hydrogenase expression/formation protein MJ0676			
+F6BDA3	ATPase_2 domain-containing protein		GO:0005524	
+F6BDF4	Propeptide_C25 domain-containing protein			
+F6BDK1	DUF169 domain-containing protein			
+F6BDY5	Ammonium transporter Amt1	amt1	GO:0008519	
+F6BEB8	DUF749 domain-containing protein			
+F6BEG6	Fructose-bisphosphatase	suhB	GO:0042132,GO:0046855,GO:0046872	3.1.3.11
+F6BEK8	Uncharacterized ferredoxin MJ0722		GO:0016491	
+F6BEZ6	Uncharacterized ATP-dependent helicase MJ0104		GO:0003677,GO:0005524	
+F6BF36	Diphthami_syn_2 domain-containing protein			
+Q57834	Tyrosine--tRNA ligase	tyrS	GO:0004831,GO:0005524,GO:0005737,GO:0006437	6.1.1.1
+P54051	50S ribosomal protein L37Ae	rpl37ae	GO:0003735,GO:0005840,GO:0006412,GO:0008270,GO:0070180,GO:1990904	
+Q57700	Orotidine 5'-phosphate decarboxylase	pyrF	GO:0004590,GO:0006207,GO:0044205	4.1.1.23
+Q58347	Phosphoribosylamine--glycine ligase	purD	GO:0004637,GO:0005524,GO:0006189,GO:0009113,GO:0046872	6.3.4.13
+Q58509	Orotate phosphoribosyltransferase	pyrE	GO:0000287,GO:0004588,GO:0044205	2.4.2.10
+Q58970	GMP synthase [glutamine-hydrolyzing] subunit A	guaAA	GO:0006541	
+P54034	30S ribosomal protein S3	rps3	GO:0003735,GO:0006412,GO:0019843	
+Q57702	DNA repair and recombination protein RadB	radB	GO:0003684,GO:0005524,GO:0006281,GO:0006310,GO:0140664	
+Q57975	Putative aminopeptidase MJ0555		GO:0004177,GO:0006508,GO:0046872	
+Q58668	Putative 6-carboxy-5,6,7,8-tetrahydropterin synthase	queD	GO:0046872	
+Q58801	Aspartate carbamoyltransferase regulatory chain	pyrI	GO:0006207,GO:0006221,GO:0009347,GO:0046872	
+Q57864	Uncharacterized protein MJ0421		GO:0003723	
+Q58240	Uncharacterized protein MJ0830		GO:0016783	
+Q58318	Uncharacterized protein MJ0908			
+Q58383	Uncharacterized protein MJ0973			
+Q58845	Uncharacterized protein MJ1450			
+Q58961	Uncharacterized protein MJ1566		GO:0016021	
+Q59027	Uncharacterized protein MJ1633		GO:0003676,GO:0006813	
+Q60370	Uncharacterized protein MJ0065			
+F6BBH2	Glutamyl-tRNA(Gln) amidotransferase subunit D	gatD	GO:0004067,GO:0005524,GO:0006412,GO:0006450,GO:0006520,GO:0050567	6.3.5.-
+F6BDT8	Glycerol-1-phosphate dehydrogenase [NAD(P)+]	egsA	GO:0005737,GO:0006650,GO:0008654,GO:0046872,GO:0106357,GO:0106358	1.1.1.261
+F6BAZ4	30S ribosomal protein S7	rps7	GO:0003735,GO:0006412,GO:0019843	
+F6BEN0	Translation initiation factor 6	eif6	GO:0003743,GO:0042256,GO:0043022	
+F6BAE2	Uncharacterized protein MJ0284			
+F6BAI7	Uncharacterized protein MJ1162		GO:0016787	
+F6BAN3	Uncharacterized protein MJ0067		GO:0016021	
+F6BBE8	Uncharacterized protein MJ0517			
+F6BBJ5	UPF0285 protein Metig_0448			
+F6BC07	Uncharacterized protein MJ0417			
+F6BC97	KH domain-containing protein MJ0443		GO:0003723	
+F6BD46	50S ribosomal protein L18e	rpl18e	GO:0003735,GO:0006412	
+F6BDF5	DUF553 domain-containing protein			
+F6BDK2	Trk system potassium uptake protein TrkA homolog	trkA	GO:0005886,GO:0015079	
+F6BDP9	CARDB domain-containing protein		GO:0016021	
+F6BDU7	Uncharacterized protein MJ1348			
+F6BEB9	DUF2118 domain-containing protein			
+F6BEG8	Fructose-bisphosphate aldolase		GO:0004332	4.1.2.13
+F6BEQ8	Probable glutamyl-tRNA(Gln) amidotransferase subunit C		GO:0006450	
+F6BEV9	Uncharacterized GTP-binding protein MJ1464		GO:0005525	
+Q58999	Bifunctional ADP-specific glucokinase/phosphofructokinase	pfkC	GO:0000287,GO:0005737,GO:0006000,GO:0006096,GO:0008443,GO:0043844	2.7.1.146
+Q57703	Phosphosulfolactate synthase	comA	GO:0019295,GO:0043817	
+Q58725	Methionine aminopeptidase	map	GO:0046872,GO:0070006	3.4.11.18
+Q60363	Peptidyl-tRNA hydrolase	pth	GO:0004045,GO:0006412	3.1.1.29
+Q57606	Putative protein adenylyltransferase MJ0141		GO:0016779	
+Q57706	Coenzyme F(430) synthetase	cfbE	GO:0005524,GO:0016874	
+Q58191	Uncharacterized protein MJ0781		GO:0016539	
+Q58669	N(4)-bis(aminopropyl)spermidine synthase	bpsA	GO:0005737,GO:0006596,GO:0016765	2.5.1.128
+Q57687	Uncharacterized protein MJ0235			
+Q57771	Uncharacterized protein MJ0325		GO:0003746,GO:0005525	
+Q58125	H(2)-forming methylenetetrahydromethanopterin dehydrogenase-related protein MJ0715			
+Q58190	Uncharacterized protein MJ0780		GO:0005886,GO:0016021	
+Q58241	Uncharacterized protein MJ0831	recJ	GO:0003676	
+Q58527	Uncharacterized protein MJ1127		GO:0016788	
+Q58733	Uncharacterized protein MJ1337		GO:0016836	
+Q58788	Uncharacterized protein MJ1393			
+F6BBH3	4-phosphopantoate--beta-alanine ligase		GO:0005524,GO:0015937,GO:0016881	6.3.2.36
+F6BDU0	Thiamine thiazole synthase	thi4	GO:0005506,GO:0009228,GO:0009229,GO:0016763,GO:0052837	2.4.2.59
+F6BES3	Archaeal Lon protease		GO:0004176,GO:0004252,GO:0005524,GO:0005886,GO:0006508,GO:0016021,GO:0030163	3.4.21.-
+F6BBJ3	Ribose 1,5-bisphosphate isomerase			
+F6BC42	Histidinol dehydrogenase	hisD	GO:0000105,GO:0004399,GO:0008270,GO:0051287	1.1.1.23
+F6BCI2	2-amino-3,7-dideoxy-D-threo-hept-6-ulosonate synthase	aroA'	GO:0004332,GO:0008652,GO:0009073,GO:0016744,GO:0016836	2.2.1.10
+F6BD09	Anthranilate phosphoribosyltransferase	trpD	GO:0000162,GO:0000287,GO:0004048	2.4.2.18
+F6BDL7	Archaeal glutamate synthase [NADPH]		GO:0004355,GO:0006537,GO:0046872,GO:0051539	1.4.1.13
+F6BE83	50S ribosomal protein L2	rpl2	GO:0003735,GO:0019843	
+F6BAE4	Phage protein			
+F6BAS9	Robl_LC7 domain-containing protein			
+F6BB16	Uncharacterized ABC transporter ATP-binding protein MJ0719		GO:0005524,GO:0016491	
+F6BBB4	DUF4065 domain-containing protein			
+F6BBN3	Uncharacterized protein MJ1656			
+F6BCY6	Transcription factor S	tfs	GO:0006351,GO:0006355,GO:0008270	
+F6BD51	Uncharacterized protein MJ0198			
+F6BDY7	Uncharacterized protein MJ0658		GO:0016491	
+F6BEC0	Short chain isoprenyl diphosphate synthase	idsA	GO:0008299	
+F6BEG9	Uncharacterized protein MJ1631		GO:0005975,GO:0008184,GO:0030170	
+F6BF39	30S ribosomal protein S6e	rps6e	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+Q57849	Nucleoside kinase		GO:0016310	
+Q59000	Glucose-6-phosphate isomerase	pgi	GO:0004347,GO:0006094,GO:0006096,GO:0097367	5.3.1.9
+Q58519	Diaminopimelate epimerase	dapF	GO:0008837,GO:0009089	5.1.1.7
+Q58988	Phosphoribosylformylglycinamidine synthase subunit PurS	purS	GO:0004642,GO:0005524,GO:0005737,GO:0006189	6.3.5.3
+P54037	50S ribosomal protein L14	rpl14	GO:0003735,GO:0006412	
+Q57712	Uncharacterized protein MJ0264			
+Q57983	Putative type II methyltransferase M.MJ0563P			
+Q59076	Protease HtpX homolog	htpX	GO:0004222,GO:0005886,GO:0006508,GO:0008270,GO:0016021	3.4.24.-
+Q57773	Uncharacterized protein MJ0327			
+Q57934	Uncharacterized polyferredoxin-like protein MJ0514		GO:0016491	
+Q58193	Uncharacterized protein MJ0783		GO:0004061,GO:0019441	
+Q58528	Uncharacterized protein MJ1128		GO:0015012,GO:0047464	
+Q58847	Uncharacterized protein MJ1452		GO:0016274,GO:0018216	
+F6BAN7	Proteasome subunit beta	psmB	GO:0004298,GO:0005737,GO:0010498,GO:0019774	3.4.25.1
+F6BC52	Carbamoyltransferase	hypF	GO:0003725,GO:0008270,GO:0016743,GO:0016874,GO:0046944	6.2.-.-
+F6BCJ2	DNA-directed RNA polymerase subunit Rpo4	rpo4	GO:0000166,GO:0000428,GO:0006352	2.7.7.6
+F6BD91	30S ribosomal protein S17	rps17	GO:0003735,GO:0006412,GO:0019843	
+F6BEN3	5,10-methylenetetrahydromethanopterin reductase	mer	GO:0005737,GO:0006730,GO:0016705,GO:0018537,GO:0019386	1.5.98.2
+G1UBJ2	50S ribosomal protein L1	rpl1	GO:0000049,GO:0003735,GO:0006412,GO:0006417,GO:0019843	
+F6BAE5	DUF2304 domain-containing protein		GO:0016021	
+F6BBW9	Cell division protein SepF		GO:0090529	
+F6BC09	Putative permease MJ0326		GO:0005886,GO:0016021	
+F6BCE6	Tetrahydromethanopterin:alpha-L-glutamate ligase	mptN	GO:0005524,GO:0036211,GO:0046872	
+F6BDB0	F420-non-reducing hydrogenase vhu subunit G	vhuG	GO:0051536	
+F6BDF7	UPF0333 protein MJ0835.1		GO:0016021	
+F6BDY8	Dihydrodipicolinate reductase			
+F6BEC3	Universal stress protein MJ0531			
+F6BER1	Chorismate mutase	aroQ	GO:0004106,GO:0046417	
+F6BEW1	Aminotransferase	mfnC	GO:0009058,GO:0030170	
+F6BF41	Probable DNA double-strand break repair nuclease NurA	nurA		
+Q60176	L-2-hydroxycarboxylate dehydrogenase (NAD(P)(+))	mdh	GO:0004459,GO:0019752	
+Q58146	Peroxiredoxin		GO:0008379,GO:0140824	1.11.1.24
+Q58742	7-cyano-7-deazaguanine synthase	queC	GO:0005524,GO:0008270,GO:0016879	6.3.4.20
+P54038	50S ribosomal protein L24	rpl24	GO:0003735,GO:0019843	
+Q58105	Uncharacterized NOP5 family protein MJ0694		GO:0030515,GO:0031428,GO:0032040	
+Q58584	Riboflavin synthase	ribC	GO:0004746,GO:0009231,GO:0009349	2.5.1.9
+Q58671	Probable Na(+)/H(+) antiporter 3		GO:0015299,GO:0016021	
+Q57608	Uncharacterized protein MJ0144			
+Q57693	Uncharacterized protein MJ0241			
+Q58196	Uncharacterized protein MJ0786			
+Q58735	Uncharacterized protein MJ1339		GO:0003924,GO:0005525	
+Q58848	Uncharacterized protein MJ1453			
+F6BAP5	3-phosphoshikimate 1-carboxyvinyltransferase	aroA	GO:0003866,GO:0005737,GO:0008652,GO:0009073,GO:0009423	2.5.1.19
+F6BBQ9	4-hydroxy-tetrahydrodipicolinate reductase	dapB	GO:0005737,GO:0008839,GO:0009089,GO:0016726,GO:0019877,GO:0050661,GO:0051287	1.17.1.8
+F6BE09	Acetylornithine aminotransferase	argD	GO:0005737,GO:0030170	
+F6BET4	O-phosphoserine--tRNA(Cys) ligase	sepS	GO:0000049,GO:0005524,GO:0043816	6.1.1.27
+F6BAZ7	30S ribosomal protein S10	rps10	GO:0000049,GO:0003735,GO:0006412,GO:0015935	
+F6BD15	Imidazoleglycerol-phosphate dehydratase	hisB	GO:0000105,GO:0004424,GO:0005737	4.2.1.19
+F6BD92	Ribonuclease P protein component 1	rnp1	GO:0001682,GO:0003723,GO:0004526,GO:0005737,GO:0030677	3.1.26.5
+F6BDM6	Protein-L-isoaspartate O-methyltransferase	pcm	GO:0004719,GO:0005737,GO:0030091	2.1.1.77
+F6BA65	DNA double-strand break repair nuclease NurA			
+F6BAT5	Uncharacterized protein MJ0800			
+F6BB73	Mediator complex subunit 10			
+F6BBB7	Uncharacterized protein MJ1451			
+F6BBF1	Uncharacterized polyferredoxin-like protein MJ0514.2		GO:0016491	
+F6BBJ8	Probable sulfurtransferase		GO:0006400,GO:0016740	
+F6BBS4	Proteasome-activating nucleotidase	pan	GO:0005524,GO:0016887	
+F6BCA0	Transcriptional repressor of nif and glnA operons NrpR	nrpR		
+F6BCE7	Uncharacterized protein MJ0644			
+F6BDK8	30S ribosomal protein S24e	rps24e	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+F6BE30	DUF366 domain-containing protein			
+Q57725	Probable acetolactate synthase large subunit	ilvB	GO:0000287,GO:0003984,GO:0009097,GO:0009099,GO:0030976,GO:0044272,GO:0050660	2.2.1.6
+Q58531	GMP synthase [glutamine-hydrolyzing] subunit B	guaAB	GO:0005524,GO:0016462	6.3.5.2
+Q60369	Putative threonylcarbamoyl-AMP synthase		GO:0003725	
+P54039	30S ribosomal protein S4e	rps4e	GO:0003735,GO:0006412,GO:0019843	
+P81332	Acetyl-CoA decarbonylase/synthase complex subunit epsilon	cdhB	GO:0019385	
+Q57714	Pyruvate synthase subunit PorB	porB	GO:0019164,GO:0030976	
+Q57988	Uncharacterized HTH-type transcriptional regulator MJ0568		GO:0003677,GO:0003700,GO:0046914,GO:0046983	
+Q58201	Argininosuccinate lyase	argH	GO:0004056,GO:0042450	4.3.2.1
+Q58419	Probable phosphate transport system permease protein PstA	pstA	GO:0005315,GO:0005887,GO:0035435	
+Q58586	Molybdate/tungstate-binding protein WtpA	wtpA	GO:1901359	
+Q57698	Uncharacterized protein MJ0248			
+Q58062	UPF0305 protein MJ0646			
+Q58197	Uncharacterized protein MJ0787			
+Q58245	Uncharacterized protein MJ0835		GO:0016021	
+Q58326	Uncharacterized protein MJ0916			
+Q58908	Uncharacterized protein MJ1513			
+F6BAP7	Thiamine-monophosphate kinase	thiL	GO:0000287,GO:0005524,GO:0009030,GO:0009228,GO:0009229,GO:0016310	2.7.4.16
+F6BCY8	Cobyrinate a,c-diamide synthase	cbiA	GO:0005524,GO:0006541,GO:0009236,GO:0015948,GO:0042242	6.3.5.11,6.3.5.12
+F6BE10	Coenzyme F420:L-glutamate ligase	cofE	GO:0005525,GO:0046872,GO:0052618,GO:0052619,GO:0052645	6.3.2.31,6.3.2.34
+F6BET6	Adenylosuccinate lyase	purB	GO:0004018,GO:0006189,GO:0044208,GO:0070626	4.3.2.2
+F6BBM5	tRNA(Ile2) 2-agmatinylcytidine synthetase TiaS	tiaS	GO:0002101,GO:0003676,GO:0005524,GO:0005737,GO:0016879	6.3.4.22
+F6BCJ4	tRNA pseudouridine synthase Pus10	pus10	GO:0000049,GO:0031119,GO:0106029	5.4.99.25
+F6BD22	RNA-free ribonuclease P		GO:0001682,GO:0004526	3.1.26.5
+F6BD94	50S ribosomal protein L29	rpl29	GO:0003735,GO:0006412	
+F6BDM7	Pyridoxal 5'-phosphate synthase subunit PdxS	pdxS	GO:0036381,GO:0042823	4.3.3.6
+F6BAF0	DUF2110 family protein			
+F6BAT6	Uncharacterized protein MJ0802			
+F6BB20	Endoribonuclease Nob1	nob1		
+F6BB74	Redox-regulated ATPase YchF		GO:0005525	
+F6BBB8	TnpB-like protein MJ1635		GO:0003677,GO:0006310,GO:0032196	
+F6BBF2	Uncharacterized polyferredoxin-like protein MJ0514.1		GO:0016491	
+F6BBX1	Soluble P-type ATPase-like phosphatase	patS	GO:0016787	
+F6BC53	DUF2953 domain-containing protein		GO:0016021	
+F6BCU3	CDP-diacylglycerol--serine O-phosphatidyltransferase	pssA	GO:0008654,GO:0016021	
+F6BDB2	Polyferredoxin protein VhuB	vhuB	GO:0016491	
+F6BDZ1	Uncharacterized ATP-binding protein MJ0924			
+F6BE71	Putative dehydratase subunit MJ0007			
+F6BEH6	Digeranylgeranylglycerophospholipid reductase		GO:0016628,GO:0071949	
+F6BER4	Uncharacterized protein MJ1436			
+F6BEW4	ABC transporter permease		GO:0016021	
+Q58247	Dihydroneopterin 2',3'-cyclic phosphate phosphodiesterase	mptB		
+Q58822	Beta-ribofuranosylphenol 5'-phosphate synthase		GO:0005524,GO:0016757	2.4.2.54
+P61159	Formate dehydrogenase subunit alpha	fdhA	GO:0008863,GO:0015942,GO:0043546,GO:0046872,GO:0051539	
+Q57929	Imidazole glycerol phosphate synthase subunit HisH	hisH	GO:0000105,GO:0000107,GO:0004359,GO:0005737,GO:0006541,GO:0016829	3.5.1.2,4.3.2.10
+Q58380	Sirohydrochlorin cobaltochelatase	cbiX	GO:0015948,GO:0016151,GO:0016852,GO:0019251,GO:0050897	4.99.1.11,4.99.1.3
+Q58535	Probable cyclic pyranopterin monophosphate synthase	moaC	GO:0006777,GO:0061799	4.6.1.17
+P81334	F420-non-reducing hydrogenase vhu iron-sulfur subunit D	vhuD	GO:0016491,GO:0051537	
+Q58111	Uncharacterized MscS family protein MJ0700		GO:0005886,GO:0016021,GO:0055085	
+Q58420	Probable phosphate transport system permease protein PstC	pstC	GO:0005315,GO:0005886,GO:0006817,GO:0016021	
+P81324	Uncharacterized protein MJ0835.2		GO:0004190,GO:0016021	
+Q57707	Uncharacterized protein MJ0259			
+Q57939	Uncharacterized protein MJ0519		GO:0016021	
+Q58246	Uncharacterized protein MJ0836			
+Q58390	Uncharacterized protein MJ0981			
+Q58533	Uncharacterized protein MJ1133		GO:0016831	
+Q58737	Uncharacterized protein MJ1341		GO:0003824	
+F6BBV4	Probable tRNA sulfurtransferase	thiI	GO:0000049,GO:0004810,GO:0005524,GO:0009228,GO:0009229,GO:0140741	2.8.1.4
+F6BCZ1	3-isopropylmalate dehydratase large subunit	leuC	GO:0003861,GO:0009098,GO:0046872,GO:0051539	
+F6BE33	Tritrans,polycis-undecaprenyl-diphosphate synthase (geranylgeranyl-diphosphate specific)	uppS	GO:0000287	2.5.1.89
+F6BAJ4	Glutamine--fructose-6-phosphate transaminase (isomerizing)	glmS	GO:0003677,GO:0004360,GO:0004519,GO:0006541,GO:0016539,GO:0097367	2.6.1.16
+F6BB15	Glutamyl-tRNA(Gln) amidotransferase subunit A	gatA	GO:0005524,GO:0006412,GO:0030956,GO:0050567	6.3.5.7
+F6BC74	16S rRNA aminocarboxypropyltransferase		GO:0000455,GO:0005737,GO:0106388,GO:1904047	2.5.1.-
+F6BD27	Translation initiation factor 2 subunit beta	eif2b	GO:0003743	
+F6BEP5	6,7-dimethyl-8-ribityllumazine synthase	ribH	GO:0000906,GO:0009231,GO:0009349	2.5.1.78
+F6BAF1	2-oxoglutarate synthase subunit KorB	korB	GO:0006082,GO:0030976,GO:0044272,GO:0047553,GO:1901576	
+F6BBX2	Putative molybdopterin biosynthesis protein MJ0886		GO:0006777,GO:0032324	
+F6BDL5	PyrE-like protein			
+F6BDZ3	Iron-sulfur cluster carrier protein		GO:0005524	
+F6BEH7	Probable cobalt-precorrin-7 C(5)-methyltransferase	cbiE	GO:0008276,GO:0009236	
+F6BER5	Glyceraldehyde 3-phosphate phosphatase			
+Q58130	3-isopropylmalate/3-methylmalate dehydrogenase	leuB	GO:0000287,GO:0003862,GO:0009098,GO:0051287	
+Q60364	3,4-dihydroxy-2-butanone 4-phosphate synthase	ribB	GO:0000287,GO:0008686,GO:0009231,GO:0030145	4.1.99.12
+Q58826	5-amino-6-(D-ribitylamino)uracil--L-tyrosine 4-hydroxyphenyl transferase	cofH	GO:0005506,GO:0044689,GO:0051539	2.5.1.147
+Q58175	Hydroxylamine reductase	hcp	GO:0005737,GO:0046872,GO:0050418,GO:0051539	1.7.99.1
+Q58408	Diadenylate cyclase	dacZ	GO:0004016,GO:0005524,GO:0019932,GO:0030145,GO:0106408	2.7.7.85
+P54041	30S ribosomal protein S8	rps8	GO:0003735,GO:0006412,GO:0019843	
+Q58207	Uncharacterized ABC transporter permease MJ0797		GO:0005886,GO:0016021	
+Q58421	Phosphate-binding protein PstS	pstS	GO:0035435,GO:0042301,GO:0043190	
+Q58843	Type II methyltransferase M.MjaII	mjaIIM	GO:0003677,GO:0015667	2.1.1.113
+Q58068	Probable RNA-binding protein MJ0652		GO:0003723	
+Q58140	Uncharacterized protein MJ0730			
+Q58199	Uncharacterized protein MJ0789			
+Q58330	Uncharacterized protein MJ0920		GO:0005525	
+Q58534	Uncharacterized protein MJ1134			
+Q58602	UPF0058 protein MJ1205			
+Q58911	Uncharacterized protein MJ1516		GO:0016021	
+F6BAS2	3-dehydroquinate dehydratase	aroD	GO:0003855,GO:0008652,GO:0009073,GO:0009423	4.2.1.10
+F6BC33	Aspartate--tRNA(Asp/Asn) ligase	aspS	GO:0000287,GO:0004815,GO:0005524,GO:0006422,GO:0050560	6.1.1.23
+F6BE38	Amidophosphoribosyltransferase	purF	GO:0000287,GO:0004044,GO:0006189,GO:0006541,GO:0009113,GO:0051539	2.4.2.14
+F6BEW5	Type-2 serine--tRNA ligase	serS	GO:0004828,GO:0005524,GO:0005737,GO:0006434,GO:0008270,GO:0016260,GO:0097056	6.1.1.11
+F6BBN5	Signal recognition particle receptor FtsY	ftsY	GO:0003924,GO:0005525,GO:0005737,GO:0006614,GO:0031226	
+F6BCK9	50S ribosomal protein L15e	rpl15e	GO:0003735	
+F6BD29	Cell division protein FtsZ	ftsZ	GO:0000917,GO:0003924,GO:0005525,GO:0005737,GO:0032153,GO:0043093,GO:0051258	
+F6BDQ8	DNA primase large subunit PriL	priL	GO:0003896,GO:0046872,GO:0051539,GO:1990077	
+F6BAP2	ARMT1-like_dom domain-containing protein			
+F6BAT8	Uncharacterized protein MJ0498			
+F6BB22	Putative molybdopterin-guanine dinucleotide biosynthesis adapter protein	mobB	GO:0005525,GO:0006777,GO:0046872,GO:0051539	
+F6BB76	UPF0051 protein MJ0034		GO:0016226	
+F6BBF5	Uncharacterized protein MJ1004			
+F6BBX4	DUF211 domain-containing protein			
+F6BC14	Uncharacterized protein MJ0907		GO:0016491,GO:0046872,GO:0051539	
+F6BD56	CRISPR-associated endoribonuclease Cas6 1	cas6a	GO:0051607	
+F6BDB4	1-(5-phosphoribosyl)-5-[(5-phosphoribosylamino)methylideneamino] imidazole-4-carboxamide isomerase	hisA	GO:0000105,GO:0003949	
+F6BDL6	Uncharacterized protein MJ1351.1		GO:0006541	
+F6BE34	PrcB_C domain-containing protein			
+F6BED1	Putative sulfur carrier protein MJ0990			
+F6BEH9	DUF190 domain-containing protein			
+F6BF05	Metalloprotease MJ0996		GO:0006508,GO:0008237	
+Q60365	Riboflavin kinase	ribK	GO:0000166,GO:0000287,GO:0008531,GO:0009231,GO:0009398,GO:0016310	2.7.1.161
+Q58839	Flap endonuclease 1	fen	GO:0000287,GO:0003677,GO:0006281,GO:0008409,GO:0017108,GO:0043137	3.1.-.-
+Q57576	Acetyl-CoA decarbonylase/synthase complex subunit gamma	cdhE	GO:0005506,GO:0008168,GO:0032259,GO:0046356,GO:0051539	2.1.1.245
+Q58187	Transcription factor E	tfe	GO:0003677,GO:0006355	
+Q58413	Valine--tRNA ligase	valS	GO:0002161,GO:0005524	
+Q58539	Ribonuclease P protein component 3	rnp3	GO:0001682,GO:0004526,GO:0005737,GO:0030677	3.1.26.5
+Q58771	Ribosomal RNA large subunit methyltransferase E	rlmE	GO:0005737,GO:0008650	2.1.1.166
+Q59028	6-hydroxymethyl-7,8-dihydropterin pyrophosphokinase	mptE	GO:0000287,GO:0003848,GO:0004788,GO:0005524,GO:0009229,GO:0016301,GO:0016310,GO:2001118	2.7.6.3
+P54042	50S ribosomal protein L6	rpl6	GO:0003735,GO:0019843	
+Q57717	Pyruvate synthase subunit PorC	porC		
+Q57898	Uncharacterized transporter MJ0456		GO:0016021,GO:0055085	
+Q58116	3-hydroxy-3-methylglutaryl-coenzyme A reductase	hmgA	GO:0004420,GO:0008299,GO:0015936	1.1.1.34
+Q58214	Uncharacterized protein MJ0804		GO:0003824,GO:0046872	
+Q58844	Type II restriction enzyme MjaII	mjaIIR	GO:0003677,GO:0009036,GO:0009307	
+P81327	Uncharacterized protein MJ1333.1		GO:0016021	
+Q57942	Uncharacterized protein MJ0522		GO:0016021	
+Q58200	Uncharacterized protein MJ0790		GO:0016021	
+Q58395	Uncharacterized protein MJ0988		GO:0003676	
+Q58978	Probable S-adenosyl-L-methionine-binding protein MJ1583			
+F6BAS5	DNA double-strand break repair protein Mre11	mre11	GO:0000403,GO:0004519,GO:0006302,GO:0008408,GO:0030145,GO:0045027	3.1.-.-
+F6BC48	Phenylalanine--tRNA ligase beta subunit	pheT	GO:0000287,GO:0003723,GO:0004826,GO:0005524,GO:0006432	6.1.1.20
+F6BAK3	Precorrin-2 dehydrogenase		GO:0004325,GO:0019354,GO:0043115	1.3.1.76
+F6BBN7	50S ribosomal protein L14e	rpl14e	GO:0003723,GO:0003735,GO:0006412	
+F6BD30	Protein translocase subunit SecE	secE	GO:0005886,GO:0006605,GO:0008320,GO:0009306,GO:0016021,GO:0065002	
+F6BDR2	Homoserine dehydrogenase	hom	GO:0004412,GO:0009088,GO:0050661	1.1.1.3
+F6BE97	Methyl-coenzyme M reductase subunit alpha	mrtA	GO:0015948,GO:0046872,GO:0050524	2.8.4.1
+F6BEQ6	Putative (R)-citramalate synthase CimA	cimA	GO:0003852,GO:0009098	
+F6BAF3	Saccharop_dh_N domain-containing protein			
+F6BAP4	Probable metallo-hydrolase MJ0296			
+F6BAT9	Uncharacterized protein MJ0963			
+F6BC16	Uncharacterized ferredoxin MJ0251		GO:0016491	
+F6BC56	Uncharacterized protein MJ0405			
+F6BCA7	tRNA-5-methyluridine(54) 2-sulfurtransferase		GO:0000049	
+F6BD57	Uncharacterized protein MJ0231		GO:0006508,GO:0008237	
+F6BDB5	Sulfopyruvate decarboxylase subunit beta	comE	GO:0030976,GO:0050545	
+F6BDG3	Uncharacterized protein MJ0115			
+F6BDL8	Uncharacterized protein MJ1350		GO:0016491	
+F6BDZ5	Exported protein		GO:0016021	
+F6BE74	DUF3343 domain-containing protein			
+F6BEW9	Uncharacterized protein MJ1439		GO:0003676	
+F6BF06	Uncharacterized protein MJ0995			
+Q58842	Bifunctional enzyme Fae/Hps	fae-hps	GO:0004590,GO:0006207,GO:0016051,GO:0016836,GO:0016840,GO:0043801	4.1.2.43,4.2.1.147
+Q57741	Probable thymidylate kinase	tmk	GO:0004798,GO:0005524,GO:0006233,GO:0006235,GO:0016310	2.7.4.9
+Q59037	Chromosome partition protein Smc	smc	GO:0003677,GO:0005524,GO:0005694,GO:0005737,GO:0006260,GO:0007062,GO:0016887,GO:0030261	
+Q57631	Probable molybdopterin adenylyltransferase	moaB	GO:0006777	
+Q57899	Uncharacterized metallohydrolase MJ0457		GO:0016787	
+Q58596	Putative amino-acid transporter MJ1196		GO:0016021	
+Q58710	Probable cobalamin biosynthesis protein CobD	cobD	GO:0005886,GO:0009236,GO:0015420,GO:0016021,GO:0048472	
+Q58202	Uncharacterized protein MJ0792		GO:0016021	
+Q58332	Uncharacterized protein MJ0922			
+Q58396	Uncharacterized protein MJ0989			
+Q60313	Uncharacterized protein MJ0003			
+F6BAT0	Holliday junction resolvase Hjc	hjc	GO:0000287,GO:0003677,GO:0006281,GO:0006310,GO:0008821	3.1.21.10
+F6BF40	Translation initiation factor 2 subunit gamma	eif2g	GO:0000049,GO:0003743,GO:0003746,GO:0003924,GO:0005525,GO:0046872	3.6.5.3
+F6BBN8	Cytidylate kinase	cmk	GO:0005524,GO:0005737,GO:0006220,GO:0016310,GO:0036430,GO:0036431	2.7.4.25
+F6BC86	2,3-bisphosphoglycerate-independent phosphoglycerate mutase	apgM	GO:0006096,GO:0046537,GO:0046872	
+F6BD31	Transcription elongation factor Spt5	spt5	GO:0003746	
+F6BDR3	Acetyl-CoA decarbonylase/synthase complex subunit delta	cdhD	GO:0006730	
+F6BEA5	Tetrahydromethanopterin S-methyltransferase subunit H	mtrH	GO:0006730,GO:0019386,GO:0030269,GO:0032259	2.1.1.86
+F6BAJ8	Uncharacterized protein MJ0548			
+F6BBX7	Uncharacterized membrane protein MJ1375		GO:0005886,GO:0016021	
+F6BC61	Aminotransferase	dapL	GO:0030170	
+F6BCB0	Putative type II restriction enzyme MjaVIP	mjaVIRP	GO:0009036	
+F6BDB7	Hydroxymethylglutaryl-CoA synthase			
+F6BDQ7	Exonuclease			
+Q58293	tRNA (guanine(37)-N1)-methyltransferase Trm5b	trm5b		
+P58415	Sulfopyruvate decarboxylase subunit alpha	comD	GO:0030976,GO:0050545	
+Q58418	Phosphate import ATP-binding protein PstB	pstB	GO:0005524	
+Q59039	7-carboxy-7-deazaguanine synthase	queE	GO:0000287,GO:0016840,GO:0051539,GO:1904047	4.3.99.3
+P54044	50S ribosomal protein L18	rpl18	GO:0003735,GO:0006412,GO:0008097	
+Q57901	Elongation factor 1-beta	ef1b	GO:0003746	
+Q58014	Uncharacterized protein MJ0597		GO:0004076,GO:0009102,GO:0046872,GO:0051539	
+Q58218	Uncharacterized protein MJ0808		GO:0003824,GO:0046872,GO:0051539	
+Q58328	Indole-3-glycerol phosphate synthase	trpC	GO:0000162,GO:0004425	4.1.1.48
+Q58598	Uncharacterized protein MJ1198		GO:0003676,GO:0031072,GO:0046872,GO:0051082	
+Q58874	Uncharacterized aminotransferase MJ1479		GO:0009058,GO:0030170	
+Q58967	Putative ABC transporter ATP-binding protein MJ1572	ecfA	GO:0005524	
+Q57819	Uncharacterized protein MJ0374			
+Q57879	Uncharacterized protein MJ0437		GO:0005886,GO:0016021	
+Q58074	Uncharacterized protein MJ0660			
+Q58541	Uncharacterized protein MJ1141		GO:0016021	
+Q58610	Uncharacterized protein MJ1213			
+Q58744	Uncharacterized protein MJ1349		GO:0051536	
+Q58914	Uncharacterized protein MJ1519			
+Q59048	Uncharacterized protein MJ1654			
+Q60315	Uncharacterized protein MJ0004			
+F6BF43	Acetyl-CoA decarbonylase/synthase complex subunit beta	cdhC	GO:0005506,GO:0006084,GO:0016151,GO:0016407,GO:0018492,GO:0043884,GO:0051536	2.3.1.169
+F6BAK8	Protein-export membrane protein SecF	secF	GO:0005886,GO:0006605,GO:0016021,GO:0065002	
+F6BB28	Carbon monoxide dehydrogenase	cooS	GO:0006091,GO:0016151,GO:0018492,GO:0043885,GO:0051539	1.2.7.4
+F6BCN3	Lactaldehyde dehydrogenase		GO:0008911	1.2.1.22
+F6BD32	50S ribosomal protein L11	rpl11	GO:0003735,GO:0006412,GO:0070180	
+F6BAU1	Uncharacterized peptidase MJ0806		GO:0046872	
+F6BBF8	Uncharacterized protein MJ0954			
+F6BBT0	Probable ATP-dependent helicase MJ1401		GO:0003676,GO:0004386,GO:0005524	
+F6BBX9	Uncharacterized protein MJ1185		GO:0009055,GO:0016625,GO:0051536	
+F6BC63	Nitrogen regulatory protein GlnK1	glnK1	GO:0006808,GO:0030234	
+F6BCR1	Uncharacterized protein MJ0558		GO:0003677,GO:0006355	
+F6BCU9	YjbQ family protein			
+F6BCZ8	Uncharacterized protein MJ1252		GO:0008168,GO:0032259	
+F6BDM0	Uncharacterized protein MJ0551		GO:0020037,GO:0046872,GO:0051539	
+F6BDR1	Uncharacterized protein MJ1601			
+F6BDZ7	Uncharacterized protein MJ0274		GO:0003824	
+F6BEI3	TIGR00341 family protein		GO:0016021	
+F6BF52	Uncharacterized protein MJ1618			
+Q58323	Coenzyme A biosynthesis bifunctional protein CoaBC	coaBC	GO:0004632,GO:0004633,GO:0010181,GO:0015937,GO:0015941,GO:0046872	4.1.1.36,6.3.2.5
+Q57604	Potassium channel protein 1		GO:0016021	
+Q58234	Probable GTP 3',8-cyclase	moaA	GO:0005525,GO:0006777,GO:0019008,GO:0046872,GO:0051539,GO:0061798,GO:1904047	4.1.99.22
+Q58432	Phosphomethylpyrimidine synthase	thiC	GO:0008270,GO:0009228,GO:0009229,GO:0016830,GO:0051539	4.1.99.17
+Q58549	ADP-ribose pyrophosphatase	nudF	GO:0047631	
+Q59042	Phosphoribosylformylglycinamidine synthase subunit PurQ	purQ	GO:0004359,GO:0004642,GO:0005524,GO:0005737,GO:0006189,GO:0006541	3.5.1.2,6.3.5.3
+P54011	50S ribosomal protein L37e	rpl37e	GO:0003735,GO:0006412,GO:0008270,GO:0019843	
+P54045	30S ribosomal protein S5	rps5	GO:0003735,GO:0006412,GO:0019843	
+Q58223	Probable cobalt-factor III C(17)-methyltransferase	cbiH	GO:0009236,GO:0032259	
+Q60314	Uncharacterized oxidoreductase MJ0006		GO:0016491,GO:0046872,GO:0051539	
+Q57628	Uncharacterized protein MJ0164			
+Q58009	Uncharacterized protein MJ0589			
+Q58075	Uncharacterized protein MJ0661			
+Q58148	Uncharacterized protein MJ0738			
+Q58266	Uncharacterized protein MJ0856			
+Q58335	Uncharacterized HTH-type transcriptional regulator MJ0925			
+Q58470	Uncharacterized protein MJ1070			
+Q60319	Uncharacterized protein MJ0008			
+F6BAX8	dCTP deaminase, dUMP-forming	dcd	GO:0000166,GO:0006226,GO:0006229,GO:0008829,GO:0033973	3.5.4.30
+F6BD28	Type 2 DNA topoisomerase 6 subunit A	top6A	GO:0000287,GO:0003677,GO:0003918,GO:0005524,GO:0005694,GO:0006265,GO:0006268	5.6.2.2
+F6BE98	Tetrahydromethanopterin S-methyltransferase subunit E	mtrE	GO:0005737,GO:0005886,GO:0006730,GO:0006814,GO:0012506,GO:0016021,GO:0019386,GO:0030269,GO:0032259	2.1.1.86
+F6BB33	Methylated-DNA--[protein]-cysteine S-methyltransferase	ogt	GO:0003908,GO:0006281,GO:0032259	2.1.1.63
+F6BBR2	50S ribosomal protein L24e	rpl24e	GO:0003735,GO:0005840,GO:0006412,GO:0008270,GO:0019843,GO:1990904	
+F6BC96	Non-specific serine/threonine protein kinase	rio1	GO:0004674,GO:0005524,GO:0006468,GO:0106310	2.7.11.1
+F6BAP9	Uncharacterized protein MJ0759		GO:0016021	
+F6BAU2	Putative ABC transporter permease protein MJ0413		GO:0005886,GO:0016021	
+F6BB29	Uncharacterized protein MJ0727			
+F6BB84	Uncharacterized KamA family protein MJ0634		GO:0046872	
+F6BBT1	UPF0333 protein MJ1400		GO:0016021	
+F6BBY0	Putative alpha-amylase		GO:0004556,GO:0005975	
+F6BCR3	Uncharacterized protein MJ0535			
+F6BCV3	Archaeosine synthase	arcS	GO:0003723,GO:0006400,GO:0016763	
+F6BDM1	Coenzyme F420-dependent sulfite reductase	fsr	GO:0020037	
+F6BDR6	3-hexulose-6-phosphate isomerase	phi	GO:0043800,GO:0097367,GO:1901135	
+F6BDV7	Uncharacterized protein MJ0785		GO:0004076,GO:0009102,GO:0046872,GO:0051539	
+F6BE40	Uncharacterized protein MJ1225			
+F6BED5	Endonuclease IV			
+F6BEI5	Uncharacterized protein MJ1118			
+F6BEM4	Putative L(+)-tartrate dehydratase subunit alpha		GO:0008152,GO:0046872,GO:0051539	
+F6BES6	UPF0147 protein Metig_1336			
+F6BF10	Uncharacterized protein MJ1020			
+Q58327	Bifunctional NADP phosphatase/NAD kinase	nadK	GO:0003951,GO:0005524,GO:0005737,GO:0006553,GO:0006741,GO:0016310,GO:0019674,GO:0046855,GO:0046872	2.7.1.23
+Q57564	CBS domain-containing protein			
+Q58425	Carbamoyl-phosphate synthase small chain	carA	GO:0004088,GO:0005524,GO:0006207,GO:0006526,GO:0006541,GO:0044205	6.3.5.5
+Q58923	Triosephosphate isomerase	tpiA	GO:0004807,GO:0006094,GO:0006096	5.3.1.1
+Q57612	Probable tRNA pseudouridine synthase B	truB	GO:0003723,GO:0031119,GO:0106029	5.4.99.25
+Q57984	Alanine--tRNA ligase	alaS	GO:0000049,GO:0002161,GO:0004813,GO:0005524,GO:0005737,GO:0006419,GO:0008270	6.1.1.7
+Q58235	Long-type peptidyl-prolyl cis-trans isomerase		GO:0003755	5.2.1.8
+Q58818	Ni-sirohydrochlorin a,c-diamide reductive cyclase complex, component CfbD	cfbD	GO:0016491	
+P54046	50S ribosomal protein L30	rpl30	GO:0003735,GO:0006412	
+Q58224	Probable deoxyhypusine synthase	dys	GO:0008612,GO:0034038	2.5.1.46
+Q58338	Putative protein N5-glutamine methyltransferase MJ0928			
+Q58714	Uncharacterized protein MJ1318		GO:0004176,GO:0004252,GO:0005524,GO:0016021	
+Q57721	Uncharacterized protein MJ0273			
+Q57946	Uncharacterized protein MJ0526		GO:0016021	
+Q58076	Uncharacterized protein MJ0662		GO:0016021	
+Q58149	Uncharacterized protein MJ0739			
+Q58471	Uncharacterized protein MJ1071			
+Q58984	Uncharacterized protein MJ1589		GO:0016021	
+F6BAY8	DNA-directed RNA polymerase subunit beta	rpo2C	GO:0000428,GO:0003677,GO:0003899,GO:0005737,GO:0006351,GO:0008270,GO:0032549	2.7.7.6
+F6BD33	Adenylosuccinate synthetase	purA	GO:0000287,GO:0004019,GO:0005525,GO:0005737,GO:0044208	6.3.4.4
+F6BF47	Acetyl-CoA decarbonylase/synthase complex subunit beta	cdhC	GO:0005506,GO:0006084,GO:0016151,GO:0016407,GO:0018492,GO:0043884,GO:0051536	2.3.1.169
+F6BBR4	50S ribosomal protein L7Ae	rpl7ae	GO:0001682,GO:0003735,GO:0004526,GO:0006412,GO:0019843	
+F6BCA1	Aspartyl/glutamyl-tRNA(Asn/Gln) amidotransferase subunit B	gatB	GO:0005524,GO:0006412,GO:0050566,GO:0050567	6.3.5.-
+F6BCP3	Acetolactate synthase small subunit	ilvH	GO:0003984,GO:0009097,GO:0009099,GO:1990610	2.2.1.6
+F6BDC6	TATA-box-binding protein	tbp	GO:0003677,GO:0003700,GO:0006352	
+F6BDS5	Glycine--tRNA ligase	glyS	GO:0004820,GO:0005524,GO:0005737,GO:0006426	6.1.1.14
+F6BAK2	Putative 26S proteasome regulatory subunit homolog MJ1494		GO:0005524,GO:0016887	
+F6BAQ0	Uncharacterized protein MJ0760			
+F6BB30	Uncharacterized protein MJ0726	frhG		
+F6BB85	Roadblock/LC7 domain-containing protein		GO:0016021	
+F6BBT2	UPF0200 protein Metig_1680		GO:0005524	
+F6BCF8	Uncharacterized protein MJ0260		GO:0004252,GO:0006465,GO:0016021	
+F6BCV4	Flagellar biosynthesis protein FlgN			
+F6BD02	Uncharacterized protein MJ1089		GO:0005887,GO:0006824,GO:0043190	
+F6BDC1	DUF2067 domain-containing protein			
+F6BDR8	2-oxoglutarate synthase subunit KorA	korA	GO:0006082,GO:0044272,GO:0047553,GO:1901576	
+F6BE41	Methyltransf_30 domain-containing protein		GO:0016645	
+F6BEI6	NTP_transf_3 domain-containing protein	cobY		
+F6BEM7	Putative DNA repair glycosylase MJ1434		GO:0006284,GO:0046872,GO:0051539	
+F6BF11	Deoxyhypusine synthase			
+Q57599	Ribonuclease HII	rnhB	GO:0003723,GO:0004523,GO:0005737,GO:0030145	3.1.26.4
+Q58938	Ketol-acid reductoisomerase (NADP(+))	ilvC	GO:0000287,GO:0004455,GO:0009097,GO:0009099,GO:0050661	1.1.1.86
+Q57989	Probable porphobilinogen deaminase	hemC	GO:0004418,GO:0006782	2.5.1.61
+Q58571	Tungsten-containing formylmethanofuran dehydrogenase 2 subunit C	fwdC	GO:0018493,GO:0019386,GO:0046914	1.2.7.12
+Q58820	L-sulfolactate dehydrogenase	comC		
+Q59055	Pyridoxal 5'-phosphate synthase subunit PdxT	pdxT	GO:0004359,GO:0006543,GO:0036381,GO:0042823	3.5.1.2,4.3.3.6
+P54013	50S ribosomal protein L21e	rpl21e	GO:0003735,GO:0006412	
+P54047	50S ribosomal protein L15	rpl15	GO:0003735,GO:0006412,GO:0019843	
+Q57557	Uncharacterized iron-sulfur protein MJ0092		GO:0006099,GO:0009055,GO:0051537	
+Q57908	Probable cobyric acid synthase	cobQ	GO:0003824,GO:0006541,GO:0009236,GO:0015420	
+Q58442	Uncharacterized protein MJ1036		GO:0016021	
+Q57883	Probable membrane transporter protein MJ0441		GO:0005886,GO:0016021	
+Q58012	Probable Brix domain-containing ribosomal biogenesis protein		GO:0006364,GO:0019843	
+Q58208	TPR repeat-containing protein MJ0798			
+Q58344	Uncharacterized polyferredoxin-like protein MJ0934		GO:0016491	
+Q58921	UPF0280 protein MJ1526			
+Q60280	Uncharacterized protein MJECL20			
+Q60384	Uncharacterized protein MJ0077			
+F6BC78	Putative archaetidylserine decarboxylase proenzyme	asd	GO:0004609,GO:0005886,GO:0008654	4.1.1.-
+F6BEA0	Tetrahydromethanopterin S-methyltransferase subunit C	mtrC	GO:0005886,GO:0006730,GO:0016021,GO:0019386,GO:0030269,GO:0032259	2.1.1.86
+F6BDD3	Acetate--CoA ligase (ADP-forming)		GO:0005524,GO:0043758	6.2.1.13
+F6BES8	CRISPR system single-strand-specific deoxyribonuclease Cas10/Csm1 (subtype III-A)	cas10	GO:0004519,GO:0004527,GO:0005524,GO:0051607	
+F6BAU4	Thermosome subunit	ths	GO:0005524,GO:0016887,GO:0051082,GO:0140662	
+F6BB31	Uncharacterized protein MJ0725		GO:0051536	
+F6BBK7	UPF0026 protein MJ1312		GO:0003824,GO:0046872,GO:0051539	
+F6BBT3	Radical SAM core domain-containing protein		GO:0003824,GO:0046872,GO:0051539	
+F6BBY2	Glycosyltransferase			
+F6BCB8	Coenzyme F420 hydrogenase subunit beta	frhB	GO:0016151,GO:0050454,GO:0050660,GO:0051536	
+F6BCV5	Uncharacterized protein MJ0921			
+F6BDH4	Uncharacterized HTH-type transcriptional regulator MJ0300		GO:0003700	
+F6BDM3	Uncharacterized protein MJ1082			
+F6BE00	Polysaccharide deacetylase		GO:0005975	
+F6BE42	Uncharacterized protein MJ1027		GO:0008901,GO:0016151,GO:0016651,GO:0048038,GO:0051287	
+F6BE79	Uncharacterized protein MJ0175		GO:0003697,GO:0003723,GO:0016070,GO:0043565	
+F6BED8	Uncharacterized protein MJ0799		GO:0009030,GO:0009228	
+F6BEI8	Thymidylate synthase			
+F6BEN2	DUF2666 domain-containing protein			
+Q57609	GTP cyclohydrolase III	gch3	GO:0005525,GO:0009058,GO:0043740	3.5.4.29
+Q58952	tRNA(Phe) (4-demethylwyosine(37)-C(7)) aminocarboxypropyltransferase	taw2	GO:0005737,GO:0006400,GO:0102522	2.5.1.114
+Q57617	Acetyl-CoA decarbonylase/synthase complex subunit alpha	cdhA	GO:0005506,GO:0006084,GO:0016151,GO:0018492,GO:0043885,GO:0051539	1.2.7.4
+Q57991	Probable aspartokinase		GO:0004072,GO:0005524,GO:0009088,GO:0009089,GO:0016310	2.7.2.4
+Q58436	Phosphopantetheine adenylyltransferase	coaD	GO:0004595,GO:0005524,GO:0005737,GO:0015937	2.7.7.3
+Q59057	Probable molybdenum cofactor guanylyltransferase	mobA	GO:0005525,GO:0005737,GO:0006777,GO:0046872,GO:0061603	2.7.7.77
+P54014	50S ribosomal protein L3	rpl3	GO:0003735,GO:0006412,GO:0019843	
+P54048	50S ribosomal protein L12	rpl12	GO:0003735,GO:0005840,GO:0006414,GO:1990904	
+Q57637	Putative transcriptional regulatory protein MJ0173		GO:0003677,GO:0003700,GO:0006352	
+Q57743	Protein FdhD	fdhD	GO:0005737,GO:0006777,GO:0016783	
+Q58447	Probable transcription termination protein NusA	nusA	GO:0003723,GO:0006353,GO:0031564	
+Q60325	Glutamyl-tRNA(Gln) amidotransferase subunit E	gatE	GO:0004812,GO:0005524,GO:0005737,GO:0006412,GO:0050567	6.3.5.-
+Q57550	Uncharacterized lipoprotein MJ0085			
+Q57723	Uncharacterized protein MJ0275			
+Q58155	Uncharacterized protein MJ0745			
+Q58345	Uncharacterized protein MJ0935			
+Q58620	Uncharacterized protein MJ1223		GO:0016021	
+Q58990	UPF0104 membrane protein MJ1595		GO:0005886,GO:0016021	
+F6BAM5	Phosphate-specific transport system accessory protein PhoU		GO:0005737,GO:0006817,GO:0030643,GO:0045936	
+F6BBT8	Protein-export membrane protein SecD	secD	GO:0005886,GO:0006605,GO:0016021,GO:0065002	
+F6BCA4	DNA primase DnaG	dnaG	GO:0000178,GO:0000428,GO:0003896,GO:0008143,GO:1990077	2.7.7.101
+F6BDT3	Glutamate-1-semialdehyde 2,1-aminomutase	hemL	GO:0005737,GO:0006782,GO:0008483,GO:0030170,GO:0042286	5.4.3.8
+F6BET3	O-phospho-L-seryl-tRNA:Cys-tRNA synthase	pscS	GO:0006412,GO:0043766	2.5.1.73
+F6BAB5	Uncharacterized glycosyltransferase MJ1069		GO:0016757	
+F6BAG2	Transcriptional regulator			
+F6BAK7	Stage II sporulation protein M		GO:0016021	
+F6BAQ2	Thioredoxin	trx	GO:0009055,GO:0019153,GO:0045454	
+F6BAY1	Methyltransferase		GO:0008171	
+F6BB36	Translation initiation factor IF-2 subunit beta			
+F6BB87	Uncharacterized protein MJ0165		GO:0006189,GO:0016787	
+F6BBG6	NfeD domain-containing protein		GO:0016021	
+F6BBT6	Uncharacterized GTP-binding protein MJ1326		GO:0003924,GO:0005525	
+F6BCL8	Uncharacterized aminotransferase MJ0959		GO:0008453	
+F6BCV7	50S ribosomal protein L10e	rpl10e	GO:0003735,GO:0006412	
+F6BD06	Uncharacterized HTH-type transcriptional regulator MJ0586		GO:0003677	
+F6BD64	Phage protein			
+F6BDS0	UPF0425 pyridoxal phosphate-dependent protein MJ0158			
+F6BE43	Uncharacterized FAD-dependent oxidoreductase MJ0033			
+F6BEN5	Uncharacterized protein MJ1432		GO:0003723	
+F6BF56	UPF0282 protein Metig_1391			
+Q57661	Dihydromethanopterin reductase (acceptor)	dmrX	GO:0016645,GO:0051539,GO:1901285	
+Q58008	Probable tRNA pseudouridine synthase D 1	truD1	GO:0003723,GO:0031119,GO:0106029	5.4.99.27
+Q58255	Methyl-coenzyme M reductase subunit gamma	mcrG	GO:0015948,GO:0050524	2.8.4.1
+Q58833	Adenosylcobinamide-GDP ribazoletransferase	cobS	GO:0005886,GO:0008818,GO:0009236,GO:0016021,GO:0051073	2.7.8.26
+P54015	50S ribosomal protein L4	rpl4	GO:0003735,GO:0006412,GO:0019843	
+P54052	50S ribosomal protein L18Ae	rpl18a	GO:0003735,GO:0005840,GO:0006412,GO:0070180,GO:1990904	
+Q57563	L-aspartate semialdehyde sulfurtransferase iron-sulfur subunit		GO:0016491	
+Q58133	HTH-type transcriptional regulator Ptr2	ptr2	GO:0043565	
+Q58239	Peptide chain release factor subunit 1	prf1	GO:0016149	
+Q58352	Probable ATP-dependent helicase MJ0942		GO:0003677,GO:0003678,GO:0005524,GO:0006139	
+Q58156	Uncharacterized protein MJ0746		GO:0005506,GO:0016491	
+Q58804	Uncharacterized protein MJ1409			
+Q58993	UPF0284 protein MJ1598		GO:0008939	
+Q60323	Uncharacterized protein MJ0017			
+Q60386	Uncharacterized transcriptional regulator MJ0080		GO:0003677,GO:0006355	
+F6BB32	Hypoxanthine/guanine phosphoribosyltransferase	hpt	GO:0004422,GO:0005737,GO:0006166,GO:0032264,GO:0043103,GO:0052657	2.4.2.8
+F6BC88	S-adenosyl-L-methionine-dependent tRNA 4-demethylwyosine synthase	taw1	GO:0005737,GO:0008033,GO:0046872,GO:0051539,GO:0102521	4.1.3.44
+F6BA69	Isopentenyl phosphate kinase		GO:0005524,GO:0008299,GO:0016301,GO:0016310,GO:0102043	2.7.4.26
+F6BB63	30S ribosomal protein S15	rps15	GO:0003735,GO:0006412	
+F6BBU0	N-(5'-phosphoribosyl)anthranilate isomerase	trpF	GO:0000162,GO:0004640	5.3.1.24
+F6BCQ4	tRNA-splicing endonuclease	endA	GO:0000213,GO:0003676,GO:0016829	4.6.1.16
+F6BD44	30S ribosomal protein S11	rps11	GO:0003735,GO:0006412	
+F6BEC9	6-carboxyhexanoate--CoA ligase	bioW	GO:0000287,GO:0005524,GO:0009102,GO:0042410	6.2.1.14
+F6BA83	Uncharacterized protein MJ1310		GO:0016021	
+F6BAG3	Uncharacterized protein MJ1551			
+F6BAK9	Uncharacterized protein MJ1254		GO:0016021	
+F6BAQ4	DUF169 domain-containing protein			
+F6BAU7	Uncharacterized protein MJ1404			
+F6BB37	Cell division cycle protein 48 homolog MJ1156		GO:0005524,GO:0016887	
+F6BBK9	Uncharacterized protein MJ0579			
+F6BCG1	Uncharacterized protein MJ0223			
+F6BDS1	DUF2098 domain-containing protein			
+F6BF57	F420_ligase domain-containing protein		GO:0016021	
+Q58499	(5-formylfuran-3-yl)methyl phosphate synthase	mfnB	GO:0016830,GO:2001120	4.2.3.153
+Q58444	DNA-directed RNA polymerase subunit Rpo2N	rpo2N	GO:0000428,GO:0003677,GO:0003899,GO:0005737,GO:0006351,GO:0032549	2.7.7.6
+Q58601	ATP phosphoribosyltransferase	hisG	GO:0000105,GO:0000287,GO:0003879,GO:0005524,GO:0005737	2.4.2.17
+Q58835	Shikimate kinase	aroK	GO:0004765,GO:0005524,GO:0005737,GO:0008652,GO:0009073,GO:0009423,GO:0016310	2.7.1.71
+Q59069	tRNA pseudouridine synthase A	truA	GO:0003723,GO:0031119,GO:0106029	5.4.99.12
+P54016	50S ribosomal protein L23	rpl23	GO:0003735,GO:0006412,GO:0019843	
+P54053	50S ribosomal protein L34e	rpl34e	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+Q57565	Signal recognition particle 54 kDa protein	srp54	GO:0003924,GO:0005525,GO:0006614,GO:0008312,GO:0048500	
+Q58032	V-type ATP synthase subunit D	atpD	GO:0005524,GO:0042777,GO:0046933,GO:0046961	
+Q58454	Uncharacterized protein MJ1054		GO:0004519,GO:0016539,GO:0051287	
+Q58611	Putative type I restriction enzyme MjaVIIIP endonuclease subunit		GO:0003677,GO:0005524,GO:0009035,GO:0009307	3.1.21.3
+Q58892	Uncharacterized metallohydrolase MJ1497		GO:0016787	
+Q58995	CDP-archaeol synthase	carS	GO:0005887,GO:0043338,GO:0046474	2.7.7.67
+Q57890	Uncharacterized protein MJ0448			
+Q58278	Uncharacterized protein MJ0868			
+Q58349	Uncharacterized protein MJ0939			
+Q58411	Uncharacterized protein MJ1005			
+Q58691	Uncharacterized protein MJ1295			
+Q58805	UPF0113 protein MJ1410		GO:0003723	
+Q58994	Uncharacterized protein MJ1599		GO:0003824	
+Q59059	UPF0210 protein MJ1665			
+F6BEA3	Tetrahydromethanopterin S-methyltransferase subunit A	mtrA	GO:0005886,GO:0006730,GO:0006814,GO:0016021,GO:0019386,GO:0030269,GO:0032259,GO:0050897	2.1.1.86
+F6BBU2	tRNA-t(6)A37 methylthiotransferase		GO:0035598,GO:0046872,GO:0051539,GO:0061712	2.8.4.5
+F6BCA9	Type II methyltransferase	mjaVM	GO:0003677,GO:0008170,GO:0009307,GO:0015667	2.1.1.113
+F6BD47	50S ribosomal protein L13	rpl13	GO:0003735,GO:0006412	
+F6BEU7	3-isopropylmalate dehydratase small subunit	leuD		
+F6BA84	Uncharacterized protein MJ1309		GO:0016021	
+F6BAQ5	Uncharacterized HIT-like protein MJ0866		GO:0003824	
+F6BAU9	UPF0107 protein Metig_1502			
+F6BB91	Uncharacterized protein MJ0292		GO:0016021	
+F6BBG8	Uncharacterized protein MJ0818		GO:0003676	
+F6BBY5	Uncharacterized protein MJ0770		GO:0003677,GO:0006310,GO:0015074	
+F6BCC1	Coenzyme F420 hydrogenase subunit alpha	frhA	GO:0008901,GO:0016151,GO:0050454,GO:0050660,GO:0051536	
+F6BCM1	Putative transketolase N-terminal section		GO:0004802,GO:0006082,GO:0044272,GO:1901576	
+F6BDW4	Uncharacterized protein MJ0779		GO:0005886,GO:0016021	
+F6BE46	Uncharacterized protein MJ1641		GO:0030643,GO:0045936	
+F6BE87	F420-dependent NADP reductase	fno	GO:0006740,GO:0050661,GO:0070967	
+F6BEJ1	Uncharacterized protein MJ0763			
+F6BEN7	GTP cyclohydrolase 1 type 2 homolog			
+F6BET5	Peptidyl-prolyl cis-trans isomerase		GO:0003755	5.2.1.8
+Q58487	Mevalonate kinase	mvk	GO:0000287,GO:0004496,GO:0005524,GO:0016310,GO:0019287	2.7.1.36
+Q58501	Bifunctional protein GlmU	glmU	GO:0003977,GO:0006048,GO:0019134	2.3.1.157,2.7.7.23
+Q58989	Phosphoserine phosphatase		GO:0006564,GO:0036424	3.1.3.3
+Q58841	Probable dihydroorotate dehydrogenase B (NAD(+)), electron transfer subunit	pyrK	GO:0009055,GO:0044205,GO:0046872,GO:0050660,GO:0051537	
+Q57566	Flavin prenyltransferase UbiX	ubiX	GO:0106141	2.5.1.129
+Q57750	Phosphoribosyl-ATP pyrophosphatase	hisE	GO:0000105,GO:0004636,GO:0005524,GO:0005737	3.6.1.31
+Q57931	Putative thymidylate synthase	thyA	GO:0004799,GO:0006231,GO:0006235,GO:0032259	2.1.1.-
+Q58033	N5-carboxyaminoimidazole ribonucleotide mutase	purE	GO:0006189,GO:0034023	5.4.99.18
+Q58612	Putative protein adenylyltransferase MJ1215			
+Q59001	Probable glycogen synthase	glgA	GO:0009011,GO:0033201	
+Q58088	Uncharacterized protein MJ0675		GO:0006596,GO:0016765	
+Q58554	Uncharacterized protein MJ1154			
+Q58807	UPF0288 protein MJ1412			
+F6BCB5	Probable S-methyl-5'-thioinosine phosphorylase		GO:0006166,GO:0017061	2.4.2.44
+F6BBU8	Nicotinamide-nucleotide adenylyltransferase		GO:0000309,GO:0005524,GO:0005737,GO:0009435	2.7.7.1
+F6BCR0	Ribosomal RNA small subunit methyltransferase Nep1	nep1	GO:0019843,GO:0070037,GO:0070475	2.1.1.-
+F6BD48	30S ribosomal protein S9	rps9	GO:0003735,GO:0006412	
+F6BDV8	5,10-methenyltetrahydromethanopterin hydrogenase	hmd	GO:0006730,GO:0019386,GO:0047068	1.12.98.2
+F6BEF2	DNA helicase	herA	GO:0003678,GO:0005524	3.6.4.12
+F6BAG5	Uncharacterized protein MJ1549			
+F6BAL1	Glyco_tran_28_C domain-containing protein		GO:0016758	
+F6BAQ6	Mu-like prophage protein Com			
+F6BAV0	Uncharacterized protein MJ1408		GO:0005525	
+F6BAZ1	50S ribosomal protein L30e	rpl30e	GO:0003723,GO:0003735,GO:0006412,GO:0022625	
+F6BBG9	Tripartite tricarboxylate transporter TctA family protein		GO:0016021	
+F6BBL2	Thioredoxin			
+F6BBU3	Agmatinase	speB	GO:0008783,GO:0046872	
+F6BBY6	Uncharacterized protein MJ0769			
+F6BC25	Putative ABC transporter permease protein MJ0876		GO:0022857	
+F6BCC2	Putative glycosyltransferase MJ1113		GO:0016780	
+F6BCH0	DUF22 domain-containing protein			
+F6BCM3	Putative transketolase C-terminal section		GO:0004802,GO:0006082,GO:0044272,GO:1901576	
+F6BCS0	Uncharacterized protein MJ0653		GO:0046872	
+F6BCW2	Uncharacterized transporter MJ1031		GO:0005886,GO:0016021,GO:0055085	
+F6BDW5	Uncharacterized protein MJ0778			
+F6BE47	ABC transporter permease			
+F6BEX8	Uncharacterized protein MJ0052			
+Q58530	Probable bifunctional tRNA threonylcarbamoyladenosine biosynthesis protein		GO:0000408,GO:0002949,GO:0004222,GO:0004674,GO:0004712,GO:0005506,GO:0005524,GO:0005737,GO:0006468,GO:0008270,GO:0061711,GO:0106310	2.3.1.234,2.7.11.1
+Q57733	Small heat shock protein HSP16.5			
+Q58502	Deoxyuridine 5'-triphosphate nucleotidohydrolase	dut	GO:0004170	
+Q58998	Ribose-5-phosphate isomerase A	rpiA	GO:0004751,GO:0009052	5.3.1.6
+Q58025	Manganese-dependent inorganic pyrophosphatase	ppaC	GO:0004427,GO:0005737,GO:0030145	3.6.1.1
+Q58258	Tetrahydromethanopterin S-methyltransferase subunit D	mtrD	GO:0005737,GO:0005886,GO:0006730,GO:0006814,GO:0012506,GO:0016021,GO:0019386,GO:0030269,GO:0032259	2.1.1.86
+Q58446	DNA-directed RNA polymerase subunit Rpo1C	rpo1C	GO:0000428,GO:0003677,GO:0003899,GO:0004519,GO:0005737,GO:0006351,GO:0016539	2.7.7.6
+Q58605	S-adenosylmethionine synthase	mat	GO:0000287,GO:0004478,GO:0005524,GO:0006556,GO:0006730	2.5.1.6
+Q60172	Glutamyl-tRNA reductase	hemA	GO:0008883,GO:0050661	1.2.1.70
+P54018	30S ribosomal protein S19	rps19	GO:0003735,GO:0006412,GO:0019843	
+P54055	30S ribosomal protein S8e	rps8e	GO:0003735,GO:0006412	
+Q57567	Uncharacterized protein MJ0103		GO:0003824,GO:0046872	
+Q57665	DNA/RNA-binding protein Alba	albA	GO:0003690,GO:0003723,GO:0005694,GO:0005737	
+Q57752	Probable carbonic anhydrase			
+Q58034	Putative L(+)-tartrate dehydratase subunit beta			
+Q58251	[Methyl-coenzyme M reductase subunit alpha]-arginine C-methyltransferase		GO:0046872	
+Q58362	Prefoldin subunit alpha 1	pfdA1	GO:0005737,GO:0006457,GO:0016272,GO:0051082	
+Q59005	Uncharacterized glycosyl hydrolase MJ1610			
+Q60332	Putative glycyl-radical enzyme activating enzyme MJ0021		GO:0046872	
+Q57894	Uncharacterized protein MJ0452			
+Q58023	Uncharacterized protein MJ0606		GO:0016021	
+Q58629	Uncharacterized protein MJ1232		GO:0003677,GO:0006355	
+Q59002	Uncharacterized glycosyltransferase MJ1607		GO:0016757	
+F6BB45	Polyamine aminopropyltransferase	speE	GO:0004766,GO:0008295	2.5.1.16
+F6BDC2	DNA-directed RNA polymerase subunit Rpo11	rpo11	GO:0000428,GO:0003677,GO:0003899,GO:0005737,GO:0006351,GO:0046983	2.7.7.6
+F6BEC2	Isopentenyl-diphosphate delta-isomerase	fni	GO:0000287,GO:0004452,GO:0005737,GO:0008299,GO:0010181,GO:0016491,GO:0070402	5.3.3.2
+F6BA81	CRISPR-associated endonuclease Cas1	cas1	GO:0003677,GO:0004520,GO:0043571,GO:0046872,GO:0051607	3.1.-.-
+F6BAP3	FeMo cofactor biosynthesis protein NifB	nifB	GO:0009399,GO:0046872	
+F6BCC3	Dolichyl-phosphooligosaccharide-protein glycotransferase	aglB	GO:0004576,GO:0006486,GO:0016021,GO:0046872	2.4.99.21
+F6BCR2	5'-nucleotidase SurE	surE	GO:0000166,GO:0005737,GO:0046872,GO:0106411	3.1.3.5
+F6BDG1	tRNA (guanine(26)-N(2))-dimethyltransferase	trm1	GO:0000049,GO:0004809	2.1.1.216
+F6BEF3	Putative adenylate kinase		GO:0004017,GO:0005524,GO:0016310,GO:0016887	2.7.4.3
+F6BEV4	Quinolinate synthase	nadA	GO:0005737,GO:0008987,GO:0046872,GO:0051539	2.5.1.72
+F6BA86	Hydrogenase		GO:0016021	
+F6BAC2	Preprotein translocase subunit SecG	secG	GO:0015031,GO:0016021	
+F6BAL3	Uncharacterized protein MJ1257		GO:0003723,GO:0008168,GO:0032259	
+F6BAQ7	Permease		GO:0005886,GO:0016021	
+F6BAZ8	Putative NADH oxidase		GO:0045454,GO:0050660	
+F6BB42	tRNA (adenine(57)-N(1)/adenine(58)-N(1))-methyltransferase TrmI	trmI	GO:0016429,GO:0031515	
+F6BBU4	THUMP domain-containing protein			
+F6BCC4	Putative nickel insertion protein		GO:0016151,GO:0016829	
+F6BCH2	Coenzyme gamma-F420-2:alpha-L-glutamate ligase	cofF	GO:0005524,GO:0036211,GO:0046872	
+F6BCS1	SAM-dependent chlorinase/fluorinase			
+F6BD13	Proteasome assembly chaperone family protein			
+F6BDW7	Uncharacterized protein MJ0776		GO:0005524,GO:0046872	
+F6BE07	TIGR00153 family protein			
+F6BEE5	UPF0201 protein Metig_0045			
+F6BEX9	Uncharacterized protein MJ0053			
+F6BF19	Pyruvate synthase subunit PorD	porD	GO:0016625,GO:0051539	
+Q59034	tRNA (pseudouridine(54)-N(1))-methyltransferase	trmY	GO:0005737,GO:0008175,GO:0008757	2.1.1.257
+Q57635	DNA ligase	lig	GO:0003677,GO:0003910,GO:0005524,GO:0006281,GO:0006310,GO:0007049,GO:0046872,GO:0051301,GO:0071897	6.5.1.1
+Q58030	Endonuclease III	nth	GO:0003677,GO:0046872,GO:0051539,GO:0140078	4.2.99.18
+Q58448	Elongation factor 2	fusA	GO:0003746,GO:0003924,GO:0005525,GO:0005737	
+Q58623	Putative cation-transporting ATPase MJ1226		GO:0005524,GO:0016021,GO:0016887	
+Q60173	Enolase	eno	GO:0000015,GO:0000287,GO:0004634,GO:0005576,GO:0006096,GO:0009986	4.2.1.11
+P54019	30S ribosomal protein S13	rps13	GO:0003735,GO:0006412,GO:0019843	
+P54056	50S ribosomal protein L39e	rpl39e	GO:0003735,GO:0006412	
+Q57936	Uncharacterized protein MJ0516			
+Q58490	Cobalt transport protein CbiN	cbiN	GO:0005886,GO:0009236,GO:0015087,GO:0016021	
+Q60334	Protein archease		GO:0005509,GO:0006388	
+Q57560	Uncharacterized protein MJ0095			
+Q57895	Uncharacterized protein MJ0453			
+Q57960	Uncharacterized protein MJ0540			
+Q58024	Uncharacterized protein MJ0607			
+Q58757	Uncharacterized protein MJ1362		GO:0016021	
+F6BB46	S-adenosylmethionine decarboxylase proenzyme	speH	GO:0004014,GO:0008295	4.1.1.50
+F6BEC6	ATP-dependent dethiobiotin synthetase BioD	bioD	GO:0000287,GO:0004141,GO:0005524,GO:0009102	6.3.3.3
+F6BBW0	Signal recognition particle 19 kDa protein	srp19	GO:0008312,GO:0048500	
+F6BCC5	tRNA (cytidine(56)-2'-O)-methyltransferase		GO:0002128,GO:0005737,GO:0008175	2.1.1.206
+F6BD68	Arginine--tRNA ligase	argS	GO:0004814,GO:0005524,GO:0005737,GO:0006420	6.1.1.19
+F6BDG8	Ribosome biogenesis protein Nop10	nop10	GO:0001522,GO:0006364,GO:0030515,GO:1990904	
+F6BEF6	Phosphoglycerate kinase	pgk	GO:0004618,GO:0005524,GO:0006096	2.7.2.3
+F6BAC3	Uncharacterized protein MJ0912			
+F6BAV2	Regulator_TrmB domain-containing protein			
+F6BB94	CoB--CoM heterodisulfide reductase subunit B 1	hdrB1	GO:0015948,GO:0051912	
+F6BBD3	Uncharacterized ZPR1-like protein MJ0530		GO:0008270	
+F6BBH6	Putative UDP-glucose 4-epimerase			
+F6BBU5	Uncharacterized protein MJ0094			
+F6BC73	THUMP domain-containing protein	trmG10	GO:0004809	
+F6BCM6	Uncharacterized protein MJ0699			
+F6BCS2	Uncharacterized protein MJ1650		GO:0043023	
+F6BD71	Fe(2+) transporter FeoB		GO:0005525,GO:0005886,GO:0015093,GO:0016021	
+F6BDD7	Ribosome maturation protein SDO1 homolog		GO:0042256	
+F6BDI0	Peptidase_C25 domain-containing protein			
+F6BDS6	Uncharacterized protein MJ0227		GO:0005524,GO:0016310,GO:0046917	
+F6BDW9	Uncharacterized HTH-type transcriptional regulator MJ0774		GO:0003700	
+F6BET9	UPF0212 protein Metig_1351			
+F6BF20	Pyruvate synthase subunit PorA	porA	GO:0019164	
+Q57638	Protein pelota homolog	pelA	GO:0004519,GO:0005737,GO:0046872,GO:0070481,GO:0070966,GO:0071025	3.1.-.-
+Q57840	DNA-directed RNA polymerase subunit Rpo7	rpo7	GO:0000428,GO:0003677,GO:0003899,GO:0006352	2.7.7.6
+Q58036	7,8-dihydro-6-hydroxymethylpterin dimethyltransferase		GO:0008168,GO:0046872,GO:0051539	
+Q58260	Tetrahydromethanopterin S-methyltransferase subunit B	mtrB	GO:0005886,GO:0006730,GO:0016021,GO:0019386,GO:0030269,GO:0032259	2.1.1.86
+Q58456	Putative asparagine synthetase [glutamine-hydrolyzing] 2		GO:0004066,GO:0005524,GO:0006541	6.3.5.4
+Q58625	Translation initiation factor 5A	eif5a	GO:0003723,GO:0003743,GO:0003746,GO:0005737,GO:0043022,GO:0045901,GO:0045905	
+Q58860	Threonine synthase	thrC	GO:0004795,GO:0009088,GO:0030170	4.2.3.1
+Q60174	Argininosuccinate synthase	argG	GO:0004055,GO:0005524,GO:0005737,GO:0006526	6.3.4.5
+P54020	30S ribosomal protein S4	rps4	GO:0003735,GO:0006412,GO:0015935,GO:0019843	
+Q57669	V-type ATP synthase beta chain	atpB	GO:0005524,GO:0042777,GO:0046933	
+Q57766	Formylmethanofuran--tetrahydromethanopterin formyltransferase	ftr	GO:0005737,GO:0006730,GO:0019386,GO:0030270	2.3.1.101
+Q58271	Ribonuclease J	rnj	GO:0003723,GO:0004534,GO:0005737,GO:0006401,GO:0008270	3.1.-.-
+Q58730	Putative UTP--glucose-1-phosphate uridylyltransferase		GO:0003983,GO:0006011,GO:0009058	2.7.7.9
+Q59014	Putative biotin ligase		GO:0004077,GO:0036211	
+Q57653	Uncharacterized hydrogenase expression/formation protein MJ0200			
+Q58633	Uncharacterized protein MJ1236		GO:0003723	
+Q58870	Uncharacterized protein MJ1475			
+F6BB52	Dihydroxy-acid dehydratase	ilvD	GO:0000287,GO:0004160,GO:0009097,GO:0009099,GO:0051537	4.2.1.9
+F6BCF2	tRNA-guanine(15) transglycosylase	tgtA	GO:0003723,GO:0016763,GO:0046872	2.4.2.48
+F6BDD9	DNA-directed RNA polymerase subunit Rpo12	rpo12	GO:0003677,GO:0003899,GO:0006351	2.7.7.6
+F6BED7	NH(3)-dependent NAD(+) synthetase	nadE	GO:0003952,GO:0004359,GO:0005524,GO:0005737,GO:0008795,GO:0009435,GO:0046872	6.3.1.5
+F6BAS4	DNA double-strand break repair Rad50 ATPase	rad50	GO:0005524,GO:0006302,GO:0008270,GO:0016887,GO:0140664	
+F6BB88	D-aminoacyl-tRNA deacylase	dtdA	GO:0008270,GO:0019478,GO:0051499	3.1.1.96
+F6BBW1	Magnesium transport protein CorA	corA	GO:0015087,GO:0015095	
+F6BCD1	Hydrogenase maturation factor HypA	hypA	GO:0008270,GO:0016151,GO:0051604	
+F6BDW8	GTP cyclohydrolase MptA	mptA	GO:0003933	3.5.4.39
+F6BEG0	Histidine--tRNA ligase	hisS	GO:0000105,GO:0004821,GO:0005524,GO:0005737,GO:0006427	6.1.1.21
+F6BEV8	Adenine deaminase	ade	GO:0000034,GO:0006146	3.5.4.2
+F6BA88	Uncharacterized protein MJ1307		GO:0005886,GO:0016021	
+F6BAC4	Uncharacterized protein MJ1016			
+F6BAV3	Putative protease MJ0651		GO:0006508	
+F6BB44	UDP-N-acetylglucosamine 2-epimerase	wecB	GO:0008761	
+F6BB95	Uncharacterized protein MJ0742		GO:0051920	
+F6BBD4	Uncharacterized HTH-type transcriptional regulator MJ0529		GO:0003677	
+F6BBL5	Ferredoxin-type protein FwdE	fwdE	GO:0016491	
+F6BCC7	Chorismate--pyruvate lyase			
+F6BCH8	Uncharacterized protein MJ0491			
+F6BCM7	Uncharacterized protein MJ0162			
+F6BD18	DUF354 domain-containing protein			
+F6BDI1	AAA_31 domain-containing protein			
+F6BDX0	HTH arsR-type domain-containing protein			
+F6BEE7	DUF2655 domain-containing protein			
+F6BEP1	Uncharacterized HTH-type transcriptional regulator MJ1398		GO:0003700	
+Q58597	Threonine--tRNA ligase	thrS	GO:0000049,GO:0002161,GO:0004829,GO:0005524,GO:0005737,GO:0006435,GO:0008270	6.1.1.3
+Q57764	Pyruvoyl-dependent arginine decarboxylase	pdaD	GO:0006527,GO:0008792	4.1.1.19
+Q58540	2-phosphosulfolactate phosphatase	comB	GO:0000287,GO:0019295,GO:0050532	3.1.3.71
+Q57646	Regulatory protein Cgi121	cgi121		
+Q58043	IMP cyclohydrolase	purO	GO:0003937,GO:0006189	3.5.4.10
+Q58473	RIO-type serine/threonine-protein kinase Rio2	rio2	GO:0004674,GO:0005524,GO:0006468,GO:0106310	2.7.11.1
+Q58868	Methionine synthase	metE	GO:0003871,GO:0008270,GO:0009086	
+P54058	50S ribosomal protein L40e	rpl40e	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+Q57671	V-type ATP synthase subunit F	atpF	GO:0005524,GO:0042777,GO:0046933,GO:0046961	
+Q57768	Probable GTP-binding protein EngB	engB	GO:0000917,GO:0005525,GO:0046872	
+Q58047	Putative phosphate permease MJ0630		GO:0005315,GO:0016021	
+Q58370	Probable transaldolase	tal	GO:0004801,GO:0005737,GO:0005975,GO:0006098,GO:0016832	2.2.1.2
+Q58492	Putative nickel/cobalt efflux system MJ1092			
+Q57654	Uncharacterized protein MJ0201			
+Q58290	Uncharacterized protein MJ0880		GO:0016021	
+Q58636	Uncharacterized protein MJ1239			
+Q59008	Uncharacterized protein MJ1613			
+Q59071	UPF0056 membrane protein		GO:0005886,GO:0016021	
+F6BB53	Diaminopimelate decarboxylase	lysA	GO:0008836,GO:0009089,GO:0030170	4.1.1.20
+F6BED9	Serine hydroxymethyltransferase	glyA	GO:0004372,GO:0005737,GO:0019264,GO:0030170,GO:0035999	2.1.2.-
+F6BAS8	Selenocysteine-specific elongation factor	selB	GO:0001514,GO:0003723,GO:0003746,GO:0003924,GO:0005525,GO:0005737	
+F6BBW5	Replication factor C large subunit	rfcL	GO:0003689,GO:0005524,GO:0006260,GO:0016887	
+F6BD75	Adenylate kinase	adkA	GO:0004017,GO:0005524,GO:0005737,GO:0016310	2.7.4.3
+F6BDH0	30S ribosomal protein S27e	rps27e	GO:0003735,GO:0006412,GO:0008270	
+F6BEW6	Cobalt-precorrin-5B C(1)-methyltransferase	cbiD	GO:0009236,GO:0032259,GO:0043780,GO:0046140	2.1.1.195
+F6BA89	Energy-converting hydrogenase B subunit J		GO:0016021	
+F6BAG9	Uncharacterized HTH-type transcriptional regulator MJ1545		GO:0003677	
+F6BAL7	Uncharacterized protein MJ1187			
+F6BBD6	Membrane-bound hydrogenase subunit ehaB		GO:0016021	
+F6BBH9	YkgJ family cysteine cluster protein			
+F6BBL6	Polyferredoxin protein FwdF	fwdF	GO:0016491	
+F6BC76	Tyramine--L-glutamate ligase	mfnD	GO:0005524,GO:0046872	
+F6BCH9	DUF92 domain-containing protein		GO:0016021	
+F6BCS5	Uncharacterized ABC transporter ATP-binding protein MJ0873	livG	GO:0005524	
+F6BD19	Uncharacterized protein MJ0188			
+F6BDI4	Uncharacterized protein MJ0967			
+F6BDS8	DUF5673 domain-containing protein		GO:0016021	
+F6BE95	Methyl-coenzyme M reductase operon protein C	mcrC	GO:0015948	
+F6BEU1	CBS domain-containing protein MJ0729			
+Q58626	Pyruvate carboxylase subunit A	pycA	GO:0004736,GO:0005524,GO:0046872	
+Q59063	CRISPR system Cms endoribonuclease Csm3	csm3	GO:0004519,GO:0051607	
+Q57648	DNA-directed RNA polymerase subunit Rpo3	rpo3	GO:0000428,GO:0003677,GO:0003899,GO:0006351,GO:0046983	2.7.7.6
+Q58475	Anthranilate synthase component 1	trpE	GO:0000162,GO:0004049,GO:0046872	4.1.3.27
+Q58646	3-dehydroquinate synthase	aroB'	GO:0003856,GO:0008652,GO:0009073,GO:0051287,GO:0102042	1.4.1.24
+Q60180	Tryptophan synthase alpha chain	trpA	GO:0004834	4.2.1.20
+P54059	30S ribosomal protein S3Ae	rps3ae	GO:0003735,GO:0005840,GO:0006412,GO:1990904	
+Q57672	V-type ATP synthase subunit C	atpC	GO:0005524,GO:0033179,GO:0042777,GO:0046933,GO:0046961	
+Q57770	Elongation factor 1-alpha	tuf	GO:0003746,GO:0003924,GO:0005525,GO:0005737	
+Q58048	Putative hydrogenase maturation protease MJ0631		GO:0008047	
+Q58151	Putative superoxide reductase		GO:0005506	
+Q58624	Putative glycyl-radical enzyme activating enzyme MJ1227		GO:0046872	
+Q58905	tRNA(Phe) 7-((3-amino-3-carboxypropyl)-4-demethylwyosine(37)-N(4))-methyltransferase	taw3	GO:0008175,GO:0031591	2.1.1.282
+Q59018	UPF0292 protein MJ1624			
+Q57966	Uncharacterized protein MJ0546		GO:0016021	
+Q58035	UPF0235 protein MJ0618			
+Q58220	Protein MJ0810			
+Q58359	Uncharacterized protein MJ0949		GO:0008270,GO:0016787	
+Q58486	Uncharacterized protein MJ1086			
+Q58563	UPF0173 metal-dependent hydrolase MJ1163		GO:0016787	
+Q58941	UPF0219 protein MJ1546			
+Q59009	Uncharacterized protein MJ1614			
+F6BCJ0	Aspartate-semialdehyde dehydrogenase	asd	GO:0004073,GO:0009088,GO:0009089,GO:0009097,GO:0019877,GO:0046983,GO:0050661,GO:0051287,GO:0071266	1.2.1.11
+F6BCI1	7,8-didemethyl-8-hydroxy-5-deazariboflavin synthase	cofG	GO:0005506,GO:0016841,GO:0051539	4.3.1.32
+F6BEE3	Selenide, water dikinase	selD	GO:0000287,GO:0004756,GO:0005524,GO:0016260,GO:0016310	2.7.9.3
+F6BB97	Rubredoxin		GO:0005506,GO:0009055	
+F6BCD6	30S ribosomal protein S19e	rps19e	GO:0003735,GO:0006412	
+F6BCV0	2-(3-amino-3-carboxypropyl)histidine synthase	dph2	GO:0017183,GO:0046872,GO:0051539,GO:0090560	2.5.1.108
+F6BDH1	50S ribosomal protein L44e	rpl44e	GO:0003735,GO:0006412,GO:0008270,GO:0070180	
+F6BDY3	tRNA uridine(34) acetyltransferase		GO:0000049,GO:0046872,GO:0051539,GO:0106261	
+F6BEG5	Carbamoyl-phosphate synthase (glutamine-hydrolyzing)	carB2	GO:0004088,GO:0005524,GO:0006526,GO:0044205,GO:0046872	6.3.5.5
+F6BA90	Uncharacterized polyferredoxin-like protein MJ1303		GO:0016491	
+F6BAH0	Uncharacterized protein MJ1365		GO:0016021	
+F6BB49	3-isopropylmalate dehydrogenase			
+F6BBD7	DUF2109 domain-containing protein			
+F6BBI0	DsrE family protein			
+F6BBL7	Polyferredoxin protein FwdG	fwdG	GO:0016491	
+F6BD74	DUF106 domain-containing protein		GO:0016021	
+F6BDI5	UPF0146 protein Metig_1004			
+F6BDX2	Uncharacterized MCM-type protein MJ1489		GO:0005524	
+F6BE13	Probable cobalt-precorrin-2 C(20)-methyltransferase	cbiL	GO:0009236,GO:0030788,GO:0032259,GO:0043781	
+F6BEE9	Prephenate dehydratase	pheA	GO:0004664,GO:0009094	
+F6BEY3	Uncharacterized ATP-binding protein MJ1006		GO:0005524	
