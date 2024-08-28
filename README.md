@@ -55,7 +55,7 @@ For example, to redo the analysis perform in the article, you can install SPARTA
 
 ### Pipeline and esmecata installation
 
-To use the `pipeline` or `esmecata` subcommands (to create functional profile from taxonomic affiliations), you need to install `mmseqs` and potentially `eggnog-mapper`.  This can be done with `conda`:
+To use the `pipeline` or `esmecata` subcommands (to create functional profile from taxonomic affiliations), you need to install `mmseqs` and potentially `eggnog-mapper`, except if you use the `--esmecata-results` option if you already have results from EsMeCaTa.  This can be done with `conda`:
 
 ```sh
 conda install mmseqs2 eggnog-mapper -c conda-forge -c bioconda
@@ -202,6 +202,8 @@ The following arguments can be used with `sparta esmecata`:
 - `keep_temp` : This option allows the user to keep the contents of the 'Outputs_temp' folder at the end of the run.
 
 - `update_ncbi` : This option allows the user to force an update of the local NCBI database (taxdump.tar.gz). **This option is particularly recommended if you are running EsMeCaTa for the first time.**
+
+- `esmecata_results`: If a run of EsMeCaTa on the dataset has already been performed, it is possible to give the `annotation_reference` with this option to avoid launching EsMeCaTa and directly compute the functional profile.
 
 ### `sparta pipeline`
 
