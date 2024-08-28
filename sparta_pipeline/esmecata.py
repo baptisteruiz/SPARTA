@@ -106,7 +106,7 @@ def formatting_step(abundance_file, output_folder, scaling='no scaling'):
         os.mkdir(output_folder)
 
     dataset_full = pd.read_csv(abundance_file, header = None, sep = "\t")
-    esmecata_input_path = os.path.join(output_folder, 'sofa_calculation.tsv')
+    esmecata_input_path = os.path.join(output_folder, 'esmecata_results.tsv')
     esmecata_input, otu_table_stripped = pre_formatting(dataset_full, esmecata_input_path)
     if scaling == "relative":
         otu_table_stripped = absolute_to_relative(otu_table_stripped)

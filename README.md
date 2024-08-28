@@ -55,7 +55,7 @@ For example, to redo the analysis perform in the article, you can install SPARTA
 
 ### Pipeline and esmecata installation
 
-To use the `pipeline` or `esmecata` subcommands (to create functional profile from taxonomic affiliations), you need to install `mmseqs` and potentially `eggnog-mapper`, except if you use the `--esmecata-results` option if you already have results from EsMeCaTa.  This can be done with `conda`:
+To use the `pipeline` or `esmecata` subcommands (to create functional profile from taxonomic affiliations), you need to install `mmseqs` and potentially `eggnog-mapper`.  This can be done with `conda`:
 
 ```sh
 conda install mmseqs2 eggnog-mapper -c conda-forge -c bioconda
@@ -91,6 +91,8 @@ Three subcommands can be used:
 - `sparta classification`: to run classification on functional profile and labels to find functions of importance allowing to classify the labels.
 - `sparta esmecata`: to run esmecata on taxonomic affiliations and taxonomic profile to create functional profile.
 - `sparta pipeline`: to run `sparta esmecata` then `sparta classification`.
+
+All subcommands require an output folder name be specified, using the `-o` argument.
 
 ### `sparta classification`
 
@@ -212,6 +214,20 @@ Use [esmecata](https://github.com/AuReMe/esmecata/tree/main) to predict function
      
 
 ## OUTPUTS DESCRIPTION:
+
+### For the `esmecata` command:
+
+```
+output_folder (given by the -o argument):
+        └── functional_occurrence.tsv: a csv file indicating the occurrence of functions in organisms.
+        └── otu_table_stripped.tsv: a csv file indicating the abundance of organisms in samples, after filtering of the input metadata.
+        └── taxonomic_affiliations.tsv: a csv file indicating the taxonomic affiliations of the organisms
+        └── SoFA_table.csv: functional profile calculated from the taxonomic input
+	└── stopwatch.txt: Records of the duration of the process, divided by step.
+        └── EsMeCaTa_outputs: outputs of the EsMeCaTa pipeline, only the results of the 'annotation' step are kept for storage efficiency.
+```
+
+### For the `classification` command:
 ```
 output_folder (given by the -o argument):
         └── median_OTU_vs_SoFA_(best_vs_best).png: graphical representation of the classification performances (median ROC AUC per run) at the optimal selective iteration for both taxonomic and functional profiles. Both performance 
@@ -250,8 +266,24 @@ output_folder (given by the -o argument):
                     └── Same outputs as 'All iterations', but only for the level of selection that gives the best classification performances for the functional and taxonomic profiles
 ```
 ### Other outputs:
-    - EsMeCaTa_outputs: outputs of the EsMeCaTa pipeline, only the results of the 'annotation' step are kept for storage efficiency. These outputs can be re-used from one application of the pipeline to a dataset to another.
-    - data: enzyme and GO OBO databases, for reference. Only downloaded once.
+	- data: enzyme and GO OBO databases, for reference. Only downloaded once.
+    
+## REPRODUCTION OF THE ARTICLE RESULTS:
+
+In order to reproduce the results presented in the SPARTA article, the user may run the following commands, using the files given in the Inputs directory
+
+### EsMeCaTa:
+
+Using the files included in each 'dataset' directory in the 'esmecata_test' folder, as well as the associated 'annotation_reference' folders for an exact match of the EsMeCaTa outputs :
+
+`sparta esmecata -p abundance_dataset.txt -t tf_igm --esmecata-results local/path/to/annotation_reference -o output_folder_esmecata`
+
+### Classification:
+
+Using the contents of each 'dataset' directory in the 'classification_test' folder:
+
+`sparta classification -fp dataset/dataset_functional_profile.csv -l dataset/dataset_label.csv -ta dataset/dataset_esmecata.tsv -fo dataset/dataset_annotation.tsv -tp dataset/dataset_taxonomic_profile.tsv --reference_test_sets dataset/dataset_test_sets.csv -o output_folder_classification`
+
 
 ## STEPS OF THE PIPELINE:
 
