@@ -7,10 +7,9 @@ Created on Sat Jul 20 11:49:20 2024
 
 import os
 
-from sparta_pipeline.iteration import run_iterate
 from sparta_pipeline.classification import run_sparta_classification
 
-def test_preselection_run_sparta_classification(seed_init = 0):
+def test_preselection_run_sparta_classification(seed_init=0):
     functional_profile_filepath = os.path.join('input', 'test_functional_profile.csv')
     label_filepath = os.path.join('input', 'test_label.csv')
     output_folder = 'output_folder' + "_seed" + str(seed_init)

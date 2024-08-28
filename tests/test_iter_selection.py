@@ -2,10 +2,8 @@ import pandas as pd
 import json
 from collections import defaultdict
 from io import StringIO
-import numpy as np
 
 import os
-import shutil
 
 from sparta_pipeline.visualize import get_median_perfs_and_best_iter
 
