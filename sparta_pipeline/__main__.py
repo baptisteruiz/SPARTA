@@ -60,6 +60,8 @@ def main():
     parent_parser_keep_temp.add_argument("--keep_temp", default=False, action='store_true', help="This option allows the user to keep the contents of the 'Outputs_temp' folder at the end of the run.")
     parent_parser_update_ncbi = argparse.ArgumentParser(add_help=False)
     parent_parser_update_ncbi.add_argument("--update_ncbi", default=False, action='store_true', help="This option allows the user to force an update of the local NCBI database (taxdump.tar.gz).")
+    parent_parser_esmecata_results = argparse.ArgumentParser(add_help=False)
+    parent_parser_esmecata_results.add_argument("--esmecata-results", default=None, help="Path to annotation result from EsMeCaTa pipeline (corresponding to annotation_reference folder). By giving it, SPARTA will compute the functional profiles from these files instead of launching esmecata.")
 
     # Classification arguments.
     # Required arguments for functional profile.
@@ -115,7 +117,8 @@ def main():
             parent_parser_m, parent_parser_v, parent_parser_e,
             parent_parser_reference_test_sets, parent_parser_esmecata_relaunch,
             parent_parser_keep_temp, parent_parser_update_ncbi, parent_parser_seed,
-            parent_parser_preselected_organisms, parent_parser_preselected_annotations
+            parent_parser_preselected_organisms, parent_parser_preselected_annotations,
+            parent_parser_esmecata_results
             ],
         allow_abbrev=False)
 
@@ -125,7 +128,7 @@ def main():
         parents=[
             parent_parser_p, parent_parser_o,
             parent_parser_e, parent_parser_esmecata_relaunch, parent_parser_s,
-            parent_parser_update_ncbi, parent_parser_t
+            parent_parser_update_ncbi, parent_parser_t, parent_parser_esmecata_results
             ],
         allow_abbrev=False)
 
@@ -180,10 +183,12 @@ def main():
                             args_passed.classifiers, args_passed.method, args_passed.variable_ranking, args_passed.keep_temp, args_passed.seed,
                             args_passed.preselected_organisms, args_passed.preselected_annotations)
     elif args_passed.cmd == 'esmecata':
-        run_esmecata(args_passed.taxon_abundance, args_passed.output, args_passed.treatment, args_passed.scaling, args_passed.esmecata_relaunch, args_passed.eggnog, args_passed.update_ncbi)
+        run_esmecata(args_passed.taxon_abundance, args_passed.output, args_passed.treatment, args_passed.scaling, args_passed.esmecata_relaunch, args_passed.eggnog, args_passed.update_ncbi,
+                     args_passed.esmecata_results)
     elif args_passed.cmd == 'pipeline':
         functional_profile_path, esmecata_input_path, functional_occurrence_path, otu_table_stripped_filepath = run_esmecata(args_passed.taxon_abundance, args_passed.output, args_passed.treatment,
-                                                                                                                    args_passed.scaling, args_passed.esmecata_relaunch, args_passed.eggnog, args_passed.update_ncbi)
+                                                                                                                    args_passed.scaling, args_passed.esmecata_relaunch, args_passed.eggnog, args_passed.update_ncbi,
+                                                                                                                    args_passed.esmecata_results)
 
         run_sparta_classification(functional_profile_path, args_passed.label, args_passed.output, runs, iterations,
                                 esmecata_input_path, functional_occurrence_path, otu_table_stripped_filepath, args_passed.reference_test_sets,

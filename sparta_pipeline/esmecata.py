@@ -470,7 +470,8 @@ def create_dataset_annotation_file(annotation_reference_folder, dataset_annotati
     return dataset_annotation
 
 
-def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no scaling', esmecata_relaunch=None, eggnog_path=None, update_ncbi=None):
+def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no scaling', esmecata_relaunch=None, eggnog_path=None, update_ncbi=None,
+                 esmecata_results_path=None):
     """ Run the esmecata part of SPARTA, to infer functions from taxonomic affiliations.
 
     Args:
@@ -482,6 +483,7 @@ def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no 
                                     This is particularly useful if a previous run of the pipeline was botched at this step.
         eggnog_path (str): Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launched with the 'UniProt' workflow by default.
         update_ncbi (bool): his option allows the user to force an update of the local NCBI database (taxdump.tar.gz).
+        esmecata_results (str): path to the result folder (annotation_reference folder) of esmecata on this dataset.
     """
     ## Formatting step
     date_time_format = datetime.now()
@@ -507,27 +509,40 @@ def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no 
     esmecata_output_folder = os.path.join(output_folder, 'EsMeCaTa_outputs')
     annotation_reference_folder = os.path.join(esmecata_output_folder, 'esmecata_outputs_annots', 'annotation_reference')
 
-    if os.path.isdir(esmecata_output_folder):
-        if esmecata_relaunch is None:
-            annotation_reference_folder = os.path.join(output_folder, 'EsMeCaTa_outputs', 'esmecata_outputs_annots', 'annotation_reference')
-            reference_proteins_consensus_fasta_folder = os.path.join(output_folder, 'EsMeCaTa_outputs', 'esmecata_outputs_clustering', 'reference_proteins_consensus_fasta')
-            proteomes_tax_id = os.path.join(output_folder, 'EsMeCaTa_outputs', 'esmecata_outputs_clustering', 'proteome_tax_id.tsv')
-            check_outputs, empty_ids = check_annotation(reference_proteins_consensus_fasta_folder, annotation_reference_folder, proteomes_tax_id)
-            if check_outputs is False:
-                esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi)
-            else:
-                logger.info('An EsMeCaTa output has been found for your dataset. This output will be used for the rest of the pipeline. If you wish to re-launch EsMeCaTa, please remove the existing output before launching SPARTA.')
-        else:
-            logger.info('Re-launching EsMeCaTa over previous results')
-            if os.path.isdir(annotation_reference_folder):
-                #Removing previous 'annotations_reference' output to ensure the final step of EsMeCaTa does not malfunction
-                shutil.rmtree(annotation_reference_folder, ignore_errors=True)
-            esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi)
+    # If esmecata has already been run and results are given, just copy annotation_reference folder.
+    if esmecata_results_path is not None:
+        # If esmecata_results_path is the folder annotation_reference, copy it.
+        if os.path.isdir(esmecata_results_path):
+            if not os.path.exists(esmecata_output_folder):
+                os.mkdir(esmecata_output_folder)
+                os.mkdir(os.path.join(esmecata_output_folder, 'esmecata_outputs_annots'))
+            if not os.path.exists(annotation_reference_folder):
+                logger.info('Copy already computed esmecata results.')
+                shutil.copytree(esmecata_results_path, annotation_reference_folder)
 
+    # Else, launch esmecata.
     else:
-        os.mkdir(esmecata_output_folder)
-        logger.info('Launching EsMeCaTa')
-        esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi)
+        if os.path.isdir(esmecata_output_folder):
+            if esmecata_relaunch is None:
+                annotation_reference_folder = os.path.join(output_folder, 'EsMeCaTa_outputs', 'esmecata_outputs_annots', 'annotation_reference')
+                reference_proteins_consensus_fasta_folder = os.path.join(output_folder, 'EsMeCaTa_outputs', 'esmecata_outputs_clustering', 'reference_proteins_consensus_fasta')
+                proteomes_tax_id = os.path.join(output_folder, 'EsMeCaTa_outputs', 'esmecata_outputs_clustering', 'proteome_tax_id.tsv')
+                check_outputs, empty_ids = check_annotation(reference_proteins_consensus_fasta_folder, annotation_reference_folder, proteomes_tax_id)
+                if check_outputs is False:
+                    esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi)
+                else:
+                    logger.info('An EsMeCaTa output has been found for your dataset. This output will be used for the rest of the pipeline. If you wish to re-launch EsMeCaTa, please remove the existing output before launching SPARTA.')
+            else:
+                logger.info('Re-launching EsMeCaTa over previous results')
+                if os.path.isdir(annotation_reference_folder):
+                    #Removing previous 'annotations_reference' output to ensure the final step of EsMeCaTa does not malfunction
+                    shutil.rmtree(annotation_reference_folder, ignore_errors=True)
+                esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi)
+
+        else:
+            os.mkdir(esmecata_output_folder)
+            logger.info('Launching EsMeCaTa')
+            esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi)
 
     ####Time measurement####
     date_time_esmecata = datetime.now()
