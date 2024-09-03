@@ -16,12 +16,12 @@ import multiprocessing
 from esmecata import __version__ as esmecata_version
 esmecata_version = tuple(esmecata_version.split('.'))
 
-if esmecata_version < ('0', '5', '0') == True:
+if esmecata_version < ('0', '5', '0'):
     from esmecata.proteomes import retrieve_proteomes
     from esmecata.clustering import make_clustering
     from esmecata.annotation import annotate_proteins
     from esmecata.eggnog import annotate_with_eggnog
-elif esmecata_version >= ('0', '5', '0') == True:
+elif esmecata_version >= ('0', '5', '0'):
     from esmecata.core.proteomes import retrieve_proteomes
     from esmecata.core.clustering import make_clustering
     from esmecata.core.annotation import annotate_proteins
