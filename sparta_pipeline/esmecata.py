@@ -367,7 +367,7 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
         if os.path.exists(esmecata_cluster_out):
             logger.info('Previous incomplete iteration of the clustering step found: deleting and starting over')
             shutil.rmtree(esmecata_cluster_out, ignore_errors=True)
-        if esmecata_version >= ('0', '5', '0') == True:
+        if esmecata_version >= ('0', '5', '0'):
             make_clustering(esmecata_prot_out, esmecata_cluster_out, nb_core=nb_cpu_available, mmseqs_options=None, clust_threshold=0.5, linclust=None, remove_tmp=True)
         else:
             make_clustering(esmecata_prot_out, esmecata_cluster_out, nb_cpu=nb_cpu_available, mmseqs_options=None, clust_threshold=0.5, linclust=None, remove_tmp=True)
@@ -379,7 +379,7 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
             annotate_proteins(esmecata_cluster_out, esmecata_annots_out, uniprot_sparql_endpoint=None,
                             propagate_annotation=1, uniref_annotation=None, expression_annotation=None, option_bioservices=True)
         else:
-            if esmecata_version >= ('0', '5', '0') == True:
+            if esmecata_version >= ('0', '5', '0'):
                 annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_core=nb_cpu_available)
             else:
                 annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_cpu=nb_cpu_available)
@@ -400,7 +400,7 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
                 annotate_proteins(esmecata_cluster_out, esmecata_annots_out, uniprot_sparql_endpoint=None,
                                 propagate_annotation=1, uniref_annotation=None, expression_annotation=None, option_bioservices=True)
             else:
-                if esmecata_version >= ('0', '5', '0') == True:
+                if esmecata_version >= ('0', '5', '0'):
                     annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_core=nb_cpu_available)
                 else:
                     annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_cpu=nb_cpu_available)
