@@ -163,6 +163,28 @@ Example can be found in the tests folder ([test_functional_occurrence.tsv](https
 
 It will be used to link taxon name to feature of importance in the results.
 
+#### `sparta classification` options
+
+The following arguments can be used with `sparta classification`:
+
+- `runs` (with the `-r` parameter) : Amount of pipeline runs (default: 10 runs)
+
+- `iterations` (with the `-i` parameter) : Number of iterations of the method (default: 5 iterations)
+
+- `classifiers` (with the `-c` parameter) : Amount of trained classifiers per iteration of the command (default: 20)
+
+- `method` (with the `-m` parameter) : Classifying method to be run (default: Random Forest (rf). Can be: svm).
+
+- `variable_ranking` (with the `-v` parameter) : Method for Random Forest variable importance ranking (default: gini. Can be: shap).
+
+- `reference_test_sets` : Path to reference test sets (csv file) allowing the user to give their own test sets to be used during classification.
+
+- `preselected-organisms` : if a taxonomic profile was given, the user can use this argument to specify a path to a csv file indicating for each run preselected organisms.
+
+- `preselected-annotations` : if a functional profile was given, the user can use this argument to specify a path to a csv file indicating for each run preselected annotations.
+
+- `seed` : Master seed that will define the randomness of the training/validation/test sets (used for reproducibility).
+
 ### `sparta esmecata`
 
 Use [esmecata](https://github.com/AuReMe/esmecata/tree/main) to predict functions from taxonomic affiliations.
