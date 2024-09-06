@@ -43,3 +43,7 @@ def test_esmecata_results():
     assert all(df_expected.compare(computed_df))
 
     shutil.rmtree(output_folder)
+
+
+test_sofa_calculation()
+test_esmecata_results()
