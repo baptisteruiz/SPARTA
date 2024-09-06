@@ -31,7 +31,7 @@ def test_cli_sparta_classification():
     run_nb = '1'
     nb_iterations = '1'
     nb_classifier = '1'
-    subprocess.call(['sparta', 'classification', '-fp', functional_profile_filepath, '-l', label_filepath, '-o', output_folder, '-r', run_nb, '-i', nb_iterations, '-c', nb_classifier])
+    subprocess.call(['sparta', 'classification', '-fp', functional_profile_filepath, '-l', label_filepath, '-o', output_folder, '-r', run_nb, '-i', nb_iterations, '-c', nb_classifier, '--seed', '0'])
 
     # Get label for sample.
     label_file_df = pd.read_csv(label_filepath)
@@ -71,7 +71,7 @@ def test_cli_pipeline():
 
     output_folder = 'output_folder'
     shutil.copytree(input_folder, output_folder)
-    subprocess.call(['sparta', 'pipeline', '-p', pipeline_input_filepath, '-l', label_filepath, '-o', output_folder, '-r', run_nb, '-i', nb_iterations, '-c', nb_classifier])
+    subprocess.call(['sparta', 'pipeline', '-p', pipeline_input_filepath, '-l', label_filepath, '-o', output_folder, '-r', run_nb, '-i', nb_iterations, '-c', nb_classifier, '--seed', '0'])
 
     # Check esmecata output.
     # Check function table.
