@@ -279,7 +279,10 @@ def get_proteomes_tax_name(proteomes_tax_id):
         csvreader = csv.DictReader(proteome_tax_file, delimiter='\t')
         for line in csvreader:
             observation_name = line['observation_name']
-            tax_name = line['name']
+            if esmecata_version < ('0', '5', '0'):
+                tax_name = line['name']
+            elif esmecata_version >= ('0', '5', '0'):
+                tax_name = line['tax_id_name']
             proteomes_taxa_names[observation_name] = tax_name.replace(' ', '_')
 
     return proteomes_taxa_names
