@@ -201,6 +201,8 @@ Use [esmecata](https://github.com/AuReMe/esmecata/tree/main) to predict function
 | k__Kingdom\|p__Phylum_2\|c__Class_2\|o__Order_2\|f__Family_2\|g__Genus_2   | 10       | 5        | 15       | 10       |
 | k__Kingdom\|p__Phylum_3\|c__Class_3\|o__Order_3\|f__Family_3\|g__Genus_3   | 0        | 0        | 100      | 90       |
 
+Such profiles can be built from MGS data, using tools such as [MetaPhlan](https://github.com/biobakery/MetaPhlAn.git), or from 16S sequences, with [QIIME2][https://github.com/qiime2/qiime2.git], [FROGS][https://github.com/geraldinepascal/FROGS.git] or [mothur][https://github.com/mothur/mothur.git] for example. Please keep in mind that the result may require further formating to be compatible with SPARTA. 
+
 First, using the sampleID columns, an input file for esmecata will be created, looking like this table:
 
 |  observation_name   | taxonomic_affiliation            |
