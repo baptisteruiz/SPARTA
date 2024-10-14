@@ -168,3 +168,7 @@ def test_cli_pipeline_esmecata_results():
     assert expected_core_taxons_df['ID'].to_list() == computed_core_taxons_df['ID'].to_list()
 
     shutil.rmtree(output_folder)
+
+
+
+test_cli_pipeline()

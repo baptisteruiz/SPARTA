@@ -512,8 +512,11 @@ def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no 
     esmecata_output_folder = os.path.join(output_folder, 'EsMeCaTa_outputs')
     annotation_reference_folder = os.path.join(esmecata_output_folder, 'esmecata_outputs_annots', 'annotation_reference')
 
+    logger.info(esmecata_results_path)
+
     # If esmecata has already been run and results are given, just copy annotation_reference folder.
     if esmecata_results_path is not None:
+        
         # If esmecata_results_path is the folder annotation_reference, copy it.
         if os.path.isdir(esmecata_results_path):
             if not os.path.exists(esmecata_output_folder):
