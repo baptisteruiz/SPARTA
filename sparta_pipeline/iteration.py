@@ -411,13 +411,14 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
     
     seed_rf_vec = random.sample(range(1000),nb_iterations)
     
+
     if organism_abundance_filepath is not None:
         deepmicro_otu_iteration = pd.DataFrame()
         deepmicro_otu_iteration = deepmicro_otu_iteration0
         if preselected_organisms_filepath is not None:
             preselected_organisms = pd.read_csv(preselected_organisms_filepath)
             preselected_organisms_run = preselected_organisms['Run_'+str(run_nb)].dropna()
-            deepmicro_otu_iteration = deepmicro_otu_iteration0.loc[preselected_organisms_run.values].transpose()
+            deepmicro_otu_iteration = deepmicro_otu_iteration0[preselected_organisms_run.values]
   
     if preselected_annots_filepath is not None:
         preselected_annots = pd.read_csv(preselected_annots_filepath)
