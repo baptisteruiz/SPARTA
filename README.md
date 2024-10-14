@@ -40,6 +40,8 @@
 - [requests](https://pypi.org/project/requests/): For the REST queries to download GO and EC databases.
 - [esmecata](https://github.com/AuReMe/esmecata): To infer functions occurrences (EC numbers and GO Terms) from taxonomic affiliations.
 
+  SPARTA was developed using Python 3.9. It is recommended to use this version of Python to use it as well.
+
 ### Classification installation
 
 SPARTA can be installed using pip:
