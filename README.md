@@ -233,11 +233,11 @@ The following arguments can be used with `sparta esmecata`:
 
 - `esmecata_results`: If a run of EsMeCaTa on the dataset has already been performed, it is possible to give the `annotation_reference` with this option to avoid launching EsMeCaTa and directly compute the functional profile.
 
+- `precomputed`: Path to the precomputed database of EsMeCaTa. To avoid the long time required by EsMeCaTa process, it is possible to use a precomputed database to get functional predictions. The precomputed database can be found in this [Zenodo archive](https://zenodo.org/records/13354073) (file `esmecata_database.zip`).
+
 ### `sparta pipeline`
 
 Use [esmecata](https://github.com/AuReMe/esmecata/tree/main) to predict functions from taxonomic affiliations. Then use `sparta classification` for the classification part.
-
-     
 
 ## OUTPUTS DESCRIPTION:
 
@@ -538,3 +538,8 @@ Main function: extract_and_write_core_meta(path_core_meta, bank_of_selections_an
     6), are saved separately in the 'Best_iteration' output folder. These lists reference each other when establishing significant linked counterparts (i.e: the significant annotations linked to a taxon in these 
     sublists is 'Robust' at the optimal iteration for the taxonomic profile).
     
+## Citation
+
+If you use SPARTA, please cite:
+
+**Ruiz B, Belcour A, Blanquart S, Buffet-Bataillon S, Le Huërou-Luron I,  Siegel A, Le Cunff Y. (2024) SPARTA: Interpretable functional classification of microbiomes and detection of hidden cumulative effects. PLOS Computational Biology 20(11): e1012577. [10.1371/journal.pcbi.1012577](https://doi.org/10.1371/journal.pcbi.1012577)**

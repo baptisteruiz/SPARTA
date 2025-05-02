@@ -111,6 +111,7 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
     functional_profile_df = pd.read_csv(functional_profile_filepath, sep=',', index_col=0)
 
     label_file_df = pd.read_csv(label_filepath)
+
     label_file_df = label_file_df[functional_profile_df.columns].transpose()
     ## Calculating average presence of taxons and annotations per label, and collecting info about them.
     if esmecata_input is not None:

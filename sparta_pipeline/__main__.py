@@ -54,6 +54,8 @@ def main():
     parent_parser_p.add_argument("-p", "--taxon_abundance", help="Taxonomic profile matrix file (tsv) having samples as columns and organisms as row, organisms described as taxonomic affilaitions.", required=True)
     parent_parser_e = argparse.ArgumentParser(add_help=False)
     parent_parser_e.add_argument("--eggnog", default=None, help="Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launched with the 'UniProt' workflow by default.")
+    parent_parser_precomputed_db = argparse.ArgumentParser(add_help=False)
+    parent_parser_precomputed_db.add_argument("--precomputed", default=None, help="Path to the precomputed databaseof EsMeCaTa. If not given, the pipeline will be launched with the 'UniProt' workflow by default.")
     parent_parser_esmecata_relaunch = argparse.ArgumentParser(add_help=False)
     parent_parser_esmecata_relaunch.add_argument("--esmecata_relaunch", default=None, action='store_true', help="This option allows the user to force a re-run of the EsMeCaTa pipeline over an already existing output. This is particularly useful if a previous run of the pipeline was botched at this step.")
     parent_parser_keep_temp = argparse.ArgumentParser(add_help=False)
@@ -118,7 +120,7 @@ def main():
             parent_parser_reference_test_sets, parent_parser_esmecata_relaunch,
             parent_parser_keep_temp, parent_parser_update_ncbi, parent_parser_seed,
             parent_parser_preselected_organisms, parent_parser_preselected_annotations,
-            parent_parser_esmecata_results
+            parent_parser_esmecata_results, parent_parser_precomputed_db
             ],
         allow_abbrev=False)
 
@@ -128,7 +130,8 @@ def main():
         parents=[
             parent_parser_p, parent_parser_o,
             parent_parser_e, parent_parser_esmecata_relaunch, parent_parser_s,
-            parent_parser_update_ncbi, parent_parser_t, parent_parser_esmecata_results
+            parent_parser_update_ncbi, parent_parser_t, parent_parser_esmecata_results,
+            parent_parser_precomputed_db
             ],
         allow_abbrev=False)
 
@@ -184,11 +187,11 @@ def main():
                             args_passed.preselected_organisms, args_passed.preselected_annotations)
     elif args_passed.cmd == 'esmecata':
         run_esmecata(args_passed.taxon_abundance, args_passed.output, args_passed.treatment, args_passed.scaling, args_passed.esmecata_relaunch, args_passed.eggnog, args_passed.update_ncbi,
-                     args_passed.esmecata_results)
+                     args_passed.esmecata_results, args_passed.precomputed)
     elif args_passed.cmd == 'pipeline':
         functional_profile_path, esmecata_input_path, functional_occurrence_path, otu_table_stripped_filepath = run_esmecata(args_passed.taxon_abundance, args_passed.output, args_passed.treatment,
                                                                                                                     args_passed.scaling, args_passed.esmecata_relaunch, args_passed.eggnog, args_passed.update_ncbi,
-                                                                                                                    args_passed.esmecata_results)
+                                                                                                                    args_passed.esmecata_results, args_passed.precomputed)
 
         run_sparta_classification(functional_profile_path, args_passed.label, args_passed.output, runs, iterations,
                                 esmecata_input_path, functional_occurrence_path, otu_table_stripped_filepath, args_passed.reference_test_sets,

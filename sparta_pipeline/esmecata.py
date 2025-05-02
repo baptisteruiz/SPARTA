@@ -26,8 +26,10 @@ elif esmecata_version >= ('0', '5', '0'):
     from esmecata.core.clustering import make_clustering
     from esmecata.core.annotation import annotate_proteins
     from esmecata.core.eggnog import annotate_with_eggnog
+    if esmecata_version >= ('0', '6', '0'):
+        from esmecata.core.precomputed import precomputed_parse_affiliation
 
-from ete3 import NCBITaxa
+from ete4 import NCBITaxa
 
 
 logger = logging.getLogger(__name__)
@@ -304,7 +306,7 @@ def check_annotation(reference_proteins_consensus_fasta_folder, annotation_refer
     return len(annotated_observation_names) == len(expected_annotations), empty_output_otus
 
 
-def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None, update_ncbi=None):
+def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None, update_ncbi=None, esmecata_precomputed_db_path=None):
     '''
     This function runs EsMeCaTa on the input files. Checks are made at the end of the 'Proteomes' and 'Annotation' processes 
     '''
@@ -328,76 +330,56 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
     count_check = False
     retries = 0
 
-    path_proteomes = os.path.join(esmecata_prot_out, 'proteomes')
-    while (not count_check) and (retries<20):
-        try:
-            retrieve_proteomes(input_location, esmecata_prot_out, option_bioservices=True)
-        except Exception as exception:
-            logger.critical(exception)
-            pass
+    if esmecata_precomputed_db_path is None:
+        path_proteomes = os.path.join(esmecata_prot_out, 'proteomes')
+        while (not count_check) and (retries<20):
+            try:
+                retrieve_proteomes(input_location, esmecata_prot_out, option_bioservices=True)
+            except Exception as exception:
+                logger.critical(exception)
+                pass
 
-        count_check, nb_proteomes = proteome_check(esmecata_prot_out)
-        retries+=1
-    
-    if retries >= 20:
-        raise Exception("EsMeCaTa has failed 20 times in a row. A connexion error is likely. Aborting...")
+            count_check, nb_proteomes = proteome_check(esmecata_prot_out)
+            retries+=1
 
-    #Temporary solution to the UniProt troubles of EsMeCaTa: if a downloaded proteome is less than 50 kB, remove it (considered empty)
-    filenames = [[entry.name, entry.stat().st_size]  for entry in sorted(os.scandir(path_proteomes),
-                                                key=lambda x: x.stat().st_size, reverse=False)]
-    removed_proteomes = []
-    for file_stats in filenames:
-        if file_stats[1]<=50:
-            filename = file_stats[0]
-            os.remove(os.path.join(path_proteomes, filename))
-            removed_proteomes.append(filename.replace('.faa.gz', ''))
+        if retries >= 20:
+            raise Exception("EsMeCaTa has failed 20 times in a row. A connexion error is likely. Aborting...")
 
-    proteome_tax_id_path = os.path.join(esmecata_prot_out, 'proteome_tax_id.tsv')
-    df_proteome = pd.read_csv(proteome_tax_id_path, sep='\t')
+        #Temporary solution to the UniProt troubles of EsMeCaTa: if a downloaded proteome is less than 50 kB, remove it (considered empty)
+        filenames = [[entry.name, entry.stat().st_size]  for entry in sorted(os.scandir(path_proteomes),
+                                                    key=lambda x: x.stat().st_size, reverse=False)]
+        removed_proteomes = []
+        for file_stats in filenames:
+            if file_stats[1]<=50:
+                filename = file_stats[0]
+                os.remove(os.path.join(path_proteomes, filename))
+                removed_proteomes.append(filename.replace('.faa.gz', ''))
 
-    # Remove empty proteomes.
-    lambda_remove_proteomes = lambda x: ','.join([proteome for proteome in x.split(',') if proteome not in removed_proteomes])
-    df_proteome['proteome'] = df_proteome['proteome'].apply(lambda_remove_proteomes)
-    # Remvoe empty rows.
-    row_to_drop = df_proteome[df_proteome['proteome'] == ''].index
+        proteome_tax_id_path = os.path.join(esmecata_prot_out, 'proteome_tax_id.tsv')
+        df_proteome = pd.read_csv(proteome_tax_id_path, sep='\t')
 
-    df_proteome = df_proteome.drop(row_to_drop)
-    df_proteome.to_csv(proteome_tax_id_path, sep='\t', index=False)
-    # End of temporary solution.
+        # Remove empty proteomes.
+        lambda_remove_proteomes = lambda x: ','.join([proteome for proteome in x.split(',') if proteome not in removed_proteomes])
+        df_proteome['proteome'] = df_proteome['proteome'].apply(lambda_remove_proteomes)
+        # Remvoe empty rows.
+        row_to_drop = df_proteome[df_proteome['proteome'] == ''].index
 
-    stat_number_clustering_filepath = os.path.join(esmecata_cluster_out, 'stat_number_clustering.tsv')
-    if not os.path.exists(stat_number_clustering_filepath):
-        if os.path.exists(esmecata_cluster_out):
-            logger.info('Previous incomplete iteration of the clustering step found: deleting and starting over')
-            shutil.rmtree(esmecata_cluster_out, ignore_errors=True)
-        if esmecata_version >= ('0', '5', '0'):
-            make_clustering(esmecata_prot_out, esmecata_cluster_out, nb_core=nb_cpu_available, mmseqs_options=None, clust_threshold=0.5, linclust=None, remove_tmp=True)
-        else:
-            make_clustering(esmecata_prot_out, esmecata_cluster_out, nb_cpu=nb_cpu_available, mmseqs_options=None, clust_threshold=0.5, linclust=None, remove_tmp=True)
-    else:
-        logger.info('Clustering step already done, moving to annotation.')
+        df_proteome = df_proteome.drop(row_to_drop)
+        df_proteome.to_csv(proteome_tax_id_path, sep='\t', index=False)
+        # End of temporary solution.
 
-    try:
-        if eggnog_path is None:
-            annotate_proteins(esmecata_cluster_out, esmecata_annots_out, uniprot_sparql_endpoint=None,
-                            propagate_annotation=1, uniref_annotation=None, expression_annotation=None, option_bioservices=True)
-        else:
+        stat_number_clustering_filepath = os.path.join(esmecata_cluster_out, 'stat_number_clustering.tsv')
+        if not os.path.exists(stat_number_clustering_filepath):
+            if os.path.exists(esmecata_cluster_out):
+                logger.info('Previous incomplete iteration of the clustering step found: deleting and starting over')
+                shutil.rmtree(esmecata_cluster_out, ignore_errors=True)
             if esmecata_version >= ('0', '5', '0'):
-                annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_core=nb_cpu_available)
+                make_clustering(esmecata_prot_out, esmecata_cluster_out, nb_core=nb_cpu_available, mmseqs_options=None, clust_threshold=0.5, linclust=None, remove_tmp=True)
             else:
-                annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_cpu=nb_cpu_available)
-    except Exception as e:
-        logger.info('Issue with EsMeCaTa: ', e)
-        pass
+                make_clustering(esmecata_prot_out, esmecata_cluster_out, nb_cpu=nb_cpu_available, mmseqs_options=None, clust_threshold=0.5, linclust=None, remove_tmp=True)
+        else:
+            logger.info('Clustering step already done, moving to annotation.')
 
-    ## Check
-    retries = 0
-    annotation_reference_folder = os.path.join(esmecata_annots_out, 'annotation_reference')
-    reference_proteins_consensus_fasta_folder = os.path.join(esmecata_cluster_out, 'reference_proteins_consensus_fasta')
-    proteomes_tax_id = os.path.join(esmecata_cluster_out, 'proteome_tax_id.tsv')
-    check_outputs, empty_ids = check_annotation(reference_proteins_consensus_fasta_folder, annotation_reference_folder, proteomes_tax_id)
-    logger.info('All annotations found: '+str(check_outputs))
-    while (not check_outputs) and (retries<20):
         try:
             if eggnog_path is None:
                 annotate_proteins(esmecata_cluster_out, esmecata_annots_out, uniprot_sparql_endpoint=None,
@@ -410,16 +392,53 @@ def esmecata_plus_check(esmecata_input, esmecata_output_folder, eggnog_path=None
         except Exception as e:
             logger.info('Issue with EsMeCaTa: ', e)
             pass
-        retries += 1
+
+        ## Check
+        retries = 0
+        annotation_reference_folder = os.path.join(esmecata_annots_out, 'annotation_reference')
+        reference_proteins_consensus_fasta_folder = os.path.join(esmecata_cluster_out, 'reference_proteins_consensus_fasta')
+        proteomes_tax_id = os.path.join(esmecata_cluster_out, 'proteome_tax_id.tsv')
         check_outputs, empty_ids = check_annotation(reference_proteins_consensus_fasta_folder, annotation_reference_folder, proteomes_tax_id)
         logger.info('All annotations found: '+str(check_outputs))
+        while (not check_outputs) and (retries<20):
+            try:
+                if eggnog_path is None:
+                    annotate_proteins(esmecata_cluster_out, esmecata_annots_out, uniprot_sparql_endpoint=None,
+                                    propagate_annotation=1, uniref_annotation=None, expression_annotation=None, option_bioservices=True)
+                else:
+                    if esmecata_version >= ('0', '5', '0'):
+                        annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_core=nb_cpu_available)
+                    else:
+                        annotate_with_eggnog(esmecata_cluster_out, esmecata_annots_out, eggnog_path, nb_cpu=nb_cpu_available)
+            except Exception as e:
+                logger.info('Issue with EsMeCaTa: ', e)
+                pass
+            retries += 1
+            check_outputs, empty_ids = check_annotation(reference_proteins_consensus_fasta_folder, annotation_reference_folder, proteomes_tax_id)
+            logger.info('All annotations found: '+str(check_outputs))
 
-    if retries >= 20:
-        raise Exception("EsMeCaTa has failed 20 times in a row. A connexion error is likely. Aborting...")
+        if retries >= 20:
+            raise Exception("EsMeCaTa has failed 20 times in a row. A connexion error is likely. Aborting...")
+
+    else:
+        precomputed_parse_affiliation(input_location, esmecata_precomputed_db_path, esmecata_output_folder)
+        esmecata_precomputed_db_prot_out = os.path.join(esmecata_output_folder, '0_proteomes')
+        esmecata_precomputed_db_cluster_out = os.path.join(esmecata_output_folder, '1_clustering')
+        esmecata_precomputed_db_annots_out = os.path.join(esmecata_output_folder, '2_annotation')
+        shutil.move(esmecata_precomputed_db_prot_out, esmecata_prot_out)
+        shutil.move(esmecata_precomputed_db_cluster_out, esmecata_cluster_out)
+        shutil.move(esmecata_precomputed_db_annots_out, esmecata_annots_out)
+
+        annotation_reference_folder = os.path.join(esmecata_annots_out, 'annotation_reference')
+        reference_proteins_consensus_fasta_folder = os.path.join(esmecata_cluster_out, 'reference_proteins_consensus_fasta')
+        proteomes_tax_id = os.path.join(esmecata_cluster_out, 'proteome_tax_id.tsv')
+
+        check_outputs, empty_ids = check_annotation(reference_proteins_consensus_fasta_folder, annotation_reference_folder, proteomes_tax_id)
 
     empty_output_df = pd.DataFrame(columns=['protein_cluster','cluster_members','gene_name','GO','EC','KEGG_reaction'])
     for otu_id in empty_ids:
-        empty_output_df.to_csv(annotation_reference_folder+'/'+otu_id+'.tsv', sep='\t', index=False)
+        otu_id_path_file = os.path.join(annotation_reference_folder, otu_id+'.tsv')
+        empty_output_df.to_csv(otu_id_path_file, sep='\t', index=False)
     
     ## Clean
     #shutil.rmtree(esmecata_prot_out, ignore_errors=True)
@@ -474,7 +493,7 @@ def create_dataset_annotation_file(annotation_reference_folder, dataset_annotati
 
 
 def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no scaling', esmecata_relaunch=None, eggnog_path=None, update_ncbi=None,
-                 esmecata_results_path=None):
+                 esmecata_results_path=None, esmecata_precomputed_db_path=None):
     """ Run the esmecata part of SPARTA, to infer functions from taxonomic affiliations.
 
     Args:
@@ -487,6 +506,7 @@ def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no 
         eggnog_path (str): Path to the eggnog database for the EsMeCaTa pipeline. If not given, the pipeline will be launched with the 'UniProt' workflow by default.
         update_ncbi (bool): his option allows the user to force an update of the local NCBI database (taxdump.tar.gz).
         esmecata_results (str): path to the result folder (annotation_reference folder) of esmecata on this dataset.
+        esmecata_precomputed_db_path (str): path to the precomputed database of esmecata.
     """
     ## Formatting step
     date_time_format = datetime.now()
@@ -535,7 +555,7 @@ def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no 
                 proteomes_tax_id = os.path.join(output_folder, 'EsMeCaTa_outputs', 'esmecata_outputs_clustering', 'proteome_tax_id.tsv')
                 check_outputs, empty_ids = check_annotation(reference_proteins_consensus_fasta_folder, annotation_reference_folder, proteomes_tax_id)
                 if check_outputs is False:
-                    esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi)
+                    esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi, esmecata_precomputed_db_path)
                 else:
                     logger.info('An EsMeCaTa output has been found for your dataset. This output will be used for the rest of the pipeline. If you wish to re-launch EsMeCaTa, please remove the existing output before launching SPARTA.')
             else:
@@ -543,12 +563,12 @@ def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no 
                 if os.path.isdir(annotation_reference_folder):
                     #Removing previous 'annotations_reference' output to ensure the final step of EsMeCaTa does not malfunction
                     shutil.rmtree(annotation_reference_folder, ignore_errors=True)
-                esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi)
+                esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi, esmecata_precomputed_db_path)
 
         else:
             os.mkdir(esmecata_output_folder)
             logger.info('Launching EsMeCaTa')
-            esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi)
+            esmecata_plus_check(esmecata_input_path, esmecata_output_folder, eggnog_path, update_ncbi, esmecata_precomputed_db_path)
 
     ####Time measurement####
     date_time_esmecata = datetime.now()
