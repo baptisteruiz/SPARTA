@@ -20,6 +20,7 @@
   - [STEPS OF THE PIPELINE:](#steps-of-the-pipeline)
     - [`sparta esmecata` steps](#sparta-esmecata-steps)
     - [`sparta classification` steps](#sparta-classification-steps)
+  - [Citation:](#citation)
 
 ## Installation
 
