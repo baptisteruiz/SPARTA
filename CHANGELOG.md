@@ -1,11 +1,12 @@
 # Changelog
 
-# SPARTA v0.0.2 (2025-05-02)
+# SPARTA v0.1.0 (2025-05-05)
 
 ## Add
 
 * `--precomputed` option to sparta classification and esmecata to use esmecata precomputed database.
 * article reference.
+* tests and test data for precomputed option.
 
 ## Fix
 
