@@ -223,7 +223,8 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
 
     if not keep_temp:
         shutil.rmtree('/Outputs_temp/', ignore_errors=True)
-    # pd.DataFrame.from_dict(bank_of_selections_annots).to_csv(pipeline_path+'/Meta-Outputs/'+data_ref_output_name+'/bank_of_selections_check.csv')
+    # bank_of_selections_check_file_path = os.path.join(pipeline_path, 'Meta-Outputs', data_ref_output_name, 'bank_of_selections_check.csv')
+    # pd.DataFrame.from_dict(bank_of_selections_annots).to_csv(bank_of_selections_check_file_path)
 
     date_time_now = datetime.now()
     duration = date_time_now - ref_time

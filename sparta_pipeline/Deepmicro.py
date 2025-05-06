@@ -86,7 +86,8 @@ class DeepMicrobiome(object):
             if var_ranking_method == 'gini':
                 best_features = pd.DataFrame(clf.best_estimator_.feature_importances_)
                 best_feature_records.append(best_features)
-                # with open(self.data_dir + "results/" + self.data + "_best_features_random_rf.txt", 'a') as f:
+                #best_features_random_rf_file_path = os.path.join(self.data_dir + 'results', self.data + "_best_features_random_rf.txt")
+                # with open(best_features_random_rf_file_path, 'a') as f:
                 #     best_features.to_csv(f, header=None)
 
             elif var_ranking_method == 'shap':

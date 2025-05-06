@@ -23,20 +23,22 @@ def test_preselection_run_sparta_classification(seed_init = 0):
 
     return True
 
-seed_init = 57
 
-# functional_profile_filepath = 'test_functional_profile.csv'
-# functional_profile_df = pd.read_csv(functional_profile_filepath, sep=',', index_col=0)
-# selected_annots_filepath = "selected_annots.csv"
-# selected_annots = pd.read_csv(selected_annots_filepath)
-# run_nb = 2
+if __name__ == "__main__":
+    seed_init = 57
 
-# selected_annots_run = selected_annots['Run_'+str(run_nb)].dropna()
-# print(selected_annots_run.values)
-# shape1 = functional_profile_df.shape
-# print(shape1)
-# deepmicro_sofa_iteration = functional_profile_df.loc[selected_annots_run.values].transpose()
-# shape2 = deepmicro_sofa_iteration.shape
-# print(shape2)
+    # functional_profile_filepath = 'test_functional_profile.csv'
+    # functional_profile_df = pd.read_csv(functional_profile_filepath, sep=',', index_col=0)
+    # selected_annots_filepath = "selected_annots.csv"
+    # selected_annots = pd.read_csv(selected_annots_filepath)
+    # run_nb = 2
 
-test_preselection_run_sparta_classification(seed_init)
+    # selected_annots_run = selected_annots['Run_'+str(run_nb)].dropna()
+    # print(selected_annots_run.values)
+    # shape1 = functional_profile_df.shape
+    # print(shape1)
+    # deepmicro_sofa_iteration = functional_profile_df.loc[selected_annots_run.values].transpose()
+    # shape2 = deepmicro_sofa_iteration.shape
+    # print(shape2)
+
+    test_preselection_run_sparta_classification(seed_init)

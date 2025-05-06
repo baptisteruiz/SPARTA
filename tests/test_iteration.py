@@ -97,5 +97,6 @@ def test_run_iterate_reference_test_sets_filepath():
     shutil.rmtree(output_folder)
 
 
-#test_run_iterate()
-test_run_iterate_reference_test_sets_filepath()
+if __name__ == "__main__":
+    test_run_iterate()
+    test_run_iterate_reference_test_sets_filepath()

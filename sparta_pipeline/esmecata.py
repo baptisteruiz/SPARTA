@@ -43,7 +43,8 @@ def data_to_deepmicro(dataset_compos):
 
     dataset_compos_deepmicro = dataset_compos.transpose()
     #dataset_compos_deepmicro.columns = dataset_compos_deepmicro.iloc[0]
-    #dataset_compos_deepmicro.to_csv(pipeline_path+"/Outputs_temp/"+data_ref_output_name+"/DeepMicro_data/entree_DeepMicro_"+dataset_name+"_OTU.csv", sep = ",", header = False, index=False)
+    #dataset_compos_deepmicro_filepath = os.path.join(pipeline_path, 'Outputs_temp', data_ref_output_name, 'DeepMicro_data', 'entree_DeepMicro_' + dataset_name + "_OTU.csv")
+    #dataset_compos_deepmicro.to_csv(dataset_compos_deepmicro_filepath, sep = ",", header = False, index=False)
     return dataset_compos_deepmicro
 
 def absolute_to_relative(db):
@@ -157,7 +158,7 @@ def tf_igm_apply(deepmicro_sofa):
     return deepmicro_sofa
 
 
-def sofa_calculation(esmecata_annotation_reference, output_sofa_table_filepath, otu_table_stripped, treatment='tf_igm'):
+def sofa_calculation(functional_occurrence_filepath, output_sofa_table_filepath, otu_table_stripped_df, treatment='tf_igm'):
     '''
     This function calculates the scores of the functional annotations from EsMeCaTa's outputs and the original OTU abundances.
 
@@ -169,63 +170,16 @@ def sofa_calculation(esmecata_annotation_reference, output_sofa_table_filepath, 
         - sofa_table: a table containing all of the scores of functional annotations
         - deepmicro_sofa: the same table, but formatted as a DeepMicro input. If a transformation is given as an argument, 
     '''
+    functional_occurrence_df = pd.read_csv(functional_occurrence_filepath, sep='\t')
+    functional_occurrence_df.set_index('observation_name', inplace=True)
 
-    esmecata_output_path = esmecata_annotation_reference
-    otus_GOs = {}
-    otus_ECs = {}
-    all_gos = []
-    all_ecs = []
+    # Reindex abundance matrix if some OTUs have no predictions from esmecata.
+    otu_table_stripped_df = otu_table_stripped_df.reindex(functional_occurrence_df.index)
+    functional_occurrence_df = functional_occurrence_df.T
 
-    dir_list = os.listdir(esmecata_output_path)
-
-    #Parse the EsMeCaTa outputs and list all annotations expressed per OTU, along with the number of proteins that express them
-    for annot_file in tqdm(dir_list, desc="Parsing EsMeCaTa's outputs"):
-        base_file = os.path.basename(annot_file)
-        if base_file[0] != '.':
-            base_filename = os.path.splitext(base_file)[0]
-            annot_file_path = os.path.join(esmecata_output_path, annot_file)
-            df = pd.read_csv(annot_file_path, sep='\t')
-            df = df.replace(np.nan, '')
-            go_series = df.GO.map(lambda x: [i.strip() for i in x.split(',')]).apply(pd.Series)
-            if go_series.empty is False:
-                otu_go_terms = list(go_series.stack())
-                otu_go_terms = [go for go in otu_go_terms if go != '']
-                otu_go_terms_counter = Counter(otu_go_terms)
-                otus_GOs[base_filename] = otu_go_terms_counter
-                all_gos.extend(otu_go_terms_counter.keys())
-
-            ec_series = df.EC.map(lambda x: [i.strip() for i in x.split(',')]).apply(pd.Series)
-            if ec_series.empty is False:
-                otu_ec_numbers = list(ec_series.stack())
-                otu_ec_numbers = [ec for ec in otu_ec_numbers if ec != '']
-                otu_ec_numbers_counter = Counter(otu_ec_numbers)
-                otus_ECs[base_filename] = otu_ec_numbers_counter
-                all_ecs.extend(otu_ec_numbers_counter.keys())
-
-    all_gos = list(set(all_gos))
-    all_ecs = list(set(all_ecs))
-    all_annots = all_gos + all_ecs
-    otu_annots = {}
-
-    for otu in tqdm(otu_table_stripped.index, desc='Checking out OTU abundances'):
-        otu_annots[otu] = {}
-        if otu in otus_ECs:
-            otu_annots[otu].update(otus_ECs[otu])
-        if otu in otus_GOs:
-            otu_annots[otu].update(otus_GOs[otu])
-
-    # Compute for each annotation its abundance
-    sofa_table = pd.DataFrame(all_annots)
-    sofa_table.set_index(0, inplace=True)
-    sofa_table = sofa_table.sort_index(ascending=True)
-
-    for sample in tqdm(otu_table_stripped.columns, desc='Calculating abundances'):
-        if sample != 'OTU':
-            otu_annots_dataframe = pd.DataFrame(otu_annots)
-            
-            for col in otu_annots_dataframe.columns: 
-                otu_annots_dataframe[col] = otu_annots_dataframe[col] * otu_table_stripped[sample].loc[col]
-            sofa_table[sample] = otu_annots_dataframe.sum(axis=1)
+    # Matrix multiplication to get the sofa table.
+    sofa_table = functional_occurrence_df.dot(otu_table_stripped_df)
+    sofa_table = sofa_table.sort_index()
 
     sofa_table.to_csv(output_sofa_table_filepath)
     deepmicro_sofa = sofa_table.transpose()
@@ -542,6 +496,7 @@ def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no 
             if not os.path.exists(esmecata_output_folder):
                 os.mkdir(esmecata_output_folder)
                 os.mkdir(os.path.join(esmecata_output_folder, 'esmecata_outputs_annots'))
+
             if not os.path.exists(annotation_reference_folder):
                 logger.info('Copy already computed esmecata results.')
                 shutil.copytree(esmecata_results_path, annotation_reference_folder)
@@ -586,7 +541,7 @@ def run_esmecata(abundance_filepath, output_folder, treatment=None, scaling='no 
 
     ## Calculating the scores of functional annotations
     SoFA_table_filepath = os.path.join(output_folder, 'SoFA_table.csv')
-    sofa_table, deepmicro_sofa = sofa_calculation(annotation_reference_folder, SoFA_table_filepath, otu_table_stripped, treatment)
+    sofa_table, deepmicro_sofa = sofa_calculation(functional_occurrence_filepath, SoFA_table_filepath, otu_table_stripped, treatment)
 
     ####Time measurement####
     date_time_score = datetime.now()

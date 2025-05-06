@@ -224,5 +224,5 @@ def test_cli_pipeline_esmecata_precomputed():
 
     shutil.rmtree(output_folder)
 
-
-test_cli_pipeline_esmecata_precomputed()
+if __name__ == "__main__":
+    test_cli_pipeline_esmecata_precomputed()

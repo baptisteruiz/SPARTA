@@ -105,10 +105,11 @@ def extract_core_associates(dataframe, core_list, esmecata_input=None):
         signif_links_named = []
         for otu_list in signif_vars:
             named_links = []
-            for otu in otu_list:
-                otu_name_translated = esmecata_input[esmecata_input['observation_name'] == otu]['taxonomic_affiliation'].values[0]
-                otu_name_translated_species = otu_name_translated.split(';')[-1]
-                named_links.append(otu_name_translated_species)
+            if esmecata_input is not None:
+                for otu in otu_list:
+                    otu_name_translated = esmecata_input[esmecata_input['observation_name'] == otu]['taxonomic_affiliation'].values[0]
+                    otu_name_translated_species = otu_name_translated.split(';')[-1]
+                    named_links.append(otu_name_translated_species)
             signif_links_named.append(named_links)
         dataframe['Named_Robust_linked_taxons'] = signif_links_named
 

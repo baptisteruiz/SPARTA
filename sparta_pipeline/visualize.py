@@ -23,8 +23,6 @@ def get_median_perfs_and_best_iter(bank_of_performance_dfs, median_classifs_per_
             median_classifs_per_iteration[iteration_lv].append(median_test_perf_values)
         
         #Finding and recording the best performing iteration
-
-
         mean_perf = np.median(median_classifs_per_iteration[iteration_lv])
         if mean_perf >= best_mean_perf:
             if iteration_lv > 0:

@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import shutil
 
-from sparta_pipeline.esmecata import sofa_calculation, run_esmecata
+from sparta_pipeline.esmecata import sofa_calculation, run_esmecata, create_dataset_annotation_file
 
 def test_sofa_calculation():
     esmecata_annotation_reference = os.path.join('input', 'annotation_reference')
@@ -10,7 +10,10 @@ def test_sofa_calculation():
     otu_table_stripped = os.path.join('input', 'test_taxon_profile.tsv')
     otu_table_stripped_df = pd.read_csv(otu_table_stripped, index_col=0, sep='\t')
 
-    sofa_calculation(esmecata_annotation_reference, output_sofa_table_filepath, otu_table_stripped_df, treatment='tf_igm')
+    functional_occurrence_filepath = 'functional_occurrence.tsv'
+    create_dataset_annotation_file(esmecata_annotation_reference, functional_occurrence_filepath, content="all")
+
+    sofa_calculation(functional_occurrence_filepath, output_sofa_table_filepath, otu_table_stripped_df, treatment='tf_igm')
 
     expected_sofa_table = os.path.join('expected', 'test_expected_SoFA_table_abundance_test.csv')
     df_expected = pd.read_csv(expected_sofa_table, index_col=0)
@@ -23,6 +26,7 @@ def test_sofa_calculation():
     assert all(df_expected.compare(computed_df))
 
     os.remove(output_sofa_table_filepath)
+    os.remove(functional_occurrence_filepath)
 
 
 def test_esmecata_results():
@@ -67,5 +71,6 @@ def test_esmecata_precomputed():
     shutil.rmtree(output_folder)
 
 
-test_sofa_calculation()
-test_esmecata_results()
+if __name__ == "__main__":
+    test_sofa_calculation()
+    test_esmecata_results()
