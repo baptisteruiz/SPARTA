@@ -1,7 +1,11 @@
 import pandas as pd
 import numpy as np
 import os
+import logging
 from collections import defaultdict
+from tqdm import tqdm
+
+logger = logging.getLogger(__name__)
 
 def create_core_and_meta_dfs(iteration_selections_per_run, runs):
     '''
@@ -23,7 +27,7 @@ def create_core_and_meta_dfs(iteration_selections_per_run, runs):
     core = pd.DataFrame(core_meta['core'], columns=['ID'])
     meta = pd.DataFrame(core_meta['meta']).sort_values(by='Count', ascending=False)
 
-    return(core,meta)
+    return (core, meta)
 
 
 def formatting_core_meta_outputs(info_df, core_df, meta_df, average_importances, runs, zero_case=False):
@@ -73,7 +77,6 @@ def extract_core_associates(dataframe, core_list, esmecata_input=None):
     '''
     This function automatically extracts the core-significant from the lists of associated variables
     '''
-
     if 'Linked_annotations' in dataframe.columns:
         col_ref = 'Linked_annotations'
         new_col = 'Robust_linked_annotaions'
@@ -88,30 +91,15 @@ def extract_core_associates(dataframe, core_list, esmecata_input=None):
             otu_links = None
 
     if col_ref is not None:
-        signif_vars = []
-        for vars_assoc in dataframe[col_ref].values:
-            vars_list = []
-            if vars_assoc is not None:
-                for var in vars_assoc:
-                    if var in core_list:
-                        vars_list.append(var)
-                signif_vars.append(vars_list)
-            else:
-                signif_vars.append([])
-
+        core_list_set = set(core_list)
+        signif_vars = [list(set(vars_list).intersection(core_list_set)) for vars_list in dataframe[col_ref] if vars_list is not None]
         dataframe[new_col] = signif_vars
 
     if otu_links is True:
-        signif_links_named = []
-        for otu_list in signif_vars:
-            named_links = []
-            if esmecata_input is not None:
-                for otu in otu_list:
-                    otu_name_translated = esmecata_input[esmecata_input['observation_name'] == otu]['taxonomic_affiliation'].values[0]
-                    otu_name_translated_species = otu_name_translated.split(';')[-1]
-                    named_links.append(otu_name_translated_species)
-            signif_links_named.append(named_links)
-        dataframe['Named_Robust_linked_taxons'] = signif_links_named
+        if esmecata_input is not None:
+            esmecata_input['taxon_translated'] = esmecata_input['taxonomic_affiliation'].apply(lambda x: x.split(';')[-1])
+            otu_name_translated_species = esmecata_input.set_index('observation_name')['taxon_translated'].to_dict()
+            dataframe['Named_Robust_linked_taxons'] = dataframe[new_col].map(lambda x: [otu_name_translated_species[e] for e in x])
 
     return dataframe
 
@@ -129,7 +117,7 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
     warning_annots=False
     warning_taxons=False
 
-    for iteration in bank_of_selections_annots.keys():
+    for iteration in tqdm(bank_of_selections_annots.keys(), desc="Identify core and meta annotations and taxa."):
         iteration_selections_per_run_annots = bank_of_selections_annots[iteration]
         average_annots_importances_per_run = pd.DataFrame(bank_of_average_importances_annots[iteration])
         average_annots_importances_per_run['Average'] = average_annots_importances_per_run.mean(axis=1)
@@ -214,6 +202,7 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
         if iteration == best_selec_iter_annots and np.mean(iteration_median_perfs)<0.6:
             warning_annots = True
 
+    logger.info('SPARTA|classification| Create best iteration files.')
     if best_selec_iter_annots == 0:
         core_annots_opti, meta_annots_opti = formatting_core_meta_outputs(info_annots, sofa_table, None, None, runs, zero_case=True)
 
@@ -247,4 +236,4 @@ def extract_and_write_core_meta(path_core_meta, bank_of_selections_annots, bank_
         meta_annots_opti.to_csv(meta_annots_opti_filepath)
 
 
-    return(df_perfs_and_selection_per_iter, warning_annots, warning_taxons)
+    return (df_perfs_and_selection_per_iter, warning_annots, warning_taxons)

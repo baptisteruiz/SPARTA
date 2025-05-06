@@ -88,7 +88,6 @@ def run_deep_micro(set_test, set_train, label_test, label_train, dataset_name, i
             samples_labels_splits[repeats]['test_set_labels'] = ','.join(label_test.astype(str))
         perf_df = pd.DataFrame.from_dict(perf_dict, orient='index', dtype=None, columns=['Best parameters', 'Validation set indices','Threshold', 'Training performance', 'Validation performance', 'Test performance'])
 
-
         return perf_df, best_feature_records, samples_labels_splits
 
     except OSError as error:
@@ -98,10 +97,12 @@ def add_otu_names(otu_list, otu_name_df):
     '''
     This function formats a dataframe linking each OTU to its full name
     '''
+    otu_name_df['taxon_translated'] = otu_name_df['taxonomic_affiliation'].apply(lambda x: x.split(';')[-1])
+    translation_org = otu_name_df.set_index('observation_name')['taxon_translated'].to_dict()
 
     otu_names = []
     for otu in tqdm(otu_list, desc="Checking out OTU names..."):
-        otu_name_translated = otu_name_df[otu_name_df['observation_name'] == otu]['taxonomic_affiliation'].values[0]
+        otu_name_translated = translation_org[otu]
         otu_names.append(otu_name_translated)
 
     dataframe = pd.DataFrame(list(zip(otu_list, otu_names)), columns=["ID","Name"])
@@ -116,8 +117,14 @@ def find_relevant_reactions(dataframe, functional_occurrence_filepath):
     functional_occurrence = pd.read_csv(functional_occurrence_filepath, sep='\t', index_col=0)
     functional_occurrence = functional_occurrence.T
     functional_occurrence_dict = functional_occurrence.to_dict()
+
     for organism in tqdm(functional_occurrence_dict, desc="Linking annotations to OTUs...", total=len(functional_occurrence_dict)):
         found_reac[organism] = [annot for annot in functional_occurrence_dict[organism] if functional_occurrence_dict[organism][annot] > 0]
+
+    # Add organism without annotations.
+    for organism in dataframe["ID"]:
+        if organism not in found_reac:
+            found_reac[organism] = []
 
     dataframe["Linked_annotations"] = dataframe["ID"].map(found_reac)
 
@@ -221,12 +228,9 @@ def find_relevant_otus(dataframe, functional_occurrence_filepath, otu_name_df):
     functional_occurrence = pd.read_csv(functional_occurrence_filepath, sep='\t', index_col=0)
     functional_occurrence_dict = functional_occurrence.to_dict()
 
-    translation_org = {}
     if otu_name_df is not None:
-        for org, row in functional_occurrence.iterrows():
-            organism_name_translated = otu_name_df[otu_name_df['observation_name'] == org]['taxonomic_affiliation'].values[0]
-            organism_name_translated_species = organism_name_translated.split(';')[-1]
-            translation_org[org] = organism_name_translated_species
+        otu_name_df['taxon_translated'] = otu_name_df['taxonomic_affiliation'].apply(lambda x: x.split(';')[-1])
+        translation_org = otu_name_df.set_index('observation_name')['taxon_translated'].to_dict()
 
     found_otu = {}
     for annot in tqdm(functional_occurrence_dict, desc="Linking OTUs to annotations...", total=len(functional_occurrence_dict)):
@@ -362,6 +366,9 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
     ## Calculating average presence of taxons and annotations per label, and collecting info about them.
     if info_annots is None:
         info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, run_output_folder, esmecata_input, functional_occurrence_filepath, organism_abundance_filepath)
+
+    info_taxons_check_filepath = os.path.join(run_output_folder, 'info_taxons_check.csv')
+    info_taxons.to_csv(info_taxons_check_filepath)
 
     info_annots_check_filepath = os.path.join(run_output_folder, 'info_annots_check.csv')
     info_annots.to_csv(info_annots_check_filepath)
@@ -528,11 +535,11 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
                 signif_otus = []
                 signif_otu_names = []
 
-                for link_otu_list in selection_plus_info_annots['Linked_OTUs'].values:
+                for link_otu_list in tqdm(selection_plus_info_annots['Linked_OTUs'].values, desc="Link significant OTUs."):
                     signif_links = []
                     signif_links_named = []
                     if link_otu_list is not None:
-                        for otu in tqdm(link_otu_list):
+                        for otu in link_otu_list:
                             if otu in retained_otus:
                                 signif_links.append(otu)
                                 if esmecata_input is not None:
