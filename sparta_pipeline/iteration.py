@@ -367,8 +367,9 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
     if info_annots is None:
         info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, run_output_folder, esmecata_input, functional_occurrence_filepath, organism_abundance_filepath)
 
-    info_taxons_check_filepath = os.path.join(run_output_folder, 'info_taxons_check.csv')
-    info_taxons.to_csv(info_taxons_check_filepath)
+    if info_taxons is not None:
+        info_taxons_check_filepath = os.path.join(run_output_folder, 'info_taxons_check.csv')
+        info_taxons.to_csv(info_taxons_check_filepath)
 
     info_annots_check_filepath = os.path.join(run_output_folder, 'info_annots_check.csv')
     info_annots.to_csv(info_annots_check_filepath)
@@ -452,7 +453,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
         if not os.path.exists(trained_classifiers_iteration_folder):
             os.mkdir(trained_classifiers_iteration_folder)
 
-        # Run classification wtih DeepMicro.
+        # Run classification with DeepMicro.
         if organism_abundance_filepath is not None:
             perf_df_otu, best_feature_records_otu, taxon_training_validation_sets = run_deep_micro(otu_test, otu_train, labels_test, labels_train, 'test_OTU', iteration_number, run_nb, trained_classifiers_iteration_folder, "Taxonomic",
                                                                     classifiers, method, var_ranking_method, real_seed=seed_rf_vec[nb_iterations-1], seed_valid=seed_valid)
