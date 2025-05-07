@@ -527,7 +527,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
                 selection_plus_info_taxons = info_taxons[info_taxons['ID'].isin(list(retained_otus.index))]
                 selection_plus_info_taxons['Average_importance'] = [best_feature_records_otu_df.loc[tax, 'Average'] for tax in selection_plus_info_taxons['ID'].values]
                 selection_plus_info_taxons = selection_plus_info_taxons.sort_values(by='Average_importance', ascending=False)
-            selection_plus_info_annots = info_annots[info_annots['ID'].isin(list(retained_annots.index))]
+            selection_plus_info_annots = info_annots[info_annots['ID'].isin(list(retained_annots.index))].copy()
             selection_plus_info_annots['Average_importance'] = [best_feature_records_sofa_df.loc[func, 'Average'] for func in selection_plus_info_annots['ID'].values]
             selection_plus_info_annots = selection_plus_info_annots.sort_values(by='Average_importance', ascending=False)
 

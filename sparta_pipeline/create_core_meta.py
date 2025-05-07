@@ -39,9 +39,9 @@ def formatting_core_meta_outputs(info_df, core_df, meta_df, average_importances,
     else:
         meta_skip = False
     if zero_case:
-        core_info = info_df[info_df['ID'].isin(list(core_df.index))]
+        core_info = info_df[info_df['ID'].isin(list(core_df.index))].copy()
     else:
-        core_info = info_df[info_df['ID'].isin(list(core_df['ID'].values))]
+        core_info = info_df[info_df['ID'].isin(list(core_df['ID'].values))].copy()
         avg_imps = []
         if average_importances is not None: 
             for annot in core_info['ID'].values:
@@ -57,7 +57,7 @@ def formatting_core_meta_outputs(info_df, core_df, meta_df, average_importances,
         meta_info = None
 
     else:
-        meta_info = info_df[info_df['ID'].isin(list(meta_df['ID'].values))]
+        meta_info = info_df[info_df['ID'].isin(list(meta_df['ID'].values))].copy()
         meta_info['Significance_count'] = [meta_df[meta_df['ID'] == func]['Count'].values[0] for func in meta_info['ID'].values]
 
         significance_category = []

@@ -102,4 +102,4 @@ def test_seeding_run_sparta_classification(seed_init=0):
 
     run_sparta_classification(functional_profile_filepath, label_filepath, output_folder, run_nb, nb_iterations, classifiers=2, reference_test_sets_filepath=None, seed_init=seed_init)
 
-    return True
+    assert True
