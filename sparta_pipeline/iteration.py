@@ -367,13 +367,6 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
     if info_annots is None:
         info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, run_output_folder, esmecata_input, functional_occurrence_filepath, organism_abundance_filepath)
 
-    if info_taxons is not None:
-        info_taxons_check_filepath = os.path.join(run_output_folder, 'info_taxons_check.csv')
-        info_taxons.to_csv(info_taxons_check_filepath)
-
-    info_annots_check_filepath = os.path.join(run_output_folder, 'info_annots_check.csv')
-    info_annots.to_csv(info_annots_check_filepath)
-
     if reference_test_sets_filepath:
         #Get the test set references if they are given
         test_set_refs = pd.read_csv(reference_test_sets_filepath)
@@ -421,9 +414,8 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
         os.mkdir(dataset_separation_folder)
 
     random.seed(seed_rf)
-    
+
     seed_rf_vec = random.sample(range(1000),nb_iterations)
-    
 
     if organism_abundance_filepath is not None:
         deepmicro_otu_iteration = pd.DataFrame()
@@ -438,7 +430,6 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
         selected_annots_run = preselected_annots['Run_'+str(run_nb)].dropna()
         deepmicro_sofa_iteration = functional_profile_df.loc[selected_annots_run.values].transpose()
 
-       
     #ITERATED:
     for iteration_number in range(nb_iterations):
     #Separate test and train subsets

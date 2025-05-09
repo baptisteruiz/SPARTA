@@ -118,6 +118,13 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         esmecata_input = pd.read_csv(esmecata_input, sep='\t')
     info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, output_folder, esmecata_input, functional_occurrence_filepath, organism_abundance_filepath)
 
+    if info_taxons is not None:
+        info_taxons_check_filepath = os.path.join(output_folder, 'info_taxons_check.csv')
+        info_taxons.to_csv(info_taxons_check_filepath)
+
+    info_annots_check_filepath = os.path.join(output_folder, 'info_annots_check.csv')
+    info_annots.to_csv(info_annots_check_filepath)
+
     nb_runs = int(nb_runs)
     nb_iterations = int(nb_iterations)
     bank_of_selections_annots = {}
