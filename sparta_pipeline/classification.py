@@ -108,14 +108,19 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
     if not os.path.exists(output_folder):
         os.mkdir(output_folder)
     stopwatch_file = os.path.join(output_folder, 'stopwatch.txt')
+
+    logger.info('SPARTA|classification| Read functional profile file.')
     functional_profile_df = pd.read_csv(functional_profile_filepath, sep=',', index_col=0)
 
+    logger.info('SPARTA|classification| Read label file.')
     label_file_df = pd.read_csv(label_filepath)
-
     label_file_df = label_file_df[functional_profile_df.columns].transpose()
+
     ## Calculating average presence of taxons and annotations per label, and collecting info about them.
     if esmecata_input is not None:
+        logger.info('SPARTA|classification| Read EsMeCaTa input file.')
         esmecata_input = pd.read_csv(esmecata_input, sep='\t')
+
     info_annots, info_taxons = averaging_and_info_step(functional_profile_df, label_file_df, output_folder, esmecata_input, functional_occurrence_filepath, organism_abundance_filepath)
 
     if info_taxons is not None:
@@ -202,17 +207,6 @@ def run_sparta_classification(functional_profile_filepath, label_filepath, outpu
         core_and_meta_outputs_best_iteration_folder = os.path.join(core_and_meta_outputs_folder, 'Best_iteration')
         if not os.path.exists(core_and_meta_outputs_best_iteration_folder):
             os.mkdir(core_and_meta_outputs_best_iteration_folder)
-
-        ##Adding v2 of the best iteration selection process, to remove once we have chosen
-        # core_and_meta_outputs_folder_v2 = os.path.join(output_folder, 'Core_and_Meta_outputs_v2')
-        # if not os.path.exists(core_and_meta_outputs_folder_v2):
-        #     os.mkdir(core_and_meta_outputs_folder_v2)
-        # core_and_meta_outputs_all_iteration_folder_v2 = os.path.join(core_and_meta_outputs_folder_v2, 'All_iterations')
-        # if not os.path.exists(core_and_meta_outputs_all_iteration_folder_v2):
-        #     os.mkdir(core_and_meta_outputs_all_iteration_folder_v2)
-        # core_and_meta_outputs_best_iteration_folder_v2= os.path.join(core_and_meta_outputs_folder_v2, 'Best_iteration')
-        # if not os.path.exists(core_and_meta_outputs_best_iteration_folder_v2):
-        #     os.mkdir(core_and_meta_outputs_best_iteration_folder_v2)
 
         #When best iteration selection process has been chosen, correct the first argument of the function
         df_perfs_and_selection_per_iter, warning_annots, warning_taxons = extract_and_write_core_meta(core_and_meta_outputs_folder, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots,

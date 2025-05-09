@@ -3,6 +3,7 @@ import os
 import numpy as np
 import requests
 import random
+import logging
 
 from tqdm import tqdm
 from kneebow.rotor import Rotor
@@ -11,6 +12,9 @@ from goatools import obo_parser
 from sklearn.model_selection import train_test_split
 
 from sparta_pipeline.Deepmicro import run_exp
+
+logger = logging.getLogger(__name__)
+
 
 def inflexion_cutoff(datatable):
     
@@ -109,14 +113,13 @@ def add_otu_names(otu_list, otu_name_df):
 
     return dataframe
 
-def find_relevant_reactions(dataframe, functional_occurrence_filepath):
+def find_relevant_reactions(dataframe, functional_occurrence):
     '''
     This function finds all annotations associated with each OTU
     '''
     found_reac = {}
-    functional_occurrence = pd.read_csv(functional_occurrence_filepath, sep='\t', index_col=0)
-    functional_occurrence = functional_occurrence.T
-    functional_occurrence_dict = functional_occurrence.to_dict()
+
+    functional_occurrence_dict = functional_occurrence.T.to_dict()
 
     for organism in tqdm(functional_occurrence_dict, desc="Linking annotations to OTUs...", total=len(functional_occurrence_dict)):
         found_reac[organism] = [annot for annot in functional_occurrence_dict[organism] if functional_occurrence_dict[organism][annot] > 0]
@@ -130,7 +133,7 @@ def find_relevant_reactions(dataframe, functional_occurrence_filepath):
 
     return dataframe
 
-def get_info_taxons(otu_db, esmecata_input, functional_occurrence_filepath):
+def get_info_taxons(otu_db, esmecata_input, functional_occurrence):
     
     list_of_otus = list(otu_db.index)
 
@@ -139,13 +142,12 @@ def get_info_taxons(otu_db, esmecata_input, functional_occurrence_filepath):
     else:
         annots_with_names = pd.DataFrame(list(zip(list_of_otus, list_of_otus)), columns=["ID","Name"])
 
-    if functional_occurrence_filepath is not None:
-        annots_with_names_and_associated_otus = find_relevant_reactions(annots_with_names, functional_occurrence_filepath)
+    if functional_occurrence is not None:
+        annots_with_names_and_associated_otus = find_relevant_reactions(annots_with_names, functional_occurrence)
     else:
         annots_with_names_and_associated_otus = annots_with_names
 
     return (annots_with_names_and_associated_otus)
-
 
 def average_count_per_group(count_dataframe,  label_refs, label_value=None):
     '''
@@ -166,7 +168,7 @@ def add_reaction_names(list_of_annots, output_folder):
     '''
     data_folder = os.path.join(output_folder, 'data')
 
-    # Check if we have the ./data directory already
+    # Check if we have the data directory already
     if(not os.path.isfile(data_folder)):
         # Emulate mkdir -p (no error if folder exists)
         try:
@@ -218,14 +220,14 @@ def add_reaction_names(list_of_annots, output_folder):
 
     return dataframe
 
-def find_relevant_otus(dataframe, functional_occurrence_filepath, otu_name_df):
+def find_relevant_otus(dataframe, functional_occurrence, otu_name_df):
     '''
     This function finds and names all OTUs associated with each annotation
     '''
     found_otu = {}
     found_otu_named = {}
     named_annotations = set(dataframe["ID"].tolist())
-    functional_occurrence = pd.read_csv(functional_occurrence_filepath, sep='\t', index_col=0)
+
     functional_occurrence_dict = functional_occurrence.to_dict()
 
     if otu_name_df is not None:
@@ -243,21 +245,19 @@ def find_relevant_otus(dataframe, functional_occurrence_filepath, otu_name_df):
         dataframe["Named_linked_OTUs"] = dataframe["ID"].map(found_otu_named)
     return dataframe
 
-
-def get_info_annots(score_db, output_folder, organism_abundance_filepath, esmecata_input, functional_occurrence_filepath):
+def get_info_annots(score_db, output_folder, organism_abundance_filepath, esmecata_input, functional_occurrence):
     
     list_of_annots = list(score_db.index)
     annots_with_names = add_reaction_names(list_of_annots, output_folder)
 
-    if organism_abundance_filepath is not None and functional_occurrence_filepath is not None:
-        annots_with_names_and_associated_otus = find_relevant_otus(annots_with_names, functional_occurrence_filepath, esmecata_input)
+    if organism_abundance_filepath is not None and functional_occurrence is not None:
+        annots_with_names_and_associated_otus = find_relevant_otus(annots_with_names, functional_occurrence, esmecata_input)
     else:
         annots_with_names_and_associated_otus = annots_with_names
         annots_with_names['Linked_OTUs'] = None
         annots_with_names['Named_linked_OTUs'] = None
 
     return(annots_with_names_and_associated_otus)
-
 
 def average_per_group(score_dataframe, label_refs, label_value = None):
     '''
@@ -283,12 +283,19 @@ def averaging_and_info_step(functional_profile_df, label_refs, output_folder, es
     '''
     This script runs the steps to build an info database on the taxons and annotations from the dataset. Said databases will be used to add information to the final outputs.
     '''
+    if functional_occurrence_filepath is not None:
+        logger.info('SPARTA|classification| Read functional occurrence file.')
+        functional_occurrence = pd.read_csv(functional_occurrence_filepath, sep='\t', index_col=0)
+    else:
+        functional_occurrence = None
+
     if organism_abundance_filepath is not None:
+        logger.info('SPARTA|classification| Read organism abundance file.')
         otu_count_df = pd.read_csv(organism_abundance_filepath, sep='\t', index_col=0)
-        info_taxons = get_info_taxons(otu_count_df, esmecata_input, functional_occurrence_filepath)
+        info_taxons = get_info_taxons(otu_count_df, esmecata_input, functional_occurrence)
         avg_count_total = average_count_per_group(otu_count_df, label_refs)
 
-    info_annots = get_info_annots(functional_profile_df, output_folder, organism_abundance_filepath, esmecata_input, functional_occurrence_filepath)
+    info_annots = get_info_annots(functional_profile_df, output_folder, organism_abundance_filepath, esmecata_input, functional_occurrence)
     avg_score_total = average_per_group(functional_profile_df, label_refs)
 
     df_max_scores = pd.DataFrame()
@@ -450,6 +457,7 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
                                                                     classifiers, method, var_ranking_method, real_seed=seed_rf_vec[nb_iterations-1], seed_valid=seed_valid)
         perf_df_sofa, best_feature_records_sofa, function_training_validation_sets = run_deep_micro(annots_test, annots_train, labels_test, labels_train, 'test_Functions', iteration_number, run_nb, trained_classifiers_iteration_folder, "Functional",
                                                                   classifiers, method, var_ranking_method, real_seed=seed_rf_vec[nb_iterations-1], seed_valid=seed_valid)
+
         if organism_abundance_filepath is not None:
             taxon_dataset_separation_iteration_file = os.path.join(dataset_separation_folder, 'Taxonomic_samples_separation_Iteration_'+str(iteration_number)+'.csv')
             pd.DataFrame(taxon_training_validation_sets).to_csv(taxon_dataset_separation_iteration_file)
@@ -518,32 +526,19 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
                 selection_plus_info_taxons = info_taxons[info_taxons['ID'].isin(list(retained_otus.index))]
                 selection_plus_info_taxons['Average_importance'] = [best_feature_records_otu_df.loc[tax, 'Average'] for tax in selection_plus_info_taxons['ID'].values]
                 selection_plus_info_taxons = selection_plus_info_taxons.sort_values(by='Average_importance', ascending=False)
-            selection_plus_info_annots = info_annots[info_annots['ID'].isin(list(retained_annots.index))].copy()
+            selection_plus_info_annots = info_annots[info_annots['ID'].isin(list(retained_annots.index))]
             selection_plus_info_annots['Average_importance'] = [best_feature_records_sofa_df.loc[func, 'Average'] for func in selection_plus_info_annots['ID'].values]
             selection_plus_info_annots = selection_plus_info_annots.sort_values(by='Average_importance', ascending=False)
 
             # Write the selection files with info
             if organism_abundance_filepath is not None:
-                signif_otus = []
-                signif_otu_names = []
-
-                for link_otu_list in tqdm(selection_plus_info_annots['Linked_OTUs'].values, desc="Link significant OTUs."):
-                    signif_links = []
-                    signif_links_named = []
-                    if link_otu_list is not None:
-                        for otu in link_otu_list:
-                            if otu in retained_otus:
-                                signif_links.append(otu)
-                                if esmecata_input is not None:
-                                    otu_name_translated = esmecata_input[esmecata_input['observation_name'] == otu]['taxonomic_affiliation'].values[0]
-                                    otu_name_translated_species = otu_name_translated.split(';')[-1]
-                                    signif_links_named.append(otu_name_translated_species)
-                    
-                    signif_otus.append(signif_links)
-                    signif_otu_names.append(signif_links_named)
-
-                selection_plus_info_annots['Significant_linked_OTUs'] = signif_otus
-                selection_plus_info_annots['Significant_linked_Named_OTUs'] = signif_otu_names
+                selection_plus_info_annots['Significant_linked_OTUs'] = selection_plus_info_annots['Linked_OTUs'].map(lambda x: [otu for otu in x if otu in retained_otus])
+                if esmecata_input is not None:
+                    esmecata_input['taxon_translated'] = esmecata_input['taxonomic_affiliation'].apply(lambda x: x.split(';')[-1])
+                    otu_name_translated_species = esmecata_input.set_index('observation_name')['taxon_translated'].to_dict()
+                    selection_plus_info_annots['Significant_linked_Named_OTUs'] = selection_plus_info_annots['Linked_OTUs'].map(lambda x: [otu_name_translated_species[otu] for otu in x if x is not None and otu in retained_otus])
+                else:
+                    selection_plus_info_annots['Significant_linked_Named_OTUs'] = selection_plus_info_annots['Linked_OTUs'].map(lambda x: [[] for otu in x if x is not None and otu in retained_otus])
 
                 signif_annots = []
 
@@ -580,5 +575,5 @@ def run_iterate(functional_profile_filepath, label_filepath, run_output_folder, 
             if organism_abundance_filepath is not None:
                 deepmicro_otu_iteration = deepmicro_otu_iteration0[retained_otus.index]
             deepmicro_sofa_iteration = deepmicro_sofa_iteration0[retained_annots.index]
-            
+
     return (test_set_dict, bank_of_selections_annots, bank_of_selections_taxons, bank_of_performance_dfs_annots, bank_of_performance_dfs_taxons, bank_of_average_importances_annots, bank_of_average_importances_taxons)
